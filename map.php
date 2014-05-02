@@ -34,7 +34,8 @@ function drawRect(coOrdStr)
     top = mCoords[1];
     right = mCoords[2];
     bot = mCoords[3];
-    hdc.strokeRect(left,top,right-left,bot-top); 
+    hdc.strokeRect(left,top,right-left,bot-top);
+    hdc.fill();
 }
 
 function myHover(element)
@@ -130,7 +131,7 @@ coords="207,46,218,46,216,39,230,39,231,49,243,56,261,85,291,96,278,86,280,73,28
 		<area shape="poly"
 		
 onmouseover='myHover(this);' onmouseout='myLeave();' 
-coords="268,15,272,23,285,42,319,41,319,61,289,60,282,61,263,82,250,58,233,47,233,41,254,43"
+coords="295.1999969482422,49,277.1999969482422,68,269.1999969482422,74,265.1999969482422,82,263.1999969482422,82,262.1999969482422,82,260.1999969482422,81,258.1999969482422,78,257.1999969482422,76,256.1999969482422,72,252.1999969482422,71,252.1999969482422,64,251.1999969482422,59,247.1999969482422,57,247.1999969482422,54,245.1999969482422,52,242.1999969482422,52,230.1999969482422,45,230.1999969482422,44,229.1999969482422,42,230.1999969482422,41,232.1999969482422,39,239.1999969482422,44,243.1999969482422,43,245.1999969482422,42,254.1999969482422,43,256.1999969482422,40,262.1999969482422,27,268.1999969482422,21,269.1999969482422,16,274.1999969482422,19,273.1999969482422,26,276.1999969482422,33,279.1999969482422,41,287.1999969482422,47"
 			href="amapa.html" alt="AMAP&Aacute;">
 		<area shape="poly"
 		
@@ -199,10 +200,12 @@ coords="336,197,346,204,364,197,366,184,376,186,392,178,401,184,420,177,429,184,
 			href="bahia.html" alt="BAHIA">
 		<area shape="poly"
 		
-onmouseover='myHover(this);' onmouseout='myLeave();' 
+onmouseover='myHover(this);' onmouseout='myLeave();'
 coords="313,288,290,292,278,298,273,300,261,293,252,288,253,277,262,266,272,250,283,223,297,228,309,228,321,231,329,227,334,245,331,246,325,237,300,237,298,269,318,269,320,277,321,286"
 			href="goiania.html" alt="GOI&Aacute;S">
-		<area shape="rect" coords="302,240,329,268" href="df.html"
+		<area shape="rect"
+		onmouseover='myHover(this);' onmouseout='myLeave();'
+		coords="302,240,329,268" href="df.html"
 			alt="DISTRITO FEDERAL">
 		<area shape="poly"
 		
@@ -233,7 +236,7 @@ coords="260,336,278,313,296,312,307,315,318,310,324,327,326,332,329,345,340,346,
 		
 onmouseover='myHover(this);' onmouseout='myLeave();' 
 coords="234,377,241,352,252,343,265,343,281,349,289,350,295,367,301,366,304,379,304,381,295,383,291,380,279,384,271,389,244,387"
-			href="parana.html" alt="PARAN&Aacute;">
+			href="javascript:mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(-24.443079714330477), parseFloat(-50.51726517442131)), parseInt(6));" alt="PARAN&Aacute;">
 		<area shape="poly"
 		
 onmouseover='myHover(this);' onmouseout='myLeave();' 
