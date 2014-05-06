@@ -167,34 +167,43 @@ class Pontosdecultura {
 	
 	function home_search_callback()
 	{
+		/* @var $wpdb wpdb */
 		global $wpdb; // this is how you get access to the database
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
 		$post_type = 'mapa';
 		
-		$args = array(
-			'post_type' => $post_type,
-			's' => $s,
-		);
+		$querystr = "
+		SELECT $wpdb->posts.ID FROM $wpdb->posts
+			LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+			LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+			LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+			LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
+		WHERE
+			$wpdb->posts.post_type = 'mapa'
+			AND (
+				$wpdb->terms.name like '%$s%'
+				OR $wpdb->posts.post_title like '%$s%'
+				OR $wpdb->posts.post_content like '%$s%'
+				OR $wpdb->posts.post_excerpt like '%$s%'
+				OR $wpdb->postmeta.meta_value like '%$s%'
+			)
+		GROUP BY $wpdb->posts.ID
+		ORDER BY $wpdb->posts.ID asc
+		";
 		
-		$the_query = new WP_Query($args);
-		echo '<div id="results" class="clearfix">';
-		if ( $the_query->have_posts() )
-		{
-			echo '<ul>';
-			while ( $the_query->have_posts() )
-			{
-				$the_query->the_post();
-				echo '<li>' . get_the_title() . '</li>';
-			}
-			echo '</ul>';
-		}
-		else
-		{
-				echo 'no posts found';
-		}
-		echo '</div>';
+		$posts = $wpdb->get_results($querystr, ARRAY_N);
+		/*echo '<div id="results" class="clearfix">';
+		echo '<pre>';
+			//echo $querystr;
+			print_r($posts);
+		echo '</pre>';
+		echo '</div>';*/
+		
+		echo json_encode($posts);
+		
+		
 		die(); // this is required to return a proper result
 	}
 	
