@@ -15,6 +15,9 @@ class Pontosdecultura {
 		
 		add_action('wp_enqueue_scripts', array($this, 'map_scritps'));
 		add_filter('mapasdevista_filters_show_tax_title', array($this, 'mapasdevista_filters_show_tax_title'));
+		
+		add_action( 'wp_ajax_home_search', array($this, 'home_search_callback') );
+		add_action( 'wp_ajax_nopriv_home_search', array($this, 'home_search_callback') );
 	}
 	
 	/**
@@ -48,6 +51,9 @@ class Pontosdecultura {
 		if(is_home())
 		{
 			wp_enqueue_script('homescripts');
+			
+			wp_localize_script( 'homescripts', 'homescripts_object',
+			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 		}
 	}
 	
@@ -158,6 +164,39 @@ class Pontosdecultura {
 		return false;
 	}
 	//add_filter('mapasdevista_filters_show_tax_title', 'pontosdecultura_mapasdevista_filters_show_tax_title');
+	
+	function home_search_callback()
+	{
+		global $wpdb; // this is how you get access to the database
+	
+		$s = sanitize_text_field( $_POST['s'] );
+		
+		$post_type = 'mapa';
+		
+		$args = array(
+			'post_type' => $post_type,
+			's' => $s,
+		);
+		
+		$the_query = new WP_Query($args);
+		echo '<div id="results" class="clearfix">';
+		if ( $the_query->have_posts() )
+		{
+			echo '<ul>';
+			while ( $the_query->have_posts() )
+			{
+				$the_query->the_post();
+				echo '<li>' . get_the_title() . '</li>';
+			}
+			echo '</ul>';
+		}
+		else
+		{
+				echo 'no posts found';
+		}
+		echo '</div>';
+		die(); // this is required to return a proper result
+	}
 	
 }
 
