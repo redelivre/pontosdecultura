@@ -1,4 +1,27 @@
 <?php
+/**
+ * Pontos de Cultura functions and definitions
+ *
+ * @package Pontos de Cultura
+ * @since  Pontos de Cultura 1.0
+ */
+
+/**
+ * Set the content width based on the theme's design and stylesheet.
+ */
+if ( ! isset( $content_width ) ) {
+	$content_width = 640; /* pixels */
+}
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
 
 class Pontosdecultura {
 	

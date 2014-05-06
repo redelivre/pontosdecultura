@@ -1,86 +1,27 @@
 /*
-Theme Name: Pontosdecultura
+Theme Name: Pontos de Cultura
 Theme URI: https://github.com/redelivre/pontosdecultura
-Description: 
-Version: 0.1
 Author: Ethymos
-Author URI: http://www.ethymos.com.br
+Author URI: http://ethymos.com.br
+Description: Description
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: pontosdecultura
+Domain Path: /languages/
 Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
 */
 
-
-/* Classes padrão wordpress
--------------------------------------------------------------- */
-.alignnone { margin: 5px 20px 20px 0; }
-.aligncenter, div.aligncenter { display:block; margin: 5px auto 5px auto; }
-.alignright { float:right; margin: 5px 0 20px 20px; }
-.alignleft { float:left; margin: 5px 20px 20px 0; }
-.aligncenter { display: block; margin: 5px auto 5px auto; }
-a img.alignright { float:right; margin: 5px 0 20px 20px; }
-a img.alignnone { margin: 5px 20px 20px 0; }
-a img.alignleft { float:left; margin: 5px 20px 20px 0; }
-a img.aligncenter { display: block; margin-left: auto; margin-right: auto }
-.wp-caption { background: #fff; border: 1px solid #f0f0f0; max-width: 96%; /* Image does not overflow the content area */ padding: 5px 3px 10px; text-align: center; }
-.wp-caption.alignnone { margin: 5px 20px 20px 0; }
-.wp-caption.alignleft { margin: 5px 20px 20px 0; }
-.wp-caption.alignright { margin: 5px 0 20px 20px; }
-.wp-caption img { border: 0 none; height: auto; margin:0; max-width: 98.5%; padding:0; width: auto; }
-.wp-caption p.wp-caption-text { font-size:11px; line-height:17px; margin:0; padding:0 4px 5px; }
-
-/*
-Documento
---------------------------------------- */
-body { }
-h1 { }
-h2 { }
-h3 { }
-h4 { }
-h5 { }
-h6 { }
-
-a { }
-a:hover { }
-
-p { }
-
-/*
-Genericas
---------------------------------------- */
-.float-left { float:left; }
-.float-right { float:right; }
-
-.img-replacement { text-indent: -5000em; display:block; }
-.img-replacement a { display:block; width:100%; height:100%; }
-.container {
-	width: 940px;
-}
-
-.header-login-form .login-username label, .header-login-form .login-password label {
-	display: none;
-}
-
-.header-login-form .login-remember {
-	width: 40%;
-	float: left;
-}
-
-.header-login-form .login-submit {
-	width: 20%;
-	float: left;
-}
-.header-register-link-nologged {
-	float: right;
-	list-style: none outside none;
-    margin-top: -10px;
-}
-.header-register-link-logged {
-	float: right;
-	list-style: none outside none;
-}
-
-.stick-video {
-	text-align: center;
-}
 
 /*
 Map
