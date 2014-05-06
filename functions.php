@@ -40,9 +40,15 @@ class Pontosdecultura {
 		$path = get_template_directory_uri() . '/js';
 		wp_register_script('bootstrap', $path . '/bootstrap.min.js');
 		wp_register_script('pontosdecultura_language_selector', $path . '/language_selector.js');
+		wp_register_script('homescripts', $path . '/home.js', array('jquery'));
+		
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('bootstrap');
 		wp_enqueue_script('pontosdecultura_language_selector');
+		if(is_home())
+		{
+			wp_enqueue_script('homescripts');
+		}
 	}
 	
 	public static function language_selector()
@@ -156,5 +162,9 @@ class Pontosdecultura {
 }
 
 $pontosdecultura = new Pontosdecultura();
+
+include_once dirname(__FILE__).'/lib/estadoscidades/taxs.php';
+include_once dirname(__FILE__).'/options.php';
+
 
 ?>
