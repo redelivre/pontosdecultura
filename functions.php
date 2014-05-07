@@ -14,6 +14,52 @@ if ( ! isset( $content_width ) ) {
 }
 
 /**
+ * Register widget area.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
+ */
+function pontosdecultura_widgets_init() {
+	register_sidebar( array(
+		'name'          => __( 'Sidebar', 'pontosdecultura' ),
+		'id'            => 'sidebar-main',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Footer Widget Area', 'pontosdecultura' ),
+		'id'            => 'sidebar-footer',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+}
+add_action( 'widgets_init', 'pontosdecultura_widgets_init' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function pontosdecultura_scripts() {
+
+	// Normalize.css
+    wp_register_style( 'pontosdecultura-normalize', get_template_directory_uri() . '/css/normalize.css', array(), '3.0.1' );
+    wp_enqueue_style( 'pontosdecultura-normalize' );
+
+	// General style
+	wp_enqueue_style( 'pontosdecultura_scripts-style', get_stylesheet_uri() );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'pontosdecultura_scripts' );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -34,7 +80,6 @@ class Pontosdecultura {
 		add_action('wp_enqueue_scripts', array($this, 'css'));		
 		add_action('wp_enqueue_scripts', array($this, 'javascript'));
 		add_filter('nav_menu_css_class', array($this, 'nav_menu_css_class'));
-		add_action('widgets_init', array($this, 'register_sidebars'));
 		
 		add_action('wp_enqueue_scripts', array($this, 'map_scritps'));
 		add_filter('mapasdevista_filters_show_tax_title', array($this, 'mapasdevista_filters_show_tax_title'));
@@ -50,8 +95,7 @@ class Pontosdecultura {
 	public function css(){
 		$path = get_template_directory_uri() . '/css';
 		wp_register_style('bootstrap-responsive', $path . '/bootstrap-responsive.min.css');
-		wp_register_style('bootstrap', $path . '/bootstrap.min.css');		
-		wp_register_style('geral', get_stylesheet_directory_uri() . '/style.css', array('bootstrap'));
+		wp_register_style('bootstrap', $path . '/bootstrap.min.css');
 		
 		wp_enqueue_style('bootstrap');
 		wp_enqueue_style('bootstrap-responsive');
@@ -113,22 +157,6 @@ class Pontosdecultura {
 	{
 		$classes[] = 'span';
 		return $classes;
-	}
-	
-	public function register_sidebars()
-	{
-		/*$args = array(
-				'name'          => 'Solution Sidebar',
-				'id'            => "solution-sidebar",
-				'description'   => '',
-				'class'         => '',
-				'before_widget' => '<li id="%1$s" class="widget %2$s">',
-				'after_widget'  => "</li>\n",
-				'before_title'  => '<h2 class="widgettitle">',
-				'after_title'   => "</h2>\n",
-		);
-		
-		register_sidebar( $args );*/
 	}
 	
 	/**
