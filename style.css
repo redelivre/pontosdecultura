@@ -150,3 +150,58 @@ Footer
 .pontosdecultura-credits a {
 	width: auto;
 }
+
+
+/* ==========================================================================
+   8.0 - Media queries
+   ========================================================================== */
+
+@media all and (min-width: 40em) {
+
+	/* Site logo */
+	.site-logo {
+		max-width: 362px;
+	}
+
+	/* Site menu */
+	.menu-toggle {
+		cursor: pointer;
+		display: none;
+	}
+
+	.main-navigation ul {
+		display: block;
+	}
+
+	/* Masonry stuff */
+	.loop .grid-sizer,
+	.loop .hentry {
+		padding: 1.5em 1em;
+		width: 50%;
+	}
+
+	/* Footer Widget Area */
+	.widget-area--footer .widget {
+		float: left;
+		width: 50%;
+	}
+}
+
+@media all and (min-width: 55em) {
+
+    /* Footer Widget Area */
+    .widget-area--footer .widget:first-child:nth-last-child(2),
+	.widget-area--footer .widget:first-child:nth-last-child(2) ~ .widget {
+	    width: 50%;
+	}
+
+	.widget-area--footer .widget:first-child:nth-last-child(3),
+	.widget-area--footer .widget:first-child:nth-last-child(3) ~ .widget {
+	    width: 33.333%;
+	}
+
+	.widget-area--footer .widget:first-child:nth-last-child(4),
+	.widget-area--footer .widget:first-child:nth-last-child(4) ~ .widget {
+	    width: 25%;
+	}
+}
