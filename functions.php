@@ -211,8 +211,11 @@ class Pontosdecultura {
 
 $pontosdecultura = new Pontosdecultura();
 
+/** Lib estadocidades **/
 include_once dirname(__FILE__).'/lib/estadoscidades/taxs.php';
+/** Opções do Tema **/
 include_once dirname(__FILE__).'/options.php';
-
+/** Taxs do Pontos **/
+include_once dirname(__FILE__).'/taxs.php';
 
 ?>
