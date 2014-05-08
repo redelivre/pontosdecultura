@@ -606,6 +606,7 @@ Periódicos
 		wp_insert_term("História", 'humanidades');
 		wp_insert_term("Obras de Referência", 'humanidades');
 		wp_insert_term("Periódicos", 'humanidades');
+		wp_insert_term("Oficinas, seminários, palestras, cursos, congressos, treinamentos", 'humanidades');
 	}
 	
 }
