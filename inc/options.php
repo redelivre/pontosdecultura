@@ -82,6 +82,15 @@ class PontosSettingsPage
             'pontos-setting-admin', // Page
             'setting_estatos_cidades' // Section           
         );
+        add_settings_field(
+        'pins_imported', // ID
+        '', // Title
+        array( $this, 'pins_imported_callback' ), // Callback
+        'pontos-setting-admin', // Page
+        'setting_estatos_cidades' // Section
+        );
+        
+        
 		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-setting-admin')
 		{
 			$path = get_template_directory_uri() . '/js';
@@ -122,9 +131,9 @@ class PontosSettingsPage
         	}
 		}
 		
-		if( array_key_exists('pins-imported', $input ) && is_bool($input['pins-imported']))
+		if( array_key_exists('pins_imported', $input ) && is_bool( (bool)$input['pins_imported']) )
 		{
-			$new_input['pins-imported'] = $input['pins-imported'];
+			$new_input['pins_imported'] = $input['pins_imported'];
 		}
 
         return $new_input;
@@ -148,6 +157,17 @@ class PontosSettingsPage
             <input type="checkbox" id="criar_estatos_cidades" name="pontos_theme_options[criar_estatos_cidades]" value="S" <?php echo $checked; ?> /><?php _e('Criar', 'pontosdecultura'); ?>
         <?php 
     }
+    
+    /**
+     * Get the settings option array and print one of its values
+     */
+    public function pins_imported_callback()
+    {
+    	$checked = isset( $this->options['pins_imported'] ) && $this->options['pins_imported'] == 'S' ? 'checked="checked"' : '';
+    	?>
+        	<input type="hidden" id="pins_imported" name="pontos_theme_options[pins_imported]" value="<?php echo isset( $this->options['pins_imported'] ) && $this->options['pins_imported'] ? 'true' : 'false' ;?>" />
+        <?php 
+	}
     
     public function fetch_remote_file( $url, $post ) {
     
@@ -228,7 +248,7 @@ class PontosSettingsPage
     
     public function ImportPins()
     {
-    	if(!array_key_exists('pins-imported', $this->options) || $this->options['pins-imported'] === false )
+    	if(!array_key_exists('pins_imported', $this->options) || $this->options['pins_imported'] === false )
     	{
 	    	if ($handle = opendir(WP_CONTENT_DIR . '/themes/pontosdecultura/images/pins'))
 			{
@@ -254,7 +274,7 @@ class PontosSettingsPage
 	    			}
 	    		}
 	    		closedir($handle);
-	    		$this->options['pins-imported'] = true;
+	    		$this->options['pins_imported'] = true;
 	    		update_option('pontos_theme_options', $this->options);
 	    	}
     	}
@@ -266,6 +286,39 @@ class PontosSettingsPage
     	
     	if(function_exists('mapasdevista_get_coords') )
     	{
+    		include_once dirname(__FILE__).'/Tratar.php';
+    		
+    		$pins_args = array (
+	    		'post_type' => 'attachment',
+				'meta_key' => '_pin_anchor',
+        		'posts_per_page' => '-1'
+	    	);
+			$pinsTodos = get_posts($pins_args);
+			
+			$pins = array();
+			
+			foreach ($pinsTodos as $pin)
+			{
+				switch ($pin->post_name)
+				{
+					case 'ponto-png':
+						$pins['Ponto Direto'] = $pin->ID;
+						$pins['Rede Estadual'] = $pin->ID;
+						$pins['Rede Intermunicipal'] = $pin->ID;
+						$pins['Rede Municipal'] = $pin->ID;
+					break;
+					case 'ponto-de-bens-png':
+						$pins['Pontão de Bens'] = $pin->ID;
+					break;
+					case 'ponto-indigena-png':
+						$pins['Ponto de Cultura Indígena'] = $pin->ID;
+					break;
+					case 'pontao-png':
+						$pins['Pontão Direto'] = $pin->ID;
+					break;
+				}
+			}
+    		
 	    	$debug = true;
 	    	ini_set("memory_limit", "2048M");
 	    	set_time_limit(0);
@@ -274,13 +327,9 @@ class PontosSettingsPage
 	    	echo '<pre>';
 	    
 	    	$row = fgetcsv( $file, 0, ';');
-	    	$names = $row;
-	    	$row = fgetcsv( $file, 0, ';');
 	    	$i = 0;
 	    	do
 	    	{
-	    		echo $row[0];
-	    
 	    		$post = array(
 	    				'post_author'    => 1, //The user ID number of the author.
 	    				'post_content'   => $row[19],
@@ -292,52 +341,67 @@ class PontosSettingsPage
 	    		if(!$debug) $post_id = wp_insert_post($post);
 	    
 	    		$no_import = array(0, 16, 19, 20, 21, 23, 24, 25);
-	    
-	    		if(!$debug && is_int($post_id) )
-	    		{
-	    				
-	    			$location = mapasdevista_get_coords($row[17].' '.$row[18]);
-	    			
-	    			if($debug)
-	    			{
-		    			if($location !== false) echo "{$row[3]};{$location[lat]};{$location[lon]}";
-		    			else echo "$row[3] -> ponto não encontrado";
-	    			}
-	    					
-	    			if(!$debug && $location !== false) update_post_meta($post_id, '_mpv_location', $location);
-	    
-	    			if(!$debug)
-	    			{
 
-	    				switch (trim($row[0]))
-	    				{
-	    					case 'Ponto de Cultura Indígena':
-	    						
-	    					break;
-	    				}
-	    				
-	    				
-	    				update_post_meta($post_id, '_mpv_pin', 12);
-	    					
-	    				delete_post_meta($post_id, '_mpv_inmap');
-	    				delete_post_meta($post_id, '_mpv_in_img_map');
-	    				add_post_meta($post_id, "_mpv_inmap", 1);
-	    
-	    				foreach ($row as $key => $custom_field)
-	    				{
-	    					if($key > 22) break; // stop on column with tax
-	    					
-	    					if(!in_array($key, $no_import))
-	    					{
-	    						update_post_meta($post_id, $names[$key], $custom_field);
-	    					}
-	    				}
-	    			}
-	    
+	    		$location = mapasdevista_get_coords($row[17].' '.$row[18]);
+	    		
+	    		if($debug)
+	    		{
+	    			print_r($post);
+	    			if($location !== false) echo "{$row[3]};{$location['lat']};{$location['lon']}";
+	    			else echo "$row[3] -> ponto não encontrado";
 	    		}
+	    		
+	    		if(!$debug)
+	    		{
+	    			if($location !== false)
+	    			{
+	    				update_post_meta($post_id, '_mpv_location', $location);
+	    			}
+	    			else 
+	    			{
+	    				echo "$row[3] -> ponto não encontrado";
+	    			}
+	    		}
+	    		
+    			if(!$debug && is_int($post_id) )
+    			{
+    				update_post_meta($post_id, '_mpv_pin', $pins[$row[0]]);
+    					
+    				delete_post_meta($post_id, '_mpv_inmap');
+    				delete_post_meta($post_id, '_mpv_in_img_map');
+    				add_post_meta($post_id, "_mpv_inmap", 1);
+    
+    				foreach ($row as $key => $custom_field)
+    				{
+    					if($key > 22) break; // stop on column with tax
+    					
+    					if(!in_array($key, $no_import))
+    					{
+    						update_post_meta($post_id, $names[$key], $custom_field);
+    					}
+    				}
+    			}
+    			else
+    			{
+    				echo "Pin: {$pins[$row[0]]}";
+    			}
+    			
+    			/**
+				 * Taxonomies
+    			 */
+				Tratar::tematico($post_id, 'tematico', $row[20]);
+				Tratar::identitario($post_id, 'identitario', $row[21]);
+				Tratar::publicoalvo($post_id, 'publicoalvo', $row[23], $row[24], $row[25]);
+				Tratar::artescenicas($post_id, 'artescenicas', $row[26], $row[27], $row[28]);
+				Tratar::audiovisual($post_id, 'audiovisual', $row[29], $row[30], $row[31]);
+				Tratar::musica($post_id, 'musica', $row[32], $row[33], $row[34]);
+				Tratar::artesvisuais($post_id, 'artesvisuais', $row[35], $row[36], $row[37]);
+				Tratar::patrimoniocultural($post_id, 'patrimoniocultural', $row[38], $row[39], $row[40]);
+				Tratar::humanidades($post_id, 'humanidades', $row[41], $row[42], $row[43]);
+	    
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$i++;
-	    	} while ($row !== false && $i < 3);
+	    	} while ($row !== false && $i < 1);
 	    	echo '</pre>';
 	    	fclose ( $file );
     	}
