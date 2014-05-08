@@ -6,7 +6,7 @@ var searchtext = '';
 
 jQuery(function()
 {
-	jQuery("#searchsubmit").button().click(function(event)
+	jQuery("#searchsubmit").click(function(event)
 	{
 		event.preventDefault();
 		if(searchtext != jQuery('#s').val())

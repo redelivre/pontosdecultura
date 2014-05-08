@@ -51,7 +51,7 @@ function pontosdecultura_scripts() {
     wp_enqueue_style( 'pontosdecultura-normalize' );
 
 	// General style
-	wp_enqueue_style( 'pontosdecultura_scripts-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'pontosdecultura-style', get_stylesheet_uri() );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -77,7 +77,6 @@ class Pontosdecultura {
 	*/
 	public function __construct(){
 		
-		add_action('wp_enqueue_scripts', array($this, 'css'));		
 		add_action('wp_enqueue_scripts', array($this, 'javascript'));
 		add_filter('nav_menu_css_class', array($this, 'nav_menu_css_class'));
 		
@@ -89,31 +88,14 @@ class Pontosdecultura {
 	}
 	
 	/**
-	* Função responsável por controlar as folhas de estilo do site
-	*
-	*/
-	public function css(){
-		$path = get_template_directory_uri() . '/css';
-		wp_register_style('bootstrap-responsive', $path . '/bootstrap-responsive.min.css');
-		wp_register_style('bootstrap', $path . '/bootstrap.min.css');
-		
-		wp_enqueue_style('bootstrap');
-		wp_enqueue_style('bootstrap-responsive');
-		wp_enqueue_style('geral');		
-	}
-	
-	/**
 	* Controla os arquivos javascript do site
 	*
 	*/
 	public function javascript(){
 		$path = get_template_directory_uri() . '/js';
-		wp_register_script('bootstrap', $path . '/bootstrap.min.js');
-		wp_register_script('pontosdecultura_language_selector', $path . '/language_selector.js');
 		wp_register_script('homescripts', $path . '/home.js', array('jquery'));
 		
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('bootstrap');
 		wp_enqueue_script('pontosdecultura_language_selector');
 		if(is_home())
 		{
