@@ -24,44 +24,44 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
+		<!--[if lt IE 7]>
+		<p class="browse-happy">
+		 	<?php _e( 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.', 'pontosdecultura' ); ?>
+		</p>
+		<![endif]-->
 	<div class="container">
-	<!--[if lt IE 7]>
-	<p class="browse-happy">
-	 	<?php _e( 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.', 'pontosdecultura' ); ?>
-	</p>
-	<![endif]-->
-	<div class="site-wrapper hfeed"  >
-		<?php do_action( 'before' ); ?>
-		<header id="masthead" class="site-header cf" role="banner">
-			<div class="row">
-				<div class="span5 branding">
-					<?php
-					// Get the current color scheme
-					 
-					// Check if there's a custom logo
-					$logo_uri = get_template_directory_uri() . '/images/logo.png';
-					
-					?>
-					<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
-					</a>
-					
+		<div class="site-wrapper hfeed"  >
+			<?php do_action( 'before' ); ?>
+			<header id="masthead" class="site-header cf" role="banner">
+				<div class="row">
+					<div class="span5 branding">
+						<?php
+						// Get the current color scheme
+						 
+						// Check if there's a custom logo
+						$logo_uri = get_template_directory_uri() . '/images/logo.png';
+						
+						?>
+						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+							 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
+						</a>
+						
+					</div>
+					<div id='language-switch' class="span1">
+						<?php
+						Pontosdecultura::language_selector();
+						?>
+					</div>
 				</div>
-				<div id='language-switch' class="span1">
-					<?php
-					Pontosdecultura::language_selector();
-					?>
+				
+				<div class="row">
+					<nav role="navigation" class="site-navigation main-navigation co">
+						<div class="clearfix"></div>
+						<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary', 'container_class' => 'span9' ) ); ?>
+					</nav><!-- .site-navigation .main-navigation -->
 				</div>
-			</div>
+			</header><!-- #masthead .site-header -->
+		
+			<section id="main" class="main cf">
 			
-			<div class="row">
-				<nav role="navigation" class="site-navigation main-navigation co">
-					<div class="clearfix"></div>
-					<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary', 'container_class' => 'span9' ) ); ?>
-				</nav><!-- .site-navigation .main-navigation -->
-			</div>
-		</header><!-- #masthead .site-header -->
-	
-		<section id="main" class="main cf">
-		
-		
+			

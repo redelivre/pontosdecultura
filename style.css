@@ -14,13 +14,93 @@ Tags:
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
- Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
-
-Resetting and rebuilding styles have been helped along thanks to the fine work of
-Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
-along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
-and Blueprint http://www.blueprintcss.org/
+Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
 */
+
+/* ==========================================================================
+   Table of contents
+   ==========================================================================
+
+    1.0 - Global styles
+    2.0 - Basic structure
+    3.0 - Header
+        3.1 - Site header
+        3.2 - Main navigation
+    4.0 - Content
+        4.1 - Entry header
+        4.2 - Entry meta
+        4.3 - Entry content
+        4.4 - Media
+        4.5 - Post formats
+        4.6 - Attachments
+        4.7 - Post / page navigation
+        4.8 - Author bio
+        4.9 - Archives
+        4.10 - Search results / No posts
+        4.11 - 404
+        4.12 - Comments
+        4.13 - Multisite
+    5.0 - Widget area
+    6.0 - Footer
+    7.0 - Events / Agenda
+    8.0 - Media queries 
+ */
+
+/* ==========================================================================
+   1.0 - Global styles
+   ========================================================================== */
+
+/* Apply a natural box layout model to all elements */
+*,
+*:before,
+*:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+body {
+	background: #fff;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-size: 100%;
+	line-height: 1.5;
+}
+
+/* Browse Happy */
+.browse-happy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* Clearfix */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   2.0 - Basic structure
+   ========================================================================== */
+
+.container {
+	margin: 0 auto;
+	max-width: 1280px;
+	padding: 2em;
+}
 
 
 /*
@@ -28,7 +108,8 @@ Map
 ------------------------------------------------ */
 
 .map-col {
-	width: 47%;
+	float: left;
+	width: 50%;
 }
 
 .map {
@@ -157,28 +238,6 @@ Footer
    ========================================================================== */
 
 @media all and (min-width: 40em) {
-
-	/* Site logo */
-	.site-logo {
-		max-width: 362px;
-	}
-
-	/* Site menu */
-	.menu-toggle {
-		cursor: pointer;
-		display: none;
-	}
-
-	.main-navigation ul {
-		display: block;
-	}
-
-	/* Masonry stuff */
-	.loop .grid-sizer,
-	.loop .hentry {
-		padding: 1.5em 1em;
-		width: 50%;
-	}
 
 	/* Footer Widget Area */
 	.widget-area--footer .widget {
