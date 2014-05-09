@@ -305,6 +305,7 @@ class PontosSettingsPage
 						$pins['Ponto Direto'] = $pin->ID;
 						$pins['Rede Estadual'] = $pin->ID;
 						$pins['Rede Intermunicipal'] = $pin->ID;
+						$pins['Rede Intemunicipal'] = $pin->ID;
 						$pins['Rede Municipal'] = $pin->ID;
 					break;
 					case 'ponto-de-bens-png':
@@ -312,18 +313,30 @@ class PontosSettingsPage
 					break;
 					case 'ponto-indigena-png':
 						$pins['Ponto de Cultura Indígena'] = $pin->ID;
+						$pins['Ponto de Cultura  Indígena'] = $pin->ID;
 					break;
 					case 'pontao-png':
 						$pins['Pontão Direto'] = $pin->ID;
 					break;
 				}
 			}
-    		
+			
 	    	$debug = true;
+	    	$getLocation = true;
+	    	
 	    	ini_set("memory_limit", "2048M");
 	    	set_time_limit(0);
 	    
+	    	$names = array();
+	    	
 	    	$file = fopen ( '/tmp/import.csv', 'r');
+	    	
+	    	for ($i = 0; $i < 4; $i++) // first 4 lines has header
+	    	{
+	    		$row = fgetcsv( $file, 0, ';');
+	    		$names[$i] = $row;
+	    	}
+	    	
 	    	echo '<pre>';
 	    
 	    	$row = fgetcsv( $file, 0, ';');
@@ -338,28 +351,42 @@ class PontosSettingsPage
 	    				'post_status'	 => 'publish'
 	    		);
 	    
+				$post_id = 0;
 	    		if(!$debug) $post_id = wp_insert_post($post);
 	    
 	    		$no_import = array(0, 16, 19, 20, 21, 23, 24, 25);
 
-	    		$location = mapasdevista_get_coords($row[17].' '.$row[18]);
+	    		$location = false;
+	    		if($getLocation)
+	    		{
+		    		$location = mapasdevista_get_coords($row[17].' '.$row[18]);
+		    		if($location === false)
+		    		{
+		    			$location = mapasdevista_get_coords($row[8].' '.$row[9]);
+		    		}
+	    		}
 	    		
 	    		if($debug)
 	    		{
 	    			print_r($post);
+	    			
 	    			if($location !== false) echo "{$row[3]};{$location['lat']};{$location['lon']}";
 	    			else echo "$row[3] -> ponto não encontrado";
+	    			
+	    			echo '<br/>';
 	    		}
-	    		
-	    		if(!$debug)
+	    		else
 	    		{
 	    			if($location !== false)
 	    			{
+	    				echo "{$row[3]};{$location['lat']};{$location['lon']}"; // exportar lat e lon
+	    				echo '<br/>';
 	    				update_post_meta($post_id, '_mpv_location', $location);
 	    			}
 	    			else 
 	    			{
 	    				echo "$row[3] -> ponto não encontrado";
+	    				echo '<br/>';
 	    			}
 	    		}
 	    		
@@ -370,25 +397,57 @@ class PontosSettingsPage
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
     				add_post_meta($post_id, "_mpv_inmap", 1);
-    
-    				foreach ($row as $key => $custom_field)
-    				{
-    					if($key > 22) break; // stop on column with tax
-    					
-    					if(!in_array($key, $no_import))
-    					{
-    						update_post_meta($post_id, $names[$key], $custom_field);
-    					}
-    				}
     			}
     			else
     			{
     				echo "Pin: {$pins[$row[0]]}";
+    				echo '<br/>';
     			}
+    			
+    			foreach ($row as $key => $custom_field)
+    			{
+    				if($key > 22 && $key < 44) // stop on column with tax
+    				{
+    					continue;
+    				}
+    				if($key > 54)
+    				{
+    					break;
+    				}
+    				
+    				if(!in_array($key, $no_import))
+    				{
+    					$h = ''; // "super" nome da coluna
+    					if ($key > 3 && $key < 12)
+    					{
+    						$h = $names[2][4].": ";
+    					}
+    					elseif ($key > 11 && $key < 16)
+    					{
+    						$h = $names[2][12].": ";
+    					}
+    					elseif ($key > 16 && $key < 19)
+    					{
+    						$h = $names[2][17].": ";
+    					}
+    					
+    					if($debug)
+    					{
+    						echo "update_post_meta($post_id, $h.{$names[3][$key]}, $custom_field);<br/>";
+    					}
+    					else 
+    					{
+    						update_post_meta($post_id, $h.$names[3][$key], $custom_field);
+    					}
+    				}
+    			}
+    			
     			
     			/**
 				 * Taxonomies
     			 */
+    			Tratar::tipo($post_id, 'tipo', $row[0]);
+    			Tratar::territorio($post_id, 'territorio', $row[18], $row[9], $row[10]);
 				Tratar::tematico($post_id, 'tematico', $row[20]);
 				Tratar::identitario($post_id, 'identitario', $row[21]);
 				Tratar::publicoalvo($post_id, 'publicoalvo', $row[23], $row[24], $row[25]);
@@ -401,7 +460,7 @@ class PontosSettingsPage
 	    
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$i++;
-	    	} while ($row !== false && $i < 1);
+	    	} while ($row !== false );//&& $i < 1000);
 	    	echo '</pre>';
 	    	fclose ( $file );
     	}

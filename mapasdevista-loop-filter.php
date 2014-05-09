@@ -1,3 +1,12 @@
+<?php
+/**
+ * The Template for displaying list of results on maps
+ *
+ * @package Pontos de Cultura
+ * @since  Pontos de Cultura 1.0
+ */
+?>
+
 <?php $posts = mapasdevista_get_posts(1, $mapinfo); ?>
 <div id="results" class="clearfix">
     <h3><?php _e('Results', 'mapasdevista'); ?> [<span id="filter_total"><?php echo $posts->post_count; //->found_posts;    ?></span>]</h3>
