@@ -78,6 +78,10 @@ p {
 	margin: 0 0 1.5em;
 }
 
+img {
+    max-width: 100% !important;
+}
+
 /* Alignment */
 .alignleft {
 	display: inline;
@@ -122,7 +126,9 @@ p {
 	z-index: 100000; /* Above WP toolbar */
 }
 
-/* Clearfix */
+/*
+ * Clearfix
+ */
 .clearfix:before,
 .clearfix:after {
     content: " "; /* 1 */
@@ -133,7 +139,9 @@ p {
     clear: both;
 }
 
-/* Browse Happy */
+/*
+ * Browse Happy
+ */
 .browse-happy {
     margin: 0.2em 0;
     background: #ccc;
@@ -149,6 +157,20 @@ p {
 	margin: 0 auto;
 	max-width: 1280px;
 	padding: 2em;
+}
+
+/* ==========================================================================
+   3.0 - Header
+   ========================================================================== */
+
+.main-navigation .menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.main-navigation .menu-item {
+	display: inline-block;
 }
 
 
@@ -268,12 +290,12 @@ Home
     text-align: center;
 }
 
-/*
-Footer
------------------------------------------------- */
+/* ==========================================================================
+   6.0 - Footer
+   ========================================================================== */
 
-.pontosdecultura-credits a {
-	width: auto;
+.site-footer {
+	background: #fbfbfb;
 }
 
 
@@ -304,6 +326,28 @@ Footer
 		float: left;
 		width: 50%;
 	}
+
+	.single-mapa .entry-header {
+		background: #fbfbfb;
+		margin-bottom: 2em;
+		padding: 1em;
+	}
+	
+	.single-mapa .entry-contact-info {
+		float: right;
+		margin-left: 2%;
+		width: 36.2%;
+	}
+
+	.single-mapa .entry-content {
+		width: 61.8%;
+		float: left;
+	}
+
+	.single-mapa .entry-footer {
+		clear: both;
+	}
+
 
 	/* Footer Widget Area */
 	.widget-area--footer .widget {

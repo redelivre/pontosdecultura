@@ -15,13 +15,26 @@ get_header(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
+					<img src="http://maps.googleapis.com/maps/api/staticmap?center=-14.850268,-40.836254&zoom=14&size=1200x200&scale=2&sensor=false" />
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 
 					<div class="entry-meta">
+						<em>Área cultural</em> Dança / Teatro / Eventos<br/>
+						<em>Público alvo</em> Público geral, idosos, estudantes
 					</div><!-- .entry-meta -->
+
 				</header><!-- .entry-header -->
 
-				<div class="entry-content">
+				<div class="entry-contact-info">
+					<ul>
+						<li>Endereço</li>
+						<li>Telefone</li>
+						<li>email@email.com</li>
+						<li>Twitter</li>
+					</ul>
+				</div>
+
+				<div class="entry-content clearfix">
 					<?php the_content(); ?>
 					<?php
 						wp_link_pages( array(
@@ -31,7 +44,7 @@ get_header(); ?>
 					?>
 				</div><!-- .entry-content -->
 
-				<footer class="entry-footer">
+				<footer class="entry-footer clearfix">
 					<?php
 						/* translators: used between list items, there is a space after the comma */
 						$category_list = get_the_category_list( __( ', ', 'pontosdecultura' ) );
