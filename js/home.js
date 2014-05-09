@@ -45,11 +45,14 @@ function pontosdecultura_updateResults(ids)
         {
         	mapstraction.markers[i].hide();
         }
+        mapstraction.markers[i].closeBubble();
     }
     
     jQuery('#filter_total').html(count);
     
     mapstraction.markerclusterer.setOptions({map:mapstraction.getMap()});
+    
+    mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
 
 }
 
