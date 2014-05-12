@@ -313,6 +313,11 @@ class PontosSettingsPage
     	{
     		include_once dirname(__FILE__).'/Tratar.php';
     		
+    		$debug = true;
+    		$getLocation = false;
+    		$begin = 0;
+    		$ids = array(142);
+    		
     		$pins_args = array (
 	    		'post_type' => 'attachment',
 				'meta_key' => '_pin_anchor',
@@ -346,9 +351,6 @@ class PontosSettingsPage
 				}
 			}
 			
-	    	$debug = true;
-	    	$getLocation = true;
-	    	
 	    	ini_set("memory_limit", "2048M");
 	    	set_time_limit(0);
 	    
@@ -356,10 +358,30 @@ class PontosSettingsPage
 	    	
 	    	$file = fopen ( '/tmp/import.csv', 'r');
 	    	
+	    	$coords = array();
+	    	
+	    	if(file_exists('/tmp/coords.csv')) // load coords from other file
+	    	{
+	    		$coords_file = fopen ( '/tmp/coords.csv', 'r');
+	    		$coords_row = fgetcsv( $coords_file, 0, ';');
+	    		
+	    		while ($coords_row !== false) // locate next valid id
+	    		{
+	    			$coords[$coords_row[0]] = array('lat' => $coords_row[1], 'lon' => $coords_row[2]);
+	    			$coords_row = fgetcsv( $coords_file, 0, ';');
+	    		}
+	    		
+	    	}
+	    	
 	    	for ($i = 0; $i < 4; $i++) // first 4 lines has header
 	    	{
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$names[$i] = $row;
+	    	}
+	    	
+	    	for ($i = 0; $i < $begin; $i++) // move pointer to begin of data
+	    	{
+	    		$row = fgetcsv( $file, 0, ';');
 	    	}
 	    	
 	    	PontosSettingsPage::log('<pre>');
@@ -368,6 +390,15 @@ class PontosSettingsPage
 	    	$i = 0;
 	    	do
 	    	{
+	    		if(count($ids) > 0) // have ids limit
+	    		{
+	    			while ($row !== false && !in_array($row[3], $ids)) // locate next valid id 
+	    			{
+	    				$row = fgetcsv( $file, 0, ';');
+	    			}
+	    			if($row === false) break;
+	    		}
+	    		
 	    		$post = array(
 	    				'post_author'    => 1, //The user ID number of the author.
 	    				'post_content'   => $row[19],
@@ -382,12 +413,26 @@ class PontosSettingsPage
 	    		$no_import = array(0, 16, 19, 20, 21, 23, 24, 25);
 
 	    		$location = false;
-	    		if($getLocation)
+	    		
+	    		if(count($coords) > 0)
 	    		{
-		    		$location = mapasdevista_get_coords($row[17].' '.$row[18]);
+	    			$location = $coords[$row[3]];
+	    		}
+	    		
+	    		if($getLocation && $location === false)
+	    		{
+		    		$location = mapasdevista_get_coords($row[17].' '.$row[18]); // Endereço do ponto
 		    		if($location === false)
 		    		{
-		    			$location = mapasdevista_get_coords($row[8].' '.$row[9]);
+		    			$location = mapasdevista_get_coords($row[8].' '.$row[9]); // Endereço da Entidade
+		    			if($location === false)
+		    			{
+		    				$location = mapasdevista_get_coords("cep: {$row[10]}"); // CEP da entidade
+		    				if($location === false)
+		    				{
+		    					$location = mapasdevista_get_coords($row[9]); // Município
+		    				}
+		    			}
 		    		}
 	    		}
 	    		

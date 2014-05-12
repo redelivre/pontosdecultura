@@ -562,8 +562,16 @@ class Tratar
 		{
 			if(empty($col2))
 			{
-				PontosSettingsPage::log("Território não encontrado: $col1, $col2");
-				return;
+				if($uf_row = 'RN')
+				{
+					$col1 = "Campo Grande (RN)";
+					$str = $col1;
+				}
+				else 
+				{
+					PontosSettingsPage::log("Território não encontrado: $col1, $col2");
+					return;
+				}
 			}
 			else 
 			{
@@ -571,8 +579,25 @@ class Tratar
 			}
 		}
 		
+		$rel_cidades = array(
+			"Parati" => "Paraty",
+			"Couto Magalhães de Minas" => "Couto de Magalhães de Minas",
+			"Tomé" => "Tomé-Açu",
+			"Cassimiro de Abreu" => "Casimiro de Abreu",
+			"Ji" => "Ji-Paraná",
+			"Moji Mirim" => "Mogi-Mirim",
+			"Pariquera" => "Pariquera-Açu",
+			"Apicum" => "Apicum-Açu",
+			"Tv. Fé em Deus Rosário, nº 134, Mar Grande" => "Mar Grande",
+		);
+		
 		$str = str_replace(")", "", $str);
 		$cidadeuf = preg_split("/[(-\/]/", $str);
+		
+		if(count($cidadeuf) > 2) // - para nome da cidade
+		{
+			$cidadeuf = preg_split("/[(\/]/", $str);
+		}
 		
 		if(count($cidadeuf) != 2 && $uf_row !== false)
 		{
@@ -599,7 +624,12 @@ class Tratar
 		}
 		
 		$cidade = trim($cidadeuf[0]);
-		$cudade_slug = sanitize_title($cidade);
+		$cidade_slug = sanitize_title($cidade);
+		
+		if(array_key_exists($cidade, $rel_cidades))
+		{
+			$cidade_slug = sanitize_title($rel_cidades[$cidade]);
+		}
 		
 		if($uf !== false)
 		{
@@ -609,39 +639,61 @@ class Tratar
 			
 			if($term_obj === false)
 			{
-				PontosSettingsPage::log("Term: {$uf_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>");
-				return;
+				$uf_slug = sanitize_title($uf_row); // Tentando o estado da entidade diretamente
+				
+				$term_obj = get_term_by('slug', $uf_slug, $taxonomy);
+				
+				if($term_obj === false)
+				{
+					PontosSettingsPage::log("Term: UF: {$uf_slug}, não encontrado, tax: $taxonomy, Post: $postID, cols: $col1, $col2<br/>");
+				}
 			}
 			
-			if($postID > 0)
+			if($term_obj !== false)
 			{
-				wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );
-			}
-			else //Debug?
-			{
-				PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
-				PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
+				if($postID > 0)
+				{
+					wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );
+				}
+				else //Debug?
+				{
+					PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
+					PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
+				}
 			}
 		}
 		
-		if(!empty($cudade_slug))
+		if(!empty($cidade_slug))
 		{
-			$term_obj = get_term_by('slug', $cudade_slug, $taxonomy);
+			$term_obj = get_term_by('slug', $cidade_slug, $taxonomy);
 			
-			if($term_obj === false)
+			if($term_obj === false) // Tentando a cidade da Entidade
 			{
-				PontosSettingsPage::log("Term: {$cudade_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>");
-				return;
+				$str = $col2;
+				$str = str_replace(")", "", $str);
+				$cidadeuf = preg_split("/[(-\/]/", $str);
+				$cidade = trim($cidadeuf[0]);
+				$cidade_slug = sanitize_title($cidade);
+				
+				$term_obj = get_term_by('slug', $cidade_slug, $taxonomy);
+				
+				if($term_obj === false)
+				{
+					PontosSettingsPage::log("Term: Cidade: {$cidade_slug}, não encontrada, tax: $taxonomy, Post: $postID, cols: $col1, $col2, cidade: $cidade, cidade_slug: $cidade_slug<br/>");
+				}
 			}
 			
-			if($postID > 0)
+			if($term_obj !== false)
 			{
-				wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );
-			}
-			else //Debug?
-			{
-				PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
-				PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
+				if($postID > 0)
+				{
+					wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );
+				}
+				else //Debug?
+				{
+					PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
+					PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
+				}
 			}
 		}
 		
