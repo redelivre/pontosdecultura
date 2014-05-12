@@ -11,7 +11,7 @@
 
 			</div><!-- #content .site-content -->
 
-			<footer id="colophon" class="site-footer" role="contentinfo">
+			<footer id="colophon" class="site-footer site-area" role="contentinfo">
 				<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
 					<section id="tertiary" class="widget-area widget-area--footer" role="complementary">
 							<?php dynamic_sidebar( 'sidebar-footer' ); ?>

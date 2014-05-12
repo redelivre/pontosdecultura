@@ -82,6 +82,54 @@ img {
     max-width: 100% !important;
 }
 
+/* Links */
+a {
+	color: #006ab0;
+	text-decoration: none;
+}
+
+a:visited {
+	border-bottom: 1px solid #fbfbfb;
+	color: #006ab0;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: #006ab0;
+}
+
+/* Forms, inputs and buttos */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	background: #006ab0;
+	border: 0;
+	color: #fff;
+	line-height: 1;
+	padding: 0.5em 1em;
+	position: relative;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+	top: 1px;
+}
+
 /* Alignment */
 .alignleft {
 	display: inline;
@@ -159,9 +207,18 @@ img {
 	padding: 2em;
 }
 
+.site-area {
+	padding: 1em;
+}
+
+.search-area {
+	padding: 1em 0;
+}
+
 /* ==========================================================================
    3.0 - Header
    ========================================================================== */
+
 
 .main-navigation .menu {
 	list-style-type: none;
@@ -171,6 +228,10 @@ img {
 
 .main-navigation .menu-item {
 	display: inline-block;
+}
+
+.main-navigation .menu-item a {
+	padding: 0.75em;
 }
 
 
@@ -321,10 +382,22 @@ Home
 
 @media all and (min-width: 55em) {
 
+	/* Site header */
+	.site-header {
+		position: relative;
+	}
+
 	.site-branding,
 	.site-navigation {
 		float: left;
 		width: 50%;
+	}
+
+	.site-navigation {
+		position: absolute;
+			bottom: 1em;
+			right: 0;
+		text-align: right;
 	}
 
 	.single-mapa .entry-header {
@@ -352,7 +425,12 @@ Home
 	/* Footer Widget Area */
 	.widget-area--footer .widget {
 		float: left;
+		padding-right: 1em;
 		width: 50%;
+	}
+
+	.widget-area--footer .widget:last-child {
+		padding-right: 0;
 	}
 
     .widget-area--footer .widget:first-child:nth-last-child(2),
