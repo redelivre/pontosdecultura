@@ -280,8 +280,33 @@ class PontosSettingsPage
     	}
     }
     
+    protected $logfilename = 'csv_import.log';
+    
+    public static function log($msn, $print_r = false)
+    {
+    	if($print_r)
+    	{
+    		print_r($msn);
+    		file_put_contents(dirname(__FILE__)."/csv_import.log", print_r($msn, true), FILE_APPEND);
+    	}
+    	else
+    	{
+	    	echo $msn;
+	    	$msn = str_replace("<br/>", "\n", $msn);
+	    	$msn = str_replace("<br>", "\n", $msn);
+	    	file_put_contents(dirname(__FILE__)."/csv_import.log", $msn, FILE_APPEND);
+    	}
+    }
+    
+    public static function newLog()
+    {
+    	file_put_contents(dirname(__FILE__)."/csv_import.log", date('Y-m-d').'\n');
+    }
+    
     public function ImportarCsv_callback()
     {
+    	PontosSettingsPage::newLog();
+    	
     	echo '<div id="result">';
     	
     	if(function_exists('mapasdevista_get_coords') )
@@ -337,7 +362,7 @@ class PontosSettingsPage
 	    		$names[$i] = $row;
 	    	}
 	    	
-	    	echo '<pre>';
+	    	PontosSettingsPage::log('<pre>');
 	    
 	    	$row = fgetcsv( $file, 0, ';');
 	    	$i = 0;
@@ -368,25 +393,25 @@ class PontosSettingsPage
 	    		
 	    		if($debug)
 	    		{
-	    			print_r($post);
+	    			PontosSettingsPage::log($post, true);
 	    			
-	    			if($location !== false) echo "{$row[3]};{$location['lat']};{$location['lon']}";
-	    			else echo "$row[3] -> ponto não encontrado";
+	    			if($location !== false) PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}");
+	    			else PontosSettingsPage::log("$row[3] -> ponto não encontrado");
 	    			
-	    			echo '<br/>';
+	    			PontosSettingsPage::log('<br/>');
 	    		}
 	    		else
 	    		{
 	    			if($location !== false)
 	    			{
-	    				echo "{$row[3]};{$location['lat']};{$location['lon']}"; // exportar lat e lon
-	    				echo '<br/>';
+	    				PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
+	    				PontosSettingsPage::log('<br/>');
 	    				update_post_meta($post_id, '_mpv_location', $location);
 	    			}
 	    			else 
 	    			{
-	    				echo "$row[3] -> ponto não encontrado";
-	    				echo '<br/>';
+	    				PontosSettingsPage::log("$row[3] -> ponto não encontrado");
+	    				PontosSettingsPage::log('<br/>');
 	    			}
 	    		}
 	    		
@@ -400,8 +425,8 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				echo "Pin: {$pins[$row[0]]}";
-    				echo '<br/>';
+    				PontosSettingsPage::log("Pin: {$pins[$row[0]]}");
+    				PontosSettingsPage::log('<br/>');
     			}
     			
     			foreach ($row as $key => $custom_field)
@@ -433,7 +458,7 @@ class PontosSettingsPage
     					
     					if($debug)
     					{
-    						echo "update_post_meta($post_id, $h.{$names[3][$key]}, $custom_field);<br/>";
+    						PontosSettingsPage::log("update_post_meta($post_id, $h.{$names[3][$key]}, $custom_field);<br/>");
     					}
     					else 
     					{
@@ -460,8 +485,8 @@ class PontosSettingsPage
 	    
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$i++;
-	    	} while ($row !== false );//&& $i < 1000);
-	    	echo '</pre>';
+	    	} while ($row !== false);// && $i < 10);
+	    	PontosSettingsPage::log('</pre>');
 	    	fclose ( $file );
     	}
     	echo '</div>';

@@ -26,7 +26,7 @@ class Tratar
 		
 		if($term_obj === false)
 		{
-			echo "Term: {$term}, não encontrado, tax: $taxonomy, Post: $postID<br/>";
+			PontosSettingsPage::log("Term: {$term}, não encontrado, tax: $taxonomy, Post: $postID<br/>");
 			return;
 		}
 		
@@ -36,8 +36,8 @@ class Tratar
 		}
 		else //Debug?
 		{
-			echo "wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );";
-			echo " Term name: $term_obj->name<br/>";
+			PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
+			PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
 		}
 		
 	}
@@ -73,7 +73,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && trim($rel[$col1]) != "")
 		{
@@ -114,7 +115,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -181,7 +183,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -189,7 +192,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -197,7 +201,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -228,7 +233,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -236,7 +242,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -244,7 +251,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -280,7 +288,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -288,7 +297,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -296,7 +306,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -340,7 +351,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -348,7 +360,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -356,7 +369,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -388,7 +402,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -396,7 +411,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -404,7 +420,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -442,7 +459,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -450,7 +468,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -458,7 +477,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -494,7 +514,8 @@ class Tratar
 		);
 		if(array_key_exists($col1, $rel) && is_array($rel[$col1]) && method_exists('Tratar', reset($rel[$col1])))
 		{
-			Tratar::{reset($rel[$col1])}($postID, reset($rel[$col1]), key($rel[$col1]));
+			$func = reset($rel[$col1]);
+			Tratar::$func($postID, reset($rel[$col1]), key($rel[$col1]));
 		}
 		elseif(array_key_exists($col1, $rel) && $rel[$col1] != "")
 		{
@@ -502,7 +523,8 @@ class Tratar
 		}
 		if(array_key_exists($col2, $rel) && is_array($rel[$col2]) && method_exists('Tratar', reset($rel[$col2])))
 		{
-			Tratar::{reset($rel[$col2])}($postID, reset($rel[$col2]), key($rel[$col2]));
+			$func = reset($rel[$col2]);
+			Tratar::$func($postID, reset($rel[$col2]), key($rel[$col2]));
 		}
 		elseif(array_key_exists($col2, $rel) && $rel[$col2] != "")
 		{
@@ -510,7 +532,8 @@ class Tratar
 		}
 		if(array_key_exists($col3, $rel) && is_array($rel[$col3]) && method_exists('Tratar', reset($rel[$col3])))
 		{
-			Tratar::{reset($rel[$col3])}($postID, reset($rel[$col3]), key($rel[$col3]));
+			$func = reset($rel[$col3]);
+			Tratar::$func($postID, reset($rel[$col3]), key($rel[$col3]));
 		}
 		elseif(array_key_exists($col3, $rel) && $rel[$col3] != "")
 		{
@@ -539,7 +562,7 @@ class Tratar
 		{
 			if(empty($col2))
 			{
-				echo "Território não encontrado: $col1, $col2";
+				PontosSettingsPage::log("Território não encontrado: $col1, $col2");
 				return;
 			}
 			else 
@@ -586,7 +609,7 @@ class Tratar
 			
 			if($term_obj === false)
 			{
-				echo "Term: {$uf_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>";
+				PontosSettingsPage::log("Term: {$uf_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>");
 				return;
 			}
 			
@@ -596,8 +619,8 @@ class Tratar
 			}
 			else //Debug?
 			{
-				echo "wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );";
-				echo " Term name: $term_obj->name<br/>";
+				PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
+				PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
 			}
 		}
 		
@@ -607,7 +630,7 @@ class Tratar
 			
 			if($term_obj === false)
 			{
-				echo "Term: {$cudade_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>";
+				PontosSettingsPage::log("Term: {$cudade_slug}, não encontrado, tax: $taxonomy, Post: $postID<br/>");
 				return;
 			}
 			
@@ -617,8 +640,8 @@ class Tratar
 			}
 			else //Debug?
 			{
-				echo "wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );";
-				echo " Term name: $term_obj->name<br/>";
+				PontosSettingsPage::log("wp_set_object_terms( $postID, intval($term_obj->term_id), $taxonomy, true );");
+				PontosSettingsPage::log(" Term name: $term_obj->name<br/>");
 			}
 		}
 		
