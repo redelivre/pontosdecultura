@@ -32,7 +32,7 @@
 	<div class="container">
 		<div class="site-wrapper hfeed"  >
 			<?php do_action( 'before' ); ?>
-			<header id="masthead" class="site-header clearfix" role="banner">
+			<header id="masthead" class="site-header site-area clearfix" role="banner">
 				<div class="site-branding">
 					<?php $logo_uri = get_template_directory_uri() . '/images/logo.png'; ?>
 					<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -50,6 +50,6 @@
 				</nav><!-- .site-navigation .main-navigation -->
 			</header><!-- #masthead .site-header -->
 		
-			<div id="content" class="site-content">
+			<div id="content" class="site-content site-area">
 			
 			
