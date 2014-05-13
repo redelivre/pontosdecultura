@@ -101,3 +101,57 @@ function pontosdecultura_update_posts()
 		}
 }
 
+jQuery(document).ready(function()
+{
+	var data =
+    {
+            action: 'map_results',
+    };
+	jQuery.ajax(
+    {
+        type: 'POST',
+                url: homescripts_object.ajax_url,
+        data: data,
+        success: function(response)
+        {
+        	jQuery("#search-result-list").replaceWith(response);
+        },
+        beforeSend: function()
+        {
+        	//overlay_filtro('lista-de-pautas');
+        }, 
+    });
+	
+});
+
+var estado_search = "";
+function map_estados_click(lat, lon, zoom, term)
+{
+	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(lat), parseFloat(lon)), parseInt(zoom));
+	
+	if(estado_search != "")
+	{
+		mapstraction.removeFilter('territorio', 'in', estado_search);
+	}
+	else
+	{
+		jQuery(".search-result").css( { 'margin-left' : "-"+(jQuery( window ).width()+jQuery(".search-result").width())+"px" });
+		
+		jQuery(".search-estado").prepend(jQuery(".search-result"));
+		jQuery(".search-estado .container").css({'margin-top' : '-540px'});
+		jQuery('.search-estado .container').animate({
+		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
+		}, { duration: 5000, queue: false });
+		jQuery('.search-result').animate({
+		    'margin-left' : 0
+		}, 5000);
+	}
+	
+	if(estado_search != term)
+	{
+		mapstraction.addFilter('territorio', 'in', term);
+		mapstraction.doFilter();
+		updateResults();
+		estado_search = term;
+	}
+}
