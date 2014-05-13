@@ -52,10 +52,10 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
         5.11 - 404
         5.12 - Comments
         5.13 - Multisite
-    5.0 - Widget area
-    6.0 - Footer
-    7.0 - Events / Agenda
-    8.0 - Media queries 
+    6.0 - Widget area
+    7.0 - Footer
+    8.0 - Events / Agenda
+    9.0 - Media queries 
  */
 
 /* ==========================================================================
@@ -73,6 +73,7 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 
 body {
 	background: #fff;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
 }
 
 body,
@@ -97,6 +98,7 @@ img {
 /* Links */
 a {
 	color: #501651;
+	font-weight: bold;
 	text-decoration: none;
 }
 
@@ -165,7 +167,8 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"] {
-	padding: 3px;
+	line-height: 1;
+	padding: 0.5em 1em;
 }
 
 ::-webkit-input-placeholder {
@@ -228,27 +231,41 @@ input[type="search"] {
 	z-index: 100000; /* Above WP toolbar */
 }
 
-/*
- * Clearfix
- */
+/* Clearfix */
 .clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+.clearfix:after,
+.container:before,
+.container:after {
+    content: " ";
+    display: table;
 }
 
-.clearfix:after {
+.clearfix:after,
+.container:after {
     clear: both;
 }
 
-/*
- * Browse Happy
- */
+/* Browse Happy */
 .browse-happy {
     margin: 0.2em 0;
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+/* General navigation style */
+.site-navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-navigation ul li {
+	display: inline-block;
+}
+
+.site-navigation ul li a {
+	padding: 0.75em;
 }
 
 /* ==========================================================================
@@ -261,10 +278,6 @@ input[type="search"] {
 	padding: 2em;
 }
 
-.search-area {
-	padding: 1em 0;
-}
-
 /* ==========================================================================
    3.0 - Header
    ========================================================================== */
@@ -273,39 +286,63 @@ input[type="search"] {
 	background: #501651;
 }
 
-.site-navigation .menu {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+.site-logo {
+	max-width: 300px;
 }
 
-.site-navigation .menu-item {
-	display: inline-block;
-}
-
-.site-navigation .menu-item a {
-	padding: 0.75em;
+.main-navigation .menu-item a {
+	background: #faba09;
 }
 
 /* ==========================================================================
    4.0 - Home Page
    ========================================================================== */
 
+/* Intro */
 .search-intro {
 	background: #faba09;
 	color: #501651;
+}
+
+.search-intro .intro-text {
+	font-size: 1.25em;
+	margin: 0 auto 1.6em;
+	max-width: 720px;
+}
+
+.search-intro .search-form {
+	text-align: center;
+}
+
+.search-intro .search-form input {
+	font-size: 2em;
 }
 
 .search-intro .search-submit {
 	background: #501651;
 }
 
+/* Estado */
+.search-estado .area-title {
+	color: #0b4d89;
+}
+
+/* Advanced Search */
 .search-advanced {
 	background: #2d9e2d;
 }
 
+.search-advanced .area-title {
+	color: #501651;
+}
+
+/* Most searched terms */
 .search-tags {
 	background: #501651;
+}
+
+.search-tags .area-title {
+	color: #faba09;
 }
 
 .search-tags a {
@@ -323,6 +360,14 @@ input[type="search"] {
 /* ==========================================================================
    4.0 - Content
    ========================================================================== */
+
+.area-title {
+	margin-top: 0;
+}
+
+.area-title:before {
+	content: "/ ";
+}
 
 
 /*
@@ -433,25 +478,38 @@ Map
 	width: 100%;
 }
 
-/*
-Home
------------------------------------------------- */
+/* ==========================================================================
+   6.0 - Widget area
+   ========================================================================== */
 
-.search-estado {
-    text-align: center;
+.widget-area--footer {
+	background: #e9ddaf;
+	text-align: center;
 }
 
+
 /* ==========================================================================
-   6.0 - Footer
+   7.0 - Footer
    ========================================================================== */
 
 .site-footer {
-	background: #e9ddaf;
+	background: #fff;
+	text-align: center;
+}
+
+.footer-navigation {
+	padding-bottom: 2em;
+}
+
+.site-info {
+	border-top: 3px solid #e9ddaf;
+	font-size: 0.875em;
+	padding-top: 2.286em;
 }
 
 
 /* ==========================================================================
-   8.0 - Media queries
+   9.0 - Media queries
    ========================================================================== */
 
 @media all and (min-width: 40em) {
@@ -484,9 +542,6 @@ Home
 	}
 
 	.main-navigation {
-		position: absolute;
-			bottom: 1em;
-			right: 0;
 		text-align: right;
 	}
 
@@ -511,8 +566,7 @@ Home
 		clear: both;
 	}
 
-
-	/* Footer Widget Area */
+	/* Footer */
 	.widget-area--footer .widget {
 		float: left;
 		padding-right: 1em;
@@ -536,5 +590,11 @@ Home
 	.widget-area--footer .widget:first-child:nth-last-child(4),
 	.widget-area--footer .widget:first-child:nth-last-child(4) ~ .widget {
 	    width: 25%;
+	}
+
+	.supporter-link {
+		display: inline-block;
+		padding: 0 0.25em;
+		width: 10%;
 	}
 }

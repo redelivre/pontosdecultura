@@ -1,7 +1,7 @@
 <?php get_header(); ?>
-	<section class="search-intro container search-area clearfix">
+	<section class="search-intro search-area clearfix">
 		<div class="container">
-			<p class="search-text">
+			<p class="intro-text">
 				O Mapa Cultura Viva é Livre e aberto, fruto do acúmulo de dezenas de experiências da Rede de Pontos de
 				Cultura com o objetivo de dar visibilidade e articular iniciativas e ações do programa Cultura Viva.
 				 Existem várias formas de utilizar a plataforma, sendo possível fazer buscas de forma aberta ou avançada, 
@@ -19,6 +19,7 @@
 
 	<section class="search-advanced search-area clearfix">
 		<div class="container">
+			<h2 class="area-title">Busca avançada</h2>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -30,7 +31,8 @@
 
 	<section class="search-tags search-area clearfix">
 		<div class="container">
-			<?php wp_tag_cloud(); ?>
+			<h2 class="area-title">+ buscados</h2>
+			<?php wp_tag_cloud( array ( 'smallest' => 1, 'largest' => 3, 'unit' => 'em' ) ); ?>
 		</div><!-- .container -->
 	</section>
 
