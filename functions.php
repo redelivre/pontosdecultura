@@ -133,6 +133,9 @@ class Pontosdecultura {
 		
 		add_action( 'wp_ajax_home_search', array($this, 'home_search_callback') );
 		add_action( 'wp_ajax_nopriv_home_search', array($this, 'home_search_callback') );
+		
+		add_action( 'wp_ajax_map_results', array($this, 'map_results_callback') );
+		add_action( 'wp_ajax_nopriv_map_results', array($this, 'map_results_callback') );
 	}
 	
 	/**
@@ -286,6 +289,14 @@ class Pontosdecultura {
 		
 		
 		die(); // this is required to return a proper result
+	}
+	
+	public static function map_results_callback()
+	{
+		echo '<div id="search-result-list" class="search-result-list">';
+			//mapasdevista_view_results();
+		echo '</div>';
+		die();
 	}
 	
 }
