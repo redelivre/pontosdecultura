@@ -109,7 +109,7 @@ jQuery( document ).ready(function () {
 
 	<canvas id='pontosdecultura_map_Canvas' style="pointer-events: none;position: absolute;" ></canvas>
 	
-	<img id="mapaBrasil" alt="mapa Brasil" src="<?php echo get_template_directory_uri() . '/images/mapa_brasil.jpg'; ?>"
+	<img id="mapaBrasil" alt="mapa Brasil" src="<?php echo get_template_directory_uri() . '/images/mapa_brasil.png'; ?>"
 		style="width: 533px; height: 485px;" usemap="#mapa_brasil">
 	<br>
 	<map id="mapa_brasil" name="mapa_brasil">
@@ -236,7 +236,7 @@ coords="260,336,278,313,296,312,307,315,318,310,324,327,326,332,329,345,340,346,
 		
 onmouseover='pontosdecultura_map_Hover(this);' onmouseout='pontosdecultura_map_Leave();' 
 coords="234,377,241,352,252,343,265,343,281,349,289,350,295,367,301,366,304,379,304,381,295,383,291,380,279,384,271,389,244,387"
-			href="javascript:mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(-24.443079714330477), parseFloat(-50.51726517442131)), parseInt(6));" alt="PARAN&Aacute;">
+			href="javascript:map_estados_click(-24.443079714330477,-50.51726517442131,6,'pr')" alt="PARAN&Aacute;">
 		<area shape="poly"
 		
 onmouseover='pontosdecultura_map_Hover(this);' onmouseout='pontosdecultura_map_Leave();' 
