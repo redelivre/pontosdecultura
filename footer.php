@@ -12,20 +12,36 @@
 				
 			</div><!-- #content .site-content -->
 
+			<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
+				<section id="tertiary" class="widget-area widget-area--footer" role="complementary">
+					<div class="container">
+						<?php //dynamic_sidebar( 'sidebar-footer' ); ?>
+						<div class="site-supporters">
+							<?php $images_url = get_template_directory_uri() . '/images/'; ?>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+						</div>
+					</div><!-- .container --> 
+				</section><!-- #tertiary -->
+			<?php endif; ?>
+
 			<footer id="colophon" class="site-footer site-area" role="contentinfo">
 				<div class="container">
-					<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
-						<section id="tertiary" class="widget-area widget-area--footer" role="complementary">
-								<?php dynamic_sidebar( 'sidebar-footer' ); ?>
-						</section><!-- #tertiary -->
-					<?php endif; ?>
-					<div class="site-info">
-						<a href="<?php echo esc_url( __( 'http://wordpress.org/', '_s' ) ); ?>"><?php printf( __( 'Proudly powered by %s', '_s' ), 'WordPress' ); ?></a>
-					</div><!-- .site-info -->
-
-					<nav role="navigation" class="site-navigation secondary-navigation">
-						<?php wp_nav_menu( array( 'theme_location' => 'secondary' ) ); ?>
+					<nav role="navigation" class="site-navigation footer-navigation clearfix">
+						<?php wp_nav_menu( array( 'container' => false, 'theme_location' => 'secondary', 'depth' => 1 ) ); ?>
 					</nav><!-- .site-navigation .main-navigation -->
+
+					<div class="site-info">
+						<a href="<?php echo esc_url( __( 'http://creativecommons.org', 'pontosdecultura' ) ); ?>"><?php _e( 'Creative Commons', 'pontosdecultura' ); ?></a>
+						<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'pontosdecultura' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?></a>
+					</div><!-- .site-info -->
 				</div><!-- .container --> 
 			</footer><!-- #colophon .site-footer -->
 			

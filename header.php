@@ -35,7 +35,7 @@
 			<header id="masthead" class="site-header site-area clearfix" role="banner">
 				<div class="container">
 					<div class="site-branding">
-						<?php $logo_uri = get_template_directory_uri() . '/images/logo.png'; ?>
+						<?php $logo_uri = get_template_directory_uri() . '/images/header-logo.png'; ?>
 						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 							 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
 						</a>
@@ -47,7 +47,7 @@
 					</div>
 					
 					<nav role="navigation" class="site-navigation main-navigation">
-						<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary' ) ); ?>
+						<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary', 'depth' => 1 ) ); ?>
 					</nav><!-- .site-navigation .main-navigation -->
 				</div><!-- .container -->
 			</header><!-- #masthead .site-header -->
