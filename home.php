@@ -11,21 +11,9 @@
 			<?php get_search_form(); ?>
 		</div><!-- .container -->
 	</section>
-
-	<section class="search-result search-area clearfix">
-		<div class="container">
-			<div class="search-result-list">
-				<?php //mapasdevista_view_results(); ?>
-			</div>
-			<div class="search-result-map">
-				<div class="map clear"><?php //Pontosdecultura::the_map(); ?></div>
-			</div>
-		</div><!-- .container -->
-	</section>
-
 	<section class="search-estado search-area clearfix">
 		<div class="container">
-			<?php include 'map.php'; ?>
+			<?php include dirname(__FILE__).'/inc/map.php'; ?>
 		</div><!-- .container -->
 	</section>
 
@@ -45,5 +33,14 @@
 			<?php wp_tag_cloud(); ?>
 		</div><!-- .container -->
 	</section>
-	
+
+	<div class="search-result search-area clearfix">
+		<div id="search-result-list" class="search-result-list">
+		</div>
+		<div class="search-result-map">
+			<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
+		</div>
+	</div>
 <?php get_footer(); ?>
+
+
