@@ -1,12 +1,15 @@
 <?php
 /**
- * The template for displaying search forms in Pontosdecultura
+ * The template for displaying search forms
  *
- * @package Pontosdecultura
- * @since Pontosdecultura 1.0
+ * @package Pontos de Cultura
+ * @since Pontos de Cultura 1.0
  */
 ?>
-	<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-		<input type="text" class="field" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" id="s" placeholder="<?php esc_attr_e( 'Type your search and press enter', 'pontosdecultura' ); ?>" />
-		<input type="submit" class="submit" name="submit" id="searchsubmit" value="<?php esc_attr_e( 'Search', 'pontosdecultura' ); ?>" />
-	</form>
+<form role="search" method="get" class="search-form" action="<?php esc_url( home_url( '/' ) ); ?>">
+	<label>
+		<span class="screen-reader-text"><?php _ex( 'Search for:', 'label' ); ?></span>
+		<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Digite aqui a sua busca', 'pontosdecultura' ); ?>" value="<?php get_search_query(); ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ); ?>" />
+	</label>
+	<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
+</form>

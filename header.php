@@ -29,27 +29,28 @@
 		 	<?php _e( 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.', 'pontosdecultura' ); ?>
 		</p>
 		<![endif]-->
-	<div class="container">
+	
 		<div class="site-wrapper hfeed"  >
 			<?php do_action( 'before' ); ?>
 			<header id="masthead" class="site-header site-area clearfix" role="banner">
-				<div class="site-branding">
-					<?php $logo_uri = get_template_directory_uri() . '/images/logo.png'; ?>
-					<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
-					</a>
-					<h1 class="site-title screen-reader-text"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-					<h2 class="site-description screen-reader-text"><?php bloginfo( 'description' ); ?></h2>
-				</div><!-- .site-branding -->
-				<div class="language-switcher">
-					<?php Pontosdecultura::language_selector(); ?>
-				</div>
-				
-				<nav role="navigation" class="site-navigation main-navigation">
-					<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary' ) ); ?>
-				</nav><!-- .site-navigation .main-navigation -->
+				<div class="container">
+					<div class="site-branding">
+						<?php $logo_uri = get_template_directory_uri() . '/images/logo.png'; ?>
+						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+							 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
+						</a>
+						<h1 class="site-title screen-reader-text"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<h2 class="site-description screen-reader-text"><?php bloginfo( 'description' ); ?></h2>
+					</div><!-- .site-branding -->
+					<div class="language-switcher">
+						<?php Pontosdecultura::language_selector(); ?>
+					</div>
+					
+					<nav role="navigation" class="site-navigation main-navigation">
+						<?php wp_nav_menu( array( 'menu' => 'main', 'theme_location' => 'primary' ) ); ?>
+					</nav><!-- .site-navigation .main-navigation -->
+				</div><!-- .container -->
 			</header><!-- #masthead .site-header -->
 		
 			<div id="content" class="site-content site-area">
-			
 			
