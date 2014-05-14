@@ -6,10 +6,10 @@ var searchtext = '';
 
 jQuery(function()
 {
-	jQuery("#searchsubmit").click(function(event)
+	jQuery(".search-submit").click(function(event)
 	{
 		event.preventDefault();
-		if(searchtext != jQuery('#s').val())
+		if(searchtext != jQuery('.search-field').val())
 		{
 			/*if(searchtext != '')
 			{
@@ -20,7 +20,7 @@ jQuery(function()
 			mapstraction.doFilter();
 	        updateResults();*/
 			pontosdecultura_update_posts();
-			searchtext = jQuery('#s').val();
+			searchtext = jQuery('.search-field').val();
 		}
 	});
 });
@@ -63,7 +63,7 @@ function pontosdecultura_update_posts()
         var idioma_filtro = new Array();
         jQuery("input[name='idioma_filtro[]']:checked").each(function() {idioma_filtro.push(jQuery(this).val());});*/
 	
-		var searchVal = jQuery('#s').val();
+		var searchVal = jQuery('.search-field').val();
 		
 		if(searchVal == '')
 		{
@@ -81,7 +81,7 @@ function pontosdecultura_update_posts()
 	        var data =
 	        {
 	                action: 'home_search',
-	                s: jQuery('#s').val()
+	                s: searchVal
 	        };
 	         
 	        jQuery.ajax(
@@ -101,7 +101,7 @@ function pontosdecultura_update_posts()
 		}
 }
 
-jQuery(document).ready(function()
+/*jQuery(document).ready(function()
 {
 	var data =
     {
@@ -122,6 +122,12 @@ jQuery(document).ready(function()
         }, 
     });
 	
+});*/
+
+var search_result_left = "";
+jQuery(document).ready(function()
+{
+	search_result_left = jQuery(".search-result").position().left;
 });
 
 var estado_search = "";
@@ -135,15 +141,17 @@ function map_estados_click(lat, lon, zoom, term)
 	}
 	else
 	{
-		jQuery(".search-result").css( { 'margin-left' : "-"+(jQuery( window ).width()+jQuery(".search-result").width())+"px" });
+		var left = jQuery(".search-result").position().left;
+		
+		jQuery(".search-result").css( { 'left' : "-"+(jQuery( window ).width()+jQuery(".search-result").width())+"px", 'position' : 'absolute' });
 		
 		jQuery(".search-estado").prepend(jQuery(".search-result"));
-		jQuery(".search-estado .container").css({'margin-top' : '-540px'});
+		//jQuery(".search-estado .container").css({'margin-top' : '-540px'});
 		jQuery('.search-estado .container').animate({
 		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
 		}, { duration: 5000, queue: false });
 		jQuery('.search-result').animate({
-		    'margin-left' : 0
+		    'left' : search_result_left
 		}, 5000);
 	}
 	
