@@ -136,6 +136,10 @@ class Pontosdecultura {
 		
 		add_action( 'wp_ajax_map_results', array($this, 'map_results_callback') );
 		add_action( 'wp_ajax_nopriv_map_results', array($this, 'map_results_callback') );
+		
+		add_action( 'wp_ajax_select_cidade', array($this, 'select_cidade_callback') );
+		add_action( 'wp_ajax_nopriv_select_cidade', array($this, 'select_cidade_callback') );
+		
 	}
 	
 	/**
@@ -256,6 +260,17 @@ class Pontosdecultura {
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
+		$pontosdecultura_home_searches = get_option('pontosdecultura_home_searches', array());
+		if(array_key_exists($s, $pontosdecultura_home_searches))
+		{
+			$pontosdecultura_home_searches[$s]++;
+		}
+		else 
+		{
+			$pontosdecultura_home_searches[$s] = 1;
+		}
+		update_option('pontosdecultura_home_searches', $pontosdecultura_home_searches);
+		
 		$post_type = 'mapa';
 		
 		$querystr = "
@@ -296,6 +311,32 @@ class Pontosdecultura {
 		echo '<div id="search-result-list" class="search-result-list">';
 			//mapasdevista_view_results();
 		echo '</div>';
+		die();
+	}
+	
+	public static function select_cidade_callback()
+	{
+	?>
+		<select name="adv-search-cidade" class="adv-search-cidade">
+			<option selected="selected" ><?php echo esc_attr_x('cidade', 'pontosdecultura' ); ?></option>
+			<?php
+			if(array_key_exists('uf', $_POST))
+			{
+				$parent = get_term_by('slug', $_POST['uf'], 'territorio');
+				if(is_object($parent))
+				{
+					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name'));
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					}
+				}
+			}
+			?>
+		</select>
+	<?php
 		die();
 	}
 	

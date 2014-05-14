@@ -95,7 +95,7 @@ function pontosdecultura_update_posts()
 	            },
 	            beforeSend: function()
 	            {
-	            	//overlay_filtro('lista-de-pautas');
+	            	//overlay_filtro();
 	            }, 
 	        });
 		}
@@ -118,17 +118,145 @@ function pontosdecultura_update_posts()
         },
         beforeSend: function()
         {
-        	//overlay_filtro('lista-de-pautas');
+        	//overlay_filtro();
         }, 
     });
 	
 });*/
 
 var search_result_left = "";
+
+var adv_search_title = "";
+var adv_search_tipo = "";
+var adv_search_publicoalvo = "";
 var adv_search_estado = "";
+var adv_search_cidade = "";
+
 jQuery(document).ready(function()
 {
 	search_result_left = jQuery(".search-result").position().left;
+	
+	jQuery(".adv-search-estado").change(function () {
+		var selected = jQuery( ".adv-search-estado option:selected" ).val();
+		if(adv_search_estado != selected)
+		{
+			adv_search_estado = selected;
+			var data =
+		    {
+		            action: 'select_cidade',
+		            uf: selected
+		    };
+			jQuery.ajax(
+		    {
+		        type: 'POST',
+		                url: homescripts_object.ajax_url,
+		        data: data,
+		        success: function(response)
+		        {
+		        	jQuery(".adv-search-cidade").replaceWith(response);
+		        },
+		        beforeSend: function()
+		        {
+		        	//overlay_filtro();
+		        }, 
+		    });
+		}
+	});
+	
+	/*
+	var adv_search_title = "";
+	var adv_search_tipo = "";
+	var adv_search_publicoalvo = "";
+	var adv_search_estado = "";
+	var adv_search_cidade = "";
+	 */
+	jQuery(".adv-search-submit").click(function(event)
+	{
+		event.preventDefault();
+		
+		var title = jQuery(".adv-search-title").val();
+		var tipo = jQuery(".adv-search-tipo option:selected").val();
+		var publicoalvo = jQuery(".adv-search-publicoalvo option:selected").val();
+		var estado = jQuery(".adv-search-estado option:selected").val();
+		var cidade = jQuery(".adv-search-cidade option:selected").val();
+		var do_filter = false;
+		
+		if(title != adv_search_title)
+		{
+			do_filter = true;
+			if(adv_search_title != "")
+			{
+				mapstraction.removeFilter('title', 'like', adv_search_title);
+			}
+			adv_search_title = title;
+			if(title != "")
+			{
+				mapstraction.addFilter('title', 'like', title);
+			}
+		}
+		if(tipo != adv_search_tipo)
+		{
+			do_filter = true;
+			if(adv_search_tipo != "")
+			{
+				mapstraction.removeFilter('tipo', 'in', adv_search_tipo);
+			}
+			adv_search_tipo = tipo;
+			if(tipo != "")
+			{
+				mapstraction.addFilter('tipo', 'in', tipo);
+			}
+		}
+		if(publicoalvo != adv_search_publicoalvo)
+		{
+			do_filter = true;
+			if(adv_search_publicoalvo != "")
+			{
+				mapstraction.removeFilter('publicoalvo', 'in', adv_search_publicoalvo);
+			}
+			adv_search_publicoalvo = publicoalvo;
+			if(publicoalvo != "")
+			{
+				mapstraction.addFilter('publicoalvo', 'in', publicoalvo);
+			}
+		}
+		if(cidade != adv_search_cidade)
+		{
+			do_filter = true;
+			if(adv_search_cidade != "")
+			{
+				mapstraction.removeFilter('cidade', 'in', adv_search_cidade);
+			}
+			adv_search_cidade = cidade;
+			if(cidade != "")
+			{
+				mapstraction.addFilter('territorio', 'in', cidade);
+			}
+		}
+		else
+		{
+			if(estado != adv_search_estado)
+			{
+				do_filter = true;
+				if(adv_search_estado != "")
+				{
+					mapstraction.removeFilter('estado', 'in', adv_search_estado);
+				}
+				adv_search_estado = estado;
+				if(estado != "")
+				{
+					mapstraction.addFilter('territorio', 'in', estado);
+				}
+			}
+		}
+		
+		if(do_filter)
+		{
+			mapstraction.doFilter();
+			updateResults();
+		}
+		
+	});
 	
 	
 });
