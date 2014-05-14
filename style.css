@@ -66,9 +66,9 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 *,
 *:before,
 *:after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -118,9 +118,10 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #006ab0;
+	background: #501651;
 	border: 0;
 	color: #fff;
+	font-weight: bold;
 	line-height: 1;
 	padding: 0.5em 1em;
 	position: relative;
@@ -151,8 +152,11 @@ input[type="password"],
 input[type="search"],
 textarea {
 	color: #333;
-	border: 0;
+	border: 1px solid #404040;
 	background: #fff;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -162,6 +166,7 @@ input[type="search"]:focus,
 textarea:focus {
 	color: #111;
 }
+
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -185,6 +190,12 @@ input[type="search"] {
 
 :-ms-input-placeholder {  
    color: #501651;  
+}
+
+select,
+select:focus,
+select:active {
+	cursor: pointer;
 }
 
 /* Alignment */
@@ -307,7 +318,6 @@ input[type="search"] {
 .search-intro .intro-text {
 	font-size: 1.25em;
 	margin: 0 auto 1.6em;
-	max-width: 720px;
 }
 
 .search-intro .search-form {
@@ -334,6 +344,60 @@ input[type="search"] {
 
 .search-advanced .area-title {
 	color: #501651;
+}
+
+/* Dropdown select style: https://gist.github.com/joaocunha/6273016 */
+.adv-search-form select {
+	border: 0 !important;
+	background: url('images/dropdown.png') no-repeat;
+	background-position: 96% center;
+	border-radius: 0;
+	text-indent: 0.01px;
+    text-overflow: '';
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.adv-search-form input[type="text"],
+.adv-search-form input[type="search"],
+.adv-search-form select {
+	background-color: #e9ddaf;
+	border: 0;
+	color: #404040;
+	line-height: 1.5;
+	margin-bottom: 0.5em;
+}
+
+.adv-search-form select,
+.adv-search-form input {
+	padding: 1em;
+	width: 100%;
+}
+
+.adv-search-form select:hover,
+.adv-search-form input[type="text"]:hover,
+.adv-search-form input[type="search"]:hover,
+.adv-search-form select:focus,
+.adv-search-form input[type="text"]:focus,
+.adv-search-form input[type="search"]:focus {
+	background-color: #fff;
+}
+
+.adv-search-form  ::-webkit-input-placeholder {
+   color: #404040;
+}
+
+.adv-search-form  :-moz-placeholder { /* Firefox 18- */
+   color: #404040;  
+}
+
+.adv-search-form  ::-moz-placeholder {  /* Firefox 19+ */
+   color: #404040;  
+}
+
+.adv-search-form :-ms-input-placeholder {  
+   color: #404040;  
 }
 
 /* Most searched terms */
@@ -370,6 +434,12 @@ input[type="search"] {
 
 .area-title:before {
 	content: "/ ";
+}
+
+/* Used to replicate max content width present in functions.php */
+.content-box {
+	margin: 0 auto;
+	max-width: 680px;
 }
 
 
