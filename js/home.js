@@ -101,6 +101,14 @@ function pontosdecultura_update_posts()
 		}
 }
 
+function pontosdecultura_update_posts_mais_buscadas(str)
+{
+	var old = jQuery('.search-field').val();
+	jQuery('.search-field').val(str);
+	pontosdecultura_update_posts();
+	jQuery('.search-field').val(old);
+}
+
 /*jQuery(document).ready(function()
 {
 	var data =
@@ -258,6 +266,11 @@ jQuery(document).ready(function()
 		
 	});
 	
+	jQuery(".tag-link-0").click(function(event){
+		event.preventDefault();
+		pontosdecultura_update_posts_mais_buscadas(jQuery(this).text());
+        return false;
+	});
 	
 });
 

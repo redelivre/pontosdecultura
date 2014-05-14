@@ -260,17 +260,6 @@ class Pontosdecultura {
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
-		$pontosdecultura_home_searches = get_option('pontosdecultura_home_searches', array());
-		if(array_key_exists($s, $pontosdecultura_home_searches))
-		{
-			$pontosdecultura_home_searches[$s]++;
-		}
-		else 
-		{
-			$pontosdecultura_home_searches[$s] = 1;
-		}
-		update_option('pontosdecultura_home_searches', $pontosdecultura_home_searches);
-		
 		$post_type = 'mapa';
 		
 		$querystr = "
@@ -302,6 +291,31 @@ class Pontosdecultura {
 		
 		echo json_encode($posts);
 		
+		if(count($posts) > 0)
+		{
+			$pontosdecultura_home_searches = get_option('pontosdecultura_home_searches', array());
+			if(array_key_exists(sanitize_title($s), $pontosdecultura_home_searches))
+			{
+				$pontosdecultura_home_searches[sanitize_title($s)]->count++;
+			}
+			else
+			{
+				$term_obj = new stdClass();
+				$term_obj->term_id = 0; //5745
+				$term_obj->name = $s; //Conhecimento e Tradições Orais
+				$term_obj->slug = sanitize_title($term_obj->name); //conhecimento-e-tradicoes-orais
+				$term_obj->term_group = 0; //0
+				$term_obj->term_taxonomy_id = 0; //5754
+				$term_obj->taxonomy = "false"; //tematico
+				$term_obj->description = ""; //
+				$term_obj->parent = 0; //0
+				$term_obj->count = 1;
+				$term_obj->link = $term_obj->name;
+				$term_obj->id = $term_obj->term_id;
+				$pontosdecultura_home_searches[sanitize_title($term_obj->name)] = $term_obj;
+			}
+			update_option('pontosdecultura_home_searches', $pontosdecultura_home_searches);
+		}
 		
 		die(); // this is required to return a proper result
 	}
