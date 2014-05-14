@@ -3,6 +3,8 @@
  */
 
 var searchtext = '';
+var map_data_loaded = false;
+var map_data_loaded_complete = false;
 
 jQuery(function()
 {
@@ -11,6 +13,7 @@ jQuery(function()
 		event.preventDefault();
 		if(searchtext != jQuery('.search-field').val())
 		{
+			load_map_data();
 			/*if(searchtext != '')
 			{
 				mapstraction.removeFilter('title', 'like', searchtext);
@@ -92,10 +95,11 @@ function pontosdecultura_update_posts()
 	            success: function(response)
 	            {
 	            	pontosdecultura_updateResults(response);
+	            	jQuery(".Ajax-Loader").toggle();
 	            },
 	            beforeSend: function()
 	            {
-	            	//overlay_filtro();
+	            	jQuery(".Ajax-Loader").toggle();
 	            }, 
 	        });
 		}
@@ -103,6 +107,7 @@ function pontosdecultura_update_posts()
 
 function pontosdecultura_update_posts_mais_buscadas(str)
 {
+	load_map_data();
 	var old = jQuery('.search-field').val();
 	jQuery('.search-field').val(str);
 	pontosdecultura_update_posts();
@@ -162,10 +167,11 @@ jQuery(document).ready(function()
 		        success: function(response)
 		        {
 		        	jQuery(".adv-search-cidade").replaceWith(response);
+		        	jQuery(".Ajax-Loader").toggle();
 		        },
 		        beforeSend: function()
 		        {
-		        	//overlay_filtro();
+		        	jQuery(".Ajax-Loader").toggle();
 		        }, 
 		    });
 		}
@@ -181,6 +187,8 @@ jQuery(document).ready(function()
 	jQuery(".adv-search-submit").click(function(event)
 	{
 		event.preventDefault();
+		
+		load_map_data();
 		
 		var title = jQuery(".adv-search-title").val();
 		var tipo = jQuery(".adv-search-tipo option:selected").val();
@@ -260,8 +268,10 @@ jQuery(document).ready(function()
 		
 		if(do_filter)
 		{
+			jQuery(".Ajax-Loader").toggle();
 			mapstraction.doFilter();
 			updateResults();
+			jQuery(".Ajax-Loader").toggle();
 		}
 		
 	});
@@ -272,6 +282,12 @@ jQuery(document).ready(function()
         return false;
 	});
 	
+	jQuery('.search-load-button').click(function() {
+		load_map_data();
+	});
+	
+	jQuery("body").ajaxloader("Favor aguardar um instante, a primeira carga é mais demorada");
+	
 });
 
 var estado_search = "";
@@ -279,7 +295,9 @@ var map_result_animation_durations = 3000;
 function map_estados_click(lat, lon, zoom, term)
 {
 	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(lat), parseFloat(lon)), parseInt(zoom));
+	load_map_data();
 	
+	jQuery(".Ajax-Loader").toggle();
 	if(estado_search != "")
 	{
 		mapstraction.removeFilter('territorio', 'in', estado_search);
@@ -317,6 +335,7 @@ function map_estados_click(lat, lon, zoom, term)
 		updateResults();
 		estado_search = term;
 	}
+	jQuery(".Ajax-Loader").toggle();
 }
 
 function map_voltar_click(search)
@@ -327,4 +346,97 @@ function map_voltar_click(search)
 	jQuery('.search-result').animate({
 	    'left' : "-"+(jQuery( window ).width()+jQuery(".search-result").width())+"px"
 	}, map_result_animation_durations);
+}
+
+function load_map_data()
+{
+	if(map_data_loaded == false)
+	{
+		map_data_loaded = true; // prevent load again
+		
+		jQuery.ajaxSetup({async:false});
+		
+		jQuery(".Ajax-Loader").toggle();
+		
+		var data =
+	    {
+	            action: 'mapasdevista_load_bubbles',
+	    };
+		jQuery.ajax(
+	    {
+	        type: 'POST',
+	                url: homescripts_object.ajax_url,
+	        data: data,
+	        success: function(response)
+	        {
+	        	jQuery("#mapasdevista_load_bubbles").replaceWith(response);
+	        	var datapins =
+	            {
+	        			get: 'totalPosts',
+	        	        action: 'mapasdevista_get_posts',
+	        	        api: mapinfo.api,
+	        	        page_id: mapinfo.page_id,
+	        	        search: mapinfo.search
+	            };
+	        	
+	        	jQuery.ajax(
+	            {
+	                type: 'POST',
+	                url: mapinfo.ajaxurl,
+	                data: datapins,
+	                success: function(data) {
+	                    totalPosts = parseInt(data);
+	                    
+	                    map_data_loaded_total = totalPosts;
+	                    
+	                    if(totalPosts > 0)
+	                        loadPosts(totalPosts, 0);
+	                    
+	                    jQuery('#posts-loader-total').html(totalPosts);
+	                    jQuery('#posts-loader').show();
+	                },
+	                beforeSend: function()
+	                {
+	                	//overlay_filtro();
+	                }, 
+	            });
+	        },
+	        beforeSend: function()
+	        {
+	        	//overlay_filtro();
+	        }, 
+	    });
+		
+		var data =
+	    {
+	            action: 'map_results',
+	    };
+		jQuery.ajax(
+	    {
+	        type: 'POST',
+	                url: homescripts_object.ajax_url,
+	        data: data,
+	        success: function(response)
+	        {
+	        	jQuery("#search-result-list").replaceWith(response);
+	        },
+	        beforeSend: function()
+	        {
+	        	//overlay_filtro();
+	        }, 
+	    });
+		jQuery.ajaxSetup({async:true});
+		jQuery(".Ajax-Loader").toggle();
+	}
+	
+	
+	
+}
+
+function pontosdecultura_check_load_complete()
+{
+	if(mapasdevista_post_load_complete)
+	{
+		map_data_loaded_complete = true;
+	}
 }

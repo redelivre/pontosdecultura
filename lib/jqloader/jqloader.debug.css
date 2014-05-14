@@ -1,0 +1,24 @@
+.Ajax-Loader {
+    position: absolute;
+    z-index: 9999;
+    
+}
+.Ajax-Loader .Ajax-Loader-Overlay {
+    background-color: black;
+    
+}
+.Ajax-Loader .Ajax-Loader-Image {
+    
+    height: 72px;
+    margin: 0 auto;
+    position: fixed;
+}
+
+.Ajax-Loader .Ajax-Loader-Image img {
+    display: block;
+    padding: 12px;
+}
+
+.Ajax-Loader-Text {
+	color: #ffffff;
+}

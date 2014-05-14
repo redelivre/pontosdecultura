@@ -149,12 +149,16 @@ class Pontosdecultura {
 	public function javascript(){
 		$path = get_template_directory_uri() . '/js';
 		wp_register_script('homescripts', $path . '/home.js', array('jquery'));
+		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
+		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
+		
 		
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('pontosdecultura_language_selector');
 		if(is_home())
 		{
 			wp_enqueue_script('homescripts');
+			wp_enqueue_script('jqloader');
+			wp_enqueue_style('jqloader');
 			
 			wp_localize_script( 'homescripts', 'homescripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
@@ -310,7 +314,7 @@ class Pontosdecultura {
 				$term_obj->description = ""; //
 				$term_obj->parent = 0; //0
 				$term_obj->count = 1;
-				$term_obj->link = $term_obj->name;
+				$term_obj->link = $term_obj->slug;
 				$term_obj->id = $term_obj->term_id;
 				$pontosdecultura_home_searches[sanitize_title($term_obj->name)] = $term_obj;
 			}
@@ -323,7 +327,7 @@ class Pontosdecultura {
 	public static function map_results_callback()
 	{
 		echo '<div id="search-result-list" class="search-result-list">';
-			//mapasdevista_view_results();
+			mapasdevista_view_results();
 		echo '</div>';
 		die();
 	}

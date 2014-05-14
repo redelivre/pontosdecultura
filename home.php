@@ -140,13 +140,16 @@
 
 	<div class="search-result search-area clearfix">
 		<div id="search-result-list" class="search-result-list">
-			<?php mapasdevista_view_results(); ?>
+			<?php //mapasdevista_view_results(); ?>
 		</div>
 		<div class="search-result-map">
 			<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
 		</div>
 		<div class="search-result-button">
 			<?php _e('voltar a pesquisa', 'pontosdecultura'); ?>
+		</div>
+		<div class="search-load-button">
+			<?php _e('Load data', 'pontosdecultura'); ?>
 		</div>
 	</div>
 <?php get_footer(); ?>
