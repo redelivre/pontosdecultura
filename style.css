@@ -66,9 +66,9 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 *,
 *:before,
 *:after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -118,7 +118,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #006ab0;
+	background: #501651;
 	border: 0;
 	color: #fff;
 	line-height: 1;
@@ -151,8 +151,11 @@ input[type="password"],
 input[type="search"],
 textarea {
 	color: #333;
-	border: 0;
+	border: 1px solid #404040;
 	background: #fff;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -336,6 +339,31 @@ input[type="search"] {
 	color: #501651;
 }
 
+.adv-search-form input,
+.adv-search-form select {
+	margin-bottom: 0.5em;
+	width: 100%;
+}
+
+.adv-search-form select {
+	border: 0 !important;  /*Removes border*/
+      -webkit-appearance: none;  /*Removes default chrome and safari style*/
+      -moz-appearance: none; /* Removes Default Firefox style*/
+      background: url('dropdown_arrow.png') no-repeat;  /*Adds background-image*/
+      background-position: 82px 7px;  /*Position of the background-image*/
+      
+
+    
+      border-radius: 0;
+      padding: 1em;
+}
+
+.adv-search-form select,
+.adv-search-form input[type="text"],
+.adv-search-form input[type="search"] {
+	background: #e9ddaf;
+}
+
 /* Most searched terms */
 .search-tags {
 	background: #501651;
@@ -370,6 +398,12 @@ input[type="search"] {
 
 .area-title:before {
 	content: "/ ";
+}
+
+/* Used to replicate max content width present in functions.php */
+.content-box {
+	margin: 0 auto;
+	max-width: 720px;
 }
 
 
