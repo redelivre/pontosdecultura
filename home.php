@@ -20,12 +20,58 @@
 	<section class="search-advanced search-area clearfix">
 		<div class="container">
 			<h2 class="area-title">Busca avançada</h2>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do ponto', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
+			<select name="adv-search-tipo" class="adv-search-tipo">
+				<option selected="selected" ><?php echo esc_attr_x('Tipo do ponto', 'pontosdecultura' ); ?></option>
+				<?php
+					$terms = get_terms('tipo');
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+			</select>
+			<select name="adv-search-tipo" class="adv-search-tipo">
+				<option selected="selected" ><?php echo esc_attr_x('Tipo do ponto', 'pontosdecultura' ); ?></option>
+				<?php
+					$terms = get_terms('tipo', array('orderby' => 'name'));
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+			</select>
+			<select name="adv-search-publicoalvo" class="adv-search-publicoalvo">
+				<option selected="selected" ><?php echo esc_attr_x('Público Alvo', 'pontosdecultura' ); ?></option>
+				<?php
+					$terms = get_terms('publicoalvo', array('orderby' => 'name'));
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+			</select>
+			<select name="adv-search-estado" class="adv-search-estado">
+				<option selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+				<?php
+					$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name'));
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+			</select>
+			<select name="adv-search-cidade" class="adv-search-cidade">
+				<option selected="selected" ><?php echo esc_attr_x('cidade', 'pontosdecultura' ); ?></option>
+			</select>
 		</div><!-- .container -->
 	</section>
 
@@ -42,6 +88,9 @@
 		</div>
 		<div class="search-result-map">
 			<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
+		</div>
+		<div class="search-result-button">
+			<?php _e('voltar a pesquisa', 'pontosdecultura'); ?>
 		</div>
 	</div>
 <?php get_footer(); ?>

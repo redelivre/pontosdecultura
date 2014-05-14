@@ -125,12 +125,16 @@ function pontosdecultura_update_posts()
 });*/
 
 var search_result_left = "";
+var adv_search_estado = "";
 jQuery(document).ready(function()
 {
 	search_result_left = jQuery(".search-result").position().left;
+	
+	
 });
 
 var estado_search = "";
+var map_result_animation_durations = 3000;
 function map_estados_click(lat, lon, zoom, term)
 {
 	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(lat), parseFloat(lon)), parseInt(zoom));
@@ -149,17 +153,37 @@ function map_estados_click(lat, lon, zoom, term)
 		//jQuery(".search-estado .container").css({'margin-top' : '-540px'});
 		jQuery('.search-estado .container').animate({
 		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
-		}, { duration: 5000, queue: false });
+		}, { duration: map_result_animation_durations, queue: false });
 		jQuery('.search-result').animate({
 		    'left' : search_result_left
-		}, 5000);
+		}, map_result_animation_durations);
+		
+		jQuery('.search-result-button').click(function() {
+			map_voltar_click(".search-estado .container");
+		});
 	}
 	
 	if(estado_search != term)
 	{
+		jQuery('.search-estado .container').animate({
+		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
+		}, { duration: map_result_animation_durations, queue: false });
+		jQuery('.search-result').animate({
+		    'left' : search_result_left
+		}, map_result_animation_durations);
 		mapstraction.addFilter('territorio', 'in', term);
 		mapstraction.doFilter();
 		updateResults();
 		estado_search = term;
 	}
+}
+
+function map_voltar_click(search)
+{
+	jQuery(search).animate({
+	    'padding' : '2em',
+	}, { duration: map_result_animation_durations, queue: false });
+	jQuery('.search-result').animate({
+	    'left' : "-"+(jQuery( window ).width()+jQuery(".search-result").width())+"px"
+	}, map_result_animation_durations);
 }
