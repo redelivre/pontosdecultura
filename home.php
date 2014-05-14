@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 	<section class="search-intro search-area clearfix">
 		<div class="container">
-			<p class="intro-text">
+			<p class="intro-text content-box">
 				O Mapa Cultura Viva é Livre e aberto, fruto do acúmulo de dezenas de experiências da Rede de Pontos de
 				Cultura com o objetivo de dar visibilidade e articular iniciativas e ações do programa Cultura Viva.
 				 Existem várias formas de utilizar a plataforma, sendo possível fazer buscas de forma aberta ou avançada, 

@@ -121,6 +121,7 @@ input[type="submit"] {
 	background: #501651;
 	border: 0;
 	color: #fff;
+	font-weight: bold;
 	line-height: 1;
 	padding: 0.5em 1em;
 	position: relative;
@@ -165,6 +166,7 @@ input[type="search"]:focus,
 textarea:focus {
 	color: #111;
 }
+
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -188,6 +190,12 @@ input[type="search"] {
 
 :-ms-input-placeholder {  
    color: #501651;  
+}
+
+select,
+select:focus,
+select:active {
+	cursor: pointer;
 }
 
 /* Alignment */
@@ -310,7 +318,6 @@ input[type="search"] {
 .search-intro .intro-text {
 	font-size: 1.25em;
 	margin: 0 auto 1.6em;
-	max-width: 720px;
 }
 
 .search-intro .search-form {
@@ -339,29 +346,58 @@ input[type="search"] {
 	color: #501651;
 }
 
-.adv-search-form input,
+/* Dropdown select style: https://gist.github.com/joaocunha/6273016 */
 .adv-search-form select {
-	margin-bottom: 0.5em;
-	width: 100%;
+	border: 0 !important;
+	background: url('images/dropdown.png') no-repeat;
+	background-position: 96% center;
+	border-radius: 0;
+	text-indent: 0.01px;
+    text-overflow: '';
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
+.adv-search-form input[type="text"],
+.adv-search-form input[type="search"],
 .adv-search-form select {
-	border: 0 !important;  /*Removes border*/
-      -webkit-appearance: none;  /*Removes default chrome and safari style*/
-      -moz-appearance: none; /* Removes Default Firefox style*/
-      background: url('dropdown_arrow.png') no-repeat;  /*Adds background-image*/
-      background-position: 82px 7px;  /*Position of the background-image*/
-      
-
-    
-      border-radius: 0;
-      padding: 1em;
+	background-color: #e9ddaf;
+	border: 0;
+	color: #404040;
+	line-height: 1.5;
+	margin-bottom: 0.5em;
 }
 
 .adv-search-form select,
-.adv-search-form input[type="text"],
-.adv-search-form input[type="search"] {
-	background: #e9ddaf;
+.adv-search-form input {
+	padding: 1em;
+	width: 100%;
+}
+
+.adv-search-form select:hover,
+.adv-search-form input[type="text"]:hover,
+.adv-search-form input[type="search"]:hover,
+.adv-search-form select:focus,
+.adv-search-form input[type="text"]:focus,
+.adv-search-form input[type="search"]:focus {
+	background-color: #fff;
+}
+
+.adv-search-form  ::-webkit-input-placeholder {
+   color: #404040;
+}
+
+.adv-search-form  :-moz-placeholder { /* Firefox 18- */
+   color: #404040;  
+}
+
+.adv-search-form  ::-moz-placeholder {  /* Firefox 19+ */
+   color: #404040;  
+}
+
+.adv-search-form :-ms-input-placeholder {  
+   color: #404040;  
 }
 
 /* Most searched terms */
@@ -403,7 +439,7 @@ input[type="search"] {
 /* Used to replicate max content width present in functions.php */
 .content-box {
 	margin: 0 auto;
-	max-width: 720px;
+	max-width: 680px;
 }
 
 
