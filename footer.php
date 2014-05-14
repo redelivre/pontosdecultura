@@ -18,15 +18,15 @@
 						<?php //dynamic_sidebar( 'sidebar-footer' ); ?>
 						<div class="site-supporters">
 							<?php $images_url = get_template_directory_uri() . '/images/'; ?>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-lab.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-soylocoporti.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-ufpr.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-educacao-ufpr.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-pontodecultura.png'; ?>" /></a>
 							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-scdc.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-minc.png'; ?>" /></a>
+							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-governo-federal.png'; ?>" /></a>
 						</div>
 					</div><!-- .container --> 
 				</section><!-- #tertiary -->
