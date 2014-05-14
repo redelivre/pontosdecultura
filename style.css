@@ -20,13 +20,16 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 /* ==========================================================================
    Colors
    ==========================================================================
-   	Purple		#501651
-	Blue		#0b4d89
-	Red			#e91d24
-	Yellow		#faba09
-	Orange		#ff6600
-	Beige 		#e9ddaf
-	Green		#2d9e2d
+   	Light Purple	#805783
+   	Purple			#501651
+   	Light Blue		#376dcd
+   	Medium Blue		#23498c
+	Dark Blue		#2f2d44
+	Red				#e91d24
+	Yellow			#faba09
+	Orange			#ff6600
+	Beige 			#e9ddaf
+	Green			#5fb760
 
 /* ==========================================================================
    Table of contents
@@ -97,20 +100,19 @@ img {
 
 /* Links */
 a {
-	color: #501651;
+	color: #2f2d44;
 	font-weight: bold;
 	text-decoration: none;
 }
 
 a:visited {
-	border-bottom: 1px solid #fbfbfb;
-	color: #501651;
+	color: #2f2d44;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #501651;
+	color: #23498c;
 }
 
 /* Forms, inputs and buttons */
@@ -294,7 +296,7 @@ select:active {
    ========================================================================== */
 
 .site-header {
-	background: #501651;
+	background: #805783;
 }
 
 .site-logo {
@@ -313,6 +315,7 @@ select:active {
 .search-intro {
 	background: #faba09;
 	color: #501651;
+	padding: 3em 0;
 }
 
 .search-intro .intro-text {
@@ -339,11 +342,11 @@ select:active {
 
 /* Advanced Search */
 .search-advanced {
-	background: #2d9e2d;
+	background: #5fb760;
 }
 
 .search-advanced .area-title {
-	color: #501651;
+	color: #2f2d44;
 }
 
 /* Dropdown select style: https://gist.github.com/joaocunha/6273016 */
@@ -375,6 +378,10 @@ select:active {
 	width: 100%;
 }
 
+.adv-search-form .adv-search-submit {
+	background-color: #2f2d44;
+}
+
 .adv-search-form select:hover,
 .adv-search-form input[type="text"]:hover,
 .adv-search-form input[type="search"]:hover,
@@ -402,7 +409,7 @@ select:active {
 
 /* Most searched terms */
 .search-tags {
-	background: #501651;
+	background: #2f2d44;
 }
 
 .search-tags .area-title {
@@ -604,7 +611,7 @@ Map
 @media all and (min-width: 55em) {
 
 	/* Site header */
-	.site-header {
+	.site-header .container {
 		position: relative;
 	}
 
@@ -615,7 +622,14 @@ Map
 	}
 
 	.main-navigation {
+		position: absolute;
+			bottom: 50%;
+			right: 2em;
 		text-align: right;
+	}
+
+	.main-navigation ul li {
+		margin-left: -0.3125em;
 	}
 
 	.single-mapa .entry-header {
