@@ -22,9 +22,9 @@
 		<div class="container">
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
-				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do ponto', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
+				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Ponto', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
 				<select name="adv-search-tipo" class="adv-search-tipo">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Tipo do ponto', 'pontosdecultura' ); ?></option>
+					<option value="" selected="selected" ><?php echo esc_attr_x('Tipo do Ponto', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('tipo');
 						foreach ($terms as $term)
@@ -36,7 +36,7 @@
 					?>
 				</select>
 				<select name="adv-search-publicoalvo" class="adv-search-publicoalvo">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Público Alvo', 'pontosdecultura' ); ?></option>
+					<option value="" selected="selected" ><?php echo esc_attr_x('Público-alvo', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('publicoalvo', array('orderby' => 'name'));
 						foreach ($terms as $term)
@@ -60,7 +60,7 @@
 					?>
 				</select>
 				<select name="adv-search-cidade" class="adv-search-cidade">
-					<option value="" selected="selected" ><?php echo esc_attr_x('cidade', 'pontosdecultura' ); ?></option>
+					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 				</select>
 				<input type="submit" class="adv-search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
 			</form><!-- .adv-search-form -->
@@ -141,20 +141,22 @@
 		</div><!-- .container -->
 	</section>
 
-	<div class="search-result search-area clearfix">
-		<div id="search-result-list" class="search-result-list">
-			<?php //mapasdevista_view_results(); ?>
+	<section class="search-result search-area clearfix">
+		<div class="container">
+			<div id="search-result-list" class="search-result-list">
+				<?php //mapasdevista_view_results(); ?>
+			</div>
+			<div class="search-result-map">
+				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
+			</div>
+			<div class="search-result-button">
+				<?php _e('volta a pesquisa', 'pontosdecultura'); ?>
+			</div>
+			<div class="search-load-button">
+				<?php _e('Load data', 'pontosdecultura'); ?>
+			</div>
 		</div>
-		<div class="search-result-map">
-			<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
-		</div>
-		<div class="search-result-button">
-			<?php _e('volta a pesquisa', 'pontosdecultura'); ?>
-		</div>
-		<div class="search-load-button">
-			<?php _e('Load data', 'pontosdecultura'); ?>
-		</div>
-	</div>
+	</section>
 <?php get_footer(); ?>
 
 

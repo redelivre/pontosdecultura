@@ -336,6 +336,12 @@ select:active {
 }
 
 /* Estado */
+.search-estado {
+	background-color: #FFFFFF;
+	position: relative;
+	z-index: 9999;
+}
+
 .search-estado .area-title {
 	color: #0b4d89;
 }
@@ -429,6 +435,9 @@ select:active {
 	margin: 0 auto;
     max-width: 1280px;
     width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: #fbfbfb;
 }
 
 /* ==========================================================================
