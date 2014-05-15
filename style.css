@@ -569,7 +569,7 @@ Map
    ========================================================================== */
 
 .widget-area--footer {
-	background: #e9ddaf;
+	background: #e9ddaf url('images/footer-pattern.png') repeat-x bottom;
 	text-align: center;
 }
 
