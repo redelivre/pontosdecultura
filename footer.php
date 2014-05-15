@@ -10,6 +10,9 @@
 ?>
 
 				
+				<?php if ( ! is_home() ) : ?>
+				</div><!-- .container -->
+				<?php endif; ?>
 			</div><!-- #content .site-content -->
 
 			<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>

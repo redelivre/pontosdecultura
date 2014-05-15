@@ -435,7 +435,8 @@ select:active {
    4.0 - Content
    ========================================================================== */
 
-.area-title {
+.area-title,
+.entry-title {
 	margin-top: 0;
 }
 
@@ -443,8 +444,13 @@ select:active {
 	content: "/ ";
 }
 
+.entry-title {
+	color: #23498c;
+}
+
 /* Used to replicate max content width present in functions.php */
-.content-box {
+.content-box,
+.page .site-content {
 	margin: 0 auto;
 	max-width: 680px;
 }

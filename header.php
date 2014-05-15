@@ -53,4 +53,7 @@
 			</header><!-- #masthead .site-header -->
 		
 			<div id="content" class="site-content site-area">
+				<?php if ( ! is_home() ) : ?>
+				<div class="container">
+				<?php endif; ?>
 			
