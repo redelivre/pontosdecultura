@@ -638,6 +638,13 @@ Map
 		margin-left: -0.3125em;
 	}
 
+	.search-intro .container {
+		background: url('images/bonecos.png'), url('images/bonecos-reverse.png');
+		background-repeat: repeat-y;
+		background-position: left, right;
+		background-size: contain;
+	}
+
 	.single-mapa .entry-header {
 		background: #fbfbfb;
 		margin-bottom: 2em;
