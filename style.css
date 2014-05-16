@@ -244,6 +244,53 @@ select:active {
 	z-index: 100000; /* Above WP toolbar */
 }
 
+/* General navigation style */
+.site-navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-navigation ul li {
+	display: inline-block;
+}
+
+.site-navigation ul li a {
+	padding: 0.75em;
+}
+
+/**
+ * Scrolling shadows by @kizmarh and @leaverou
+ * Only works in browsers supporting background-attachment: local; & CSS gradients
+ * Degrades gracefully
+ * http://lea.verou.me/2012/04/background-attachment-local/
+ */
+
+.scrollbox {
+	background:
+		/* Shadow covers */
+		linear-gradient(#fbfbfb 30%, rgba(255,255,255,0)),
+		linear-gradient(rgba(255,255,255,0), #fbfbfb 70%) 0 100%,
+		
+		/* Shadows */
+		radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+		radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+	background:
+		/* Shadow covers */
+		linear-gradient(#fbfbfb 30%, rgba(255,255,255,0)),
+		linear-gradient(rgba(255,255,255,0), #fbfbfb 70%) 0 100%,
+		
+		/* Shadows */
+		radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+		radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+	background-repeat: no-repeat;
+	
+	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+	
+	/* Opera doesn't support this in the shorthand */
+	background-attachment: local, local, scroll, scroll;
+}
+
 /* Clearfix */
 .clearfix:before,
 .clearfix:after,
@@ -264,21 +311,6 @@ select:active {
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
-}
-
-/* General navigation style */
-.site-navigation ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.site-navigation ul li {
-	display: inline-block;
-}
-
-.site-navigation ul li a {
-	padding: 0.75em;
 }
 
 /* ==========================================================================
@@ -571,6 +603,65 @@ Map
 #map-filters #map-filters {
 	padding: 0;
 	width: 100%;
+}
+
+/* Map Results */
+.map-results::-webkit-scrollbar {  
+    width: 12px;  
+}
+.map-results::-webkit-scrollbar-track {  
+    background-color: #e9ddaf;  
+}  
+.map-results::-webkit-scrollbar-thumb{
+	background-color: #faba09;
+	border-radius: 3px;
+}
+
+.map-results:-webkit-scrollbar-thumb:hover{
+	background-color: #2f2d44;
+}
+
+.map-results::-webkit-scrollbar-thumb:active{
+	background-color: #2f2d44;
+}
+
+.map-results {
+	padding: 0 1em;
+}
+
+.map-results .result {
+	margin-bottom: 1em;
+}
+
+.map-results-intro {
+	background: #faba09;
+	margin-bottom: 1.5em;
+	padding: 0.5em 1em;
+}
+
+.map-results-total-number {
+	font-weight: bold;
+}
+
+.map-result-pin {
+	float: left;
+	margin-right: 1em;
+}
+
+.map-result-content {
+	line-height: 1;
+	overflow: hidden;
+}
+
+.map-result-title {
+	display: block;
+	margin: 0 0 0.5em;
+}
+
+.map-result-city,
+.map-result-state,
+.map-result-sep {
+	font-size: 0.875em;
 }
 
 /* ==========================================================================
