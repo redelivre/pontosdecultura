@@ -747,7 +747,7 @@ Map
 	}
 
 	.map-brasil {
-		display: block;
+		display: inline-block;
 	}
 	
 }
