@@ -293,7 +293,7 @@ select:active {
 }
 
 /* Map display for smaller screens */
-.mapa-brasil {
+.map-brasil {
 	display: none;
 }
 
@@ -746,7 +746,7 @@ Map
 		text-align: right;
 	}
 
-	.mapa-brasil {
+	.map-brasil {
 		display: block;
 	}
 	
