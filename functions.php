@@ -123,8 +123,8 @@ class Pontosdecultura {
 	* Registra actions do wordpress
 	*
 	*/
-	public function __construct(){
-		
+	public function __construct()
+	{
 		add_action('wp_enqueue_scripts', array($this, 'javascript'));
 		add_filter('nav_menu_css_class', array($this, 'nav_menu_css_class'));
 		
@@ -140,6 +140,32 @@ class Pontosdecultura {
 		add_action( 'wp_ajax_select_cidade', array($this, 'select_cidade_callback') );
 		add_action( 'wp_ajax_nopriv_select_cidade', array($this, 'select_cidade_callback') );
 		
+		add_filter('mapasdevista_mapinfo_localize_script', array($this, 'mapinfo_localize_script'));
+		
+		add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_bubbles'));
+		
+	}
+	
+	public static function mapasdevista_load_bubbles($load)
+	{
+		global $wp_query;
+		
+		if(is_home() && !$wp_query->get('mapa-tpl'))
+		{
+			return false;
+		}
+		return $load;
+	}
+	
+	public static function mapinfo_localize_script($mapinfo)
+	{
+		global $wp_query;
+		
+		if(is_home() && !$wp_query->get('mapa-tpl'))
+		{
+			$mapinfo['loadPosts'] = false;
+		}
+		return $mapinfo;
 	}
 	
 	/**
@@ -148,13 +174,13 @@ class Pontosdecultura {
 	*/
 	public function javascript(){
 		$path = get_template_directory_uri() . '/js';
+		global $wp_query;
+		
 		wp_register_script('homescripts', $path . '/home.js', array('jquery'));
 		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
 		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
 		
-		
-		wp_enqueue_script('jquery');
-		if(is_home())
+		if(is_home() && !$wp_query->get('mapa-tpl'))
 		{
 			wp_enqueue_script('homescripts');
 			wp_enqueue_script('jqloader');
