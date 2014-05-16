@@ -95,6 +95,7 @@ p {
 }
 
 img {
+	height: auto;
     max-width: 100%;
 }
 
@@ -291,6 +292,11 @@ select:active {
 	background-attachment: local, local, scroll, scroll;
 }
 
+/* Map display for smaller screens */
+.mapa-brasil {
+	display: none;
+}
+
 /* Clearfix */
 .clearfix:before,
 .clearfix:after,
@@ -367,7 +373,7 @@ select:active {
 	background: #501651;
 }
 
-/* Estado */
+/* State / Estado */
 .search-estado {
 	background-color: #FFFFFF;
 	position: relative;
@@ -376,6 +382,26 @@ select:active {
 
 .search-estado .area-title {
 	color: #0b4d89;
+}
+
+.state-list,
+.state-list--children {
+	list-style-type: none;
+	margin: 0 0 1.5em;
+	padding: 0;
+}
+
+.state-list--children {
+	margin-left: -0.5em;
+}
+
+.state-list--children .state-name {
+	display: inline;
+}
+
+.state-list--children .state-name a {
+	display: inline-block;
+	padding: 0.25em 0.5em;
 }
 
 /* Advanced Search */
@@ -467,7 +493,10 @@ select:active {
 	margin: 0 auto;
     max-width: 1280px;
     width: 100%;
-    position: absolute;
+    /*
+    
+
+    position: absolute; */
     z-index: 1;
     background-color: #fbfbfb;
 }
@@ -495,7 +524,6 @@ select:active {
 	margin: 0 auto;
 	max-width: 680px;
 }
-
 
 /*
 Map
@@ -699,19 +727,29 @@ Map
    ========================================================================== */
 
 @media all and (min-width: 40em) {
-	
-	.search-result-list,
-	.search-result-map {
+
+	/* Golden ratio proportion for boxes */
+	.gr {
 		float: left;
 	}
 
-	.search-result-list {
+	.gr-small {
 		width: 38.2%;
 	}
 
-	.search-result-map {
+	.gr-large {
 		width: 61.8%;
 	}
+
+	/* Drawed map */
+	.wrapper-map-brasil {
+		text-align: right;
+	}
+
+	.mapa-brasil {
+		display: block;
+	}
+	
 }
 
 @media all and (min-width: 55em) {

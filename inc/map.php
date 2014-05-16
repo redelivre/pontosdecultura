@@ -118,7 +118,7 @@ jQuery( document ).ready(function () {
 
 	<canvas id='pontosdecultura_map_Canvas' style="pointer-events: none;position: absolute;" ></canvas>
 	
-	<img id="mapaBrasil" alt="mapa Brasil" src="<?php echo get_template_directory_uri() . '/images/mapa_brasil.png'; ?>"
+	<img id="mapaBrasil" class="map-brasil" alt="mapa Brasil" src="<?php echo get_template_directory_uri() . '/images/mapa_brasil.png'; ?>"
 		style="width: 533px; height: 485px;" usemap="#mapa_brasil">
 	<br>
 	<map id="mapa_brasil" name="mapa_brasil">
