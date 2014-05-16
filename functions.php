@@ -143,7 +143,7 @@ class Pontosdecultura {
 		add_filter('mapasdevista_mapinfo_localize_script', array($this, 'mapinfo_localize_script'));
 		
 		add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_bubbles'));
-		add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_style'));
+		add_filter('mapasdevista_load_style', array($this, 'mapasdevista_load_style'));
 		
 	}
 	
