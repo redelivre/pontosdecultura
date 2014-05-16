@@ -14,6 +14,18 @@
 	<section class="search-estado search-area clearfix">
 		<div class="container">
 			<h2 class="area-title">Busca por estado</h2>
+			<ul class="state-list">
+				<li><?php _e( 'Sul', 'pontosdecultura' ); ?>
+					<ul class="state-list--children">
+						<li class="state-name"><a href="#"><?php _e( 'Paraná', 'pontosdecultura' ); ?></a></li>
+						<li class="state-name"><a href="#"><?php _e( 'Santa Catarina', 'pontosdecultura' ); ?></a></li>
+						<li class="state-name"><a href="#"><?php _e( 'Rio Grande do Sul', 'pontosdecultura' ); ?></a></li>
+					</ul><!-- state-list--children -->
+				</li>
+				<li><?php _e( 'Sudeste', 'pontosdecultura' ); ?>
+					<!-- mais uma <ul> -->
+				</li>
+			</ul><!-- .state-list -->
 			<?php include dirname(__FILE__).'/inc/map.php'; ?>
 		</div><!-- .container -->
 	</section>
