@@ -125,9 +125,10 @@
 		</div><!-- .container -->
 	</section>
 
-	<section class="search-result search-area clearfix">
+	<section id="search-result" class="search-result search-area clearfix">
 		<div class="container">
 			<div id="search-result-list" class="search-result-list">
+				<?php mapasdevista_view_results(); ?>
 			</div>
 			<div class="search-result-map">
 				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>

@@ -182,7 +182,7 @@ class Pontosdecultura {
 		$path = get_template_directory_uri() . '/js';
 		global $wp_query;
 		
-		wp_register_script('homescripts', $path . '/home.js', array('jquery'));
+		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar'));
 		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
 		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
 		
