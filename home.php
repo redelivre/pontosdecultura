@@ -140,7 +140,7 @@
 			<div class="search-result-button">
 				<?php _e('volta a pesquisa', 'pontosdecultura'); ?>
 			</div>
-			<div class="search-load-button">
+			<div class="search-load-button" style="display: none;" >
 				<?php _e('Load data', 'pontosdecultura'); ?>
 			</div>
 		</div>
