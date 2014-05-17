@@ -13,9 +13,10 @@ jQuery(function()
 		event.preventDefault();
 		if(searchtext != jQuery('.search-field').val())
 		{
-			map_show_result('all');
-			pontosdecultura_update_posts();
-			searchtext = jQuery('.search-field').val();
+			map_show_result('all', function (){
+				pontosdecultura_update_posts();
+				searchtext = jQuery('.search-field').val();
+			});
 		}
 	});
 });
@@ -94,11 +95,12 @@ function pontosdecultura_update_posts()
 
 function pontosdecultura_update_posts_mais_buscadas(str)
 {
-	map_show_result('mais');
-	var old = jQuery('.search-field').val();
-	jQuery('.search-field').val(str);
-	pontosdecultura_update_posts();
-	jQuery('.search-field').val(old);
+	map_show_result('mais', function (){
+		var old = jQuery('.search-field').val();
+		jQuery('.search-field').val(str);
+		pontosdecultura_update_posts();
+		jQuery('.search-field').val(old);
+	});
 }
 
 var search_result_left = "";
@@ -131,7 +133,6 @@ jQuery(document).ready(function()
 		        success: function(response)
 		        {
 		        	jQuery(".adv-search-cidade").replaceWith(response);
-		        	//map_show_result();
 		        	jQuery(".Ajax-Loader").toggle();
 		        },
 		        beforeSend: function()
@@ -153,92 +154,91 @@ jQuery(document).ready(function()
 	{
 		event.preventDefault();
 		
-		map_show_result('adv');
-		
-		var title = jQuery(".adv-search-title").val();
-		var tipo = jQuery(".adv-search-tipo option:selected").val();
-		var publicoalvo = jQuery(".adv-search-publicoalvo option:selected").val();
-		var estado = jQuery(".adv-search-estado option:selected").val();
-		var cidade = jQuery(".adv-search-cidade option:selected").val();
-		var do_filter = false;
-		
-		if(title != adv_search_title)
-		{
-			do_filter = true;
-			if(adv_search_title != "")
-			{
-				mapstraction.removeFilter('title', 'like', adv_search_title);
-			}
-			adv_search_title = title;
-			if(title != "")
-			{
-				mapstraction.addFilter('title', 'like', title);
-			}
-		}
-		if(tipo != adv_search_tipo)
-		{
-			do_filter = true;
-			if(adv_search_tipo != "")
-			{
-				mapstraction.removeFilter('tipo', 'in', adv_search_tipo);
-			}
-			adv_search_tipo = tipo;
-			if(tipo != "")
-			{
-				mapstraction.addFilter('tipo', 'in', tipo);
-			}
-		}
-		if(publicoalvo != adv_search_publicoalvo)
-		{
-			do_filter = true;
-			if(adv_search_publicoalvo != "")
-			{
-				mapstraction.removeFilter('publicoalvo', 'in', adv_search_publicoalvo);
-			}
-			adv_search_publicoalvo = publicoalvo;
-			if(publicoalvo != "")
-			{
-				mapstraction.addFilter('publicoalvo', 'in', publicoalvo);
-			}
-		}
-		if(cidade != adv_search_cidade)
-		{
-			do_filter = true;
-			if(adv_search_cidade != "")
-			{
-				mapstraction.removeFilter('cidade', 'in', adv_search_cidade);
-			}
-			adv_search_cidade = cidade;
-			if(cidade != "")
-			{
-				mapstraction.addFilter('territorio', 'in', cidade);
-			}
-		}
-		else
-		{
-			if(estado != adv_search_estado)
+		map_show_result('adv', function (){
+			
+			var title = jQuery(".adv-search-title").val();
+			var tipo = jQuery(".adv-search-tipo option:selected").val();
+			var publicoalvo = jQuery(".adv-search-publicoalvo option:selected").val();
+			var estado = jQuery(".adv-search-estado option:selected").val();
+			var cidade = jQuery(".adv-search-cidade option:selected").val();
+			var do_filter = false;
+			
+			if(title != adv_search_title)
 			{
 				do_filter = true;
-				if(adv_search_estado != "")
+				if(adv_search_title != "")
 				{
-					mapstraction.removeFilter('estado', 'in', adv_search_estado);
+					mapstraction.removeFilter('title', 'like', adv_search_title);
 				}
-				adv_search_estado = estado;
-				if(estado != "")
+				adv_search_title = title;
+				if(title != "")
 				{
-					mapstraction.addFilter('territorio', 'in', estado);
+					mapstraction.addFilter('title', 'like', title);
 				}
 			}
-		}
-		
-		if(do_filter)
-		{
-			jQuery(".Ajax-Loader").toggle();
-			mapstraction.doFilter();
-			updateResults();
-			map_show_result();
-		}
-		
+			if(tipo != adv_search_tipo)
+			{
+				do_filter = true;
+				if(adv_search_tipo != "")
+				{
+					mapstraction.removeFilter('tipo', 'in', adv_search_tipo);
+				}
+				adv_search_tipo = tipo;
+				if(tipo != "")
+				{
+					mapstraction.addFilter('tipo', 'in', tipo);
+				}
+			}
+			if(publicoalvo != adv_search_publicoalvo)
+			{
+				do_filter = true;
+				if(adv_search_publicoalvo != "")
+				{
+					mapstraction.removeFilter('publicoalvo', 'in', adv_search_publicoalvo);
+				}
+				adv_search_publicoalvo = publicoalvo;
+				if(publicoalvo != "")
+				{
+					mapstraction.addFilter('publicoalvo', 'in', publicoalvo);
+				}
+			}
+			if(cidade != adv_search_cidade)
+			{
+				do_filter = true;
+				if(adv_search_cidade != "")
+				{
+					mapstraction.removeFilter('cidade', 'in', adv_search_cidade);
+				}
+				adv_search_cidade = cidade;
+				if(cidade != "")
+				{
+					mapstraction.addFilter('territorio', 'in', cidade);
+				}
+			}
+			else
+			{
+				if(estado != adv_search_estado)
+				{
+					do_filter = true;
+					if(adv_search_estado != "")
+					{
+						mapstraction.removeFilter('estado', 'in', adv_search_estado);
+					}
+					adv_search_estado = estado;
+					if(estado != "")
+					{
+						mapstraction.addFilter('territorio', 'in', estado);
+					}
+				}
+			}
+			
+			if(do_filter)
+			{
+				mapstraction.doFilter();
+				updateResults();
+				jQuery(".Ajax-Loader").toggle();
+			}
+		});
 	});
 	
 	jQuery(".tag-link-0").click(function(event){
@@ -257,7 +257,7 @@ jQuery(document).ready(function()
 	jQuery("#search-result").css({ 'left' : "-"+(estadoPosition.left + (jQuery( window ).width()+jQuery(".search-estado .container").width())), 'top' : estadoPosition.top });
 	jQuery("#search-result").ajaxloader("Aguarde um instante enquanto os dados são carregados<br/>Atenção: Primeira pesquisa é mais demorada.");
 	
-	jQuery('#search-result-button').click(function() {
+	jQuery('.search-result-button').click(function() {
 		map_voltar_click();
 	});
 	
@@ -268,44 +268,45 @@ var map_result_animation_durations = 3000;
 function map_estados_click(lat, lon, zoom, term)
 {
 	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(lat), parseFloat(lon)), parseInt(zoom));
-	map_show_result('estados');
+	map_show_result('estados', function (){
 	
-	if(estado_search != "")
-	{
-		mapstraction.removeFilter('territorio', 'in', estado_search);
-	}
-	else
-	{
-		/*var left = jQuery("#search-result").position().left;
+		if(estado_search != "")
+		{
+			mapstraction.removeFilter('territorio', 'in', estado_search);
+		}
+		else
+		{
+			/*var left = jQuery("#search-result").position().left;
+			
+			jQuery("#search-result").css( { 'left' : "-"+(jQuery( window ).width()+jQuery("#search-result").width())+"px", 'position' : 'absolute' });
+			
+			jQuery(".search-estado").prepend(jQuery("#search-result"));
+			//jQuery(".search-estado .container").css({'margin-top' : '-540px'});
+			jQuery('.search-estado .container').animate({
+			    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
+			}, { duration: map_result_animation_durations, queue: false });
+			jQuery('#search-result').animate({
+			    'left' : search_result_left
+			}, map_result_animation_durations);*/
+		}
 		
-		jQuery("#search-result").css( { 'left' : "-"+(jQuery( window ).width()+jQuery("#search-result").width())+"px", 'position' : 'absolute' });
+		if(estado_search != term)
+		{
+			/*jQuery('.search-estado .container').animate({
+			    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
+			}, { duration: map_result_animation_durations, queue: false });
+			jQuery('#search-result').animate({
+			    'left' : search_result_left
+			}, map_result_animation_durations);*/
+			mapstraction.addFilter('territorio', 'in', term);
+			mapstraction.doFilter();
+			updateResults();
+			estado_search = term;
+		}
 		
-		jQuery(".search-estado").prepend(jQuery("#search-result"));
-		//jQuery(".search-estado .container").css({'margin-top' : '-540px'});
-		jQuery('.search-estado .container').animate({
-		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
-		}, { duration: map_result_animation_durations, queue: false });
-		jQuery('#search-result').animate({
-		    'left' : search_result_left
-		}, map_result_animation_durations);*/
-	}
-	
-	if(estado_search != term)
-	{
-		/*jQuery('.search-estado .container').animate({
-		    'padding-left' : "+="+(jQuery( window ).width()+jQuery(".search-estado .container").width())+"px",
-		}, { duration: map_result_animation_durations, queue: false });
-		jQuery('#search-result').animate({
-		    'left' : search_result_left
-		}, map_result_animation_durations);*/
-		mapstraction.addFilter('territorio', 'in', term);
-		mapstraction.doFilter();
-		updateResults();
-		estado_search = term;
-	}
-	
-	jQuery("#progressbar").progressbar( "value", 100 );
-	jQuery(".Ajax-Loader").toggle();
+		jQuery("#progressbar").progressbar( "value", 100 );
+		jQuery(".Ajax-Loader").toggle();
+	});
 	
 }
 
@@ -317,12 +318,15 @@ function map_voltar_click(search)
 	jQuery('#search-result').animate({
 	    'left' : "-"+(jQuery( window ).width()+jQuery("#search-result").width())+"px"
 	}, map_result_animation_durations);*/
-	jQuery('.search-estado').animate({'margin-top' : '-='+jQuery(".search-estado").height()}, {'duration' : 1200, 'queue' : false})
+	jQuery('.search-estado').animate({'margin-top' : '-='+jQuery("#search-result").height()}, {'duration' : 1200, 'queue' : false})
 }
 var from_search = '';
-function map_show_result(from)
+var result_callback_func = function () { alert("Error!");}
+
+function map_show_result(from, callback)
 {
 	from_search = from;
+	result_callback_func = callback;
 	jQuery('html').animate({scrollTop:jQuery("#search-result").offset().top}, {
 		'dutarion' : 1200,
 		'queue' : true,
@@ -345,6 +349,7 @@ function map_show_result(from)
 			else
 			{
 				jQuery(".Ajax-Loader").toggle();
+				load_map_data(from_search);
 			}
 		}
 	});
@@ -517,7 +522,18 @@ function pontos_loadPosts(total, offset)
                 }
 
             }
-            jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 2 );
+            
+            if (data.newoffset == 'end')
+            {
+            	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
+            	setTimeout(function() 
+	            	{
+	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
+	    				result_callback_func();
+	    			}, 1000
+    			);
+            	
+            }
         }
 
     });
@@ -526,6 +542,13 @@ function pontos_loadPosts(total, offset)
 
 function load_map_data(from)
 {
+	jQuery("#progressbar").progressbar( "value", 0 );
+	if(map_last_search != from)
+	{
+		map_last_search = from;
+		if(map_last_search != '') mapstraction.removeAllFilters();
+	}
+	
 	if(map_data_loaded == false)
 	{
 		map_data_loaded = true; // prevent load again
@@ -546,7 +569,7 @@ function load_map_data(from)
 	        success: function(response)
 	        {
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 4 );
-	        	jQuery("#search-result-list").replaceWith(response);
+	        	jQuery(".search-result-list").replaceWith(response);
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 16 );
 	        },
 	        beforeSend: function()
@@ -556,10 +579,9 @@ function load_map_data(from)
 	    });*/
 		jQuery.ajaxSetup({async:true});
 	}
-	if(map_last_search != from)
+	else
 	{
-		map_last_search = from;
-		mapstraction.removeAllFilters();
+		result_callback_func();
 	}
 	
 }
