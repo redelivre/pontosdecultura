@@ -489,14 +489,10 @@ select:active {
 }
 
 .search-result {
-	/*display: none;*/
 	margin: 0 auto;
     max-width: 1280px;
     width: 100%;
-    /*
-    
-
-    position: absolute; */
+    position: absolute;
     z-index: 1;
     background-color: #fbfbfb;
 }
