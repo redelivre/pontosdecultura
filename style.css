@@ -356,6 +356,14 @@ select:active {
 	padding: 3em 0;
 }
 
+.search-intro a {
+	color: #501651;
+}
+
+.search-intro a:hover {
+	color: #805783;
+}
+
 .search-intro .intro-text {
 	font-size: 1.25em;
 	margin: 0 auto 1.6em;
