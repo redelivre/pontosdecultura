@@ -132,7 +132,10 @@
 	<section id="search-result" class="search-result search-area clearfix">
 		<div class="container">
 			<div id="search-result-list" class="search-result-list gr gr-small">
-				<?php mapasdevista_view_results(); ?>
+				<?php //mapasdevista_view_results(); ?>
+				<div class="map-results-intro">
+        			<span class="map-results-total-prefix">Loadning...</span>
+		    	</div><!-- .map-results-intro -->
 			</div>
 			<div class="search-result-map gr gr-large">
 				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>

@@ -261,6 +261,36 @@ jQuery(document).ready(function()
 		map_voltar_click();
 	});
 	
+	//alert('Fim');
+	var datapins =
+    {
+			get: 'totalPosts',
+	        action: 'mapasdevista_get_posts',
+	        api: mapinfo.api,
+	        page_id: mapinfo.page_id,
+	        search: mapinfo.search
+    };
+	
+	jQuery.ajax(
+    {
+        type: 'POST',
+        url: mapinfo.ajaxurl,
+        data: datapins,
+        success: function(data) {
+            totalPosts = parseInt(data);
+            
+            map_data_loaded_total = totalPosts;
+            
+            if(totalPosts > 0)
+            	pontos_loadPosts(totalPosts, 0);
+            
+        },
+        beforeSend: function()
+        {
+        	//overlay_filtro();
+        }, 
+    });
+	
 });
 
 var estado_search = "";
@@ -372,35 +402,11 @@ function loadBubbles()
         {
         	if(response == 0)
         	{
-        		//alert('Fim');
-	        	var datapins =
-	            {
-	        			get: 'totalPosts',
-	        	        action: 'mapasdevista_get_posts',
-	        	        api: mapinfo.api,
-	        	        page_id: mapinfo.page_id,
-	        	        search: mapinfo.search
-	            };
-	        	
-	        	jQuery.ajax(
-	            {
-	                type: 'POST',
-	                url: mapinfo.ajaxurl,
-	                data: datapins,
-	                success: function(data) {
-	                    totalPosts = parseInt(data);
-	                    
-	                    map_data_loaded_total = totalPosts;
-	                    
-	                    if(totalPosts > 0)
-	                    	pontos_loadPosts(totalPosts, 0);
-	                    
-	                },
-	                beforeSend: function()
-	                {
-	                	//overlay_filtro();
-	                }, 
-	            });
+        		for (var i = 0; i < mapstraction.markers.length; i ++)
+        		{
+        			mapstraction.markers[i].setInfoBubble(jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).html());
+        			jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).remove();
+        		}
         	}
         	else
         	{
@@ -420,7 +426,7 @@ function loadBubbles()
 
 function pontos_loadPosts(total, offset)
 {
-    var posts_per_page = 200;
+    var posts_per_page = 400;
 
     jQuery.ajax({
         type: 'post',
@@ -489,7 +495,7 @@ function pontos_loadPosts(total, offset)
                     marker.setAttribute( 'post_type', data.posts[p].post_type );
                     marker.setAttribute( 'number', data.posts[p].number );
                     marker.setAttribute( 'author', data.posts[p].author );
-                    marker.setInfoBubble(jQuery('#balloon_' + data.posts[p].ID).html());
+                    //marker.setInfoBubble(jQuery('#balloon_' + data.posts[p].ID).html());
                     marker.setLabel(data.posts[p].title);
                     
                     
@@ -507,7 +513,7 @@ function pontos_loadPosts(total, offset)
 
                     }
                 }
-                jQuery('#balloon_' + data.posts[p].ID).remove();
+                //jQuery('#balloon_' + data.posts[p].ID).remove();
 
                 mapstraction.addMarker( marker );
                 
@@ -529,7 +535,7 @@ function pontos_loadPosts(total, offset)
             	setTimeout(function() 
 	            	{
 	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
-	    				result_callback_func();
+	    				//result_callback_func();
 	    			}, 1000
     			);
             	
@@ -557,7 +563,7 @@ function load_map_data(from)
 		
 		loadBubbles();
 		
-		/*var data =
+		var data =
 	    {
 	            action: 'map_results',
 	    };
@@ -576,7 +582,7 @@ function load_map_data(from)
 	        {
 	        	//overlay_filtro();
 	        }, 
-	    });*/
+	    });
 		jQuery.ajaxSetup({async:true});
 	}
 	else

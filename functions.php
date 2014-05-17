@@ -358,7 +358,7 @@ class Pontosdecultura {
 	
 	public static function map_results_callback()
 	{
-		echo '<div id="search-result-list" class="search-result-list">';
+		echo '<div id="search-result-list" class="search-result-list gr gr-small">';
 			mapasdevista_view_results();
 		echo '</div>';
 		die();
