@@ -524,6 +524,9 @@ select:active {
 /*
 Map
 ------------------------------------------------ */
+.hide {
+	display:none;
+}
 
 .map {
 	height: 500px;
