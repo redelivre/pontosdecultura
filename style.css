@@ -76,7 +76,7 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 
 body {
 	background: #fff;
-	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body,
@@ -509,6 +509,13 @@ select:active {
    4.0 - Content
    ========================================================================== */
 
+/* Used to replicate max content width present in functions.php */
+.content-box,
+.page .site-content {
+	margin: 0 auto;
+	max-width: 680px;
+}
+
 .area-title,
 .entry-title {
 	margin-top: 0;
@@ -519,14 +526,30 @@ select:active {
 }
 
 .entry-title {
+	color: #805783;
+}
+
+.entry-content {
+	line-height: 1.625em;
+}
+
+.entry-content h2 {
+	color: #faba09;
+}
+
+.entry-content h3 {
 	color: #23498c;
 }
 
-/* Used to replicate max content width present in functions.php */
-.content-box,
-.page .site-content {
-	margin: 0 auto;
-	max-width: 680px;
+.entry-content a {
+	border-bottom: 1px solid #2f2d44;
+}
+
+.post-edit-link {
+	background: #faba09;
+	font-size: 0.875em;
+	padding: 0.25em 0.5em;
+	text-transform: uppercase;	
 }
 
 /*
