@@ -15,7 +15,7 @@
 				<?php endif; ?>
 			</div><!-- #content .site-content -->
 
-			<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
+			<?php //if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
 				<section id="tertiary" class="widget-area widget-area--footer" role="complementary">
 					<div class="container">
 						<?php //dynamic_sidebar( 'sidebar-footer' ); ?>
@@ -33,7 +33,7 @@
 						</div>
 					</div><!-- .container --> 
 				</section><!-- #tertiary -->
-			<?php endif; ?>
+			<?php //endif; ?>
 
 			<footer id="colophon" class="site-footer site-area" role="contentinfo">
 				<div class="container">
