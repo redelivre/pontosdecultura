@@ -405,7 +405,8 @@ function loadBubbles()
         		for (var i = 0; i < mapstraction.markers.length; i ++)
         		{
         			mapstraction.markers[i].setInfoBubble(jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).html());
-        			jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).remove();
+        			//jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).remove();
+        			//mapstraction.markers[i].update()
         		}
         	}
         	else
@@ -495,7 +496,7 @@ function pontos_loadPosts(total, offset)
                     marker.setAttribute( 'post_type', data.posts[p].post_type );
                     marker.setAttribute( 'number', data.posts[p].number );
                     marker.setAttribute( 'author', data.posts[p].author );
-                    //marker.setInfoBubble(jQuery('#balloon_' + data.posts[p].ID).html());
+                    marker.setInfoBubble('<div>Teste</div>');
                     marker.setLabel(data.posts[p].title);
                     
                     
@@ -577,6 +578,12 @@ function load_map_data(from)
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 4 );
 	        	jQuery(".search-result-list").replaceWith(response);
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 16 );
+            	setTimeout(function() 
+	            	{
+	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 10 );
+	    				result_callback_func();
+	    			}, 1000
+    			);
 	        },
 	        beforeSend: function()
 	        {
