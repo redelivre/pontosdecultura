@@ -83,7 +83,7 @@ function pontosdecultura_update_posts()
 	            success: function(response)
 	            {
 	            	pontosdecultura_updateResults(response);
-	            	jQuery(".Ajax-Loader").toggle();
+	            	map_show_result_end();
 	            },
 	            beforeSend: function()
 	            {
@@ -236,7 +236,7 @@ jQuery(document).ready(function()
 			{
 				mapstraction.doFilter();
 				updateResults();
-				jQuery(".Ajax-Loader").toggle();
+				map_show_result_end();
 			}
 		});
 	});
@@ -335,7 +335,7 @@ function map_estados_click(lat, lon, zoom, term)
 		}
 		
 		jQuery("#progressbar").progressbar( "value", 100 );
-		jQuery(".Ajax-Loader").toggle();
+		map_show_result_end();
 	});
 	
 }
@@ -352,37 +352,50 @@ function map_voltar_click(search)
 }
 var from_search = '';
 var result_callback_func = function () { alert("Error!");}
+var scrollOnce = false;
 
 function map_show_result(from, callback)
 {
 	from_search = from;
 	result_callback_func = callback;
-	jQuery('html').animate({scrollTop:jQuery("#search-result").offset().top}, {
+	jQuery('body, html').animate({scrollTop:jQuery("#search-result").offset().top}, {
 		'dutarion' : 1200,
-		'queue' : true,
+		'queue' : false,
 		'complete' : function ()
 		{
-			if( parseInt(jQuery('.search-estado').css('margin-top')) < 100 )
+			if(!scrollOnce)
 			{
-				jQuery('.search-estado').animate (
-					{
-						'margin-top' : '+='+jQuery("#search-result").height()
-					},
-					{	
-						'duration' : 1200,
-						'complete' : function () {
-							jQuery(".Ajax-Loader").toggle();
-							load_map_data(from_search);
-						} 
-				});
-			}
-			else
-			{
-				jQuery(".Ajax-Loader").toggle();
-				load_map_data(from_search);
+				scrollOnce = true;
+				if( parseInt(jQuery('.search-estado').css('margin-top')) < 100 )
+				{
+					jQuery('.search-estado').animate (
+						{
+							'margin-top' : '+='+jQuery("#search-result").height()
+						},
+						{	
+							'duration' : 1200,
+							'complete' : function () {
+								jQuery(".Ajax-Loader").toggle({'complete' : function(){
+									load_map_data(from_search);
+								}});
+								
+							} 
+					});
+				}
+				else
+				{
+					jQuery(".Ajax-Loader").toggle();
+					load_map_data(from_search);
+				}
 			}
 		}
 	});
+}
+
+function map_show_result_end()
+{
+	scrollOnce = false;
+	jQuery(".Ajax-Loader").toggle();
 }
 
 var map_data_bubbles_loaded_total = 0;

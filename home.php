@@ -2,11 +2,20 @@
 	<section class="search-intro search-area clearfix">
 		<div class="container">
 			<p class="intro-text content-box">
-				O Mapa Cultura Viva é Livre e aberto, fruto do acúmulo de dezenas de experiências da Rede de Pontos de
-				Cultura com o objetivo de dar visibilidade e articular iniciativas e ações do programa Cultura Viva.
-				 Existem várias formas de utilizar a plataforma, sendo possível fazer buscas de forma aberta ou avançada, 
-				 através do mapa ou pelos termos mais procurados. Participe interagindo com os pontos, por consultas 
-				 públicas ou atualizando informações. 
+				<?php
+				/* TODO: This should be a option inside the Customizer section */
+				$home_url = get_bloginfo('url') . '/';
+				printf( 'O <a href="%1$s">Mapa Cultura Viva</a> é <a href="%2$s">livre</a> e <a href="%3$s">aberto</a>. O objetivo é dar 
+					visibilidade e articular iniciativas e ações do programa Cultura Viva. <a href="%4$s">Utilize</a> a plataforma 
+					através das buscas aberta ou avançada, pelo mapa e também pelas palavras mais procuradas. 
+					<a href="%5$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
+					$home_url . 'o-projeto',
+					$home_url . 'desenvolvedores',
+					$home_url . 'dados-abertos',
+					$home_url . 'como-usar',
+					$home_url . 'participe'
+				);
+				?>
 			</p>
 			<?php get_search_form(); ?>
 		</div><!-- .container -->
