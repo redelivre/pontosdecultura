@@ -384,8 +384,9 @@ function map_show_result(from, callback)
 				}
 				else
 				{
-					jQuery(".Ajax-Loader").toggle();
-					load_map_data(from_search);
+					jQuery(".Ajax-Loader").toggle({'complete' : function(){
+						load_map_data(from_search);
+					}});
 				}
 			}
 		}
@@ -509,7 +510,7 @@ function pontos_loadPosts(total, offset)
                     marker.setAttribute( 'post_type', data.posts[p].post_type );
                     marker.setAttribute( 'number', data.posts[p].number );
                     marker.setAttribute( 'author', data.posts[p].author );
-                    marker.setInfoBubble('<div>Teste</div>');
+                    marker.setInfoBubble('<div>Loading...</div>');
                     marker.setLabel(data.posts[p].title);
                     
                     
