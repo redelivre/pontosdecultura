@@ -358,7 +358,7 @@ function map_show_result(from, callback)
 {
 	from_search = from;
 	result_callback_func = callback;
-	$('#post_overlay').hide();
+	jQuery('#post_overlay').hide();
 	jQuery('body, html').animate({scrollTop:jQuery("#search-result").offset().top}, {
 		'dutarion' : 1200,
 		'queue' : false,
