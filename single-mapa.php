@@ -15,69 +15,43 @@ get_header(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
-					<img src="http://maps.googleapis.com/maps/api/staticmap?center=-14.850268,-40.836254&zoom=14&size=1200x200&scale=2&sensor=false" />
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 
 					<div class="entry-meta">
-						<em>Área cultural</em> Dança / Teatro / Eventos<br/>
-						<em>Público alvo</em> Público geral, idosos, estudantes
+						<?php pontosdecultura_the_terms( array( 'artescenicas', 'audiovisual', 'musica', 'artesvisuais', 'patrimoniocultural', 'humanidades' ) ); ?>
 					</div><!-- .entry-meta -->
-
 				</header><!-- .entry-header -->
 
-				<div class="entry-contact-info">
-					<ul>
-						<li>Endereço</li>
-						<li>Telefone</li>
-						<li>email@email.com</li>
-						<li>Twitter</li>
-					</ul>
-				</div>
-
 				<div class="entry-content clearfix">
+					<div class="entry-contact-info">
+						<h2>Contatos do ponto</h2>
+						<ul>
+							<li>
+								<strong>Endereço</strong>
+								<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço - Entidade ', true ); ?>
+								<?php pontosdecultura_the_terms( 'territorio' ); ?>
+							</li>
+							<li>
+								<strong>Telefone</strong>
+								<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Telefone da Entidade ', true ); ?>
+							</li>
+							<li><strong>Email</strong>
+							<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço Eletrônico da Entidade (e-mail)', true ); ?>
+							</li>
+						</ul>
+					</div>
+
+					<h2>Informações</h2>
+					<h3>Local de atuação do ponto</h3>
+					<h3>Objetivos</h3>
 					<?php the_content(); ?>
-					<?php
-						wp_link_pages( array(
-							'before' => '<div class="page-links">' . __( 'Pages:', 'pontosdecultura' ),
-							'after'  => '</div>',
-						) );
-					?>
+
+					<h3>Resultados</h3>
+					<?php echo get_post_meta( $post->ID, 'ATIVIDADES DESENVOLVIDAS NO PROJETO', true ); ?>
+					
 				</div><!-- .entry-content -->
 
-				<footer class="entry-footer clearfix">
-					<?php
-						/* translators: used between list items, there is a space after the comma */
-						$category_list = get_the_category_list( __( ', ', 'pontosdecultura' ) );
-
-						/* translators: used between list items, there is a space after the comma */
-						$tag_list = get_the_tag_list( '', __( ', ', 'pontosdecultura' ) );
-
-						if ( ! pontosdecultura_categorized_blog() ) {
-							// This blog only has 1 category so we just need to worry about tags in the meta text
-							if ( '' != $tag_list ) {
-								$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'pontosdecultura' );
-							} else {
-								$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'pontosdecultura' );
-							}
-
-						} else {
-							// But this blog has loads of categories so we should probably display them here
-							if ( '' != $tag_list ) {
-								$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'pontosdecultura' );
-							} else {
-								$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'pontosdecultura' );
-							}
-
-						} // end check for categories on this blog
-
-						printf(
-							$meta_text,
-							$category_list,
-							$tag_list,
-							get_permalink()
-						);
-					?>
-
+				<footer class="entry-footer">
 					<?php edit_post_link( __( 'Edit', 'pontosdecultura' ), '<span class="edit-link">', '</span>' ); ?>
 				</footer><!-- .entry-footer -->
 			</article><!-- #post-## -->

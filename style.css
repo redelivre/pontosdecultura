@@ -552,12 +552,12 @@ select:active {
 }
 
 /* ==========================================================================
-   4.0 - Content
+   5.0 - Content
    ========================================================================== */
 
 /* Used to replicate max content width present in functions.php */
 .content-box,
-.page .site-content {
+.singular .site-content {
 	margin: 0 auto;
 	max-width: 680px;
 }
@@ -573,6 +573,7 @@ select:active {
 
 .entry-title {
 	color: #805783;
+	line-height: 1.2;
 }
 
 .entry-content {
@@ -591,11 +592,48 @@ select:active {
 	text-decoration: underline;
 }
 
+.entry-footer {
+	margin-top: 2em;
+}
+
 .post-edit-link {
 	background: #faba09;
 	font-size: 0.875em;
 	padding: 0.25em 0.5em;
 	text-transform: uppercase;	
+}
+
+/* Single mapa*/
+.single-mapa .entry-header,
+.single-mapa .entry-contact-info,
+.single-mapa .entry-footer {
+	border-bottom: 5px solid #faba09;
+	padding-bottom: 1em;
+}
+
+.single-mapa .entry-title {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   5.? - Comments
+   ========================================================================== */
+
+.comment-reply-title {
+	color: #501651;	
+}
+
+#respond input[type="text"],
+#respond input[type="email"],
+#respond input[type="url"],
+#respond textarea {
+	background-color: #faba09;
+	border: 0;
+	width: 100%;
+}
+
+.form-allowed-tags {
+	font-size: 0.875em;
 }
 
 /*
@@ -867,27 +905,6 @@ Map
 		background-repeat: repeat-y;
 		background-position: left, right;
 		background-size: contain;
-	}
-
-	.single-mapa .entry-header {
-		background: #fbfbfb;
-		margin-bottom: 2em;
-		padding: 1em;
-	}
-	
-	.single-mapa .entry-contact-info {
-		float: right;
-		margin-left: 2%;
-		width: 36.2%;
-	}
-
-	.single-mapa .entry-content {
-		width: 61.8%;
-		float: left;
-	}
-
-	.single-mapa .entry-footer {
-		clear: both;
 	}
 
 	/* Footer */

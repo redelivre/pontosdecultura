@@ -93,6 +93,55 @@ function pontosdecultura_posted_on() {
 endif;
 
 /**
+ * Create a generic list for the terms present in a single map display
+ *
+ * @global object $post The post object
+ * @param string $taxonomy The taxonomy given
+ */
+function pontosdecultura_the_terms( $taxonomy ) {
+	global $post;
+	
+	$terms = get_the_terms( $post->ID, $taxonomy );
+							
+	if ( $terms && ! is_wp_error( $terms ) ) : 
+
+		$terms_array = array();
+
+		foreach ( $terms as $term ) {
+			$terms_array[] = $term->name;
+		}
+							
+		$terms_list = join( ' / ', $terms_array );
+
+		// Define a prefix for the taxonomy classes
+		$tax_class_prefix = 'tax-';
+
+		// Create a list of taxonomy classes for the term list
+		if ( is_array( $taxonomy ) ) {
+			
+			$tax_class = array();
+
+			foreach ( $taxonomy as $tax ) {
+				$tax_class[] = $tax_class_prefix . $tax;
+			}
+
+			$tax_classes = join( ' ', $tax_class );
+
+		}
+		else {
+			$tax_classes = $tax_class_prefix . $taxonomy;
+		}
+	?>
+
+		<span class="entry-term <?php echo $tax_classes; ?>">
+			<?php echo $terms_list; ?>
+		</span>
+
+	<?php
+	endif;
+}
+
+/**
  * Returns true if a blog has more than 1 category.
  *
  * @return bool
