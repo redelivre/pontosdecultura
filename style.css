@@ -562,6 +562,12 @@ Map
 #map {
     height: 100%;
     width: 100%;
+    
+}
+
+#map img
+{
+	max-width: none;
 }
 
 .map {
