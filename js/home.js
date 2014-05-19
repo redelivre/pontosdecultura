@@ -442,7 +442,7 @@ function loadBubbles()
 
 function pontos_loadPosts(total, offset)
 {
-    var posts_per_page = 250;
+    var posts_per_page = 400;
 
     jQuery.ajax({
         type: 'post',
