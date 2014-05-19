@@ -588,7 +588,7 @@ select:active {
 }
 
 .entry-content a {
-	border-bottom: 1px solid #2f2d44;
+	text-decoration: underline;
 }
 
 .post-edit-link {
@@ -859,7 +859,7 @@ Map
 	}
 
 	.main-navigation ul li {
-		margin-left: -0.3125em;
+		margin-left: -0.45em;
 	}
 
 	.search-intro .container {
