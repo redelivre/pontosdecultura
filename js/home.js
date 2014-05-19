@@ -109,6 +109,7 @@ var adv_search_title = "";
 var adv_search_tipo = "";
 var adv_search_publicoalvo = "";
 var adv_search_estado = "";
+var adv_search_estado_select = "";
 var adv_search_cidade = "";
 
 jQuery(document).ready(function()
@@ -117,9 +118,9 @@ jQuery(document).ready(function()
 	
 	jQuery(".adv-search-estado").change(function () {
 		var selected = jQuery( ".adv-search-estado option:selected" ).val();
-		if(adv_search_estado != selected)
+		if(adv_search_estado_select != selected)
 		{
-			adv_search_estado = selected;
+			adv_search_estado_select = selected;
 			var data =
 		    {
 		            action: 'select_cidade',
@@ -207,7 +208,7 @@ jQuery(document).ready(function()
 				do_filter = true;
 				if(adv_search_cidade != "")
 				{
-					mapstraction.removeFilter('cidade', 'in', adv_search_cidade);
+					mapstraction.removeFilter('territorio', 'in', adv_search_cidade);
 				}
 				adv_search_cidade = cidade;
 				if(cidade != "")
@@ -222,7 +223,7 @@ jQuery(document).ready(function()
 					do_filter = true;
 					if(adv_search_estado != "")
 					{
-						mapstraction.removeFilter('estado', 'in', adv_search_estado);
+						mapstraction.removeFilter('territorio', 'in', adv_search_estado);
 					}
 					adv_search_estado = estado;
 					if(estado != "")
@@ -236,8 +237,9 @@ jQuery(document).ready(function()
 			{
 				mapstraction.doFilter();
 				updateResults();
-				map_show_result_end();
 			}
+			mapstraction.visibleCenterAndZoom();
+			map_show_result_end();
 		});
 	});
 	

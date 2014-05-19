@@ -368,9 +368,9 @@ class Pontosdecultura {
 	{
 	?>
 		<select name="adv-search-cidade" class="adv-search-cidade">
-			<option selected="selected" ><?php echo esc_attr_x('cidade', 'pontosdecultura' ); ?></option>
+			<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 			<?php
-			if(array_key_exists('uf', $_POST))
+			if(array_key_exists('uf', $_POST) && !empty($_POST['uf']))
 			{
 				$parent = get_term_by('slug', $_POST['uf'], 'territorio');
 				if(is_object($parent))
