@@ -1,0 +1,28 @@
+{
+  "name": "pontosdecultura",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "d94334f23acba022bfd68e49d76b31bb",
+      "css": "github-1",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "959c9a2360ed00ec9c0a75562d30edc4",
+      "css": "cc",
+      "code": 59393,
+      "src": "zocial"
+    },
+    {
+      "uid": "0636c283a9822288a767609062bbf4a4",
+      "css": "wordpress",
+      "code": 59392,
+      "src": "zocial"
+    }
+  ]
+}

@@ -42,8 +42,15 @@
 					</nav><!-- .site-navigation .main-navigation -->
 
 					<div class="site-info">
-						<a href="<?php echo esc_url( __( 'http://creativecommons.org', 'pontosdecultura' ) ); ?>"><?php _e( 'Creative Commons', 'pontosdecultura' ); ?></a>
-						<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'pontosdecultura' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?></a>
+						<a class="icon-cc" href="<?php echo esc_url( __( 'http://creativecommons.org', 'pontosdecultura' ) ); ?>" title="<?php _e( 'Creative Commons', 'pontosdecultura' ); ?>">
+							<span class="screen-reader-text"><?php _e( 'Creative Commons', 'pontosdecultura' ); ?></span>
+						</a>
+						<a class="icon-wordpress" href="<?php echo esc_url( __( 'http://wordpress.org/', 'pontosdecultura' ) ); ?>" title="<?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?>">
+							<span class="screen-reader-text"><?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?></span>
+						</a>
+						<a class="icon-github" href="<?php echo esc_url( __( 'http://github.com/redelivre/pontosdecultura', 'pontosdecultura' ) ); ?>" title="<?php _e( 'Pontos de Cultura on GitHub', 'pontosdecultura' ); ?>">
+							<span class="screen-reader-text"><?php _e( 'GitHub', 'pontosdecultura' ); ?></span>
+						</a>
 					</div><!-- .site-info -->
 				</div><!-- .container --> 
 			</footer><!-- #colophon .site-footer -->
