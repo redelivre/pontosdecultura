@@ -355,7 +355,7 @@ function map_voltar_click(search)
 	jQuery('#search-result').animate({
 	    'left' : "-"+(jQuery( window ).width()+jQuery("#search-result").width())+"px"
 	}, map_result_animation_durations);*/
-	jQuery('.search-estado').animate({'margin-top' : '-='+jQuery("#search-result").height()}, {'duration' : 1200, 'queue' : false})
+	jQuery('.search-estado').animate({'margin-top' : '-='+jQuery("#search-result").height()}, {'duration' : 800, 'queue' : false})
 }
 var from_search = '';
 var result_callback_func = function () { alert("Error!");}
