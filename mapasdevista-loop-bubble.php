@@ -11,7 +11,7 @@ if(array_key_exists('offset', $_POST))
 	    <div class="balloon clearfix">
 	        <div class="content">
 	        	<header class="entry-header">
-	            	<h1 class="bottom entry-title"><a class="js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="mapasdevista.linkToPost(this); return false;"><?php the_title(); ?></a></h1>
+	            	<h1 class="bottom entry-title"><a class="pontos-js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;"><?php the_title(); ?></a></h1>
 	            	<div class="entry-meta">
 	            		<?php pontosdecultura_the_terms( array( 'tipo' ) ); ?>
 	            		<em>em</em>

@@ -273,6 +273,11 @@ jQuery(document).ready(function()
 	        search: mapinfo.search
     };
 	
+	jQuery('a.pontos-js-link-to-post').live('click', function() {
+		pontos_linkToPost(document.getElementById(jQuery(this).attr('id')));
+        return false;
+    });
+	
 	jQuery.ajax(
     {
         type: 'POST',
@@ -402,6 +407,50 @@ function map_show_result_end()
 	jQuery(".Ajax-Loader").toggle();
 }
 
+function pontos_openInfoBubble()
+{
+	jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
+	
+}
+
+function pontos_linkToPost(el)
+{
+	var post_id = jQuery('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
+	
+	var data =
+    {
+            action: 'pontos_load_post',
+            post_id: post_id
+    };
+	jQuery.ajax(
+    {
+        type: 'POST',
+                url: homescripts_object.ajax_url,
+        data: data,
+        success: function(data)
+        {
+            if (data != 'error')
+            {
+                jQuery('#post_overlay_content').html(data);
+                //jQuery("#post_overlay_content .gallery .gallery-item a").click(mapasdevista.openGalleryImage);
+                
+                //hide bubbles
+                for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
+                    mapstraction.markers[ii].closeBubble();
+                }
+                
+                jQuery('#post_overlay').show();
+                ajaxizeComments();
+            }
+        },
+        beforeSend: function()
+        {
+        	//overlay_filtro();
+        }, 
+    });
+	
+}
+
 var map_data_bubbles_loaded_total = 0;
 function loadBubbles()
 {
@@ -422,6 +471,7 @@ function loadBubbles()
         		for (var i = 0; i < mapstraction.markers.length; i ++)
         		{
         			mapstraction.markers[i].setInfoBubble(jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).html());
+        			mapstraction.markers[i].openInfoBubble.addHandler(function(eventName, eventSource, eventArgs) { pontos_openInfoBubble() });
         			//jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).remove();
         			//mapstraction.markers[i].update()
         		}
@@ -464,7 +514,7 @@ function pontos_loadPosts(total, offset)
             
             //console.log('loaded posts:'+offset);
 
-        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 3 );
+        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
         	
             if (data.newoffset != 'end') {
             	pontos_loadPosts(total, data.newoffset);
@@ -554,6 +604,9 @@ function pontos_loadPosts(total, offset)
 	            	{
 	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
 	    				//result_callback_func();
+	            		mapstraction.markers[0].openBubble();
+	            		jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
+	            		mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
 	    			}, 1000
     			);
             	

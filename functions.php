@@ -140,11 +140,27 @@ class Pontosdecultura {
 		add_action( 'wp_ajax_select_cidade', array($this, 'select_cidade_callback') );
 		add_action( 'wp_ajax_nopriv_select_cidade', array($this, 'select_cidade_callback') );
 		
+		add_action( 'wp_ajax_pontos_load_post', array($this, 'pontos_load_post_callback') );
+		add_action( 'wp_ajax_nopriv_pontos_load_post', array($this, 'pontos_load_post_callback') );
+		
 		add_filter('mapasdevista_mapinfo_localize_script', array($this, 'mapinfo_localize_script'));
 		
 		add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_bubbles'));
 		add_filter('mapasdevista_load_style', array($this, 'mapasdevista_load_style'));
 		
+		add_filter('mapasdevista_create_post_overlay', array($this, 'mapasdevista_create_post_overlay'));
+		
+	}
+	
+	public static function mapasdevista_create_post_overlay($load)
+	{
+		global $wp_query;
+	
+		if(is_home() && !$wp_query->get('mapa-tpl'))
+		{
+			return false;
+		}
+		return $load;
 	}
 	
 	public static function mapasdevista_load_bubbles($load)
@@ -390,6 +406,49 @@ class Pontosdecultura {
 		die();
 	}
 	
+	public static function pontos_load_post_callback()
+	{
+		$p = $_POST['post_id'];
+		
+		if (!is_numeric($p))
+			die('error');
+		
+		query_posts('post_type=any&p='.$p);
+		?>
+				<div class="single single-mapa postid-2915 single-format-standard logged-in admin-bar group-blog singular customize-support"> 
+					<div class="site-wrapper hfeed">
+						<div id="content" class="site-content site-area">
+							<div class="container">
+								<div id="primary" class="content-area">
+									<main id="main" class="site-main" role="main"><?php
+										if (have_posts())
+										{
+											while (have_posts())
+											{
+												the_post();
+												global $post;
+												include dirname(__FILE__).'/content-mapa.php';
+												
+												if ( comments_open() || '0' != get_comments_number() ) :
+													comments_template();
+												endif;
+											}
+										}
+										else
+										{
+											die('error');
+										}
+										?>
+									</main><!-- #main -->
+								</div><!-- #primary -->
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+		
+		die();	
+	}
 }
 
 $pontosdecultura = new Pontosdecultura();

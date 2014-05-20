@@ -1,4 +1,9 @@
 <?php get_header(); ?>
+<div id="post_overlay">
+        <a id="close_post_overlay" title="Fechar"><?php mapasdevista_image("close.png", array("alt" => "Fechar")); ?></a>
+        <div id="post_overlay_content" class="post_overlay_content" >
+		</div>
+</div>
 	<section class="search-intro search-area clearfix">
 		<div class="container">
 			<p class="intro-text content-box">

@@ -544,7 +544,6 @@ select:active {
 
 .search-result {
 	margin: 0 auto;
-    max-width: 1280px;
     width: 100%;
     position: absolute;
     z-index: 1;
@@ -860,13 +859,22 @@ select:active {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;
+    background-color: #FFF;
+    filter:alpha(opacity=90);
+    -moz-opacity:0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
     z-index: 10000;
-    display:block;
+    display: none;
+    overflow: auto;
+}
+
+#post_overlay > a {
+    background-color: #FF0000;
+    position: fixed;
+    right: 20px;
+    top: 30px;
+    cursor: pointer;
 }
 
 /*
