@@ -410,7 +410,8 @@ function map_show_result_end()
 function pontos_openInfoBubble()
 {
 	jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
-	
+	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children(":first-child").children(":first-child").css({"background-color" : "#faba09"});
+	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children("div:nth-child(2)").children(":first-child").css({"background-color" : "#faba09"});
 }
 
 function pontos_linkToPost(el)
@@ -471,7 +472,7 @@ function loadBubbles()
         		for (var i = 0; i < mapstraction.markers.length; i ++)
         		{
         			mapstraction.markers[i].setInfoBubble(jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).html());
-        			mapstraction.markers[i].openInfoBubble.addHandler(function(eventName, eventSource, eventArgs) { pontos_openInfoBubble() });
+        			//mapstraction.markers[i].openInfoBubble.addHandler(function(eventName, eventSource, eventArgs) { pontos_openInfoBubble() });
         			//jQuery('#balloon_' + mapstraction.markers[i].attributes['ID']).remove();
         			//mapstraction.markers[i].update()
         		}
@@ -605,7 +606,7 @@ function pontos_loadPosts(total, offset)
 	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
 	    				//result_callback_func();
 	            		mapstraction.markers[0].openBubble();
-	            		jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
+	            		pontos_openInfoBubble();
 	            		mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
 	    			}, 1000
     			);
