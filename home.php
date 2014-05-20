@@ -11,12 +11,13 @@
 				/* TODO: This should be a option inside the Customizer section */
 				$home_url = get_bloginfo('url') . '/';
 				printf( 'O <a href="%1$s">Mapa Cultura Viva</a> é <a href="%2$s">livre</a> e <a href="%3$s">aberto</a>. O objetivo é dar 
-					visibilidade e articular iniciativas e ações do programa Cultura Viva. <a href="%4$s">Utilize</a> a plataforma 
+					visibilidade e articular iniciativas e ações do <a href="%4$s">programa Cultura Viva</a>. <a href="%5$s">Utilize</a> a plataforma 
 					através das buscas aberta ou avançada, pelo mapa e também pelas palavras mais procuradas. 
-					<a href="%5$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
+					<a href="%6$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
 					$home_url . 'o-projeto',
 					$home_url . 'desenvolvedores',
 					$home_url . 'dados-abertos',
+					$home_url . 'programa-cultura-viva',
 					$home_url . 'como-usar',
 					$home_url . 'participe'
 				);
@@ -145,18 +146,15 @@
 
 	<section id="search-result" class="search-result search-area clearfix">
 		<div class="container">
-			<div id="search-result-list" class="search-result-list gr gr-small">
+			<a class="search-result-button">&#11014; <?php _e( 'Ocultar resultados', 'pontosdecultura' ); ?></a>
+			<div id="search-result-list" class="search-result-list gr gr-small clearfix">
 				<?php //mapasdevista_view_results(); ?>
-				<div class="map-results-intro">
+				<div class="map-results-intro3">
         			<span class="map-results-total-prefix"><?php _e( 'Carregando&hellip;', 'pontosdecultura' ); ?></span>
 		    	</div><!-- .map-results-intro -->
 			</div>
 			<div class="search-result-map gr gr-large">
 				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
-			</div>
-			<div class="search-result-button">
-				<?php $images_url = get_template_directory_uri() . '/images/'; ?>
-				<img src="<?php echo $images_url . 'button-back-search.png'; ?>" alt= "<?php _e('volta a pesquisa', 'pontosdecultura'); ?>" />
 			</div>
 			<div class="search-load-button" style="display: none;" >
 				<?php _e('Load data', 'pontosdecultura'); ?>
@@ -164,5 +162,3 @@
 		</div>
 	</section>
 <?php get_footer(); ?>
-
-

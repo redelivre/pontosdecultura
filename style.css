@@ -550,11 +550,29 @@ select:active {
 }
 
 .search-result-button {
+	color: #23498c;
 	cursor: pointer;
+	font-size: 0.875em;
+	padding: 0.45em;
+	position: absolute;
+		top: 0;
+		right: 2em;
+}
+
+.search-result-button:hover {
+	color: #faba09;
 }
 
 /* Progress bar */
 @-webkit-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@-moz-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@-o-keyframes animate-stripes {
    100% { background-position: -100px 0px; }
 }
 
@@ -571,24 +589,49 @@ select:active {
 
 .ui-progressbar-value {
 	background-color: #faba09 !important;
-	border: 0 !important;
-	margin: 0 !important;
-	padding: 0.25em !important;
 
 	background-image:
 	   -webkit-linear-gradient(-45deg, 
 	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
-	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	                           rgba(0, 0, 0, 0.1) 66%, transparent 66%),
 	   -webkit-linear-gradient(top, 
 	                           rgba(255, 255, 255, .25), 
-	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #f44, #78ad09 );
+	                           rgba(0, 0, 0, 0.25)),
+	   -webkit-linear-gradient(left, #f44, #78ad09);
 
-    border-radius: 2px; 
+	background-image:
+	    -moz-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+	   -moz-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, 0.25)),
+	   -moz-linear-gradient(left, #f44, #78ad09);
+
+	background-image:
+	    -o-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+	   -o-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, 0.25)),
+	   -o-linear-gradient(left, #f44, #78ad09);
+
+	border-radius: 2px; 
     background-size: 40px 25px, 100% 100%, 100% 100%;
+    border: 0 !important;
+	margin: 0 !important;
+	padding: 0.25em !important;
 
     -webkit-animation: animate-stripes 5s linear infinite;
-        animation: animate-stripes 5s linear infinite;
+    -moz-animation: animate-stripes 5s linear infinite;
+    -o-animation: animate-stripes 5s linear infinite;
+    animation: animate-stripes 5s linear infinite;
+
+    -webkit-transition: 1s linear width;
+    -moz-transition: 1s linear width;
+    -o-transition: 1s linear width;
+    transition: 1s linear width;
 }
 
 .Ajax-Loader-Text {
