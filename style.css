@@ -600,10 +600,13 @@ select:active {
 	background: #faba09;
 	font-size: 0.875em;
 	padding: 0.25em 0.5em;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 }
 
-/* Single mapa*/
+/*
+   5.? - Single Post Map
+   ========================================================================== */
+
 .single-mapa .entry-header,
 .single-mapa .entry-contact-info,
 .single-mapa .entry-footer {
@@ -616,29 +619,8 @@ select:active {
 }
 
 /* ==========================================================================
-   5.? - Comments
+   5.? - Map
    ========================================================================== */
-
-.comment-reply-title {
-	color: #501651;	
-}
-
-#respond input[type="text"],
-#respond input[type="email"],
-#respond input[type="url"],
-#respond textarea {
-	background-color: #faba09;
-	border: 0;
-	width: 100%;
-}
-
-.form-allowed-tags {
-	font-size: 0.875em;
-}
-
-/*
-Map
------------------------------------------------- */
 .hide {
 	display:none;
 }
@@ -816,6 +798,68 @@ Map
 .map-result-sep {
 	font-size: 0.875em;
 }
+
+/* Map bubble / balloon */
+.gm-style,
+.gm-style-iw,
+.balloon {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.balloon {
+	padding: 1em;
+}
+
+.balloon .entry-header {
+	margin-bottom: 1em;
+}
+
+.balloon .entry-title {
+	font-size: 1.5em;
+	margin-bottom: 0;
+}
+
+.balloon a {
+	color: #805783;
+}
+
+.balloon-entry-default,
+.balloon-taxs {
+	margin-bottom: 1em;
+}
+
+.balloon .entry-term {
+	font-weight: bold;
+}
+
+.balloon .read-more {
+	float: right;
+}
+
+/*
+   5.? - Comments
+   ========================================================================== */
+
+.comment-reply-title {
+	color: #501651;	
+}
+
+#respond input[type="text"],
+#respond input[type="email"],
+#respond input[type="url"],
+#respond textarea {
+	background-color: #faba09;
+	border: 0;
+	width: 100%;
+}
+
+.form-allowed-tags {
+	font-size: 0.875em;
+}
+
 
 /* ==========================================================================
    6.0 - Widget area

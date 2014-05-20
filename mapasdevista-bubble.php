@@ -1,8 +1,3 @@
-<div class="balloon-entry-default clearfix" >
-
-    <?php the_excerpt(); ?>
-    
-</div>
 <div class="balloon-taxs" >
 	<?php
 	$post_ID = get_the_ID(); 
@@ -16,13 +11,14 @@
 	$wpdb->posts.ID = $post_ID
 	AND $wpdb->posts.post_type = 'mapa'
 	AND $wpdb->postmeta.meta_key = '_mpv_inmap'
-	AND $wpdb->term_taxonomy.taxonomy != 'territorio'
+	AND $wpdb->term_taxonomy.taxonomy NOT IN ( 'territorio', 'tipo', 'publicoalvo', 'tematico', 'identitario' )
 	GROUP BY $wpdb->terms.term_id
 	";
 	
 	$terms = $wpdb->get_results($querystr, ARRAY_N);
 	
 	$terms_str = "";
+	$terms_sep = ' / ';
 	
 	foreach ($terms as $term)
 	{
@@ -30,16 +26,28 @@
 		{
 			foreach ($term as $subterm)
 			{
-				$terms_str .= $terms_str != '' ? ','.$subterm : $subterm;
+				$terms_str .= $terms_str != '' ? $terms_sep . $subterm : $subterm;
 			}
 		}
 		else
 		{
-			$terms_str .= $terms_str != '' ? ','.$subterm : $subterm;
+			$terms_str .= $terms_str != '' ? $terms_sep . $subterm : $subterm;
 		}
 	}
 	
 	?>
-	<span class="balloon-taxs-names"><?php echo $terms_str;//implode(',', $terms); ?></span>
+	<span class="balloon-taxs-names"><strong>Áreas culturais: </strong><?php echo $terms_str;//implode(',', $terms); ?></span>
 
+</div>
+
+<div class="balloon-entry-default clearfix" >
+
+    <?php
+    $balloon_excerpt = get_the_excerpt();
+
+    if ( ! empty( $balloon_excerpt ) ) {
+    	echo '<strong>Objetivos: </strong>' . $balloon_excerpt;
+    }
+    ?>
+    
 </div>
