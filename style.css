@@ -857,28 +857,35 @@ select:active {
 	float: right;
 }
 
+/* Post overlay for the home page */
 #post_overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FFF;
-    filter:alpha(opacity=90);
-    -moz-opacity:0.9;
-    -khtml-opacity: 0.9;
-    opacity: 0.9;
-    z-index: 10000;
+    background-color: #fff;
     display: none;
+    height: 100%;
+    filter:alpha(opacity=95);
+    -moz-opacity: 0.95;
+    -khtml-opacity: 0.95;
+    opacity: 0.95;
+    position: fixed;
+    	left: 0;
+    	top: 0;
     overflow: auto;
+    padding: 2em;
+    width: 100%;
+    z-index: 10000;
 }
 
-#post_overlay > a {
-    background-color: #FF0000;
-    position: fixed;
-    right: 20px;
-    top: 30px;
+#post_overlay #close_post_overlay {
+    background-color: #805783;
     cursor: pointer;
+    line-height: 1;
+    position: fixed;
+    	right: 2em;
+    	top: 4em;
+}
+
+#post_overlay #close_post_overlay:hover {
+	background-color: #501651;
 }
 
 /*
