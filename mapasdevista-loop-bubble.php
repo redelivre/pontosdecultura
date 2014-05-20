@@ -49,7 +49,7 @@ if(array_key_exists('offset', $_POST))
 				</header>
 	            <?php mapasdevista_get_template( 'mapasdevista-bubble', get_post_format() ); ?>
 
-	            <a href="#" class="read-more">Veja mais informações</a>
+	            <a href="pontos_linkToPost(this); return false;" class="read-more">Veja mais informações</a>
 	        </div>
 	    </div>
 	</div><!-- #balloon -->
