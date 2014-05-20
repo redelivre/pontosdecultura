@@ -20,23 +20,32 @@
 			<h2>Contatos do ponto</h2>
 			<ul>
 				<li>
-					<strong>Endereço</strong>
+					<strong>Entidade responsável:</strong>
+					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Entidade Responsável pelo Projeto', true ); ?>
+				<li>
+					<strong>Endereço:</strong>
 					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço - Entidade ', true ); ?>
 					<?php pontosdecultura_the_terms( 'territorio' ); ?>
 				</li>
 				<li>
-					<strong>Telefone</strong>
+					<strong>Telefone:</strong>
 					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Telefone da Entidade ', true ); ?>
 				</li>
-				<li><strong>Email</strong>
+				<li><strong>Email:</strong>
 				<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço Eletrônico da Entidade (e-mail)', true ); ?>
 				</li>
 			</ul>
 		</div>
 
 		<h2>Informações</h2>
+
 		<h3>Local de atuação do ponto</h3>
-		<h3>Objetivos</h3>
+		<?php echo get_post_meta( $post->ID, 'Local de Realização das Atividades do Projeto: Município (UF)', true ); ?>
+
+		<h3>Público-alvo</h3>
+		<?php pontosdecultura_the_terms( 'publicoalvo' ); ?>
+		
+		<h3>Objetivos do plano de trabalho</h3>
 		<?php the_content(); ?>
 
 		<h3>Resultados</h3>
