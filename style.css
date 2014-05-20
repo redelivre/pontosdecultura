@@ -107,6 +107,7 @@ p {
 
 img {
 	height: auto;
+	vertical-align: bottom;
     max-width: 100%;
 }
 
@@ -561,6 +562,22 @@ select:active {
 
 .search-result-button:hover {
 	color: #faba09;
+}
+
+.search-not-here {
+	clear: both;
+	font-weight: bold;
+	line-height: 2;
+	padding: 1em;
+	text-align: center;
+}
+
+.search-not-here a {
+	text-decoration: underline;
+}
+
+.icon-cultura {
+	margin-right: 0.5em;
 }
 
 /* Progress bar */
