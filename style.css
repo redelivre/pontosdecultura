@@ -618,6 +618,21 @@ select:active {
 	margin-bottom: 0;
 }
 
+.single-mapa .entry-contact-info ul,
+.single-mapa .entry-organization-info ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.single-mapa .entry-content h2,
+.single-mapa .entry-content h3 {
+	color: #404040;
+}
+
+.single-mapa .entry-content h3 {
+	margin-bottom: 0;
+}
+
 /* ==========================================================================
    5.? - Map
    ========================================================================== */
