@@ -155,8 +155,8 @@
 				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>
 			</div>
 			<div class="search-result-button">
-			<?php $images_url = get_template_directory_uri() . '/images/'; ?>
-			<img src="<?php echo $images_url . 'button-back-search.png'; ?>" alt= "<?php _e('volta a pesquisa', 'pontosdecultura'); ?>" />
+				<?php $images_url = get_template_directory_uri() . '/images/'; ?>
+				<img src="<?php echo $images_url . 'button-back-search.png'; ?>" alt= "<?php _e('volta a pesquisa', 'pontosdecultura'); ?>" />
 			</div>
 			<div class="search-load-button" style="display: none;" >
 				<?php _e('Load data', 'pontosdecultura'); ?>
