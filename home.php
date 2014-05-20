@@ -11,12 +11,13 @@
 				/* TODO: This should be a option inside the Customizer section */
 				$home_url = get_bloginfo('url') . '/';
 				printf( 'O <a href="%1$s">Mapa Cultura Viva</a> é <a href="%2$s">livre</a> e <a href="%3$s">aberto</a>. O objetivo é dar 
-					visibilidade e articular iniciativas e ações do programa Cultura Viva. <a href="%4$s">Utilize</a> a plataforma 
+					visibilidade e articular iniciativas e ações do <a href="%4$s">programa Cultura Viva</a>. <a href="%5$s">Utilize</a> a plataforma 
 					através das buscas aberta ou avançada, pelo mapa e também pelas palavras mais procuradas. 
-					<a href="%5$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
+					<a href="%6$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
 					$home_url . 'o-projeto',
 					$home_url . 'desenvolvedores',
 					$home_url . 'dados-abertos',
+					$home_url . 'programa-cultura-viva',
 					$home_url . 'como-usar',
 					$home_url . 'participe'
 				);
