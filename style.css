@@ -27,7 +27,6 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 	Dark Blue		#2f2d44
 	Red				#e91d24
 	Yellow			#faba09
-	Orange			#ff6600
 	Beige 			#e9ddaf
 	Green			#5fb760
 
@@ -553,6 +552,50 @@ select:active {
 .search-result-button {
 	cursor: pointer;
 }
+
+/* Progress bar */
+@-webkit-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+.ui-progressbar {
+	background-color: #e9ddaf !important;
+	line-height: 1 !important;
+	margin-bottom: 1em !important;
+	padding: 0.25em !important;
+}
+
+.ui-progressbar-value {
+	background-color: #faba09 !important;
+	border: 0 !important;
+	margin: 0 !important;
+	padding: 0.25em !important;
+
+	background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #f44, #78ad09 );
+
+    border-radius: 2px; 
+    background-size: 40px 25px, 100% 100%, 100% 100%;
+
+    -webkit-animation: animate-stripes 5s linear infinite;
+        animation: animate-stripes 5s linear infinite;
+}
+
+.Ajax-Loader-Text {
+	font-weight: bold;
+	text-align: center;
+}
+
 
 /* ==========================================================================
    5.0 - Content
