@@ -351,7 +351,6 @@ function map_estados_click(lat, lon, zoom, term)
 			estado_search = term;
 		}
 		
-		jQuery("#progressbar").progressbar( "value", 100 );
 		map_show_result_end();
 	});
 	
@@ -413,6 +412,7 @@ function map_show_result(from, callback)
 
 function map_show_result_end()
 {
+	jQuery("#progressbar").progressbar( "value", 100 );
 	scrollOnce = false;
 	jQuery(".Ajax-Loader").toggle();
 	//jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
@@ -528,7 +528,7 @@ function pontos_loadPosts(total, offset)
             
             //console.log('loaded posts:'+offset);
 
-        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
+        	//jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
         	
             if (data.newoffset != 'end') {
             	pontos_loadPosts(total, data.newoffset);
@@ -613,10 +613,10 @@ function pontos_loadPosts(total, offset)
             
             if (data.newoffset == 'end')
             {
-            	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
+            	//jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
             	setTimeout(function() 
 	            	{
-	            		jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
+	            		//jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 5 );
 	    				//result_callback_func();
 	            		pontos_openInfoBubble();
 	    			}, 1000
