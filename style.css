@@ -1047,14 +1047,51 @@ button {
 }
 
 /* 
-   4.? -Map fullscreen
+   4.? - Map fullscreen
    ========================================================================== */
 
 .filter-panel {
+	background-color: #2f2d44;
+	color: #fff;
 	height: 880px;
-	width: 25%;
+	opacity: 0.9;
+	padding: 1.5em;
 	position: fixed;
-	background-color: #805783;
+	width: 25%;
+}
+
+.panel-title {
+	font-weight: bold;
+	margin: 0 0 1em;
+}
+
+.filter-panel-tooglebox {
+	margin-bottom: 1em;
+}
+
+.filter-panel-tooglebox-title:hover,
+.filter-panel-tooglebox-list:hover {
+	
+}
+
+.filter-panel-tooglebox-title {
+	font-size: 1.125em;
+	font-weight: bold;
+}
+
+.filter-panel-tooglebox-title:after {
+	color: #ccc;
+	content: "\25BC";
+}
+
+.filter-panel-tooglebox--toggled .filter-panel-tooglebox-title:after {
+	content: "\25B2";
+}
+
+.filter-panel-tooglebox-title:hover,
+.filter-panel-tooglebox-list label:hover {
+	color: #faba09;
+	cursor: pointer;
 }
 
 #toggle-results {
@@ -1064,6 +1101,101 @@ button {
 .filter-panel-tooglebox-list {
 	display: none;
 }
+
+.filter-panel-tooglebox-list label {
+	font-size: 0.875em;
+    margin-right: 0.5em;
+}
+
+.taxonomy-filter-checkbox {
+
+}
+
+/*
+input[type=checkbox] {  
+    display: none;  
+} 
+
+label:before {  
+    content: "";  
+    display: inline-block;  
+  
+    width: 16px;  
+    height: 16px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #aaa;  
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}  
+
+.taxonomy-filter-checkbox label:before {  
+    border-radius: 3px;  
+}  
+
+.taxonomy-filter-checkbox + label:before {  
+    content: "\2713";  
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 15px;  
+    color: #f3f3f3;  
+    text-align: center;  
+    line-height: 15px;  
+} 
+*/
+
+/*
+.squaredTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+ }
+  
+ 	
+
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    @include background( linear-gradient(top, #222 0%, #45484d 100%) );
+    @include box-shadow( inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1) );
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      @include opacity( 0 );
+      @include transform( rotate(-45deg) );
+    }
+    
+  }
+  
+}
+/* end .squaredTwo
+
+&:hover::after {
+      @include opacity( 0.3 );
+    }
+
+input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      @include opacity( 1 );
+    }    
+  }
+*/
 
 /*
    5.? - Comments

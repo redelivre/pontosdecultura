@@ -70,7 +70,7 @@ class PontosFilters
 		
 		?>
 		<div class="filter-panel">
-		        <h1><?php _e('Filtros', 'pontosdecultura');?></h1>
+		        <h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 		        <?php
 		        foreach ($taxs as $taxonomy => $terms)
 		        {
