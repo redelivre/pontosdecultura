@@ -215,6 +215,17 @@ select:active {
 	cursor: pointer;
 }
 
+/* Transition elements */
+a,
+select,
+input,
+button {
+	-webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+}
+
 /* Alignment */
 .alignleft {
 	display: inline;
