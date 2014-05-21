@@ -32,7 +32,7 @@
 			<div class="gr gr-small">
 				<ul class="state-list">
 					<li><?php _e( 'Centro-Oeste', 'pontosdecultura' ); ?>
-						<ul class="state-list--children">
+						<ul class="state-list--children state-list--co">
 							<li class="state-name"><a href="javascript:map_estados_click(-15.827322694625742, -47.5434026311638, 9, 'df');"><?php _e( 'Distrito Federal' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-16.489545110135776, -49.10255992578129, 6, 'go');"><?php _e( 'Goiás' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-13.79899613053151, -54.66457553124998, 6, 'mt');"><?php _e( 'Mato Grosso' ); ?></a></li>
@@ -40,7 +40,7 @@
 						</ul><!-- state-list--children -->
 					</li>
 					<li><?php _e( 'Nordeste', 'pontosdecultura' ); ?>
-						<ul class="state-list--children">
+						<ul class="state-list--children state-list--ne">
 							<li class="state-name"><a href="javascript:map_estados_click(-9.577380852874896, -36.36940562890629, 8, 'al');"><?php _e( 'Alagoas' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-13.93843295148234, -39.94545543359379, 6, 'ba');"><?php _e( 'Bahia' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-5.709926219210012, -37.1228704046013, 6, 'ce');"><?php _e( 'Ceará' ); ?></a></li>
@@ -53,7 +53,7 @@
 						</ul><!-- state-list--children -->
 					</li>
 					<li><?php _e( 'Norte', 'pontosdecultura' ); ?>
-						<ul class="state-list--children">
+						<ul class="state-list--children state-list--n">
 							<li class="state-name"><a href="javascript:map_estados_click(-8.981814864398771, -70.17420626171871, 7, 'ac');"><?php _e( 'Acre' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(2.042922656988901, -50.1636418889763, 6, 'ap');"><?php _e( 'Amapá' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-2.9362446361557346, -63.189648156249966, 6, 'am');"><?php _e( 'Amazonas' ); ?></a></li>
@@ -64,7 +64,7 @@
 						</ul><!-- state-list--children -->
 					</li>
 					<li><?php _e( 'Sudeste', 'pontosdecultura' ); ?>
-						<ul class="state-list--children">
+						<ul class="state-list--children state-list--se">
 							<li class="state-name"><a href="javascript:map_estados_click(-17.47126983928056, -39.36318004296879, 6, 'es');"><?php _e( 'Espírito Santo' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-18.307672760467163, -42.95021617578129, 6, 'mg');"><?php _e( 'Minas Gerais' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-21.488927749959952, -42.14272105859379, 7, 'rj');"><?php _e( 'Rio de Janeiro' ); ?></a></li>
@@ -72,7 +72,7 @@
 						</ul><!-- state-list--children -->
 					</li>
 					<li><?php _e( 'Sul', 'pontosdecultura' ); ?>
-						<ul class="state-list--children">
+						<ul class="state-list--children state-list--s">
 							<li class="state-name"><a href="javascript:map_estados_click(-26.03328886702247, -50.29201693749998, 6, 'pr');"><?php _e( 'Paraná' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-30.27174883870184, -50.79738803124998, 6, 'rs');"><?php _e( 'Rio Grande do Sul' ); ?></a></li>
 							<li class="state-name"><a href="javascript:map_estados_click(-27.657612362418984, -50.24807162499998, 7, 'sc');"><?php _e( 'Santa Catarina' ); ?></a></li>

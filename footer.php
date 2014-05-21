@@ -21,15 +21,15 @@
 						<?php //dynamic_sidebar( 'sidebar-footer' ); ?>
 						<div class="site-supporters">
 							<?php $images_url = get_template_directory_uri() . '/images/'; ?>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-lab.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-soylocoporti.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-ufpr.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-educacao-ufpr.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-pontodecultura.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-scdc.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-minc.png'; ?>" /></a>
-							<a href="#" class="supporter-link"><img src="<?php echo $images_url . 'logo-governo-federal.png'; ?>" /></a>
+							<a href="http://labculturadigital.org" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-lab.png'; ?>" /></a>
+							<a href="http://soylocoporti.org.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-soylocoporti.png'; ?>" /></a>
+							<a href="http://www.ufpr.br/portalufpr/" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-ufpr.png'; ?>" /></a>
+							<a href="http://www.educacao.ufpr.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-educacao-ufpr.png'; ?>" /></a>
+							<a href="http://www2.cultura.gov.br/culturaviva/ponto-de-cultura/" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-pontodecultura.png'; ?>" /></a>
+							<a href="http://www2.cultura.gov.br/culturaviva/" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-cultura-viva.png'; ?>" /></a>
+							<a href="http://www.cultura.gov.br/scdc" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-scdc.png'; ?>" /></a>
+							<a href="http://www.cultura.gov.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-minc.png'; ?>" /></a>
+							<a href="http://www.brasil.gov.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-governo-federal.png'; ?>" /></a>
 						</div>
 					</div><!-- .container --> 
 				</section><!-- #tertiary -->

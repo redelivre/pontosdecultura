@@ -26,6 +26,7 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
    	Medium Blue		#23498c
 	Dark Blue		#2f2d44
 	Red				#e91d24
+	Dark Red  		#b11117
 	Yellow			#faba09
 	Beige 			#e9ddaf
 	Green			#5fb760
@@ -133,12 +134,12 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #501651;
+	background: #805783;
 	border: 0;
 	color: #fff;
 	font-weight: bold;
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 	position: relative;
 }
 
@@ -146,7 +147,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	
+	background: #501651;
 }
 
 button:focus,
@@ -173,6 +174,7 @@ textarea {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
@@ -186,9 +188,10 @@ input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+textarea {
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 }
 
 ::-webkit-input-placeholder {
@@ -211,6 +214,17 @@ select,
 select:focus,
 select:active {
 	cursor: pointer;
+}
+
+/* Transition elements */
+a,
+select,
+input,
+button {
+	-webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 /* Alignment */
@@ -266,6 +280,7 @@ select:active {
 
 .site-navigation ul li {
 	display: inline-block;
+	margin: 0.125em 0;
 }
 
 .site-navigation ul li a {
@@ -381,6 +396,11 @@ select:active {
 
 .site-header {
 	background: #805783;
+	text-align: center;
+}
+
+.site-branding {
+	margin-bottom: 1.5em;
 }
 
 .site-logo {
@@ -389,6 +409,7 @@ select:active {
 
 .main-navigation .menu-item a {
 	background: #faba09;
+	display: inline-block;
 }
 
 /* ==========================================================================
@@ -420,11 +441,16 @@ select:active {
 }
 
 .search-intro .search-form input {
+	border: 0;
 	font-size: 2em;
 }
 
 .search-intro .search-submit {
 	background: #501651;
+}
+
+.search-intro .search-submit:hover {
+	color: #faba09;
 }
 
 /* State / Estado */
@@ -456,6 +482,34 @@ select:active {
 .state-list--children .state-name a {
 	display: inline-block;
 	padding: 0.25em 0.5em;
+	-webkit-transition: all 0.125s ease-out;
+    -moz-transition: all 0.125s ease-out;
+    -o-transition: all 0.125s ease-out;
+    transition: all 0.125s ease-out;
+}
+
+.state-list--children .state-name a:hover {
+	color: #fff;
+}
+
+.state-list--n .state-name a:hover {
+	background-color: #23498c;
+}
+
+.state-list--co .state-name a:hover {
+	background-color: #e91d24;
+}
+
+.state-list--ne .state-name a:hover {
+	background-color: #b11117;
+}
+
+.state-list--se .state-name a:hover {
+	background: #faba09;
+}
+
+.state-list--s .state-name a:hover {
+	background-color: #2f2d44;
 }
 
 /* Advanced Search */
@@ -663,9 +717,9 @@ select:active {
 
 /* Used to replicate max content width present in functions.php */
 .content-box,
-.singular .site-content {
+.singular .site-main {
 	margin: 0 auto;
-	max-width: 680px;
+	max-width: 720px;
 }
 
 .area-title,
@@ -752,8 +806,7 @@ select:active {
     
 }
 
-#map img
-{
+#map img {
 	max-width: none;
 }
 
@@ -965,10 +1018,12 @@ select:active {
     background-color: #fff;
     display: none;
     height: 100%;
+    /*
     filter:alpha(opacity=95);
     -moz-opacity: 0.95;
     -khtml-opacity: 0.95;
     opacity: 0.95;
+    */
     position: fixed;
     	left: 0;
     	top: 0;
@@ -1080,6 +1135,11 @@ select:active {
 		width: 61.8%;
 	}
 
+	/* Site header */
+	.site-header {
+		text-align: left;
+	}
+
 	/* Drawed map */
 	.wrapper-map-brasil {
 		text-align: right;
@@ -1096,6 +1156,10 @@ select:active {
 	/* Site header */
 	.site-header .container {
 		position: relative;
+	}
+
+	.site-branding {
+		margin-bottom: 0;
 	}
 
 	.site-branding,
@@ -1120,6 +1184,16 @@ select:active {
 		background-repeat: repeat-y;
 		background-position: left, right;
 		background-size: contain;
+	}
+
+	/* Content */
+	.singular .site-content {
+		background: url('images/bg-map.jpg') fixed;
+	}
+
+	.singular .site-main {
+		background: #fff;
+		padding: 2em;
 	}
 
 	/* Footer */
