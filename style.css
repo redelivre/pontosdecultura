@@ -873,7 +873,7 @@ select:active {
 	border-radius: 3px;
 }
 
-.map-results:-webkit-scrollbar-thumb:hover{
+.map-results::-webkit-scrollbar-thumb:hover{
 	background-color: #2f2d44;
 }
 
@@ -978,7 +978,7 @@ select:active {
     z-index: 10000;
 }
 
-#post_overlay #close_post_overlay {
+#post_overlay #pontos_close_post_overlay {
     background-color: #805783;
     cursor: pointer;
     line-height: 1;
@@ -987,8 +987,27 @@ select:active {
     	top: 4em;
 }
 
-#post_overlay #close_post_overlay:hover {
+#post_overlay #pontos_close_post_overlay:hover {
 	background-color: #501651;
+}
+
+/* 
+   4.? -Map fullscreen
+   ========================================================================== */
+
+.filter-panel {
+	height: 880px;
+	width: 25%;
+	position: fixed;
+	background-color: #805783;
+}
+
+#toggle-results {
+	display: none;
+}
+
+.filter-panel-tooglebox-list {
+	display: none;
 }
 
 /*

@@ -283,6 +283,11 @@ jQuery(document).ready(function()
         return false;
     });
 	
+	jQuery('a#pontos_close_post_overlay').click(function() {
+		jQuery('#post_overlay').fadeOut(800);
+        //mapasdevista.updateHash(false);
+    });
+	
 	jQuery.ajax(
     {
         type: 'POST',
@@ -415,7 +420,7 @@ function map_show_result_end()
 
 function pontos_openInfoBubble()
 {
-	mapstraction.markers[0].openBubble();
+	//mapstraction.markers[0].openBubble();
 	jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children(":first-child").children(":first-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children("div:nth-child(2)").children(":first-child").css({"background-color" : "#faba09"});
@@ -449,7 +454,7 @@ function pontos_linkToPost(el)
                     mapstraction.markers[ii].closeBubble();
                 }
                 
-                jQuery('#post_overlay').show();
+                jQuery('#post_overlay').fadeIn(800);
                 ajaxizeComments();
             }
         },

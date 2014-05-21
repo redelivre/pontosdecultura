@@ -201,6 +201,7 @@ class Pontosdecultura {
 		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar'));
 		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
 		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
+		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery'));
 		
 		if(is_home() && !$wp_query->get('mapa-tpl'))
 		{
@@ -210,6 +211,13 @@ class Pontosdecultura {
 			
 			wp_localize_script( 'homescripts', 'homescripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
+		}
+		elseif(is_home() && $wp_query->get('mapa-tpl'))
+		{
+			wp_enqueue_script('map-page-scripts');
+				
+			/*wp_localize_script( 'mapscripts', 'mapscripts',
+			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );*/
 		}
 	}
 	
