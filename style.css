@@ -1066,8 +1066,9 @@ button {
 .filter-panel {
 	background-color: #2f2d44;
 	color: #fff;
-	height: 880px;
+	height: 100%;
 	opacity: 0.9;
+	overflow-y: scroll;
 	padding: 1.5em;
 	position: fixed;
 	width: 25%;
