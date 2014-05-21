@@ -312,14 +312,27 @@ button {
 	/* Animation center compensation - margins should be symmetric */
 	/* remove if not needed */
 	margin-left: .2em;
-
-	/* Uncomment for 3D effect */
-	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-github:before { content: '\e803'; } /* '' */
-.icon-cc:before { content: '\e801'; } /* '' */
-.icon-wordpress:before { content: '\e800'; } /* '' */
+.icon-github:before {
+	content: '\e803';
+}
+
+.icon-cc:before {
+	content: '\e801';
+}
+
+.icon-wordpress:before {
+	content: '\e800';
+}
+
+.icon-up:before {
+	content: '\e802';
+}
+
+.icon-down:before {
+	content: '\e804';
+}
 
 /**
  * Scrolling shadows by @kizmarh and @leaverou
@@ -1079,16 +1092,9 @@ button {
 	font-weight: bold;
 }
 
-.filter-panel-tooglebox-title:after {
-	color: #ccc;
-	content: "\25BC";
-}
 
-.filter-panel-tooglebox--toggled .filter-panel-tooglebox-title:after {
-	content: "\25B2";
-}
 
-.filter-panel-tooglebox-title:hover,
+.filter-panel-tooglebox-meta-head:hover,
 .filter-panel-tooglebox-list label:hover {
 	color: #faba09;
 	cursor: pointer;

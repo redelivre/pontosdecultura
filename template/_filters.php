@@ -14,7 +14,7 @@ class PontosFilters
 					<span class="filter-panel-tooglebox-title">
 						<?php echo $taxonomy; ?>
 					</span>
-					<span class="filter-panel-tooglebox-button"></span>
+					<span class="icon-down filter-panel-tooglebox-button"></span>
 				</div>
 				<span class="filter-panel-tooglebox-list">
 				<?php

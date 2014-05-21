@@ -8,7 +8,7 @@
   "glyphs": [
     {
       "uid": "d94334f23acba022bfd68e49d76b31bb",
-      "css": "github-1",
+      "css": "github",
       "code": 59395,
       "src": "entypo"
     },
@@ -23,6 +23,18 @@
       "css": "wordpress",
       "code": 59392,
       "src": "zocial"
+    },
+    {
+      "uid": "e160a7e42e4e818463fd5a8607b9f608",
+      "css": "down",
+      "code": 59396,
+      "src": "websymbols"
+    },
+    {
+      "uid": "a7e3ce91275bb77c0f4ec44a548b325c",
+      "css": "up",
+      "code": 59394,
+      "src": "websymbols"
     }
   ]
 }
