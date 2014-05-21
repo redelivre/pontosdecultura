@@ -663,9 +663,9 @@ select:active {
 
 /* Used to replicate max content width present in functions.php */
 .content-box,
-.singular .site-content {
+.singular .site-main {
 	margin: 0 auto;
-	max-width: 680px;
+	max-width: 720px;
 }
 
 .area-title,
@@ -965,10 +965,12 @@ select:active {
     background-color: #fff;
     display: none;
     height: 100%;
+    /*
     filter:alpha(opacity=95);
     -moz-opacity: 0.95;
     -khtml-opacity: 0.95;
     opacity: 0.95;
+    */
     position: fixed;
     	left: 0;
     	top: 0;
@@ -1101,6 +1103,16 @@ select:active {
 		background-repeat: repeat-y;
 		background-position: left, right;
 		background-size: contain;
+	}
+
+	/* Content */
+	.singular .site-content {
+		background: url('images/bg-map.jpg') fixed;
+	}
+
+	.singular .site-main {
+		background: #fff;
+		padding: 2em;
 	}
 
 	/* Footer */
