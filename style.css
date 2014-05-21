@@ -26,6 +26,7 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
    	Medium Blue		#23498c
 	Dark Blue		#2f2d44
 	Red				#e91d24
+	Dark Red  		#b11117
 	Yellow			#faba09
 	Beige 			#e9ddaf
 	Green			#5fb760
@@ -481,6 +482,34 @@ button {
 .state-list--children .state-name a {
 	display: inline-block;
 	padding: 0.25em 0.5em;
+	-webkit-transition: all 0.125s ease-out;
+    -moz-transition: all 0.125s ease-out;
+    -o-transition: all 0.125s ease-out;
+    transition: all 0.125s ease-out;
+}
+
+.state-list--children .state-name a:hover {
+	color: #fff;
+}
+
+.state-list--n .state-name a:hover {
+	background-color: #23498c;
+}
+
+.state-list--co .state-name a:hover {
+	background-color: #e91d24;
+}
+
+.state-list--ne .state-name a:hover {
+	background-color: #b11117;
+}
+
+.state-list--se .state-name a:hover {
+	background: #faba09;
+}
+
+.state-list--s .state-name a:hover {
+	background-color: #2f2d44;
 }
 
 /* Advanced Search */
