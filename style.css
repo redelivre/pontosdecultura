@@ -133,12 +133,12 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #501651;
+	background: #805783;
 	border: 0;
 	color: #fff;
 	font-weight: bold;
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 	position: relative;
 }
 
@@ -146,7 +146,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	
+	background: #501651;
 }
 
 button:focus,
@@ -173,6 +173,7 @@ textarea {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
@@ -186,9 +187,10 @@ input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+textarea {
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 }
 
 ::-webkit-input-placeholder {
@@ -420,11 +422,16 @@ select:active {
 }
 
 .search-intro .search-form input {
+	border: 0;
 	font-size: 2em;
 }
 
 .search-intro .search-submit {
 	background: #501651;
+}
+
+.search-intro .search-submit:hover {
+	color: #faba09;
 }
 
 /* State / Estado */
