@@ -268,6 +268,7 @@ select:active {
 
 .site-navigation ul li {
 	display: inline-block;
+	margin: 0.125em 0;
 }
 
 .site-navigation ul li a {
@@ -383,6 +384,11 @@ select:active {
 
 .site-header {
 	background: #805783;
+	text-align: center;
+}
+
+.site-branding {
+	margin-bottom: 1.5em;
 }
 
 .site-logo {
@@ -391,6 +397,7 @@ select:active {
 
 .main-navigation .menu-item a {
 	background: #faba09;
+	display: inline-block;
 }
 
 /* ==========================================================================
@@ -759,8 +766,7 @@ select:active {
     
 }
 
-#map img
-{
+#map img {
 	max-width: none;
 }
 
@@ -1070,6 +1076,11 @@ select:active {
 		width: 61.8%;
 	}
 
+	/* Site header */
+	.site-header {
+		text-align: left;
+	}
+
 	/* Drawed map */
 	.wrapper-map-brasil {
 		text-align: right;
@@ -1086,6 +1097,10 @@ select:active {
 	/* Site header */
 	.site-header .container {
 		position: relative;
+	}
+
+	.site-branding {
+		margin-bottom: 0;
 	}
 
 	.site-branding,
