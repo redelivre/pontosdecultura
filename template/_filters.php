@@ -65,7 +65,7 @@ class PontosFilters
 			//echo '<pre>';print_r($ufs_keys);die();
 			foreach ($ufs as $uf)*/
 			?>
-			<select name="filter-panel-estado" class="filter-panel-estado">
+			<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
 			<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 			<?php
 				foreach ($terms as $term)

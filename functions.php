@@ -150,6 +150,9 @@ class Pontosdecultura {
 		
 		add_filter('mapasdevista_create_post_overlay', array($this, 'mapasdevista_create_post_overlay'));
 		
+		add_action( 'wp_ajax_filter_select_cidade', array($this, 'filter_select_cidade_callback') );
+		add_action( 'wp_ajax_nopriv_filter_select_cidade', array($this, 'filter_select_cidade_callback') );
+		
 	}
 	
 	public static function mapasdevista_create_post_overlay($load)
@@ -411,6 +414,35 @@ class Pontosdecultura {
 			?>
 		</select>
 	<?php
+		die();
+	}
+	
+	public static function filter_select_cidade_callback()
+	{
+		?>
+		<select name="filter-panel-cidade" class="filter-panel-cidade">
+			<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+			<?php
+			if(array_key_exists('uf', $_POST) && !empty($_POST['uf']))
+			{
+				$parent = get_term_by('slug', $_POST['uf'], 'territorio');
+				if(is_object($parent))
+				{
+					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name'));
+					foreach ($terms as $term)
+					{
+						if($term->count > 0)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						}
+					}
+				}
+			}
+			?>
+		</select>
+		<?php
 		die();
 	}
 	
