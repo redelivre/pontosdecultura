@@ -34,20 +34,66 @@ class PontosFilters
 		}
 		else 
 		{
-			//TODO select for territorio
+			//echo '<pre>';print_r($terms);die();
+			/*$ufs = array();
+			$ufs_keys = array();
+			foreach ($terms as $term)
+			{
+				if($term->parent == 0)
+				{
+					if(array_key_exists($term->term_id, $ufs_keys))
+					{
+						$ufs_keys[$term->term_id]['term'] = $term;
+					}
+					else
+					{
+						$ufs_keys[$term->term_id] = array('terms' => array());
+						$ufs_keys[$term->term_id]['term'] = $term;
+					}
+					$ufs[$term->name][] = $term->term_id; 
+				}
+				else
+				{
+					if(!array_key_exists($term->parent, $ufs_keys))
+					{
+						$ufs_keys[$term->parent] = array('terms' => array());
+					}
+					$ufs_keys[$term->parent]['terms'][$term->slug] = $term;
+				}
+			}
+			ksort($ufs);
+			//echo '<pre>';print_r($ufs_keys);die();
+			foreach ($ufs as $uf)*/
+			?>
+			<select name="filter-panel-estado" class="filter-panel-estado">
+			<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+			<?php
+				foreach ($terms as $term)
+				{
+					?>
+					<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+					<?php
+				} 
+			?>
+			</select>
+			<select name="filter-panel-cidade" class="filter-panel-cidade">
+				<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+			</select>
+			<?php
 		}
 	}
 	public static function show()
 	{
 		global $wpdb;
 		$querystr = "
-		SELECT $wpdb->term_taxonomy.taxonomy,$wpdb->terms.term_id,$wpdb->terms.name,$wpdb->terms.slug   FROM $wpdb->posts
+		SELECT $wpdb->term_taxonomy.taxonomy,$wpdb->terms.term_id,$wpdb->terms.name,$wpdb->terms.slug FROM $wpdb->posts
 		INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
 		INNER JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
 		INNER JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 		INNER JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 		WHERE $wpdb->posts.post_type = 'mapa'
 		AND $wpdb->postmeta.meta_key = '_mpv_inmap'
+		AND $wpdb->term_taxonomy.parent = 0
 		GROUP BY $wpdb->terms.term_id
 		";
 		

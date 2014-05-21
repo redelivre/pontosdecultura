@@ -1054,7 +1054,7 @@ button {
 	height: 880px;
 	width: 25%;
 	position: fixed;
-	background-color: #805783;
+	background-color: #FFF;/*#805783;*/
 }
 
 #toggle-results {
