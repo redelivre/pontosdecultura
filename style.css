@@ -1047,14 +1047,51 @@ button {
 }
 
 /* 
-   4.? -Map fullscreen
+   4.? - Map fullscreen
    ========================================================================== */
 
 .filter-panel {
+	background-color: #2f2d44;
+	color: #fff;
 	height: 880px;
-	width: 25%;
+	opacity: 0.9;
+	padding: 1.5em;
 	position: fixed;
-	background-color: #FFF;/*#805783;*/
+	width: 25%;
+}
+
+.panel-title {
+	font-weight: bold;
+	margin: 0 0 1em;
+}
+
+.filter-panel-tooglebox {
+	margin-bottom: 1em;
+}
+
+.filter-panel-tooglebox-title:hover,
+.filter-panel-tooglebox-list:hover {
+	
+}
+
+.filter-panel-tooglebox-title {
+	font-size: 1.125em;
+	font-weight: bold;
+}
+
+.filter-panel-tooglebox-title:after {
+	color: #ccc;
+	content: "\25BC";
+}
+
+.filter-panel-tooglebox--toggled .filter-panel-tooglebox-title:after {
+	content: "\25B2";
+}
+
+.filter-panel-tooglebox-title:hover,
+.filter-panel-tooglebox-list label:hover {
+	color: #faba09;
+	cursor: pointer;
 }
 
 #toggle-results {
@@ -1063,6 +1100,15 @@ button {
 
 .filter-panel-tooglebox-list {
 	display: none;
+}
+
+.filter-panel-tooglebox-list label {
+	font-size: 0.875em;
+    margin-right: 0.5em;
+}
+
+.taxonomy-filter-checkbox {
+
 }
 
 /*
