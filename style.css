@@ -133,12 +133,12 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #501651;
+	background: #805783;
 	border: 0;
 	color: #fff;
 	font-weight: bold;
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 	position: relative;
 }
 
@@ -146,7 +146,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	
+	background: #501651;
 }
 
 button:focus,
@@ -173,6 +173,7 @@ textarea {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
@@ -186,9 +187,10 @@ input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+textarea {
 	line-height: 1;
-	padding: 0.5em 1em;
+	padding: 0.75em 1em;
 }
 
 ::-webkit-input-placeholder {
@@ -420,11 +422,16 @@ select:active {
 }
 
 .search-intro .search-form input {
+	border: 0;
 	font-size: 2em;
 }
 
 .search-intro .search-submit {
 	background: #501651;
+}
+
+.search-intro .search-submit:hover {
+	color: #faba09;
 }
 
 /* State / Estado */
@@ -663,9 +670,9 @@ select:active {
 
 /* Used to replicate max content width present in functions.php */
 .content-box,
-.singular .site-content {
+.singular .site-main {
 	margin: 0 auto;
-	max-width: 680px;
+	max-width: 720px;
 }
 
 .area-title,
@@ -965,10 +972,12 @@ select:active {
     background-color: #fff;
     display: none;
     height: 100%;
+    /*
     filter:alpha(opacity=95);
     -moz-opacity: 0.95;
     -khtml-opacity: 0.95;
     opacity: 0.95;
+    */
     position: fixed;
     	left: 0;
     	top: 0;
@@ -1101,6 +1110,16 @@ select:active {
 		background-repeat: repeat-y;
 		background-position: left, right;
 		background-size: contain;
+	}
+
+	/* Content */
+	.singular .site-content {
+		background: url('images/bg-map.jpg') fixed;
+	}
+
+	.singular .site-main {
+		background: #fff;
+		padding: 2em;
 	}
 
 	/* Footer */
