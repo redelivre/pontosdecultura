@@ -85,6 +85,7 @@ class PontosFilters
 	public static function show()
 	{
 		global $wpdb;
+		global $wp_taxonomies;
 		$querystr = "
 		SELECT $wpdb->term_taxonomy.taxonomy,$wpdb->terms.term_id,$wpdb->terms.name,$wpdb->terms.slug FROM $wpdb->posts
 		INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
@@ -103,6 +104,7 @@ class PontosFilters
 		
 		foreach ($taxs_rows as $tax)
 		{
+			$tax->labels = $wp_taxonomies[$tax->taxonomy]->labels;
 			if(array_key_exists($tax->taxonomy, $taxs))
 			{
 				$taxs[$tax->taxonomy][] = $tax;
