@@ -1079,12 +1079,34 @@ button {
 	margin: 0 0 1em;
 }
 
-.filter-panel-tooglebox {
+.filter-panel-tooglebox,
+.filter-panel select {
 	margin-bottom: 1em;
 }
 
-.filter-panel-tooglebox-title:hover,
-.filter-panel-tooglebox-list:hover {
+.filter-panel-select-wrapper {
+	position: relative;
+}
+
+.filter-panel-select-wrapper .icon-down {
+	position: absolute;
+	right: 0.563em;
+	top: 0.563em;
+}
+
+.filter-panel select {
+	background-color: #faba09;
+	background-image: none;
+	border: 0;
+	border-radius: 0;
+	font-weight: bold;
+	padding: 0.5em;
+	position: relative;
+	text-indent: 0.01px;
+    text-overflow: '';
+	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	
 }
 
@@ -1092,8 +1114,6 @@ button {
 	font-size: 1.125em;
 	font-weight: bold;
 }
-
-
 
 .filter-panel-tooglebox-meta-head:hover,
 .filter-panel-tooglebox-list label:hover {

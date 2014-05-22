@@ -65,20 +65,26 @@ class PontosFilters
 			//echo '<pre>';print_r($ufs_keys);die();
 			foreach ($ufs as $uf)*/
 			?>
-			<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
-			<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
-			<?php
-				foreach ($terms as $term)
-				{
-					?>
-					<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
-					<?php
-				} 
-			?>
-			</select>
-			<select name="filter-panel-cidade" class="filter-panel-cidade">
-				<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-			</select>
+			<div class="filter-panel-select-wrapper">
+				<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
+				<option value="" selected="selected"><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+				<?php
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+				</select>
+				<span class="icon-down"></span>
+			</div>
+			<div class="filter-panel-select-wrapper">
+				<select name="filter-panel-cidade" class="filter-panel-cidade">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+				</select>
+				<span class="icon-down"></span>
+			</div>
 			<?php
 		}
 	}
