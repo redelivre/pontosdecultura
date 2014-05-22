@@ -98,5 +98,10 @@ jQuery(document).ready(function()
         return false;
     });
 	
+	jQuery('a#pontos_close_post_overlay').click(function() {
+		jQuery('#post_overlay').fadeOut(800);
+        //mapasdevista.updateHash(false);
+    });
+	
 });
 

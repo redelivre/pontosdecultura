@@ -8,7 +8,7 @@
 ?>
 <?php 
 
-if(!array_key_exists('location', $_REQUEST) || $_REQUEST['location'] == 'home')
+if(array_key_exists('location', $_REQUEST) && $_REQUEST['location'] == 'home')
 {
 	$posts = mapasdevista_get_posts(1, $mapinfo); ?>
 	<div id="results" class="map-results scrollbox clearfix">

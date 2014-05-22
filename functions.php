@@ -161,7 +161,7 @@ class Pontosdecultura {
 	{
 		global $wp_query;
 	
-		if(is_home() && !$wp_query->get('mapa-tpl'))
+		if(is_home())
 		{
 			return false;
 		}
@@ -202,7 +202,8 @@ class Pontosdecultura {
 		{
 			return '
 				<div id="post_overlay">
-			        <a id="pontos_close_post_overlay" title="Fechar"><?php mapasdevista_image("close.png", array("alt" => "Fechar")); ?></a>
+			        <a id="pontos_close_post_overlay" title="Fechar">'.
+			        '<img src="'.mapasdevista_get_image("close.png").'" alt="Fechar" /></a>
 			        <div id="post_overlay_content" class="post_overlay_content" >
 					</div>
 				</div>
