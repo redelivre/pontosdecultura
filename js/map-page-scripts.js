@@ -21,6 +21,23 @@ jQuery(document).ready(function()
 		jQuery(this).parent('div').children('.filter-panel-tooglebox-list').toggle(400);
 		jQuery(this).children('.filter-panel-tooglebox-button').toggleClass("icon-up icon-down");
 	});
+
+	// Count the checkboxes inside each toggle box
+	jQuery(".taxonomy-filter-checkbox").on("change", function()
+	{
+		var $this = jQuery(this);
+		var togglebox_panel = '.filter-panel-tooglebox';
+		var counter_container = '.filter-panel-tooglebox-counter';
+		var counter = $this.parents(togglebox_panel).find(".taxonomy-filter-checkbox:checked").length;
+
+		if ( counter > 0 )
+		{
+			$this.parents(togglebox_panel).find(counter_container).text( counter );
+		}
+		else {
+			$this.parents(togglebox_panel).find(counter_container).text( '' );
+		}
+	});
 	
 	jQuery(".filter-panel-estado").change(function () {
 		var selected = jQuery( ".filter-panel-estado option:selected" ).val();

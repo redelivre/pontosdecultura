@@ -387,10 +387,17 @@ button {
 
 /* Browse Happy */
 .browse-happy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+    background: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+.browse-happy a {
+	color: #fff;
+	font-weight: normal;
+	text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -1064,7 +1071,7 @@ button {
 }
 
 /* 
-   4.? - Map fullscreen
+   4.? - Fullscreen map
    ========================================================================== */
 
 .filter-panel {
@@ -1092,15 +1099,11 @@ button {
 	position: relative;
 }
 
-.filter-panel-select-wrapper .icon-down {
-	position: absolute;
-	right: 0.563em;
-	top: 0.563em;
-}
-
 .filter-panel select {
-	background-color: #faba09;
 	background-image: none;
+	background: url('images/icon-down.png') no-repeat;
+	background-color: #faba09;
+	background-position: 96% center;
 	border: 0;
 	border-radius: 0;
 	font-weight: bold;
@@ -1111,7 +1114,10 @@ button {
 	width: 100%;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	
+}
+
+.filter-panel select:hover {
+	color: #fff;
 }
 
 .filter-panel-tooglebox-title {
@@ -1119,10 +1125,25 @@ button {
 	font-weight: bold;
 }
 
+.filter-panel-tooglebox-meta-head,
+.filter-panel-tooglebox-list label {
+	-webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+}
+
 .filter-panel-tooglebox-meta-head:hover,
 .filter-panel-tooglebox-list label:hover {
 	color: #faba09;
 	cursor: pointer;
+}
+
+.filter-panel-tooglebox-counter {
+	color: #805783;
+	float: right;
+	font-size: 0.875em;
+	padding-right: 0.286em;
 }
 
 #toggle-results {
