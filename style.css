@@ -1134,8 +1134,8 @@ button {
     margin-right: 0.5em;
 }
 
-.taxonomy-filter-checkbox {
-
+.taxonomy-filter-checkbox-wrapper {
+	display: inline-block;
 }
 
 /*

@@ -21,10 +21,12 @@ class PontosFilters
 					foreach ($terms as $term)
 					{
 					?>
-						<input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $term->taxonomy; ?>[]" id="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>" />
-						<label for="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>">
-							<?php echo $term->name; ?>
-						</label>
+						<span class="taxonomy-filter-checkbox-wrapper">
+							<input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $term->taxonomy; ?>[]" id="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>" />
+							<label for="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>">
+								<?php echo $term->name; ?>
+							</label>
+						</span>
 					<?php
 					} 
 				?>
