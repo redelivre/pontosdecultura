@@ -312,14 +312,27 @@ button {
 	/* Animation center compensation - margins should be symmetric */
 	/* remove if not needed */
 	margin-left: .2em;
-
-	/* Uncomment for 3D effect */
-	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-github:before { content: '\e803'; } /* '' */
-.icon-cc:before { content: '\e801'; } /* '' */
-.icon-wordpress:before { content: '\e800'; } /* '' */
+.icon-github:before {
+	content: '\e803';
+}
+
+.icon-cc:before {
+	content: '\e801';
+}
+
+.icon-wordpress:before {
+	content: '\e800';
+}
+
+.icon-up:before {
+	content: '\e802';
+}
+
+.icon-down:before {
+	content: '\e804';
+}
 
 /**
  * Scrolling shadows by @kizmarh and @leaverou
@@ -1047,14 +1060,65 @@ button {
 }
 
 /* 
-   4.? -Map fullscreen
+   4.? - Map fullscreen
    ========================================================================== */
 
 .filter-panel {
-	height: 880px;
-	width: 25%;
+	background-color: #2f2d44;
+	color: #fff;
+	height: 100%;
+	opacity: 0.9;
+	overflow-y: scroll;
+	padding: 1.5em;
 	position: fixed;
-	background-color: #FFF;/*#805783;*/
+	width: 25%;
+}
+
+.panel-title {
+	font-weight: bold;
+	margin: 0 0 1em;
+}
+
+.filter-panel-tooglebox,
+.filter-panel select {
+	margin-bottom: 1em;
+}
+
+.filter-panel-select-wrapper {
+	position: relative;
+}
+
+.filter-panel-select-wrapper .icon-down {
+	position: absolute;
+	right: 0.563em;
+	top: 0.563em;
+}
+
+.filter-panel select {
+	background-color: #faba09;
+	background-image: none;
+	border: 0;
+	border-radius: 0;
+	font-weight: bold;
+	padding: 0.5em;
+	position: relative;
+	text-indent: 0.01px;
+    text-overflow: '';
+	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	
+}
+
+.filter-panel-tooglebox-title {
+	font-size: 1.125em;
+	font-weight: bold;
+}
+
+.filter-panel-tooglebox-meta-head:hover,
+.filter-panel-tooglebox-list label:hover {
+	color: #faba09;
+	cursor: pointer;
 }
 
 #toggle-results {
@@ -1063,6 +1127,15 @@ button {
 
 .filter-panel-tooglebox-list {
 	display: none;
+}
+
+.filter-panel-tooglebox-list label {
+	font-size: 0.875em;
+    margin-right: 0.5em;
+}
+
+.taxonomy-filter-checkbox-wrapper {
+	display: inline-block;
 }
 
 /*

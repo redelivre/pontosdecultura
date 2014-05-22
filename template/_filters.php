@@ -14,17 +14,19 @@ class PontosFilters
 					<span class="filter-panel-tooglebox-title">
 						<?php echo $taxonomy; ?>
 					</span>
-					<span class="filter-panel-tooglebox-button"></span>
+					<span class="icon-down filter-panel-tooglebox-button"></span>
 				</div>
 				<span class="filter-panel-tooglebox-list">
 				<?php
 					foreach ($terms as $term)
 					{
 					?>
-						<input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $term->taxonomy; ?>[]" id="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>" />
-						<label for="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>">
-							<?php echo $term->name; ?>
-						</label>
+						<span class="taxonomy-filter-checkbox-wrapper">
+							<input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $term->taxonomy; ?>[]" id="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>" />
+							<label for="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>">
+								<?php echo $term->name; ?>
+							</label>
+						</span>
 					<?php
 					} 
 				?>
@@ -65,20 +67,26 @@ class PontosFilters
 			//echo '<pre>';print_r($ufs_keys);die();
 			foreach ($ufs as $uf)*/
 			?>
-			<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
-			<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
-			<?php
-				foreach ($terms as $term)
-				{
-					?>
-					<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
-					<?php
-				} 
-			?>
-			</select>
-			<select name="filter-panel-cidade" class="filter-panel-cidade">
-				<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-			</select>
+			<div class="filter-panel-select-wrapper">
+				<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
+				<option value="" selected="selected"><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+				<?php
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+				</select>
+				<span class="icon-down"></span>
+			</div>
+			<div class="filter-panel-select-wrapper">
+				<select name="filter-panel-cidade" class="filter-panel-cidade">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+				</select>
+				<span class="icon-down"></span>
+			</div>
 			<?php
 		}
 	}
@@ -118,7 +126,7 @@ class PontosFilters
 		
 		?>
 		<div class="filter-panel">
-		        <h1><?php _e('Filtros', 'pontosdecultura');?></h1>
+		        <h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 		        <?php
 		        foreach ($taxs as $taxonomy => $terms)
 		        {
