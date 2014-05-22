@@ -153,13 +153,15 @@ class Pontosdecultura {
 		add_action( 'wp_ajax_filter_select_cidade', array($this, 'filter_select_cidade_callback') );
 		add_action( 'wp_ajax_nopriv_filter_select_cidade', array($this, 'filter_select_cidade_callback') );
 		
+		add_filter('mapasdevista_map_div', array($this, 'mapasdevista_map_div'));
+		
 	}
 	
 	public static function mapasdevista_create_post_overlay($load)
 	{
 		global $wp_query;
 	
-		if(is_home() && !$wp_query->get('mapa-tpl'))
+		if(is_home())
 		{
 			return false;
 		}
@@ -193,6 +195,26 @@ class Pontosdecultura {
 		return false;
 	}
 	
+	public static function mapasdevista_map_div($mapDiv)
+	{
+		global $wp_query;
+		if(is_home() && $wp_query->get('mapa-tpl'))
+		{
+			return '
+				<div id="post_overlay">
+			        <a id="pontos_close_post_overlay" title="Fechar">'.
+			        '<img src="'.mapasdevista_get_image("close.png").'" alt="Fechar" /></a>
+			        <div id="post_overlay_content" class="post_overlay_content" >
+					</div>
+				</div>
+				<div id="map" class="map-fullscreen">
+				 
+				</div>
+			';
+		}
+		return $mapDiv;
+	} 
+	
 	/**
 	* Controla os arquivos javascript do site
 	*
@@ -201,10 +223,11 @@ class Pontosdecultura {
 		$path = get_template_directory_uri() . '/js';
 		global $wp_query;
 		
-		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar'));
+		wp_register_script('map-functions', $path . '/map-functions.js', array('jquery'));
+		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar', 'map-functions'));
 		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
 		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
-		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery'));
+		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery', 'map-functions'));
 		
 		if(is_home() && !$wp_query->get('mapa-tpl'))
 		{
@@ -222,6 +245,12 @@ class Pontosdecultura {
 			/*wp_localize_script( 'mapscripts', 'mapscripts',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );*/
 		}
+		
+		if(is_home()) // has map
+		{
+			wp_enqueue_script('map-functions');
+		}
+		
 	}
 	
 	public static function language_selector()

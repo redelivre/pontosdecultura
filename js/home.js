@@ -416,54 +416,20 @@ function map_show_result_end()
 	scrollOnce = false;
 	jQuery(".Ajax-Loader").toggle();
 	//jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
+	setTimeout(function() 
+       	{
+			jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
+		}, 2000
+	);
 }
 
 function pontos_openInfoBubble()
 {
-	//mapstraction.markers[0].openBubble();
+	mapstraction.markers[0].openBubble();
 	jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children(":first-child").children(":first-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children("div:nth-child(2)").children(":first-child").css({"background-color" : "#faba09"});
-	mapstraction.markers[0].closeBubble();
 	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
-}
-
-function pontos_linkToPost(el)
-{
-	var post_id = jQuery('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
-	
-	var data =
-    {
-            action: 'pontos_load_post',
-            post_id: post_id
-    };
-	jQuery.ajax(
-    {
-        type: 'POST',
-                url: homescripts_object.ajax_url,
-        data: data,
-        success: function(data)
-        {
-            if (data != 'error')
-            {
-                jQuery('#post_overlay_content').html(data);
-                //jQuery("#post_overlay_content .gallery .gallery-item a").click(mapasdevista.openGalleryImage);
-                
-                //hide bubbles
-                for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
-                    mapstraction.markers[ii].closeBubble();
-                }
-                
-                jQuery('#post_overlay').fadeIn(800);
-                ajaxizeComments();
-            }
-        },
-        beforeSend: function()
-        {
-        	//overlay_filtro();
-        }, 
-    });
-	
 }
 
 var map_data_bubbles_loaded_total = 0;
@@ -649,6 +615,7 @@ function load_map_data(from)
 		var data =
 	    {
 	            action: 'map_results',
+	            location: 'home'
 	    };
 		jQuery.ajax(
 	    {

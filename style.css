@@ -826,6 +826,10 @@ button {
     
 }
 
+.map-fullscreen {
+	position: fixed !important;
+}
+
 #map img {
 	max-width: none;
 }
@@ -1075,7 +1079,7 @@ button {
 	color: #fff;
 	height: 100%;
 	opacity: 0.9;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding: 1.5em;
 	position: fixed;
 	width: 25%;
@@ -1157,6 +1161,21 @@ button {
 
 .taxonomy-filter-checkbox-wrapper {
 	display: inline-block;
+}
+
+#blog-title {
+	position: fixed;
+}
+
+#posts-loader{
+	background-color: #2F2D44;
+    color: #FFFFFF;
+    display: block;
+    font-size: 0.875em;
+    padding: 0.5em;
+    position: fixed;
+    right: 10px;
+    top: 44px;
 }
 
 /*
