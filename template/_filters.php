@@ -6,13 +6,15 @@ class PontosFilters
 {
 	public static function createTaxBox($taxonomy, $terms)
 	{
+		global $wp_taxonomies;
+		
 		if($taxonomy != 'territorio')
 		{
 		?>
 			<div class="filter-panel-tooglebox">
 				<div class="filter-panel-tooglebox-meta-head">
 					<span class="filter-panel-tooglebox-title">
-						<?php echo $taxonomy; ?>
+						<?php echo $wp_taxonomies[$taxonomy]->labels->name ?>
 					</span>
 					<span class="icon-down filter-panel-tooglebox-button"></span>
 				</div>
@@ -93,7 +95,7 @@ class PontosFilters
 	public static function show()
 	{
 		global $wpdb;
-		global $wp_taxonomies;
+		
 		$querystr = "
 		SELECT $wpdb->term_taxonomy.taxonomy,$wpdb->terms.term_id,$wpdb->terms.name,$wpdb->terms.slug FROM $wpdb->posts
 		INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
@@ -112,7 +114,6 @@ class PontosFilters
 		
 		foreach ($taxs_rows as $tax)
 		{
-			$tax->labels = $wp_taxonomies[$tax->taxonomy]->labels;
 			if(array_key_exists($tax->taxonomy, $taxs))
 			{
 				$taxs[$tax->taxonomy][] = $tax;

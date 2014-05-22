@@ -64,9 +64,9 @@ else
 		    <div class="balloon clearfix">
 		        <div class="content">
 		        	<header class="entry-header">
-		            	<h1 class="bottom entry-title"><a class="pontos-js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="mapasdevista.linkToPost(this); return false;"><?php the_title(); ?></a></h1>
+		            	<h1 class="bottom entry-title"><a class="pontos-js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;"><?php the_title(); ?></a></h1>
 		            	<div class="entry-meta">
-		            		<?php pontosdecultura_the_terms( array( 'tipo' ) ); ?>
+		            		<?php pontosdecultura_the_terms( 'tipo' ); ?>
 		            		<em>em</em>
 				            <span class="balloon-state-city entry-term">
 					            <?php
@@ -101,8 +101,8 @@ else
 					    </div><!-- .entry-meta -->
 					</header>
 		            <?php mapasdevista_get_template( 'mapasdevista-bubble', get_post_format() ); ?>
-
-		            <a  href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;" class="read-more">Veja mais informações</a>
+	
+		            <a id="balloon-post-read-more-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;" class="read-more">Veja mais informações</a>
 		        </div>
 		    </div>
 		</div><!-- #balloon -->

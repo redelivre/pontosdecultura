@@ -649,6 +649,7 @@ function load_map_data(from)
 		var data =
 	    {
 	            action: 'map_results',
+	            location: 'home'
 	    };
 		jQuery.ajax(
 	    {
