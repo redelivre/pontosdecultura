@@ -15,6 +15,7 @@ class PontosFilters
 						<?php echo $taxonomy; ?>
 					</span>
 					<span class="icon-down filter-panel-tooglebox-button"></span>
+					<span class="filter-panel-tooglebox-counter"></span>
 				</div>
 				<span class="filter-panel-tooglebox-list">
 				<?php
@@ -79,13 +80,12 @@ class PontosFilters
 					} 
 				?>
 				</select>
-				<span class="icon-down"></span>
+				
 			</div>
 			<div class="filter-panel-select-wrapper">
 				<select name="filter-panel-cidade" class="filter-panel-cidade">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 				</select>
-				<span class="icon-down"></span>
 			</div>
 			<?php
 		}
