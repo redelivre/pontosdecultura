@@ -416,15 +416,19 @@ function map_show_result_end()
 	scrollOnce = false;
 	jQuery(".Ajax-Loader").toggle();
 	//jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
+	setTimeout(function() 
+       	{
+			jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
+		}, 2000
+	);
 }
 
 function pontos_openInfoBubble()
 {
-	//mapstraction.markers[0].openBubble();
+	mapstraction.markers[0].openBubble();
 	jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children(":first-child").children(":first-child").css({"background-color" : "#faba09"});
 	jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children("div:nth-child(2)").children(":first-child").css({"background-color" : "#faba09"});
-	mapstraction.markers[0].closeBubble();
 	mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
 }
 
