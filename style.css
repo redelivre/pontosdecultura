@@ -1198,6 +1198,20 @@ button {
 	font-size: 0.875em;
 }
 
+/*
+   5.? - Contact Form 7
+   ========================================================================== */
+
+span.wpcf7-not-valid-tip {
+	color: #e91d24;
+	font-size: 0.875em;
+}
+
+div.wpcf7-response-output {
+	font-size: 0.875em;
+	margin: 2em 0 0;
+}
+
 
 /* ==========================================================================
    6.0 - Widget area
