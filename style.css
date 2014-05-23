@@ -1084,10 +1084,10 @@ button {
 	position: fixed;
 	width: 25%;
 	z-index: 1;
+	display:none;
 }
 
 .filter-panel-toggle {
-	background-color: #2f2d44;
 	color: #fff;
 	height: auto;
 	opacity: 0.9;
@@ -1095,8 +1095,33 @@ button {
 	padding: 0.5em;
 	position: fixed;
 	width: auto;
-	left: 20%;
 	z-index: 2;
+	left: 1%;
+	background-color: #2f2d44;
+}
+
+.filter-panel-toggle.open {
+	left: 20%;
+	background-color: transparent;
+}
+
+.filter-panel-toggle-img {
+	opacity: 0.9;
+	padding: 0.5em;
+	position: fixed;
+	width: 24px;
+	height: 24px;
+	background-image: url('images/icon-right.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #2f2d44;
+}
+
+.filter-panel-toggle-img.open{
+	background-image: url('images/icon-left.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
 }
 
 .panel-title {
@@ -1189,6 +1214,12 @@ button {
     padding: 0.5em;
     position: fixed;
     right: 10px;
+    top: 44px;
+}
+
+#blog-title {
+	position: fixed;
+    right: 180px;
     top: 44px;
 }
 

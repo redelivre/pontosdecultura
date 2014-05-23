@@ -120,5 +120,12 @@ jQuery(document).ready(function()
         //mapasdevista.updateHash(false);
     });
 	
+	jQuery('.filter-panel-toggle').click(function() {
+		jQuery('.filter-panel').fadeToggle(600);
+		jQuery('.filter-panel-toggle-img').toggleClass('open');
+		jQuery('.filter-panel-toggle').toggleClass('open');
+		
+    });
+	
 });
 

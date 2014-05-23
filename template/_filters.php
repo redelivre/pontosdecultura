@@ -96,7 +96,7 @@ class PontosFilters
 		}
 		
 		?>
-		<span class="filter-panel-toggle"><?php _e("Mostrar/Esconder"); //TODO Por imagem ao invés de texto ?></span>
+		<div class="filter-panel-toggle"><span class="filter-panel-toggle-text"><?php _e("Filtros"); ?></span><span class="filter-panel-toggle-img"></span></div>
 		<div class="filter-panel">
 		        <h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 		        <?php
