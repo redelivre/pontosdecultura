@@ -1,6 +1,23 @@
 var filter_panel_estado_select = '';
 var filter_panel_cidade = "";
 
+function pontos_openInfoBubble()
+{
+	setTimeout(function()
+	{
+		mapstraction.markers[0].openBubble();
+		jQuery(".gm-style-iw").parent().children(":first-child").children(":last-child").css({"background-color" : "#faba09"});
+		jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children(":first-child").children(":first-child").css({"background-color" : "#faba09"});
+		jQuery(".gm-style-iw").parent().children(":first-child").children("div:nth-child(3)").children("div:nth-child(2)").children(":first-child").css({"background-color" : "#faba09"});
+		setTimeout(function() 
+	       	{
+				jQuery('[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"]:first').click();
+				mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
+			}, 1000
+		);
+	}, 4000);
+}
+
 jQuery(document).ready(function()
 {
 	mapstraction.maps[mapinfo.api].setOptions({
@@ -119,6 +136,8 @@ jQuery(document).ready(function()
 		jQuery('#post_overlay').fadeOut(800);
         //mapasdevista.updateHash(false);
     });
+	
+	pontos_openInfoBubble();
 	
 });
 
