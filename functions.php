@@ -117,6 +117,25 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/extras.php';
 
+/**
+ * Add a custom logo for the login screen
+ * 
+ */
+function pontosdecultura_custom_login_logo() {
+	echo '
+	<style type="text/css">
+		.login h1 a {
+			background: url("' . get_template_directory_uri() . '/images/logo-cultura-viva.png") top center no-repeat;
+			background-size: contain;
+			margin: 0 auto;
+			height: 150px;
+			width: 150px;
+			
+		}
+	</style>';
+}
+add_action( 'login_head', 'pontosdecultura_custom_login_logo', 11 );
+
 class Pontosdecultura {
 	
 	/**
