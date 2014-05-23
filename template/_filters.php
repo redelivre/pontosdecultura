@@ -39,36 +39,6 @@ class PontosFilters
 		}
 		else 
 		{
-			//echo '<pre>';print_r($terms);die();
-			/*$ufs = array();
-			$ufs_keys = array();
-			foreach ($terms as $term)
-			{
-				if($term->parent == 0)
-				{
-					if(array_key_exists($term->term_id, $ufs_keys))
-					{
-						$ufs_keys[$term->term_id]['term'] = $term;
-					}
-					else
-					{
-						$ufs_keys[$term->term_id] = array('terms' => array());
-						$ufs_keys[$term->term_id]['term'] = $term;
-					}
-					$ufs[$term->name][] = $term->term_id; 
-				}
-				else
-				{
-					if(!array_key_exists($term->parent, $ufs_keys))
-					{
-						$ufs_keys[$term->parent] = array('terms' => array());
-					}
-					$ufs_keys[$term->parent]['terms'][$term->slug] = $term;
-				}
-			}
-			ksort($ufs);
-			//echo '<pre>';print_r($ufs_keys);die();
-			foreach ($ufs as $uf)*/
 			?>
 			<div class="filter-panel-select-wrapper">
 				<select name="filter-panel-estado" class="filter-panel-estado" autocomplete="off" >
@@ -126,6 +96,7 @@ class PontosFilters
 		}
 		
 		?>
+		<span class="filter-panel-toggle"><?php _e("Mostrar/Esconder"); //TODO Por imagem ao invés de texto ?></span>
 		<div class="filter-panel">
 		        <h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 		        <?php

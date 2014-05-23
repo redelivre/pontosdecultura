@@ -1083,6 +1083,20 @@ button {
 	padding: 1.5em;
 	position: fixed;
 	width: 25%;
+	z-index: 1;
+}
+
+.filter-panel-toggle {
+	background-color: #2f2d44;
+	color: #fff;
+	height: auto;
+	opacity: 0.9;
+	overflow-y: none;
+	padding: 0.5em;
+	position: fixed;
+	width: auto;
+	left: 20%;
+	z-index: 2;
 }
 
 .panel-title {
