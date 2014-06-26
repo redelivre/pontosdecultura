@@ -139,7 +139,7 @@
 		<div class="container">
 			<h2 class="area-title">+ buscados</h2>
 			<?php
-				echo wp_generate_tag_cloud(get_option('pontosdecultura_home_searches', array()), array ( 'smallest' => 1, 'largest' => 3, 'unit' => 'em' ) );
+				echo wp_generate_tag_cloud(get_option('pontosdecultura_home_searches', array()), array ( 'smallest' => 1, 'largest' => 3, 'unit' => 'em', 'number' => 30 ) );
 			?>
 		</div><!-- .container -->
 	</section>
