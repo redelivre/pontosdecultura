@@ -7,8 +7,8 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 
 get_header(); ?>

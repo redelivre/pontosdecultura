@@ -2,8 +2,8 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 
 get_header(); ?>

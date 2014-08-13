@@ -2,8 +2,8 @@
 /**
  * The template for displaying search forms
  *
- * @package Pontos de Cultura
- * @since Pontos de Cultura 1.0
+ * @package Recid
+ * @since Recid 1.0
  */
 ?>
 <form role="search" method="get" class="search-form" action="<?php esc_url( home_url( '/' ) ); ?>">

@@ -4,8 +4,8 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 
 if ( ! function_exists( 'pontosdecultura_paging_nav' ) ) :

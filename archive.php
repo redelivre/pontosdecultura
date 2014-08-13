@@ -4,8 +4,8 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Pontos de Cultura
- * @since Pontos de Cultura 1.0
+ * @package Recid
+ * @since Recid 1.0
  */
 
 get_header(); ?>

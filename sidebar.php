@@ -2,8 +2,8 @@
 /**
  * The Sidebar containing the main widget areas.
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 ?>
 	<div id="secondary" class="widget-area" role="complementary">

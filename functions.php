@@ -1,9 +1,9 @@
 <?php
 /**
- * Pontos de Cultura functions and definitions
+ * Recid functions and definitions
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 
 /**

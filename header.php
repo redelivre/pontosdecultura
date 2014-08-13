@@ -4,8 +4,8 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>

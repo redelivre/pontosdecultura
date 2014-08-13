@@ -4,8 +4,8 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package Pontos de Cultura
- * @since  Pontos de Cultura 1.0
+ * @package Recid
+ * @since  Recid 1.0
  */
 ?>
 
@@ -48,7 +48,7 @@
 						<a class="icon-wordpress" href="<?php echo esc_url( __( 'http://wordpress.org/', 'pontosdecultura' ) ); ?>" title="<?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?>">
 							<span class="screen-reader-text"><?php printf( __( 'Proudly powered by %s', 'pontosdecultura' ), 'WordPress' ); ?></span>
 						</a>
-						<a class="icon-github" href="<?php echo esc_url( __( 'http://github.com/redelivre/pontosdecultura', 'pontosdecultura' ) ); ?>" title="<?php _e( 'Pontos de Cultura on GitHub', 'pontosdecultura' ); ?>">
+						<a class="icon-github" href="<?php echo esc_url( __( 'http://github.com/redelivre/pontosdecultura', 'pontosdecultura' ) ); ?>" title="<?php _e( 'Recid on GitHub', 'pontosdecultura' ); ?>">
 							<span class="screen-reader-text"><?php _e( 'GitHub', 'pontosdecultura' ); ?></span>
 						</a>
 					</div><!-- .site-info -->

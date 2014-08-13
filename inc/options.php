@@ -41,7 +41,7 @@ class PontosSettingsPage
 		$this->ImportPins();
 		?>
         <div class="wrap">
-            <h2><?php _e('Configurações do Tema Pontos de Cultura', 'pontosdecultura') ?></h2>           
+            <h2><?php _e('Configurações do Tema Recid', 'pontosdecultura') ?></h2>           
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -90,6 +90,7 @@ class PontosSettingsPage
         'setting_estatos_cidades' // Section
         );
         
+        update_option('setting_estatos_cidades', 'N');
         
 		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-setting-admin')
 		{
@@ -144,7 +145,7 @@ class PontosSettingsPage
      */
     public function print_section_info()
     {
-        _e('Configurações personalizadas do Tema: Pontos de cultura', 'pontosdecultura');
+        _e('Configurações personalizadas do Tema: Recid', 'pontosdecultura');
     }
 
     /** 
@@ -313,10 +314,10 @@ class PontosSettingsPage
     	{
     		include_once dirname(__FILE__).'/Tratar.php';
     		
-    		$debug = true;
-    		$getLocation = false;
+    		$debug = false;
+    		$getLocation = true;
     		$begin = 0;
-    		$ids = array(142);
+    		$ids = array();
     		
     		$pins_args = array (
 	    		'post_type' => 'attachment',
@@ -372,8 +373,8 @@ class PontosSettingsPage
 	    		}
 	    		
 	    	}
-	    	
-	    	for ($i = 0; $i < 4; $i++) // first 4 lines has header
+	    	//cabeçalho da planilha
+	    	for ($i = 0; $i < 1; $i++) // first 4 lines has header
 	    	{
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$names[$i] = $row;
@@ -398,71 +399,59 @@ class PontosSettingsPage
 	    			}
 	    			if($row === false) break;
 	    		}
-	    		
+	    		// definir titulo e descrição
 	    		$post = array(
 	    				'post_author'    => 1, //The user ID number of the author.
-	    				'post_content'   => $row[19],
-	    				'post_title'     => $row[16], //The title of your post.
+	    				'post_content'   => $row[11],
+	    				'post_title'     => $row[1], //The title of your post.
 	    				'post_type'      => 'mapa',
 	    				'post_status'	 => 'publish'
 	    		);
 	    
 				$post_id = 0;
 	    		if(!$debug) $post_id = wp_insert_post($post);
-	    
-	    		$no_import = array(0, 16, 19, 20, 21, 23, 24, 25);
+	    		//colunas que eu não quero importar como texto livre (custom fields)
+	    		$no_import = array(7, 8, 10);
 
 	    		$location = false;
 	    		
 	    		if(count($coords) > 0)
 	    		{
-	    			$location = $coords[$row[3]];
+	    			$location = $coords[$row[1]];
 	    		}
 	    		
 	    		if($getLocation && $location === false)
-	    		{
-		    		$location = mapasdevista_get_coords($row[17].' '.$row[18]); // Endereço do ponto
-		    		if($location === false)
-		    		{
-		    			$location = mapasdevista_get_coords($row[8].' '.$row[9]); // Endereço da Entidade
-		    			if($location === false)
-		    			{
-		    				$location = mapasdevista_get_coords("cep: {$row[10]}"); // CEP da entidade
-		    				if($location === false)
-		    				{
-		    					$location = mapasdevista_get_coords($row[9]); // Município
-		    				}
-		    			}
-		    		}
+	    		{ //setar coluna do municipio
+		    		$location = mapasdevista_get_coords($row[4].'-'.$row[0]); // Município e estado
 	    		}
 	    		
 	    		if($debug)
 	    		{
 	    			PontosSettingsPage::log($post, true);
 	    			
-	    			if($location !== false) PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}");
-	    			else PontosSettingsPage::log("$row[3] -> ponto não encontrado");
+	    			if($location !== false) PontosSettingsPage::log("{$row[1]};{$location['lat']};{$location['lon']}");
+	    			else PontosSettingsPage::log("$row[1] -> ponto não encontrado");
 	    			
 	    			PontosSettingsPage::log('<br/>');
 	    		}
 	    		else
 	    		{
 	    			if($location !== false)
-	    			{
-	    				PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
+	    			{ //setar coluna id 
+	    				PontosSettingsPage::log("{$row[1]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
 	    				PontosSettingsPage::log('<br/>');
 	    				update_post_meta($post_id, '_mpv_location', $location);
 	    			}
 	    			else 
 	    			{
-	    				PontosSettingsPage::log("$row[3] -> ponto não encontrado");
+	    				PontosSettingsPage::log("$row[1] -> ponto não encontrado");
 	    				PontosSettingsPage::log('<br/>');
 	    			}
 	    		}
 	    		
     			if(!$debug && is_int($post_id) )
     			{
-    				update_post_meta($post_id, '_mpv_pin', $pins[$row[0]]);
+    				update_post_meta($post_id, '_mpv_pin', 1);
     					
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
@@ -470,44 +459,31 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				PontosSettingsPage::log("Pin: {$pins[$row[0]]}");
+    				PontosSettingsPage::log("Pin: {1}");
     				PontosSettingsPage::log('<br/>');
     			}
     			
     			foreach ($row as $key => $custom_field)
     			{
-    				if($key > 22 && $key < 44) // stop on column with tax
+    				if(in_array($key, array(7,8,10))) // stop on column with tax
     				{
     					continue;
     				}
-    				if($key > 54)
+    				if($key > 20)
     				{
     					break;
     				}
     				
     				if(!in_array($key, $no_import))
     				{
-    					$h = ''; // "super" nome da coluna
-    					if ($key > 3 && $key < 12)
-    					{
-    						$h = $names[2][4].": ";
-    					}
-    					elseif ($key > 11 && $key < 16)
-    					{
-    						$h = $names[2][12].": ";
-    					}
-    					elseif ($key > 16 && $key < 19)
-    					{
-    						$h = $names[2][17].": ";
-    					}
-    					
+ 					
     					if($debug)
     					{
-    						PontosSettingsPage::log("update_post_meta($post_id, $h.{$names[3][$key]}, $custom_field);<br/>");
+    						PontosSettingsPage::log("update_post_meta($post_id, {$names[0][$key]}, $custom_field);<br/>");
     					}
     					else 
     					{
-    						update_post_meta($post_id, $h.$names[3][$key], $custom_field);
+    						update_post_meta($post_id, $names[0][$key], $custom_field);
     					}
     				}
     			}
@@ -516,18 +492,11 @@ class PontosSettingsPage
     			/**
 				 * Taxonomies
     			 */
-    			Tratar::tipo($post_id, 'tipo', $row[0]);
-    			Tratar::territorio($post_id, 'territorio', $row[18], $row[9], $row[10]);
-				Tratar::tematico($post_id, 'tematico', $row[20]);
-				Tratar::identitario($post_id, 'identitario', $row[21]);
-				Tratar::publicoalvo($post_id, 'publicoalvo', $row[23], $row[24], $row[25]);
-				Tratar::artescenicas($post_id, 'artescenicas', $row[26], $row[27], $row[28]);
-				Tratar::audiovisual($post_id, 'audiovisual', $row[29], $row[30], $row[31]);
-				Tratar::musica($post_id, 'musica', $row[32], $row[33], $row[34]);
-				Tratar::artesvisuais($post_id, 'artesvisuais', $row[35], $row[36], $row[37]);
-				Tratar::patrimoniocultural($post_id, 'patrimoniocultural', $row[38], $row[39], $row[40]);
-				Tratar::humanidades($post_id, 'humanidades', $row[41], $row[42], $row[43]);
-	    
+    			Tratar::insert($post_id, 'acao', $row[7]);
+    			Tratar::insert($post_id, 'eixo', $row[8]);
+    			Tratar::insert($post_id, 'sujeito', $row[10]);
+    			Tratar::territorio($post_id, 'territorio', $row[4], $row[0]);
+    			
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$i++;
 	    	} while ($row !== false);// && $i < 10);
