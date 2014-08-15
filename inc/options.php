@@ -251,7 +251,7 @@ class PontosSettingsPage
     {
     	if(!array_key_exists('pins_imported', $this->options) || $this->options['pins_imported'] === false )
     	{
-	    	if ($handle = opendir(WP_CONTENT_DIR . '/themes/pontosdecultura/images/pins'))
+	    	if ($handle = opendir(WP_CONTENT_DIR . '/themes/recid/images/pins'))
 			{
 	    		while (false !== ($entry = readdir($handle)))
 				{
@@ -332,23 +332,24 @@ class PontosSettingsPage
 			{
 				switch ($pin->post_name)
 				{
-					case 'ponto-png':
-						$pins['Ponto Direto'] = $pin->ID;
-						$pins['Rede Estadual'] = $pin->ID;
-						$pins['Rede Intermunicipal'] = $pin->ID;
-						$pins['Rede Intemunicipal'] = $pin->ID;
-						$pins['Rede Municipal'] = $pin->ID;
+					case 'ambiental':
+						$pins['Ambiental'] = $pin->ID;
 					break;
-					case 'ponto-de-bens-png':
-						$pins['Pontão de Bens'] = $pin->ID;
+					case 'civil':
+						$pins['Civil'] = $pin->ID;
 					break;
-					case 'ponto-indigena-png':
-						$pins['Ponto de Cultura Indígena'] = $pin->ID;
-						$pins['Ponto de Cultura  Indígena'] = $pin->ID;
+					case 'cultural':
+						$pins['Cultural'] = $pin->ID;
 					break;
-					case 'pontao-png':
-						$pins['Pontão Direto'] = $pin->ID;
+					case 'economico':
+						$pins['Econômico'] = $pin->ID;
 					break;
+					case 'politico':
+						$pins['Político'] = $pin->ID;
+					break;
+					case 'social':
+							$pins['Social'] = $pin->ID;
+					break;						
 				}
 			}
 			
@@ -451,7 +452,7 @@ class PontosSettingsPage
 	    		
     			if(!$debug && is_int($post_id) )
     			{
-    				update_post_meta($post_id, '_mpv_pin', 1);
+    				update_post_meta($post_id, '_mpv_pin', $pins[$row[0]]);
     					
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
@@ -459,7 +460,7 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				PontosSettingsPage::log("Pin: {1}");
+    				PontosSettingsPage::log("Pin: {$pins[$row[0]]}");
     				PontosSettingsPage::log('<br/>');
     			}
     			

@@ -11,45 +11,84 @@
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 
 		<div class="entry-meta">
-			<?php pontosdecultura_the_terms( array( 'artescenicas', 'audiovisual', 'musica', 'artesvisuais', 'patrimoniocultural', 'humanidades' ) ); ?>
-		</div><!-- .entry-meta -->
+			<?php pontosdecultura_the_terms( 'acao' ) ; ?>|
+			<?php pontosdecultura_the_terms( 'eixo' ) ; ?>|
+			<?php pontosdecultura_the_terms( 'sujeito' ); ?>
+			</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
 	<div class="entry-content clearfix">
 		<div class="entry-contact-info">
-			<h2>Contatos do ponto</h2>
+			<h2>Informações</h2>
 			<ul>
 				<li>
-					<strong>Entidade responsável:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Entidade Responsável pelo Projeto', true ); ?>
-				<li>
-					<strong>Endereço:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço - Entidade ', true ); ?>
+					<strong>Cidade / UF:</strong>
 					<?php pontosdecultura_the_terms( 'territorio' ); ?>
 				</li>
+				<!-- 
 				<li>
-					<strong>Telefone:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Telefone da Entidade ', true ); ?>
+					<strong>Código:</strong>
+					<?php // echo get_post_meta( $post->ID, 'Código', true ); ?>
 				</li>
-				<li><strong>Email:</strong>
-				<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço Eletrônico da Entidade (e-mail)', true ); ?>
+				-->
+				<li>
+					<strong>Data da atividade:</strong>
+					<?php echo get_post_meta( $post->ID, 'Data da atividade', true ); ?>
+				</li>
+				<li>
+					<strong>Hora:</strong>
+					<?php echo get_post_meta( $post->ID, 'Hora', true ); ?>
+				</li>
+				<li>
+					<strong>Educador responsável:</strong>
+					<?php echo get_post_meta( $post->ID, 'Educador responsável', true ); ?>
+				</li>
+				<li>
+					<strong>Tema:</strong>
+					<?php echo get_post_meta( $post->ID, 'Tema', true ); ?>
+				</li>
+				<li>
+					<strong>Direito violado/abordado:</strong>
+					<?php echo get_post_meta( $post->ID, 'Direito violado/abordado', true ); ?>
+				</li>
+				<li>
+					<strong>Elementos de DH:</strong>
+					<?php echo get_post_meta( $post->ID, 'Elementos de DH', true ); ?>
+				</li>
+				<li>
+					<strong>Organizações/parcerias:</strong>
+					<?php echo get_post_meta( $post->ID, 'Organizações/parcerias', true ); ?>
+				</li>
+				<li>
+					<strong>Nº de participantes:</strong>
+					<?php echo get_post_meta( $post->ID, 'Nº de participantes', true ); ?>
+				</li>
+				<li>
+					<strong>Nº de masculino:</strong>
+					<?php echo get_post_meta( $post->ID, 'Nº de masculino', true ); ?>
+				</li>
+				<li>
+					<strong>Nº de feminino:</strong>
+					<?php echo get_post_meta( $post->ID, 'Nº de feminino', true ); ?>
+				</li>
+				<li>
+					<strong>Data de chegada:</strong>
+					<?php echo get_post_meta( $post->ID, 'Data de chegada', true ); ?>
+				</li>
+				<li>
+					<strong>Sócio economico:</strong>
+					<?php echo get_post_meta( $post->ID, 'Sócio economico', true ); ?>
+				</li>
+				<li>
+					<strong>Pendência:</strong>
+					<?php echo get_post_meta( $post->ID, 'Pendência', true ); ?>
+				</li>
+				<li>
+					<strong>Data de pagamento:</strong>
+					<?php echo get_post_meta( $post->ID, 'Data de pagamento', true ); ?>
 				</li>
 			</ul>
 		</div>
-
-		<h2>Informações</h2>
-
-		<h3>Local de atuação do ponto</h3>
-		<?php echo get_post_meta( $post->ID, 'Local de Realização das Atividades do Projeto: Município (UF)', true ); ?>
-
-		<h3>Público-alvo</h3>
-		<?php pontosdecultura_the_terms( 'publicoalvo' ); ?>
-		
-		<h3>Objetivos do plano de trabalho</h3>
-		<?php the_content(); ?>
-
-		<h3>Resultados</h3>
-		<?php echo get_post_meta( $post->ID, 'ATIVIDADES DESENVOLVIDAS NO PROJETO', true ); ?>
 		
 	</div><!-- .entry-content -->
 
