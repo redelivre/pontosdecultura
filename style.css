@@ -134,7 +134,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #805783;
+	background: #68bd44;
 	border: 0;
 	color: #fff;
 	font-size: 1.125em;
@@ -170,7 +170,7 @@ input[type="search"],
 textarea {
 	color: #333;
 	border: 0;
-	background-color: #faba09;
+	background-color: #f9ad19;
 	width: 100%;
 	-moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -417,7 +417,7 @@ button {
    ========================================================================== */
 
 .site-header {
-	background: #805783;
+	background: #68bd44;
 	text-align: center;
 }
 
@@ -430,7 +430,7 @@ button {
 }
 
 .main-navigation .menu-item a {
-	background: #faba09;
+	background: #f9ad19;
 	display: inline-block;
 }
 
@@ -440,7 +440,7 @@ button {
 
 /* Intro */
 .search-intro {
-	background: #faba09;
+	background: #f9ad19;
 	color: #501651;
 	padding: 3em 0;
 }
@@ -450,7 +450,7 @@ button {
 }
 
 .search-intro a:hover {
-	color: #805783;
+	color: #68bd44;
 }
 
 .search-intro .intro-text {
@@ -477,7 +477,7 @@ button {
 }
 
 .search-intro .search-submit:hover {
-	color: #faba09;
+	color: #f9ad19;
 }
 
 /* State / Estado */
@@ -532,7 +532,7 @@ button {
 }
 
 .state-list--se .state-name a:hover {
-	background: #faba09;
+	background: #f9ad19;
 }
 
 .state-list--s .state-name a:hover {
@@ -613,7 +613,7 @@ button {
 }
 
 .search-tags .area-title {
-	color: #faba09;
+	color: #f9ad19;
 }
 
 .search-tags a {
@@ -621,7 +621,7 @@ button {
 }
 
 .search-tags a:hover {
-	color: #faba09;
+	color: #f9ad19;
 }
 
 .search-result {
@@ -643,7 +643,7 @@ button {
 }
 
 .search-result-button:hover {
-	color: #faba09;
+	color: #f9ad19;
 }
 
 .search-not-here {
@@ -687,7 +687,7 @@ button {
 }
 
 .ui-progressbar-value {
-	background-color: #faba09 !important;
+	background-color: #f9ad19 !important;
 
 	background-image:
 	   -webkit-linear-gradient(-45deg, 
@@ -760,7 +760,7 @@ button {
 }
 
 .entry-title {
-	color: #805783;
+	color: #68bd44;
 	line-height: 1.2;
 }
 
@@ -769,7 +769,7 @@ button {
 }
 
 .entry-content h2 {
-	color: #faba09;
+	color: #f9ad19;
 }
 
 .entry-content h3 {
@@ -785,7 +785,7 @@ button {
 }
 
 .post-edit-link {
-	background: #faba09;
+	background: #f9ad19;
 	font-size: 0.875em;
 	padding: 0.25em 0.5em;
 	text-transform: uppercase;
@@ -798,7 +798,7 @@ button {
 .single-mapa .entry-header,
 .single-mapa .entry-contact-info,
 .single-mapa .entry-footer {
-	border-bottom: 5px solid #faba09;
+	border-bottom: 5px solid #f9ad19;
 	padding-bottom: 1em;
 }
 
@@ -954,7 +954,7 @@ button {
     background-color: #e9ddaf;  
 }  
 .map-results::-webkit-scrollbar-thumb{
-	background-color: #faba09;
+	background-color: #f9ad19;
 	border-radius: 3px;
 }
 
@@ -975,7 +975,7 @@ button {
 }
 
 .map-results-intro {
-	background: #faba09;
+	background: #f9ad19;
 	margin-bottom: 1.5em;
 	padding: 0.5em 1em;
 }
@@ -1029,7 +1029,7 @@ button {
 }
 
 .balloon a {
-	color: #805783;
+	color: #68bd44;
 }
 
 .balloon-entry-default,
@@ -1066,7 +1066,7 @@ button {
 }
 
 #post_overlay #pontos_close_post_overlay {
-    background-color: #805783;
+    background-color: #68bd44;
     cursor: pointer;
     line-height: 1;
     position: fixed;
@@ -1110,7 +1110,7 @@ button {
 .filter-panel select {
 	background-image: none;
 	background: url('images/icon-down.png') no-repeat;
-	background-color: #faba09;
+	background-color: #f9ad19;
 	background-position: 96% center;
 	border: 0;
 	border-radius: 0;
@@ -1143,12 +1143,12 @@ button {
 
 .filter-panel-tooglebox-meta-head:hover,
 .filter-panel-tooglebox-list label:hover {
-	color: #faba09;
+	color: #f9ad19;
 	cursor: pointer;
 }
 
 .filter-panel-tooglebox-counter {
-	color: #805783;
+	color: #68bd44;
 	float: right;
 	font-size: 0.875em;
 	padding-right: 0.286em;
@@ -1306,7 +1306,7 @@ div.wpcf7-response-output {
 	}
 
 	.search-intro .container {
-		background: url('images/bonecos.png'), url('images/bonecos-reverse.png');
+		/*background: url('images/bonecos.png'), url('images/bonecos-reverse.png');*/
 		background-repeat: repeat-y;
 		background-position: left, right;
 		background-size: contain;
