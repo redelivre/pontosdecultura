@@ -10,16 +10,8 @@
 				<?php
 				/* TODO: This should be a option inside the Customizer section */
 				$home_url = get_bloginfo('url') . '/';
-				printf( 'O <a href="%1$s">Mapa Cultura Viva</a> é <a href="%2$s">livre</a> e <a href="%3$s">aberto</a>. O objetivo é dar 
-					visibilidade e articular iniciativas e ações do <a href="%4$s">programa Cultura Viva</a>. <a href="%5$s">Utilize</a> a plataforma 
-					através das buscas aberta ou avançada, pelo mapa e também pelas palavras mais procuradas. 
-					<a href="%6$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
-					$home_url . 'o-projeto',
-					$home_url . 'desenvolvedores',
-					$home_url . 'dados-abertos',
-					$home_url . 'programa-cultura-viva',
-					$home_url . 'como-usar',
-					$home_url . 'participe'
+				printf( 'O Sistema de informações da  <a href="%1$s">RECID</a>  é um ambiente online com o objetivo de sistematizar as ações do Projeto E-DHESCA EDUCAÇÃO, CIDADANIA E DIREITOS HUMANOS: Conectando Redes e Saberes, apresentando informações relativas as atividades realizadas pelos educadores envolvidos, proporcionando um ambiente aberto e transparente.',
+					$home_url . 'o-projeto'
 				);
 				?>
 			</p>
@@ -162,7 +154,7 @@
 				<?php _e('Load data', 'pontosdecultura'); ?>
 			</div>
 			<div class="search-not-here">
-				<img class="icon-cultura" src="<?php echo get_template_directory_uri().'/images/icon-cultura.png'; ?>"/>
+				<img class="icon-cultura" src="<?php echo get_template_directory_uri().'/images/icon-recid.png'; ?>"/>
 				<?php printf( __( 'Não encontrou seu ponto? <a href="%s">Entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato' ); ?>
 			</div>
 		</div>

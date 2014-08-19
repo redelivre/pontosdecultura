@@ -8,11 +8,12 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<h1 class="entry-title"><?php the_title(); ?></h1>
-
+		<!-- <h1 class="entry-title"><?php the_title(); ?></h1> -->
+		<h1 class="entry-title"><?php echo get_post_meta( $post->ID, 'Tema', true ); ?></h1>
+		
 		<div class="entry-meta">
-			<?php pontosdecultura_the_terms( 'acao' ) ; ?>|
-			<?php pontosdecultura_the_terms( 'eixo' ) ; ?>|
+			<?php pontosdecultura_the_terms( 'acao' ) ; ?>/
+			<?php pontosdecultura_the_terms( 'eixo' ) ; ?>/
 			<?php pontosdecultura_the_terms( 'sujeito' ); ?>
 			</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
@@ -22,15 +23,13 @@
 			<h2>Informações</h2>
 			<ul>
 				<li>
-					<strong>Cidade / UF:</strong>
+					<strong>UF / Cidade:</strong>
 					<?php pontosdecultura_the_terms( 'territorio' ); ?>
 				</li>
-				<!-- 
 				<li>
 					<strong>Código:</strong>
-					<?php // echo get_post_meta( $post->ID, 'Código', true ); ?>
+					<?php echo get_post_meta( $post->ID, 'Código', true ); ?>
 				</li>
-				-->
 				<li>
 					<strong>Data da atividade:</strong>
 					<?php echo get_post_meta( $post->ID, 'Data da atividade', true ); ?>
@@ -43,10 +42,12 @@
 					<strong>Educador responsável:</strong>
 					<?php echo get_post_meta( $post->ID, 'Educador responsável', true ); ?>
 				</li>
+				<!-- 
 				<li>
 					<strong>Tema:</strong>
-					<?php echo get_post_meta( $post->ID, 'Tema', true ); ?>
+					<?php //echo get_post_meta( $post->ID, 'Tema', true ); ?>
 				</li>
+				 -->
 				<li>
 					<strong>Direito violado/abordado:</strong>
 					<?php echo get_post_meta( $post->ID, 'Direito violado/abordado', true ); ?>
