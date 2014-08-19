@@ -130,6 +130,7 @@ class PontosFilters
 		<div class="filter-panel">
 				<?php $logo_uri = get_template_directory_uri() . '/images/logo-recid-bco.png'; ?>
 				<img src="<?php echo $logo_uri; ?>" alt="Logo" />
+				<br /><br />
 				<h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 		        <?php
 		        foreach ($taxs as $taxonomy => $terms)
