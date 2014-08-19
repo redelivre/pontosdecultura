@@ -8,8 +8,8 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<!-- <h1 class="entry-title"><?php the_title(); ?></h1> -->
-		<h1 class="entry-title"><?php echo get_post_meta( $post->ID, 'Tema', true ); ?></h1>
+		<h1 class="entry-title"><?php the_title(); ?></h1> 
+		<!-- <h1 class="entry-title"><?php echo get_post_meta( $post->ID, 'Tema', true ); ?></h1>-->
 		
 		<div class="entry-meta">
 			<?php pontosdecultura_the_terms( 'acao' ) ; ?>/
