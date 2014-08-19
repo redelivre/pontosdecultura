@@ -21,7 +21,7 @@ Recid is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, 
    Colors
    ==========================================================================
    	Light Purple	#805783
-   	Purple			#501651
+   	Purple			#000000
    	Light Blue		#376dcd
    	Medium Blue		#23498c
 	Dark Blue		#2f2d44
@@ -148,7 +148,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	background: #501651;
+	background: #000000;
 }
 
 button:focus,
@@ -197,19 +197,19 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-   color: #501651;
+   color: #000000;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #501651;  
+   color: #000000;  
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #501651;  
+   color: #000000;  
 }
 
 :-ms-input-placeholder {  
-   color: #501651;  
+   color: #000000;  
 }
 
 select,
@@ -417,7 +417,7 @@ button {
    ========================================================================== */
 
 .site-header {
-	background: #68bd44;
+	background: #ffffff;
 	text-align: center;
 }
 
@@ -441,12 +441,12 @@ button {
 /* Intro */
 .search-intro {
 	background: #f9ad19;
-	color: #501651;
+	color: #000000;
 	padding: 3em 0;
 }
 
 .search-intro a {
-	color: #501651;
+	color: #000000;
 }
 
 .search-intro a:hover {
@@ -473,7 +473,7 @@ button {
 }
 
 .search-intro .search-submit {
-	background: #501651;
+	background: #000000;
 }
 
 .search-intro .search-submit:hover {
@@ -1075,7 +1075,7 @@ button {
 }
 
 #post_overlay #pontos_close_post_overlay:hover {
-	background-color: #501651;
+	background-color: #000000;
 }
 
 /* 
@@ -1191,7 +1191,7 @@ button {
    ========================================================================== */
 
 .comment-reply-title {
-	color: #501651;	
+	color: #000000;	
 }
 
 .form-allowed-tags {
