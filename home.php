@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header();  ?>
 	<div id="post_overlay">
 	        <a id="pontos_close_post_overlay" title="Fechar"><?php mapasdevista_image("close.png", array("alt" => "Fechar")); ?></a>
 	        <div id="post_overlay_content" class="post_overlay_content" >
