@@ -83,7 +83,19 @@
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
 				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do ofício', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
-				<select name="adv-search-tipo" class="adv-search-tipo">
+				<select name="adv-search-sujeito" class="adv-search-sujeito">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Sujeito de direito', 'pontosdecultura' ); ?></option>
+					<?php
+						$terms = get_terms('sujeito');
+						foreach ($terms as $term)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						} 
+					?>
+				</select>
+				<select name="adv-search-acao" class="adv-search-acao">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Ação em DH', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('acao');
@@ -95,7 +107,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-publicoalvo" class="adv-search-publicoalvo">
+				<select name="adv-search-eixo" class="adv-search-eixo">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Eixo', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('eixo', array('orderby' => 'name'));

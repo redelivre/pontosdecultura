@@ -106,8 +106,9 @@ function pontosdecultura_update_posts_mais_buscadas(str)
 var search_result_left = "";
 
 var adv_search_title = "";
-var adv_search_tipo = "";
-var adv_search_publicoalvo = "";
+var adv_search_sujeito = "";
+var adv_search_acao = "";
+var adv_search_eixo = "";
 var adv_search_estado = "";
 var adv_search_estado_select = "";
 var adv_search_cidade = "";
@@ -158,8 +159,9 @@ jQuery(document).ready(function()
 		map_show_result('adv', function (){
 			
 			var title = jQuery(".adv-search-title").val();
-			var tipo = jQuery(".adv-search-tipo option:selected").val();
-			var publicoalvo = jQuery(".adv-search-publicoalvo option:selected").val();
+			var sujeito = jQuery(".adv-search-sujeito option:selected").val();
+			var acao = jQuery(".adv-search-acao option:selected").val();
+			var eixo = jQuery(".adv-search-eixo option:selected").val();
 			var estado = jQuery(".adv-search-estado option:selected").val();
 			var cidade = jQuery(".adv-search-cidade option:selected").val();
 			var do_filter = false;
@@ -177,30 +179,43 @@ jQuery(document).ready(function()
 					mapstraction.addFilter('title', 'like', title);
 				}
 			}
-			if(tipo != adv_search_tipo)
+			if(sujeito != adv_search_sujeito)
 			{
 				do_filter = true;
-				if(adv_search_tipo != "")
+				if(adv_search_sujeito != "")
 				{
-					mapstraction.removeFilter('tipo', 'in', adv_search_tipo);
+					mapstraction.removeFilter('sujeito', 'in', adv_search_sujeito);
 				}
-				adv_search_tipo = tipo;
-				if(tipo != "")
+				adv_search_sujeito = sujeito;
+				if(sujeito != "")
 				{
-					mapstraction.addFilter('tipo', 'in', tipo);
+					mapstraction.addFilter('sujeito', 'in', sujeito);
 				}
 			}
-			if(publicoalvo != adv_search_publicoalvo)
+			if(acao != adv_search_acao)
 			{
 				do_filter = true;
-				if(adv_search_publicoalvo != "")
+				if(adv_search_acao != "")
 				{
-					mapstraction.removeFilter('publicoalvo', 'in', adv_search_publicoalvo);
+					mapstraction.removeFilter('acao', 'in', adv_search_acao);
 				}
-				adv_search_publicoalvo = publicoalvo;
-				if(publicoalvo != "")
+				adv_search_acao = acao;
+				if(acao != "")
 				{
-					mapstraction.addFilter('publicoalvo', 'in', publicoalvo);
+					mapstraction.addFilter('acao', 'in', acao);
+				}
+			}
+			if(eixo != adv_search_eixo)
+			{
+				do_filter = true;
+				if(adv_search_eixo != "")
+				{
+					mapstraction.removeFilter('eixo', 'in', adv_search_eixo);
+				}
+				adv_search_eixo = eixo;
+				if(eixo != "")
+				{
+					mapstraction.addFilter('eixo', 'in', eixo);
 				}
 			}
 			if(cidade != adv_search_cidade)
