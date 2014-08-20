@@ -21,8 +21,8 @@
 						<?php //dynamic_sidebar( 'sidebar-footer' ); ?>
 						<div class="site-supporters">
 							<?php $images_url = get_template_directory_uri() . '/images/'; ?>
-							<a href="http://camp.org.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-camp.png'; ?>" /></a>
 							<a href="http://www.recid.org.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-recid-2.png'; ?>" /></a>
+							<a href="http://camp.org.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-camp.png'; ?>" /></a>
 							<a href="http://www.sdh.gov.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-sdh.png'; ?>" /></a>
 							<a href="http://www.secretariageral.gov.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-sgpg.png'; ?>" /></a>
 							<a href="http://www.brasil.gov.br" class="supporter-link" target="_blank"><img src="<?php echo $images_url . 'logo-governo-federal.png'; ?>" /></a>
