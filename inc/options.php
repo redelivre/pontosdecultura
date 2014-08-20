@@ -404,7 +404,7 @@ class PontosSettingsPage
 	    		$post = array(
 	    				'post_author'    => 1, //The user ID number of the author.
 	    				'post_content'   => $row[11],
-	    				'post_title'     => $row[1], //The title of your post.
+	    				'post_title'     => $row[6], //The title of your post.
 	    				'post_type'      => 'mapa',
 	    				'post_status'	 => 'publish'
 	    		);
