@@ -125,7 +125,7 @@ function pontosdecultura_custom_login_logo() {
 	echo '
 	<style type="text/css">
 		.login h1 a {
-			background: url("' . get_template_directory_uri() . '/images/logo-cultura-viva.png") top center no-repeat;
+			background: url("' . get_template_directory_uri() . '/images/logo-recid.png") top center no-repeat;
 			background-size: contain;
 			margin: 0 auto;
 			height: 150px;
