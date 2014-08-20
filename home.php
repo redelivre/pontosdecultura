@@ -165,7 +165,7 @@
 			</div>
 			<div class="search-not-here">
 				<img class="icon-cultura" src="<?php echo get_template_directory_uri().'/images/icon-recid.png'; ?>"/>
-				<?php printf( __( 'Não encontrou seu ponto? <a href="%s">Entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato' ); ?>
+				<?php printf( __( 'Não encontrou sua atividade? <a href="%s">Entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato' ); ?>
 			</div>
 		</div>
 	</section>
