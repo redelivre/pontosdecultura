@@ -330,28 +330,30 @@ class PontosSettingsPage
 			
 			foreach ($pinsTodos as $pin)
 			{
+				PontosSettingsPage::log($pin->post_name);
 				switch ($pin->post_name)
 				{
-					case 'ambiental':
-						$pins['Ambiental'] = $pin->ID;
+					case 'ambiental-png':
+						$pins['ambiental'] = $pin->ID;
 					break;
-					case 'civil':
-						$pins['Civil'] = $pin->ID;
+					case 'civil-png':
+						$pins['civil'] = $pin->ID;
 					break;
-					case 'cultural':
-						$pins['Cultural'] = $pin->ID;
+					case 'cultura-png':
+						$pins['cultural'] = $pin->ID;
 					break;
-					case 'economico':
-						$pins['Econômico'] = $pin->ID;
+					case 'economico-png':
+						$pins['econômico'] = $pin->ID;
 					break;
-					case 'politico':
-						$pins['Político'] = $pin->ID;
+					case 'politico-png':
+						$pins['político'] = $pin->ID;
 					break;
-					case 'social':
-							$pins['Social'] = $pin->ID;
+					case 'social-png':
+							$pins['social'] = $pin->ID;
 					break;						
 				}
 			}
+			PontosSettingsPage::log(print_r($pins,true));
 			
 	    	ini_set("memory_limit", "2048M");
 	    	set_time_limit(0);
@@ -452,7 +454,7 @@ class PontosSettingsPage
 	    		
     			if(!$debug && is_int($post_id) )
     			{
-    				update_post_meta($post_id, '_mpv_pin', $pins[$row[0]]);
+    				update_post_meta($post_id, '_mpv_pin', $pins[strtolower($row[8])]);
     					
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
@@ -460,7 +462,7 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				PontosSettingsPage::log("Pin: {$pins[$row[0]]}");
+    				PontosSettingsPage::log("Pin: {$pins[strtolower($row[8])]}");
     				PontosSettingsPage::log('<br/>');
     			}
     			
