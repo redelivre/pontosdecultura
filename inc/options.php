@@ -314,8 +314,8 @@ class PontosSettingsPage
     	{
     		include_once dirname(__FILE__).'/Tratar.php';
     		
-    		$debug = false;
-    		$getLocation = true;
+    		$debug = true;
+    		$getLocation = false;
     		$begin = 0;
     		$ids = array();
     		
@@ -343,10 +343,10 @@ class PontosSettingsPage
 						$pins['cultural'] = $pin->ID;
 					break;
 					case 'economico-png':
-						$pins['econômico'] = $pin->ID;
+						$pins['economico'] = $pin->ID;
 					break;
 					case 'politico-png':
-						$pins['político'] = $pin->ID;
+						$pins['politico'] = $pin->ID;
 					break;
 					case 'social-png':
 							$pins['social'] = $pin->ID;
@@ -441,7 +441,7 @@ class PontosSettingsPage
 	    		{
 	    			if($location !== false)
 	    			{ //setar coluna id 
-	    				PontosSettingsPage::log("{$row[1]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
+	    				PontosSettingsPage::log("{$row[6]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
 	    				PontosSettingsPage::log('<br/>');
 	    				update_post_meta($post_id, '_mpv_location', $location);
 	    			}
@@ -454,7 +454,7 @@ class PontosSettingsPage
 	    		
     			if(!$debug && is_int($post_id) )
     			{
-    				update_post_meta($post_id, '_mpv_pin', $pins[strtolower($row[8])]);
+    				update_post_meta($post_id, '_mpv_pin', $pins[Tratar::FormatText($row[8])]);
     					
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
@@ -462,7 +462,7 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				PontosSettingsPage::log("Pin: {$pins[strtolower($row[8])]}");
+    				PontosSettingsPage::log("Pin: {$pins[Tratar::FormatText($row[8])]}");
     				PontosSettingsPage::log('<br/>');
     			}
     			
