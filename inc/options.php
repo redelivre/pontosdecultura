@@ -314,8 +314,8 @@ class PontosSettingsPage
     	{
     		include_once dirname(__FILE__).'/Tratar.php';
     		
-    		$debug = true;
-    		$getLocation = false;
+    		$debug = false;
+    		$getLocation = true;
     		$begin = 0;
     		$ids = array();
     		
@@ -432,8 +432,8 @@ class PontosSettingsPage
 	    		{
 	    			PontosSettingsPage::log($post, true);
 	    			
-	    			if($location !== false) PontosSettingsPage::log("{$row[1]};{$location['lat']};{$location['lon']}");
-	    			else PontosSettingsPage::log("$row[1] -> ponto não encontrado");
+	    			if($location !== false) PontosSettingsPage::log("{$row[6]};{$location['lat']};{$location['lon']}");
+	    			else PontosSettingsPage::log("$row[6] -> ponto não encontrado");
 	    			
 	    			PontosSettingsPage::log('<br/>');
 	    		}
@@ -447,7 +447,7 @@ class PontosSettingsPage
 	    			}
 	    			else 
 	    			{
-	    				PontosSettingsPage::log("$row[1] -> ponto não encontrado");
+	    				PontosSettingsPage::log("$row[6] -> ponto não encontrado");
 	    				PontosSettingsPage::log('<br/>');
 	    			}
 	    		}
