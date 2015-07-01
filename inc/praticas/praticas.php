@@ -8,38 +8,97 @@ class Praticas
 			'url' => array
 			(
 					'slug' => 'pratica-url',
-					'title' => __('URL', 'pontosdecultura'),
-					'tip' => __('web site address', 'pontosdecultura'),
-					'required' => true
+					'title' => __('Site', 'pontosdecultura'),
+					'tip' => __('Endereço da página na Web', 'pontosdecultura'),
 			),
-			'for' => array
+			'email' => array
 			(
-					'slug' => 'pratica-for',
-					'title' => __('for serving?', 'pontosdecultura'),
-					'tip' => __('for serving', 'pontosdecultura'),
+					'slug' => 'pratica-email',
+					'title' => __('Email', 'pontosdecultura'),
+					'tip' => __('Endereço de E-mail', 'pontosdecultura'),
 					'required' => true
 			),
-			'coverage' => array(
-					'slug' => 'pratica-coverage',
-					'title' => __ ( 'to whom it is addressed', 'pontosdecultura' ),
-					'tip' => __ ( 'coverage', 'pontosdecultura' ) 
+			'telefone' => array(
+					'slug' => 'pratica-telefone',
+					'title' => __ ( 'Telefone', 'pontosdecultura' ),
+					'tip' => __ ( 'Número do Telefone', 'pontosdecultura' ) 
 			),
-			'sharing' => array (
-					'slug' => 'pratica-sharing',
-					'title' => __ ( 'for sharing', 'pontosdecultura' ),
-					'tip' => __ ( 'sharing', 'pontosdecultura' ) 
+			'cep' => array (
+					'slug' => 'pratica-cep',
+					'title' => __ ( 'Cep', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ) 
 			),
-			'country' => array (
-					'slug' => 'pratica-country',
-					'title' => __ ( 'available to countries', 'pontosdecultura' ),
-					'tip' => _n( 'country', 'country', 1, 'pontosdecultura' )
+			'publicacoes' => array (
+					'slug' => 'pratica-publicacoes',
+					'title' => __ ( 'Links para publicações', 'pontosdecultura' ),
+					'tip' => __( 'separe-os por vírgulas', 'pontosdecultura' )
 			),
-			'contact' => array (
-					'slug' => 'pratica-contact',
-					'title' => __ ( 'Contact', 'pontosdecultura' ),
-					'tip' => __ ( 'e-mail', 'pontosdecultura' ),
-					'required' => true 
-			) 
+			'videos' => array (
+					'slug' => 'pratica-videos',
+					'title' => __ ( 'Vídeos', 'pontosdecultura' ),
+					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
+			),
+			'facebook' => array (
+					'slug' => 'pratica-facebook',
+					'title' => __ ( 'Facebook', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
+			'outras-redes' => array (
+					'slug' => 'outras-redes',
+					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
+					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
+			),
+			'suporte' => array (
+					'slug' => 'pratica-suporte',
+					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações', 'pontosdecultura' ),
+					'tip' => __ ( 'sim ou não', 'pontosdecultura' ),
+			),
+			'cpf' => array (
+					'slug' => 'pratica-cpf',
+					'title' => __ ( 'CPF', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'required' => true
+			),
+			'nome' => array (
+					'slug' => 'pratica-nome',
+					'title' => __ ( 'Nome Completo', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'required' => true
+			),
+			'nascimento' => array (
+					'slug' => 'pratica-nascimento',
+					'title' => __ ( 'Nascimento', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'required' => true
+			),
+			'telefone-resp' => array (
+					'slug' => 'pratica-telefone-resp',
+					'title' => __ ( 'Telefone', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'required' => true
+			),
+			'email-resp' => array (
+					'slug' => 'pratica-email-resp',
+					'title' => __ ( 'Email', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'required' => true
+			),
+			'facebook-resp' => array (
+					'slug' => 'pratica-facebook-resp',
+					'title' => __ ( 'Facebook', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
+			'redes-resp' => array (
+					'slug' => 'pratica-redes-resp',
+					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
+			'email-resp' => array (
+					'slug' => 'pratica-email-resp',
+					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
+					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+			)
+			
 		);
 		
 		add_action('init', array($this, 'init'));
@@ -163,17 +222,17 @@ class Praticas
 		$post = array(
 			'post_title' => array(
 				'slug' => 'post_title',
-				'title' => __('Pratica name', 'pontosdecultura'),
+				'title' => __('Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura'),
 				'tip' => '',
 				'required' => true,
 				'buildin' => true
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
-				'title' => __('Description', 'pontosdecultura'),
-				'tip' => __('Maximum 300 characters', 'pontosdecultura'),
+				'title' => __('Descreva a pesquisa do seu núcleo', 'pontosdecultura'),
+				'tip' => __('Maximum 2000 characters', 'pontosdecultura'),
 				'required' => true,
-				'type' => 'wp_editor',
+				//'type' => 'wp_editor',
 				'buildin' => true
 			),
 		);
@@ -225,11 +284,28 @@ class Praticas
 		$stored_meta = get_post_meta( $post->ID, 'thumbnail2', true)
 		?>
 		<p>
-		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'File Upload', 'pontosdecultura' )?></label>
+		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Segunda Imagem', 'pontosdecultura' )?></label>
 		    <input type="text" name="thumbnail2" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
 		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
 		</p>
 		<?php
+		$stored_meta = get_post_meta( $post->ID, 'thumbnail3', true)
+		?>
+		<p>
+		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Terceira Imagem', 'pontosdecultura' )?></label>
+		    <input type="text" name="thumbnail3" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
+		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
+		</p>
+		<?php
+		$stored_meta = get_post_meta( $post->ID, 'thumbnail4', true)
+		?>
+		<p>
+		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Foto do Responsável', 'pontosdecultura' )?></label>
+		    <input type="text" name="thumbnail4" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
+		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
+		</p>
+		<?php
+		
 	}
 	
 	const NEW_PRATICA_PAGE = 'new-pratica';
@@ -241,8 +317,8 @@ class Praticas
 	
 	function rewrite_rules()
 	{
-		add_rewrite_rule(self::NEW_PRATICA_PAGE.'(.*)', 'index.php?'.self::NEW_PRATICA_PAGE.'=true$matches[1]', 'top');
-		flush_rewrite_rules();
+		add_rewrite_rule("^".self::NEW_PRATICA_PAGE.'(.*)', 'index.php?'.self::NEW_PRATICA_PAGE.'=true$matches[1]', 'top');
+		flush_rewrite_rules(false);
 	}
 	
 	function form()
@@ -441,6 +517,14 @@ class Praticas
 		if(array_key_exists('thumbnail2', $_POST))
 		{
 			update_post_meta($post_id, 'thumbnail2', $_POST['thumbnail2']); //TODO more sec
+		}
+		if(array_key_exists('thumbnail3', $_POST))
+		{
+			update_post_meta($post_id, 'thumbnail3', $_POST['thumbnail3']); //TODO more sec
+		}
+		if(array_key_exists('thumbnail4', $_POST))
+		{
+			update_post_meta($post_id, 'thumbnail4', $_POST['thumbnail4']); //TODO more sec
 		}
 		
 	}

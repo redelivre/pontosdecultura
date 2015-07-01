@@ -547,5 +547,7 @@ include_once dirname(__FILE__).'/lib/estadoscidades/taxs.php';
 include_once dirname(__FILE__).'/inc/options.php';
 /** Taxs do Pontos **/
 include_once dirname(__FILE__).'/inc/taxs.php';
+/** Post type Pratica **/
+include_once dirname(__FILE__).'/inc/praticas/praticas.php';
 
 ?>

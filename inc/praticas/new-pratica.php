@@ -20,27 +20,27 @@ $language_code = array_key_exists('icl_post_language', $_POST) ? $_POST['icl_pos
 
 if ( ! is_user_logged_in() )
 {?>
-<div class="home-entry" >
-    <div class="row">
-        <div class="col-lg-12 sections-description">
-            <h2 class="text-center">Minka.me es una plataforma para promover y difundir la Economía Colaborativa</h2>
-        </div>
-    </div>
+<div class="home-entry">
+	<div class="row">
+		<div class="col-lg-12 sections-description">
+			<h2 class="text-center"><?php bloginfo('description'); ?></h2>
+		</div>
+	</div>
 </div>
 <div class="home-entry" style="background: #FFF">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="text-center"><?php echo __('You do not have access to this page, please make login or change your login account', 'pontosdecultura'); ?></h2>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="text-center"><?php echo __('You do not have access to this page, please make login or change your login account', 'pontosdecultura'); ?></h2>
+		</div>
+	</div>
 
-    <div class="row">
-        <div class="col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
-		<div class="text-center block-center">
+	<div class="row">
+		<div class="col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
+			<div class="text-center block-center">
 			 <?php wp_login_form( ); ?> 
 		</div>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 <?php
 }
@@ -52,6 +52,8 @@ else
 	
 	$has_thumbnail = false;
 	$has_thumbnail2 = false;
+	$has_thumbnail3 = false;
+	$has_thumbnail4 = false;
 	
 	$title = $post_type_object->labels->add_new_item;
 	
@@ -154,6 +156,8 @@ else
 		
 		$has_thumbnail = true;
 		$has_thumbnail2 = true;
+		$has_thumbnail3 = true;
+		$has_thumbnail4 = true;
 		
 		if ($_FILES) {
 			foreach ($_FILES as $file => $array) {
@@ -162,15 +166,23 @@ else
 					switch($file)
 					{
 						case 'thumbnail':
-							$message[] = __('error on set post thumbnail image', 'pontosdecultura');
+							$message[] = __('Erro ao registrar imagem de destaque', 'pontosdecultura');
 							$has_thumbnail = false;
 							break;
 						case 'thumbnail2':
-							$message[] = __('error on set post header image', 'pontosdecultura');
+							$message[] = __('Erro ao registrar segunda imagem', 'pontosdecultura');
 							$has_thumbnail2 = false;
 							break;
+						case 'thumbnail3':
+							$message[] = __('Erro ao registrar terceira imagem', 'pontosdecultura');
+							$has_thumbnail3 = false;
+							break;
+						case 'thumbnail4':
+							$message[] = __('Erro ao registrar foto do responsável', 'pontosdecultura');
+							$has_thumbnail4 = false;
+							break;
 						default:
-							$message[] = __('error on set post images', 'pontosdecultura');
+							$message[] = __('Erro ao registrar imagens', 'pontosdecultura');
 							break;
 					}
 						
@@ -190,7 +202,7 @@ else
 			{
 				if( ! update_post_meta($post_ID,'_thumbnail_id',$attach_id['thumbnail']))
 				{
-					$message[] = __('error on set post thumbnail', 'pontosdecultura');
+					$message[] = __('Erro ao gravar imagem de destaque', 'pontosdecultura');
 					$notice = true;
 				}
 			}
@@ -198,7 +210,23 @@ else
 			{
 				if( ! update_post_meta($post_ID,'thumbnail2', $attach['thumbnail2'] ) )
 				{
-					$message[] = __('error on set post header image', 'pontosdecultura');
+					$message[] = __('Erro ao gravar segunda imagem', 'pontosdecultura');
+					$notice = true;
+				}
+			}
+			elseif($key == 'thumbnail3' && $has_thumbnail3)
+			{
+				if( ! update_post_meta($post_ID,'thumbnail3', $attach['thumbnail3'] ) )
+				{
+					$message[] = __('Erro ao gravar terceira imagem', 'pontosdecultura');
+					$notice = true;
+				}
+			}
+			elseif($key == 'thumbnail4' && $has_thumbnail4)
+			{
+				if( ! update_post_meta($post_ID,'thumbnail4', $attach['thumbnail4'] ) )
+				{
+					$message[] = __('Erro ao gravar foto do responsável', 'pontosdecultura');
 					$notice = true;
 				}
 			}
@@ -218,7 +246,7 @@ else
 		
 		if($notice == false && count($message) == 0)
 		{?>
-			<div class="new-pratica-sucess"><?php _e('A new pratica was successfully created and waiting approval, thanks'); ?>
+<div class="new-pratica-sucess"><?php _e('A new pratica was successfully created and waiting approval, thanks'); ?>
 			</div><?php
 			return ;
 		}
@@ -231,47 +259,63 @@ else
 
 
 	?>
-	
-<div class="home-entry" >
-    <div class="row">
-        <div class="col-lg-12 sections-description">
-            <h2 class="text-center">Minka.me es una plataforma para promover y difundir la Economía Colaborativa</h2>
-        </div>
-    </div>
+
+<div class="home-entry">
+	<div class="row">
+		<div class="col-lg-12 sections-description">
+			<h2 class="text-center"><?php bloginfo('description'); ?></h2>
+		</div>
+	</div>
 </div>
 <div class="home-entry" style="background: #FFF">
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 	<?php //screen_icon(); ?>
-	<h2 class= "new-pratica"><?php
+	<h2 class="new-pratica"><?php
 	echo esc_html( $title );
 	if ( isset( $post_new_file ) && current_user_can( $post_type_object->cap->create_posts ) )
 		echo ' <a href="' . esc_url( $post_new_file ) . '" class="add-new-h2">' . esc_html( $post_type_object->labels->add_new ) . '</a>';
 	?></h2>
 	<?php if ( $notice ) : ?>
-	<div id="notice" class="error"><p><?php echo implode( '<br/>', $message ); ?></p></div>
+	<div id="notice" class="error">
+					<p><?php echo implode( '<br/>', $message ); ?></p>
+				</div>
 	<?php endif; ?>
 	<?php if ( !$notice && count($message) > 0 ) : ?>
-	<div id="message" class="updated"><p><?php echo implode( '<br/>', $message ); ?></p></div>
+	<div id="message" class="updated">
+					<p><?php echo implode( '<br/>', $message ); ?></p>
+				</div>
 	<?php endif; ?>
-	<form name="post" action="" method="post" id="post"<?php do_action('post_edit_form_tag', $post); ?> enctype="multipart/form-data" >
+	<form name="post" action="" method="post" id="post"
+					<?php do_action('post_edit_form_tag', $post); ?>
+					enctype="multipart/form-data">
 	<?php wp_nonce_field($nonce_action); ?>
-	<input type="hidden" id="user-id" name="user_ID" value="<?php echo (int) $user_ID ?>" />
-	<input type="hidden" id="hiddenaction" name="action" value="<?php echo esc_attr( $form_action ) ?>" />
-	<input type="hidden" id="originalaction" name="originalaction" value="<?php echo esc_attr( $form_action ) ?>" />
-	<input type="hidden" id="post_author" name="post_author" value="<?php echo esc_attr( $post->post_author ); ?>" />
-	<input type="hidden" id="post_type" name="post_type" value="<?php echo esc_attr( $post_type ) ?>" />
-	<input type="hidden" id="original_post_status" name="original_post_status" value="<?php echo esc_attr( $post->post_status) ?>" />
-	<input type="hidden" id="referredby" name="referredby" value="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" />
+	<input type="hidden" id="user-id" name="user_ID"
+						value="<?php echo (int) $user_ID ?>" /> <input type="hidden"
+						id="hiddenaction" name="action"
+						value="<?php echo esc_attr( $form_action ) ?>" /> <input
+						type="hidden" id="originalaction" name="originalaction"
+						value="<?php echo esc_attr( $form_action ) ?>" /> <input
+						type="hidden" id="post_author" name="post_author"
+						value="<?php echo esc_attr( $post->post_author ); ?>" /> <input
+						type="hidden" id="post_type" name="post_type"
+						value="<?php echo esc_attr( $post_type ) ?>" /> <input
+						type="hidden" id="original_post_status"
+						name="original_post_status"
+						value="<?php echo esc_attr( $post->post_status) ?>" /> <input
+						type="hidden" id="referredby" name="referredby"
+						value="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" />
 	<?php if ( ! empty( $active_post_lock ) )
 	{?>
-		<input type="hidden" id="active_post_lock" value="<?php echo esc_attr( implode( ':', $active_post_lock ) ); ?>" /><?php
+		<input type="hidden" id="active_post_lock"
+						value="<?php echo esc_attr( implode( ':', $active_post_lock ) ); ?>" /><?php
 	}
 	if(function_exists('icl_get_current_language'))
 	{?>
-		<input type="hidden" id="icl_post_language" name="icl_post_language" value="<?php echo stripslashes(icl_get_current_language()); ?>" /><?php
+		<input type="hidden" id="icl_post_language" name="icl_post_language"
+						value="<?php echo stripslashes(icl_get_current_language()); ?>" /><?php
 	}
 	if ( 'draft' != get_post_status( $post ) )
 		wp_original_referer_field(true, 'previous');
@@ -292,33 +336,35 @@ else
 			default:	
 				?>
 				<div class="pratica-item">
-					<label for="<?php echo $id ?>" class="pratica-item-label">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
 									<span class="pratica-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-						<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
 						</div>
-					</label>
-					<input type="text" id="<?php echo $id ?>" class="pratica-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>" value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>" name="<?php echo $id ?>">
-					<div class="pratica-item-error-message"></div>
-					<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
-				</div>
+						</label> <input type="text" id="<?php echo $id ?>"
+							class="pratica-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
+							name="<?php echo $id ?>">
+						<div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
 				<?php
 			break;
 			case 'wp_editor':
 				?>
 				<div class="pratica-item">
-					<label for="<?php echo $id ?>" class="pratica-item-label">
-						<div class="pratica-item-title"><?php echo $label; ?>
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label; ?>
 							<span class="pratica-item-required-asterisk">*</span>
-						</div>
-						<div class="pratica-item-tip-text">
+							</div>
+							<div class="pratica-item-tip-text">
 							<?php echo $tip; ?>
 						</div>
-					</label>
+						</label>
 					<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
 				       'tinymce' => array( 
 				            'content_css' => get_stylesheet_directory_uri() . '/inc/praticas/css/editor-styles.css' 
@@ -326,10 +372,10 @@ else
 						)
 					); ?>
 					<div class="pratica-item-error-message"></div>
-					<div class="pratica-item-required-message">
+						<div class="pratica-item-required-message">
 						<?php echo $required_message; ?>
 					</div>
-				</div>
+					</div>
 				<?php
 			break;
 			
@@ -337,47 +383,83 @@ else
 	}//TODO Make image a field
 	?>
 	<div class="images">
-		<div class="images-thumbnail">  
-			<label for="thumbnail" class="pratica-item-label">
-				<div class="pratica-item-title"><?php _e('Highlight Image', 'pontosdecultura'); ?>
+						<div class="images-thumbnail">
+							<label for="thumbnail" class="pratica-item-label">
+								<div class="pratica-item-title"><?php _e('Highlight Image', 'pontosdecultura'); ?>
 				</div>
-				<div class="pratica-item-tip-text">
+								<div class="pratica-item-tip-text">
 					<?php _e('Image showed on listing, like on home or catalog!', 'pontosdecultura'); ?>
 				</div>
-			</label>
-			<input type="file" name="thumbnail" id="thumbnail" value="<?php ?>" onchange="displayPreview(this.files, 'thumbnail');" ><?php
+							</label> <input type="file" name="thumbnail" id="thumbnail"
+								value="<?php ?>"
+								onchange="displayPreview(this.files, 'thumbnail');"><?php
 			if($has_thumbnail && array_key_exists('thumbnail', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail']; ?>"><?php
 			}?>
 		</div>
-		<div class="images-thumbnail2">
-			<label for="thumbnail2" class="pratica-item-label">
-				<div class="pratica-item-title"><?php _e('Header Image', 'pontosdecultura'); ?>
+						<div class="images-thumbnail2">
+							<label for="thumbnail2" class="pratica-item-label">
+								<div class="pratica-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
 				</div>
-				<div class="pratica-item-tip-text">
-					<?php _e('Image showed on Header!', 'pontosdecultura'); ?>
+								<div class="pratica-item-tip-text">
+					<?php _e('Outra imagem', 'pontosdecultura'); ?>
 				</div>
-			</label>
-			<input type="file" name="thumbnail2" id="thumbnail2" value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>" onchange="displayPreview(this.files, 'thumbnail2');" ><?php
+							</label> <input type="file" name="thumbnail2" id="thumbnail2"
+								value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>"
+								onchange="displayPreview(this.files, 'thumbnail2');"><?php
 			if($has_thumbnail2 && array_key_exists('thumbnail2', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail2']; ?>"><?php
 			}?>
 		</div>
-	</div>
-	<div class="category-group">
+		<div class="images-thumbnail3">
+							<label for="thumbnail3" class="pratica-item-label">
+								<div class="pratica-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
+				</div>
+								<div class="pratica-item-tip-text">
+					<?php _e('Outra imagem', 'pontosdecultura'); ?>
+				</div>
+							</label> <input type="file" name="thumbnail3" id="thumbnail3"
+								value="<?php echo array_key_exists('thumbnail3', $_REQUEST) ? esc_url($_REQUEST['thumbnail3']) : ''; ?>"
+								onchange="displayPreview(this.files, 'thumbnail3');"><?php
+			if($has_thumbnail3 && array_key_exists('thumbnail3', $attach))
+			{?>
+				<img src="<?php echo $attach['thumbnail3']; ?>"><?php
+			}?>
+		</div>
+		<div class="images-thumbnail4">
+							<label for="thumbnail4" class="pratica-item-label">
+								<div class="pratica-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
+				</div>
+								<div class="pratica-item-tip-text">
+					<?php _e('Imagem do Responsável', 'pontosdecultura'); ?>
+				</div>
+							</label> <input type="file" name="thumbnail4" id="thumbnail4"
+								value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
+								onchange="displayPreview(this.files, 'thumbnail4');"><?php
+			if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
+			{?>
+				<img src="<?php echo $attach['thumbnail4']; ?>"><?php
+			}?>
+		</div>
+					</div>
+					<div class="category-group">
 	<?php 
 	Praticas::taxonomy_checklist();
 	?>
 	</div>
-	
-	<input id="original_publish" type="hidden" value="Publish" name="original_publish">
-	<input id="publish" class="button button-primary button-large" type="submit" accesskey="p" value="<?php _e('Publish Pratica', 'pontosdecultura'); ?>" name="publish">
-	</form>
+
+					<input id="original_publish" type="hidden" value="Publish"
+						name="original_publish"> <input id="publish"
+						class="button button-primary button-large" type="submit"
+						accesskey="p"
+						value="<?php _e('Publish Pratica', 'pontosdecultura'); ?>"
+						name="publish">
+				</form>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
 </div>
 <?php 
 }
