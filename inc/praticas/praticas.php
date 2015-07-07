@@ -97,7 +97,34 @@ class Praticas
 					'slug' => 'pratica-email-resp',
 					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
 					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+			),
+			'espaco-fisico' => array (
+					'slug' => 'pratica-espaco-fisico',
+					'title' => __ ( 'Espaço físico', 'pontosdecultura' ),
+					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+			),
+			'e-ponto' => array (
+					'slug' => 'pratica-e-ponto',
+					'title' => __ ( 'É Ponto de Cultura?', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
+			'vinculo' => array (
+					'slug' => 'pratica-vinculo',
+					'title' => __ ( 'Vínculo Acadêmico', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
+			'tem-fotos' => array (
+					'slug' => '.pratica-tem-fotos',
+					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
+					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+			),
+			'tem-links' => array (
+					'slug' => '.pratica-tem-links',
+					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
+					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
 			)
+			
+			//Espaço físico
 			
 		);
 		

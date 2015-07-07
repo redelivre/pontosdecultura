@@ -6,28 +6,28 @@ function register_pontos_taxonomies()
 
 	$labels = array
 	(
-			'name' => __('Tipo de Ação da Iniciativa','pontosdecultura'),
-			'singular_name' => __('Tipo de Ação da Iniciativa', 'pontosdecultura'),
-			'search_items' => __('Procurar por um tipo','pontosdecultura'),
-			'all_items' => __('Todos os tipos','pontosdecultura'),
+			'name' => __('Área(s) da Pesquisa Cênico-Performativa(s)','pontosdecultura'),
+			'singular_name' => __('Área da Pesquisa Cênico-Performativa', 'pontosdecultura'),
+			'search_items' => __('Procurar por uma área da Pesquisa cênico-performativa','pontosdecultura'),
+			'all_items' => __('Todos as áreas da Pesquisa Cênico-Performativas','pontosdecultura'),
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Tipo','pontosdecultura'),
-			'update_item' => __('Atualizar um Tipo','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Tipo','pontosdecultura'),
-			'add_new' => __('Adicionar Tipo', 'pontosdecultura'),
-			'new_item_name' => __('Novo Tipo','pontosdecultura'),
-			'view_item' => __('Visualizar Tipo','pontosdecultura'),
-			'not_found' =>  __('Nenhum tipo localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Tipo localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Tipos','pontosdecultura')
+			'edit_item' => __('Editar uma Área da Pesquisa Cênico-Performativa','pontosdecultura'),
+			'update_item' => __('Atualizar uma Área da Pesquisa Cênico-Performativa','pontosdecultura'),
+			'add_new_item' => __('Adicionar Nova Área da Pesquisa Cênico-Performativa','pontosdecultura'),
+			'add_new' => __('Adicionar Área da Pesquisa Cênico-Performativa', 'pontosdecultura'),
+			'new_item_name' => __('Nova Área da Pesquisa Cênico-Performativa','pontosdecultura'),
+			'view_item' => __('Visualizar Área da Pesquisa Cênico-Performativa','pontosdecultura'),
+			'not_found' =>  __('Nenhuma Área da Pesquisa Cênico-Performativa localizada','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhuma Área da Pesquisa Cênico-Performativa localizada na lixeira','pontosdecultura'),
+			'menu_name' => __('Cênico-Performativa','pontosdecultura')
 	);
 	
-	register_taxonomy( 'tipo',array (
-	'mapa'
+	register_taxonomy( 'cenico-performativa',array (
+	'pratica'
 			),
 			array( 'hierarchical' => true,
-			'label' => 'Tipo de Ação da Iniciativa',
+			'label' => 'Área(s) da Pesquisa Cênico-Performativa(s)',
 			'show_ui' => true,
 			'query_var' => true,
 			'show_admin_column' => true,
@@ -35,41 +35,46 @@ function register_pontos_taxonomies()
 			)
 	);
 	
-	if(!term_exists('Pontão de Bens', 'tipo'))
+	if(!term_exists('Circo', 'cenico-performativa'))
 	{
-		wp_insert_term("Pontão de Bens", 'tipo');
-		wp_insert_term("Pontão Direto", 'tipo');
-		wp_insert_term("Ponto de Cultura Indígena", 'tipo');
-		wp_insert_term("Ponto Direto", 'tipo');
-		wp_insert_term("Rede Estadual", 'tipo');
-		wp_insert_term("Rede Intermunicipal", 'tipo');
-		wp_insert_term("Rede Municipal", 'tipo');
+		wp_insert_term("Circo", 'cenico-performativa');
+		wp_insert_term("Contação de Histórias", 'cenico-performativa');
+		wp_insert_term("Dança", 'cenico-performativa');
+		wp_insert_term("Formas Animadas", 'cenico-performativa');
+		wp_insert_term("Intervenção Urbana", 'cenico-performativa');
+		wp_insert_term("Mímica", 'cenico-performativa');
+		wp_insert_term("Ópera", 'cenico-performativa');
+		wp_insert_term("Performance", 'cenico-performativa');
+		wp_insert_term("Teatro", 'cenico-performativa');
+		wp_insert_term("Teatro de Rua", 'cenico-performativa');
+		wp_insert_term("Teatro para Infância e Juventude", 'cenico-performativa');
+		
 	}
 	
 	$labels = array
 	(
-			'name' => __('Temático','pontosdecultura'),
-			'singular_name' => __('Temático', 'pontosdecultura'),
-			'search_items' => __('Procurar em um tematico','pontosdecultura'),
-			'all_items' => __('Todos os tematicos','pontosdecultura'),
+			'name' => __('Natureza','pontosdecultura'),
+			'singular_name' => __('Natureza', 'pontosdecultura'),
+			'search_items' => __('Procurar em Naturezas','pontosdecultura'),
+			'all_items' => __('Todas as Naturezas','pontosdecultura'),
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Editar Temática','pontosdecultura'),
-			'update_item' => __('Atualizar um Temático','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Temático','pontosdecultura'),
-			'add_new' => __('Adicionar Temático', 'pontosdecultura'),
-			'new_item_name' => __('Novo Temático','pontosdecultura'),
-			'view_item' => __('Visualizar Temático','pontosdecultura'),
-			'not_found' =>  __('Nenhum tematico localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Temático localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Temáticos','pontosdecultura')
+			'edit_item' => __('Editar Natureza','pontosdecultura'),
+			'update_item' => __('Atualizar uma Natureza','pontosdecultura'),
+			'add_new_item' => __('Adicionar Nova Natureza','pontosdecultura'),
+			'add_new' => __('Adicionar Natureza', 'pontosdecultura'),
+			'new_item_name' => __('Nova Natureza','pontosdecultura'),
+			'view_item' => __('Visualizar Natureza','pontosdecultura'),
+			'not_found' =>  __('Nenhuma natureza localizada','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhuma natureza localizada na lixeira','pontosdecultura'),
+			'menu_name' => __('Naturezas','pontosdecultura')
 	);
 	
-	register_taxonomy( 'tematico',array (
-	'mapa'
+	register_taxonomy( 'natureza',array (
+	'pratica'
 			),
 			array( 'hierarchical' => true,
-			'label' => 'Temáticos',
+			'label' => 'Naturezas',
 			'show_ui' => true,
 			'query_var' => true,
 			'show_admin_column' => true,
@@ -77,537 +82,282 @@ function register_pontos_taxonomies()
 			)
 	);
 
-	/**
-	 * Temático, temos:
-Escola Viva
-Cultura Digital
-Interações Estéticas
-Mídia Livre
-Cultura, Infância e Adolescência
-Cultura e Terceira Idade
-Cultura e Direitos Humans
-Cultura e Saúde
-Economia Criativa e Solidária
-Leitura e Cidadania
-Grupos Itinerantes
-Educação Patrimonial
-Conhecimento e Tradições Orais
-	 */
-	/*array(
-	 'description'=> 'A yummy apple.',
-			'slug' => 'apple',
-			'parent'=> $parent_term_id
-	)*/
-	
-	if(!term_exists('Escola Viva', 'tematico'))
+	if(!term_exists('Documental', 'natureza'))
 	{
-		wp_insert_term("Escola Viva", 'tematico');
-		wp_insert_term("Cultura Digital", 'tematico');
-		wp_insert_term("Interações Estéticas", 'tematico');
-		wp_insert_term("Mídia Livre", 'tematico');
-		wp_insert_term("Cultura, Infância e Adolescência", 'tematico');
-		wp_insert_term("Cultura e Terceira Idade", 'tematico');
-		wp_insert_term("Cultura e Direitos Humans", 'tematico');
-		wp_insert_term("Cultura e Saúde", 'tematico');
-		wp_insert_term("Economia Criativa e Solidária", 'tematico');
-		wp_insert_term("Leitura e Cidadania", 'tematico');
-		wp_insert_term("Grupos Itinerantes", 'tematico');
-		wp_insert_term("Educação Patrimonial", 'tematico');
-		wp_insert_term("Conhecimento e Tradições Orais", 'tematico');
+		wp_insert_term("Estética ou de Linguagem", 'natureza');
+		wp_insert_term("Metodológica", 'natureza');
+		wp_insert_term("Documental", 'natureza');
 	}
-	
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$labels = array
 	(
-			'name' => __('Identitário','pontosdecultura'),
-			'singular_name' => __('Identitário', 'pontosdecultura'),
-			'search_items' => __('Procurar em um identitario','pontosdecultura'),
-			'all_items' => __('Todos os identitarios','pontosdecultura'),
+			'name' => __('Desdobramentos','pontosdecultura'),
+			'singular_name' => __('Desdobramento', 'pontosdecultura'),
+			'search_items' => __('Procurar em Desdobramentos','pontosdecultura'),
+			'all_items' => __('Todos os Desdobramentos','pontosdecultura'),
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Identitário','pontosdecultura'),
-			'update_item' => __('Atualizar um Identitário','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Identitário','pontosdecultura'),
-			'add_new' => __('Adicionar Identitário', 'pontosdecultura'),
-			'new_item_name' => __('Novo Identitário','pontosdecultura'),
-			'view_item' => __('Visualizar Identitário','pontosdecultura'),
-			'not_found' =>  __('Nenhum identitario localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Identitário localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Identitários','pontosdecultura')
+			'edit_item' => __('Editar Desdobramento','pontosdecultura'),
+			'update_item' => __('Atualizar um Desdobramento','pontosdecultura'),
+			'add_new_item' => __('Adicionar Novo Desdobramento','pontosdecultura'),
+			'add_new' => __('Adicionar Desdobramento', 'pontosdecultura'),
+			'new_item_name' => __('Novo Desdobramento','pontosdecultura'),
+			'view_item' => __('Visualizar Desdobramentos','pontosdecultura'),
+			'not_found' =>  __('Nenhum desdobramentos localizado','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhum desdobramentos localizado na lixeira','pontosdecultura'),
+			'menu_name' => __('Desdobramentos','pontosdecultura')
 	);
 	
-	register_taxonomy( 'identitario',array (
-	'mapa'
-			),
+	register_taxonomy( 'desdobramentos',array (
+			'pratica'
+	),
 			array( 'hierarchical' => true,
-			'label' => 'Identitários',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
+					'label' => 'Desdobramentos',
+					'show_ui' => true,
+					'query_var' => true,
+					'show_admin_column' => true,
+					'labels' => $labels
 			)
 	);
 	
-	/**
-	 * 
-Culturas Populares
-Culturas Indígenas
-Culturas Afrobrasileiras
-Culturas Ciganas
-Grupos Artísticos e Culturais Independentes
-Povos e Comunidades Tradicionais
-Infância e Adolescência
-Juventude
-Idosos
-LGBT
-Mulheres
-Pessoas em Sofrimento Psíquico
-Pessoas com Deficiência
-Grupos com Vulnerabilidade Extrema
-	 */
-
-	if(!term_exists('Culturas Populares', 'identitario'))
+	if(!term_exists('Espetáculos', 'desdobramentos'))
 	{
-		wp_insert_term("Culturas Populares", 'identitario');
-		wp_insert_term("Culturas Indígenas", 'identitario');
-		wp_insert_term("Culturas Afrobrasileiras", 'identitario');
-		wp_insert_term("Culturas Ciganas", 'identitario');
-		wp_insert_term("Grupos Artísticos e Culturais Independentes", 'identitario');
-		wp_insert_term("Povos e Comunidades Tradicionais", 'identitario');
-		wp_insert_term("Infância e Adolescência", 'identitario');
-		wp_insert_term("Juventude", 'identitario');
-		wp_insert_term("Idosos", 'identitario');
-		wp_insert_term("LGBT", 'identitario');
-		wp_insert_term("Mulheres", 'identitario');
-		wp_insert_term("Pessoas em Sofrimento Psíquico", 'identitario');
-		wp_insert_term("Pessoas com Deficiência", 'identitario');
-		wp_insert_term("Grupos com Vulnerabilidade Extrema", 'identitario');
+		wp_insert_term("Espetáculos", 'desdobramentos');
+		wp_insert_term("Performances", 'desdobramentos');
+		wp_insert_term("Publicações Físicas", 'desdobramentos');
+		wp_insert_term("Publicações Virtuais", 'desdobramentos');
+		wp_insert_term("Aulas", 'desdobramentos');
+		wp_insert_term("Filmes e Videos", 'desdobramentos');
 	}
 	
+	$labels = array
+	(
+			'name' => __('Tempo','pontosdecultura'),
+			'singular_name' => __('Tempo', 'pontosdecultura'),
+			'search_items' => __('Procurar em Tempo','pontosdecultura'),
+			'all_items' => __('Todos os Tempo','pontosdecultura'),
+			'parent_item' => null,
+			'parent_item_colon' => null,
+			'edit_item' => __('Editar Tempo','pontosdecultura'),
+			'update_item' => __('Atualizar um Tempo','pontosdecultura'),
+			'add_new_item' => __('Adicionar Novo Tempo','pontosdecultura'),
+			'add_new' => __('Adicionar Tempo', 'pontosdecultura'),
+			'new_item_name' => __('Novo Tempo','pontosdecultura'),
+			'view_item' => __('Visualizar Tempo','pontosdecultura'),
+			'not_found' =>  __('Nenhum tempo localizado','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhum tempo localizado na lixeira','pontosdecultura'),
+			'menu_name' => __('Tempo','pontosdecultura')
+	);
+	
+	register_taxonomy( 'tempo',array (
+			'pratica'
+	),
+			array( 'hierarchical' => true,
+					'label' => 'Tempo',
+					'show_ui' => true,
+					'query_var' => true,
+					'show_admin_column' => true,
+					'labels' => $labels
+			)
+	);
+	
+	if(!term_exists('Mais de 30 anos', 'tempo'))
+	{
+		wp_insert_term("1 a 3 anos", 'tempo');
+		wp_insert_term("4 a 6 anos", 'tempo');
+		wp_insert_term("7 a 10 anos", 'tempo');
+		wp_insert_term("11 a 15 anos", 'tempo');
+		wp_insert_term("16 a 20 anos", 'tempo');
+		wp_insert_term("21 a 30 anos", 'tempo');
+		wp_insert_term("Mais de 30 anos", 'tempo');
+	}
+	
+	$labels = array
+	(
+			'name' => __('Integrantes Estáveis','pontosdecultura'),
+			'singular_name' => __('Integrantes Estáveis', 'pontosdecultura'),
+			'search_items' => __('Procurar em Integrantes','pontosdecultura'),
+			'all_items' => __('Intervalos de Integrantes Estáveis','pontosdecultura'),
+			'parent_item' => null,
+			'parent_item_colon' => null,
+			'edit_item' => __('Editar Integrantes','pontosdecultura'),
+			'update_item' => __('Atualizar um Integrantes','pontosdecultura'),
+			'add_new_item' => __('Adicionar Novo Integrantes','pontosdecultura'),
+			'add_new' => __('Adicionar Integrantes', 'pontosdecultura'),
+			'new_item_name' => __('Novo Integrantes','pontosdecultura'),
+			'view_item' => __('Visualizar Integrantes','pontosdecultura'),
+			'not_found' =>  __('Nenhuma Integrantes localizado','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhuma Integrantes localizado na lixeira','pontosdecultura'),
+			'menu_name' => __('Nº de Integrantes','pontosdecultura')
+	);
+	
+	register_taxonomy( 'integrantes',array (
+			'pratica'
+	),
+			array( 'hierarchical' => true,
+					'label' => 'Nº de Integrantes',
+					'show_ui' => true,
+					'query_var' => true,
+					'show_admin_column' => true,
+					'labels' => $labels
+			)
+	);
+	
+	if(!term_exists('1', 'integrantes'))
+	{
+		wp_insert_term("1", 'integrantes');
+		wp_insert_term("2", 'integrantes');
+		wp_insert_term("3", 'integrantes');
+		wp_insert_term("4", 'integrantes');
+		wp_insert_term("5 a 10", 'integrantes');
+		wp_insert_term("11 a 20", 'integrantes');
+		wp_insert_term("Mais de 20", 'integrantes');
+	}
 	
 	$labels = array
 	(
 			'name' => __('Público Alvo','pontosdecultura'),
 			'singular_name' => __('Público Alvo', 'pontosdecultura'),
-			'search_items' => __('Procurar em um publicoalvo','pontosdecultura'),
-			'all_items' => __('Todos os publicoalvos','pontosdecultura'),
+			'search_items' => __('Procurar em Público Alvo','pontosdecultura'),
+			'all_items' => __('Todos os Públicos Alvos','pontosdecultura'),
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Público Alvo','pontosdecultura'),
+			'edit_item' => __('Editar Público Alvo','pontosdecultura'),
 			'update_item' => __('Atualizar um Público Alvo','pontosdecultura'),
 			'add_new_item' => __('Adicionar Novo Público Alvo','pontosdecultura'),
 			'add_new' => __('Adicionar Público Alvo', 'pontosdecultura'),
 			'new_item_name' => __('Novo Público Alvo','pontosdecultura'),
 			'view_item' => __('Visualizar Público Alvo','pontosdecultura'),
-			'not_found' =>  __('Nenhum publicoalvo localizado','pontosdecultura'),
+			'not_found' =>  __('Nenhum Público Alvo localizado','pontosdecultura'),
 			'not_found_in_trash' => __('Nenhum Público Alvo localizado na lixeira','pontosdecultura'),
 			'menu_name' => __('Público Alvo','pontosdecultura')
 	);
 	
-	register_taxonomy( 'publicoalvo',array (
-	'mapa'
-			),
+	register_taxonomy( 'publico-alvo',array (
+			'pratica'
+	),
 			array( 'hierarchical' => true,
-			'label' => 'Público Alvo',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
+					'label' => 'Público Alvo',
+					'show_ui' => true,
+					'query_var' => true,
+					'show_admin_column' => true,
+					'labels' => $labels
 			)
 	);
 	
-	/**
-	 * 
-Afro-Brasileiras
-Ciganas
-Estudantes
-Grupos Artísticos e Culturais Independentes
-Idosos
-Imigrantes
-Indígenas
-Infância e Adolescência
-Juventude
-LGBT
-Mulheres
-Pescadores
-Pessoas com deficiência
-Pessoas em sofrimento psíquico
-População de Rua
-População em regime prisional 
-Povos de Terreiro
-Público em Geral
-Quebradeiras de coco de Babaçu
-Quilombolas
-Ribeirinhos
-Segmentos Populares
-Outros
-	 */
-	
-	if(!term_exists('Afro-Brasileiras', 'publicoalvo'))
+	if(!term_exists('Público em Geral', 'publico-alvo'))
 	{
-		wp_insert_term("Afro-Brasileiras", 'publicoalvo');
-		wp_insert_term("Ciganas", 'publicoalvo');
-		wp_insert_term("Estudantes", 'publicoalvo');
-		wp_insert_term("Grupos Artísticos e Culturais Independentes", 'publicoalvo');
-		wp_insert_term("Idosos", 'publicoalvo');
-		wp_insert_term("Imigrantes", 'publicoalvo');
-		wp_insert_term("Indígenas", 'publicoalvo');
-		wp_insert_term("Infância e Adolescência", 'publicoalvo');
-		wp_insert_term("Juventude", 'publicoalvo');
-		wp_insert_term("LGBT", 'publicoalvo');
-		wp_insert_term("Mulheres", 'publicoalvo');
-		wp_insert_term("Pescadores", 'publicoalvo');
-		wp_insert_term("Pessoas com deficiência", 'publicoalvo');
-		wp_insert_term("Pessoas em sofrimento psíquico", 'publicoalvo');
-		wp_insert_term("População de Rua", 'publicoalvo');
-		wp_insert_term("População em regime prisional ", 'publicoalvo');
-		wp_insert_term("Povos de Terreiro", 'publicoalvo');
-		wp_insert_term("Público em Geral", 'publicoalvo');
-		wp_insert_term("Quebradeiras de coco de Babaçu", 'publicoalvo');
-		wp_insert_term("Quilombolas", 'publicoalvo');
-		wp_insert_term("Ribeirinhos", 'publicoalvo');
-		wp_insert_term("Segmentos Populares", 'publicoalvo');
-		wp_insert_term("Outros", 'publicoalvo');
-	}
-	
-	
-	$labels = array
-	(
-			'name' => __('Artes Cênicas','pontosdecultura'),
-			'singular_name' => __('Artes Cênicas', 'pontosdecultura'),
-			'search_items' => __('Procurar por uma artes cênica','pontosdecultura'),
-			'all_items' => __('Todos as artes cênicas','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Artes Cênicas','pontosdecultura'),
-			'update_item' => __('Atualizar um Artes Cênicas','pontosdecultura'),
-			'add_new_item' => __('Adicionar Nova Artes Cênicas','pontosdecultura'),
-			'add_new' => __('Adicionar Artes Cênicas', 'pontosdecultura'),
-			'new_item_name' => __('Nova Artes Cênicas','pontosdecultura'),
-			'view_item' => __('Visualizar Artes Cênicas','pontosdecultura'),
-			'not_found' =>  __('Nenhum artes cênica localizada','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhuma Artes Cênica localizada na lixeira','pontosdecultura'),
-			'menu_name' => __('Artes Cênicas','pontosdecultura')
-	);
-	
-	register_taxonomy( 'artescenicas',array (
-	'mapa'
-			),
-			array( 'hierarchical' => true,
-			'label' => 'Artes Cênicas',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
-			)
-	);
-	
-	/**
-	 * 
-Circo 
-Dança 
-Mímica
-Ópera 
-Teatro 
-	 */
-	
-	if(!term_exists('Circo', 'artescenicas'))
-	{
-		wp_insert_term("Circo", 'artescenicas');
-		wp_insert_term("Dança", 'artescenicas');
-		wp_insert_term("Mímica", 'artescenicas');
-		wp_insert_term("Ópera", 'artescenicas');
-		wp_insert_term("Teatro", 'artescenicas');
+		wp_insert_term("Público em Geral", 'publico-alvo');
+		wp_insert_term("Estudantes", 'publico-alvo');
+		wp_insert_term("Comunidade LGBT", 'publico-alvo');
+		wp_insert_term("Pessoas com Necessidades Especiais", 'publico-alvo');
+		wp_insert_term("Pessoas em Sofrimento Psíquico", 'publico-alvo');
+		wp_insert_term("Infância", 'publico-alvo');
+		wp_insert_term("Juventude", 'publico-alvo');
+		wp_insert_term("Idosos", 'publico-alvo');
+		wp_insert_term("Mulheres", 'publico-alvo');
+		wp_insert_term("Afro-Brasileiro", 'publico-alvo');
+		wp_insert_term("Cigano", 'publico-alvo');
+		wp_insert_term("Imigrantes	", 'publico-alvo');
+		wp_insert_term("Indígenas", 'publico-alvo');
+		wp_insert_term("Pescadores", 'publico-alvo');
+		wp_insert_term("População em Regime Prisional", 'publico-alvo');
+		wp_insert_term("Povos de Terreiro", 'publico-alvo');
+		wp_insert_term("Quilombolas", 'publico-alvo');
+		wp_insert_term("Ribeirinhos", 'publico-alvo');
+		wp_insert_term("Outros segmentos Populares", 'publico-alvo');
 	}
 	
 	$labels = array
 	(
-			'name' => __('Audiovisual','pontosdecultura'),
-			'singular_name' => __('Audiovisual', 'pontosdecultura'),
-			'search_items' => __('Procurar em um audiovisual','pontosdecultura'),
-			'all_items' => __('Todos os audiovisuals','pontosdecultura'),
+			'name' => __('Ressonâncias','pontosdecultura'),
+			'singular_name' => __('Ressonância', 'pontosdecultura'),
+			'search_items' => __('Procurar em Ressonâncias','pontosdecultura'),
+			'all_items' => __('Todas as Ressonâncias','pontosdecultura'),
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Audiovisual','pontosdecultura'),
-			'update_item' => __('Atualizar um Audiovisual','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Audiovisual','pontosdecultura'),
-			'add_new' => __('Adicionar Audiovisual', 'pontosdecultura'),
-			'new_item_name' => __('Novo Audiovisual','pontosdecultura'),
-			'view_item' => __('Visualizar Audiovisual','pontosdecultura'),
-			'not_found' =>  __('Nenhum audiovisual localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Audiovisual localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Audiovisual','pontosdecultura')
+			'edit_item' => __('Editar Ressonância','pontosdecultura'),
+			'update_item' => __('Atualizar uma Ressonância','pontosdecultura'),
+			'add_new_item' => __('Adicionar Nova Ressonância','pontosdecultura'),
+			'add_new' => __('Adicionar Ressonância', 'pontosdecultura'),
+			'new_item_name' => __('Nova Ressonância','pontosdecultura'),
+			'view_item' => __('Visualizar Ressonância','pontosdecultura'),
+			'not_found' =>  __('Nenhuma Ressonância localizada','pontosdecultura'),
+			'not_found_in_trash' => __('Nenhuma Ressonância localizada na lixeira','pontosdecultura'),
+			'menu_name' => __('Ressonâncias','pontosdecultura')
 	);
 	
-	register_taxonomy( 'audiovisual',array (
-	'mapa'
-			),
+	register_taxonomy( 'ressonancias',array (
+			'pratica'
+	),
 			array( 'hierarchical' => true,
-			'label' => 'Audiovisual',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
+					'label' => 'Ressonâncias',
+					'show_ui' => true,
+					'query_var' => true,
+					'show_admin_column' => true,
+					'labels' => $labels
 			)
 	);
 	
-	/**
-	 *
-Difusão
-Distribuição Cinematográfica
-Eventos
-Exibição Cinematográfica
-Formação/Pesquisa/Informação
-Infra-estrutura Técnica Audiovisual
-Multimídia
-Preservação/Restauração da Memória Cinematográfica
-Produção Cinematográfica
-Produção Radiofônica
-Produção Televisiva
-Rádios/Tvs Educativas
-Videofonografia
-	 */
-	
-	if(!term_exists('Difusão', 'audiovisual'))
+	if(!term_exists('Antropologia', 'ressonancias'))
 	{
-		wp_insert_term("Difusão", 'audiovisual');
-		wp_insert_term("Distribuição Cinematográfica", 'audiovisual');
-		wp_insert_term("Eventos", 'audiovisual');
-		wp_insert_term("Exibição Cinematográfica", 'audiovisual');
-		wp_insert_term("Formação/Pesquisa/Informação", 'audiovisual');
-		wp_insert_term("Infra-estrutura Técnica Audiovisual", 'audiovisual');
-		wp_insert_term("Multimídia", 'audiovisual');
-		wp_insert_term("Preservação/Restauração da Memória Cinematográfica", 'audiovisual');
-		wp_insert_term("Produção Cinematográfica", 'audiovisual');
-		wp_insert_term("Produção Radiofônica", 'audiovisual');
-		wp_insert_term("Produção Televisiva", 'audiovisual');
-		wp_insert_term("Rádios/Tvs Educativas", 'audiovisual');
-		wp_insert_term("Videofonografia", 'audiovisual');
+		wp_insert_term("Antropologia", 'ressonancias');
+		wp_insert_term("Arqueologia", 'ressonancias');
+		wp_insert_term("Arquitetura-Urbanismo", 'ressonancias');
+		wp_insert_term("Arquivo", 'ressonancias');
+		wp_insert_term("Arte Digital", 'ressonancias');
+		wp_insert_term("Artes Visuais", 'ressonancias');
+		wp_insert_term("Artesanato", 'ressonancias');
+		wp_insert_term("Audiovisual", 'ressonancias');
+		wp_insert_term("Banda", 'ressonancias');
+		wp_insert_term("Biblioteca", 'ressonancias');
+		wp_insert_term("Capoeira", 'ressonancias');
+		wp_insert_term("Carnaval", 'ressonancias');
+		wp_insert_term("Ciência Política", 'ressonancias');
+		wp_insert_term("Cinema", 'ressonancias');
+		wp_insert_term("Comunicação", 'ressonancias');
+		wp_insert_term("Coral", 'ressonancias');
+		wp_insert_term("Cultura Cigana", 'ressonancias');
+		wp_insert_term("Cultura Digital", 'ressonancias');
+		wp_insert_term("Cultura Estrangeira(imigrantes)", 'ressonancias');
+		wp_insert_term("Cultura Indígena", 'ressonancias');
+		wp_insert_term("Cultura LGBT", 'ressonancias');
+		wp_insert_term("Cultura Negra", 'ressonancias');
+		wp_insert_term("Cultura Popular", 'ressonancias');
+		wp_insert_term("Design", 'ressonancias');
+		wp_insert_term("Direito Autoral", 'ressonancias');
+		wp_insert_term("Economia Criativa", 'ressonancias');
+		wp_insert_term("Educação", 'ressonancias');
+		wp_insert_term("Esporte", 'ressonancias');
+		wp_insert_term("Filosofia", 'ressonancias');
+		wp_insert_term("Fotografia", 'ressonancias');
+		wp_insert_term("Gastronomia", 'ressonancias');
+		wp_insert_term("Gestão Cultural", 'ressonancias');
+		wp_insert_term("Gestor Publico de Cultura", 'ressonancias');
+		wp_insert_term("História", 'ressonancias');
+		wp_insert_term("Jogos Eletrônicos", 'ressonancias');
+		wp_insert_term("Jornalismo", 'ressonancias');
+		wp_insert_term("Leitura", 'ressonancias');
+		wp_insert_term("Literatura", 'ressonancias');
+		wp_insert_term("Livro", 'ressonancias');
+		wp_insert_term("Meio Ambiente", 'ressonancias');
+		wp_insert_term("Mídias Sociais", 'ressonancias');
+		wp_insert_term("Moda", 'ressonancias');
+		wp_insert_term("Museu", 'ressonancias');
+		wp_insert_term("Música", 'ressonancias');
+		wp_insert_term("Novas Mídias", 'ressonancias');
+		wp_insert_term("Orquestra", 'ressonancias');
+		wp_insert_term("Patrimônio Imaterial", 'ressonancias');
+		wp_insert_term("Patrimônio Material", 'ressonancias');
+		wp_insert_term("Pesquisa", 'ressonancias');
+		wp_insert_term("Produção Cultural", 'ressonancias');
+		wp_insert_term("Rádio", 'ressonancias');
+		wp_insert_term("Saúde", 'ressonancias');
+		wp_insert_term("Sociologia", 'ressonancias');
+		wp_insert_term("Televisão", 'ressonancias');
+		wp_insert_term("Turismo", 'ressonancias');
 	}
 	
-	
-	$labels = array
-	(
-			'name' => __('Música','pontosdecultura'),
-			'singular_name' => __('Música', 'pontosdecultura'),
-			'search_items' => __('Procurar em uma musica','pontosdecultura'),
-			'all_items' => __('Todas as musicas','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar uma Música','pontosdecultura'),
-			'update_item' => __('Atualizar uma Música','pontosdecultura'),
-			'add_new_item' => __('Adicionar Nova Música','pontosdecultura'),
-			'add_new' => __('Adicionar Música', 'pontosdecultura'),
-			'new_item_name' => __('Nova Música','pontosdecultura'),
-			'view_item' => __('Visualizar Música','pontosdecultura'),
-			'not_found' =>  __('Nenhuma musica localizada','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhuma Música localizada na lixeira','pontosdecultura'),
-			'menu_name' => __('Músicas','pontosdecultura')
-	);
-	
-	register_taxonomy( 'musica',array (
-	'mapa'
-			),
-			array( 'hierarchical' => true,
-			'label' => 'Músicas',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
-			)
-	);
-	
-	/**
-	 *
-	Música em Geral 
-	Música Erudita 
-	Música Instrumental
-	Música Popular
-	Orquestra
-	 */
-	
-	if(!term_exists('Música em Geral', 'musica'))
-	{
-		wp_insert_term("Música em Geral", 'musica');
-		wp_insert_term("Música Erudita", 'musica');
-		wp_insert_term("Música Instrumental", 'musica');
-		wp_insert_term("Música Popular", 'musica');
-		wp_insert_term("Orquestra", 'musica');
-	}
-	
-	$labels = array
-	(
-			'name' => __('Artes Visuais','pontosdecultura'),
-			'singular_name' => __('Artes Visuais', 'pontosdecultura'),
-			'search_items' => __('Procurar por em artes visuais','pontosdecultura'),
-			'all_items' => __('Todas as artes visuais','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar uma Arte Visual','pontosdecultura'),
-			'update_item' => __('Atualizar uma Arte Visual','pontosdecultura'),
-			'add_new_item' => __('Adicionar Nova Arte Visual','pontosdecultura'),
-			'add_new' => __('Adicionar Arte Visual', 'pontosdecultura'),
-			'new_item_name' => __('Nova Arte Visual','pontosdecultura'),
-			'view_item' => __('Visualizar Artes Visuais','pontosdecultura'),
-			'not_found' =>  __('Nenhuma arte visual localizada','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhuma Arte Visual localizada na lixeira','pontosdecultura'),
-			'menu_name' => __('Artes Visuais','pontosdecultura')
-	);
-	
-	register_taxonomy( 'artesvisuais',array (
-	'mapa'
-			),
-			array( 'hierarchical' => true,
-			'label' => 'Artes Visuais',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
-			)
-	);
-	
-	/**
-	 *
-	 Cartazes
-	 Exposição
-	 Exposição Itinerante
-	 Filatelia
-	 Fotografia
-	 Gráficas
-	 Gravura
-	 Plásticas
-	 */
-	
-	if(!term_exists('Cartazes', 'artesvisuais'))
-	{
-		wp_insert_term("Cartazes", 'artesvisuais');
-		wp_insert_term("Exposição", 'artesvisuais');
-		wp_insert_term("Exposição Itinerante", 'artesvisuais');
-		wp_insert_term("Filatelia", 'artesvisuais');
-		wp_insert_term("Fotografia", 'artesvisuais');
-		wp_insert_term("Gráficas", 'artesvisuais');
-		wp_insert_term("Gravura", 'artesvisuais');
-		wp_insert_term("Plásticas", 'artesvisuais');
-	}
-	
-	$labels = array
-	(
-			'name' => __('Patrimônio Cultural','pontosdecultura'),
-			'singular_name' => __('Patrimônio Cultural', 'pontosdecultura'),
-			'search_items' => __('Procurar em um patrimônio cultural','pontosdecultura'),
-			'all_items' => __('Todos os patrimônios culturais','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Patrimônio Cultural','pontosdecultura'),
-			'update_item' => __('Atualizar um Patrimônio Cultural','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Patrimônio Cultural','pontosdecultura'),
-			'add_new' => __('Adicionar Patrimônio Cultural', 'pontosdecultura'),
-			'new_item_name' => __('Novo Patrimônio Cultural','pontosdecultura'),
-			'view_item' => __('Visualizar Patrimônio Cultural','pontosdecultura'),
-			'not_found' =>  __('Nenhum patrimônio cultural localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Patrimônio Cultural localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Patrimônios Culturais','pontosdecultura')
-	);
-	
-	register_taxonomy( 'patrimoniocultural',array (
-	'mapa'
-			),
-			array( 'hierarchical' => true,
-			'label' => 'Patrimônios Culturais',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
-			)
-	);
-	
-	/**
-	 *
-Acervo 
-Acervo Museológico 
-Afro Brasileira
-Arqueológico 
-Arquitetônico 
-Artesanato 
-Ecológico 
-Folclore
-Histórico 
-Indígena 
-Museu 
-	 */
-	
-	if(!term_exists('Acervo', 'patrimoniocultural'))
-	{
-		wp_insert_term("Acervo", 'patrimoniocultural');
-		wp_insert_term("Acervo Museológico", 'patrimoniocultural');
-		wp_insert_term("Afro Brasileira", 'patrimoniocultural');
-		wp_insert_term("Arqueológico", 'patrimoniocultural');
-		wp_insert_term("Arquitetônico", 'patrimoniocultural');
-		wp_insert_term("Artesanato", 'patrimoniocultural');
-		wp_insert_term("Ecológico", 'patrimoniocultural');
-		wp_insert_term("Folclore", 'patrimoniocultural');
-		wp_insert_term("Histórico", 'patrimoniocultural');
-		wp_insert_term("Indígena", 'patrimoniocultural');
-		wp_insert_term("Museu", 'patrimoniocultural');
-	}
-	
-	$labels = array
-	(
-			'name' => __('Humanidades','pontosdecultura'),
-			'singular_name' => __('Humanidades', 'pontosdecultura'),
-			'search_items' => __('Procurar em um humanidades','pontosdecultura'),
-			'all_items' => __('Todos os humanidades','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Humanidades','pontosdecultura'),
-			'update_item' => __('Atualizar um Humanidades','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Humanidades','pontosdecultura'),
-			'add_new' => __('Adicionar Humanidades', 'pontosdecultura'),
-			'new_item_name' => __('Novo Humanidades','pontosdecultura'),
-			'view_item' => __('Visualizar Humanidades','pontosdecultura'),
-			'not_found' =>  __('Nenhum humanidades localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Humanidades localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Humanidades','pontosdecultura')
-	);
-	
-	register_taxonomy( 'humanidades',array (
-	'mapa'
-			),
-			array( 'hierarchical' => true,
-			'label' => 'Humanidades',
-			'show_ui' => true,
-			'query_var' => true,
-			'show_admin_column' => true,
-			'labels' => $labels
-			)
-	);
-	
-	/**
-	 *
-Acervo Bibliográfico 
-Arquivo
-Biblioteca 
-Edição de Livros 
-Evento literário
-Filosofia
-História
-Obras de Referência 
-Periódicos
-	 */
-	
-	if(!term_exists('Acervo Bibliográfico', 'humanidades'))
-	{
-		wp_insert_term("Acervo Bibliográfico", 'humanidades');
-		wp_insert_term("Arquivo", 'humanidades');
-		wp_insert_term("Biblioteca", 'humanidades');
-		wp_insert_term("Edição de Livros", 'humanidades');
-		wp_insert_term("Evento literário", 'humanidades');
-		wp_insert_term("Filosofia", 'humanidades');
-		wp_insert_term("História", 'humanidades');
-		wp_insert_term("Obras de Referência", 'humanidades');
-		wp_insert_term("Periódicos", 'humanidades');
-		wp_insert_term("Oficinas, seminários, palestras, cursos, congressos, treinamentos", 'humanidades');
-	}
 	
 }
 
