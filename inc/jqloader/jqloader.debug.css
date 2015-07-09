@@ -1,0 +1,51 @@
+.Ajax-Loader {
+    position: absolute;
+    z-index: 9999;
+    
+}
+.Ajax-Loader .Ajax-Loader-Overlay {
+    background-color: black;
+    
+}
+.Ajax-Loader .Ajax-Loader-Image {
+    
+    height: 72px;
+    margin: 0 auto;
+    position: fixed;
+}
+
+.Ajax-Loader .Ajax-Loader-Image img {
+    display: block;
+    padding: 12px;
+}
+
+.Ajax-Loader-Text {
+	color: #ffffff;
+}
+
+.ui-progressbar {
+	height: 2em;
+	text-align: left;
+	overflow: hidden;
+	background-color: #000000;
+}
+.ui-progressbar .ui-progressbar-value {
+	margin: -1px;
+	height: 100%;
+}
+.ui-progressbar .ui-progressbar-overlay {
+	background: url("images/animated-overlay.gif");
+	height: 100%;
+	filter: alpha(opacity=25);
+	opacity: 0.25;
+}
+.ui-progressbar-indeterminate .ui-progressbar-value {
+	background-image: none;
+}
+
+.ui-widget-header {
+    background-color: #cccccc;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}

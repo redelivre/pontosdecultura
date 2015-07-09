@@ -28,6 +28,25 @@ class Praticas
 					'title' => __ ( 'Cep', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ) 
 			),
+			'ano-inicio' => array (
+					'slug' => '.pratica-ano-inicio',
+					'title' => __ ( 'Ano de Início das atividades', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'type' => 'dropdown-ano'
+			),
+			'numero-integrantes' => array (
+					'slug' => '.pratica-numero-integrantes',
+					'title' => __ ( 'Nº de Integrantes estáveis', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'type' => 'dropdown-cem'
+			),
+			'espaco-fisico' => array (
+					'slug' => 'pratica-espaco-fisico',
+					'title' => __ ( 'Tem relação com um espaço físico de maneira estável?', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'type' => 'radio',
+					'values' => array('S' => __('Sim', 'pontosdecultura' ), 'N' => __('Não', 'pontosdecultura' ) )
+			),
 			'publicacoes' => array (
 					'slug' => 'pratica-publicacoes',
 					'title' => __ ( 'Links para publicações', 'pontosdecultura' ),
@@ -48,10 +67,26 @@ class Praticas
 					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
 					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
 			),
+			'e-ponto' => array (
+					'slug' => 'pratica-e-ponto',
+					'title' => __ ( 'É Ponto de Cultura?', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'type' => 'radio',
+					'values' => array('N' => __('Não', 'pontosdecultura' ), 'S' => __('É Ponto de Cultura', 'pontosdecultura' ), 'P' => __('É Pontão de Cultura', 'pontosdecultura' ) )
+			),
+			'vinculo' => array (
+					'slug' => 'pratica-vinculo',
+					'title' => __ ( 'Vínculo Acadêmico', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'type' => 'radio',
+					'values' => array('N' => __('Nunca possuiu', 'pontosdecultura' ), 'P' => __('Já Possuiu', 'pontosdecultura' ), 'S' => __('Possui', 'pontosdecultura' ) )
+			),
 			'suporte' => array (
 					'slug' => 'pratica-suporte',
 					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações', 'pontosdecultura' ),
-					'tip' => __ ( 'sim ou não', 'pontosdecultura' ),
+					'tip' => __ ( 'nos dois últimos casos prever sub-opções cumulativas “federal”, “estadual”, “municipal”e depois sub-sub-opções “Por quanto tempo” com números de meses e anos a selecionar', 'pontosdecultura' ),
+					'type' => 'radio',
+					'values' => array('N' => __('Nunca recebeu', 'pontosdecultura' ), 'P' => __('Já recebeu', 'pontosdecultura' ), 'S' => __('Recebe', 'pontosdecultura' ) )
 			),
 			'cpf' => array (
 					'slug' => 'pratica-cpf',
@@ -71,11 +106,15 @@ class Praticas
 					'tip' => __ ( '', 'pontosdecultura' ),
 					'required' => true
 			),
+			'ocupacao' => array (
+					'slug' => 'pratica-ocupacao',
+					'title' => __ ( 'Ocupação', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+			),
 			'telefone-resp' => array (
 					'slug' => 'pratica-telefone-resp',
 					'title' => __ ( 'Telefone', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ),
-					'required' => true
 			),
 			'email-resp' => array (
 					'slug' => 'pratica-email-resp',
@@ -93,25 +132,10 @@ class Praticas
 					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ),
 			),
-			'email-resp' => array (
-					'slug' => 'pratica-email-resp',
+			'relacao-resp' => array (
+					'slug' => 'pratica-relacao-resp',
 					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
 					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
-			),
-			'espaco-fisico' => array (
-					'slug' => 'pratica-espaco-fisico',
-					'title' => __ ( 'Espaço físico', 'pontosdecultura' ),
-					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
-			),
-			'e-ponto' => array (
-					'slug' => 'pratica-e-ponto',
-					'title' => __ ( 'É Ponto de Cultura?', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-			),
-			'vinculo' => array (
-					'slug' => 'pratica-vinculo',
-					'title' => __ ( 'Vínculo Acadêmico', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
 			),
 			'tem-fotos' => array (
 					'slug' => '.pratica-tem-fotos',
@@ -335,7 +359,7 @@ class Praticas
 		
 	}
 	
-	const NEW_PRATICA_PAGE = 'new-pratica';
+	const NEW_PRATICA_PAGE = 'nova-pratica';
 	
 	function print_variables($public_query_vars) {
 		$public_query_vars[] = self::NEW_PRATICA_PAGE;
@@ -578,6 +602,220 @@ class Praticas
 		}
 	}
 	
+	static function print_field($field, $tax = false)
+	{
+		if($tax !== false)
+		{
+			$type = $tax;
+			$label = '';
+			$tip = '';
+			$id = '';
+			if(is_array($tax))
+			{
+				$type = array_key_exists('type', $tax) ? $tax['type'] : '';
+				$label = array_key_exists('label', $tax) ? $tax['label'] : '';
+				$tip = array_key_exists('tip', $tax) ? $tax['tip'] : '';
+				$id = array_key_exists('slug', $tax) ? $tax['id'] : '';
+			}
+			
+			switch ($type)
+			{
+				
+				case 'dropdown':
+				{
+					
+				}break;
+				case 'estadocidade':
+				{
+					Praticas::dropdownEstadoCidade($field, $tax);
+				}break;
+				default:
+					$taxonomy = $field;
+					$field = $tax;
+					
+					$field_default = array(
+							'id' => 'taxonomy_'.$taxonomy,
+							'label' => '',
+							'tip' => '',
+							'required_message' => '',
+							'input_class' => '',
+							'type' => '',
+							'required' => false
+					);
+					
+					if(!is_array($field))
+					{
+						$field = array();
+					}
+					
+					$field = array_merge($field_default, $field);
+					
+					extract($field);
+					
+					?>
+					<div class="pratica-item">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="pratica-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label> <?php Praticas::taxonomy_checklist($taxonomy); ?>
+						<div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+			}
+		}
+		else
+		{
+			$id = $field['slug'];
+			$label = $field['title'];
+			$tip = $field['tip'];
+			$required_message = '';
+			$input_class = '';
+			$type = array_key_exists('type', $field) ? $field['type'] : '';
+			switch ($type)
+			{
+				case 'wp_editor':
+					?>
+					<div class="pratica-item">
+							<label for="<?php echo $id ?>" class="pratica-item-label">
+								<div class="pratica-item-title"><?php echo $label; ?>
+								<span class="pratica-item-required-asterisk">*</span>
+								</div>
+								<div class="pratica-item-tip-text">
+								<?php echo $tip; ?>
+							</div>
+							</label>
+						<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
+					       'tinymce' => array( 
+					            'content_css' => get_stylesheet_directory_uri() . '/inc/praticas/css/editor-styles.css' 
+					    		)
+							)
+						); ?>
+						<div class="pratica-item-error-message"></div>
+							<div class="pratica-item-required-message">
+							<?php echo $required_message; ?>
+						</div>
+					</div>
+					<?php
+				break;
+				case 'dropdown-ano':
+					?>
+					<div class="pratica-item">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="pratica-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label> <select id="<?php echo $id ?>"
+							class="pratica-item-input-text <?php echo $input_class ?>"
+							name="<?php echo $id ?>">
+								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+								<?php
+									for($i = date('Y'); $i >= 1900; $i--)
+									{
+										?>
+										<option value="<?php echo $i; ?>" <?php echo array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $i ? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
+										<?php
+									} 
+								?>
+							</select>
+						<div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+				case 'dropdown-cem':
+					?>
+					<div class="pratica-item">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="pratica-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label> <select id="<?php echo $id ?>"
+							class="pratica-item-input-text <?php echo $input_class ?>"
+							name="<?php echo $id ?>">
+								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+								<?php
+									for($i = 1; $i < 100; $i++)
+									{
+										$label = $i == 99 ? '99+' : $i;
+										?>
+										<option value="<?php echo $i; ?>" <?php echo array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $i ? 'selected="selected"': ''; ?> ><?php echo $label; ?></option>
+										<?php
+									} 
+								?>
+							</select>
+						<div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+				case 'radio':
+					?>
+					<div class="pratica-item">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="pratica-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label><?php
+							/*<input type="radio" name="sex" value="male">Male<br>
+							<input type="radio" name="sex" value="female">Female*/
+							foreach ($field['values'] as $value => $label_item)
+							{
+								echo '<label><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
+							}
+						?><div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+				case 'date':
+				default:
+					?>
+					<div class="pratica-item">
+						<label for="<?php echo $id ?>" class="pratica-item-label">
+							<div class="pratica-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="pratica-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label> <input type="text" id="<?php echo $id ?>"
+							class="pratica-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
+							name="<?php echo $id ?>">
+						<div class="pratica-item-error-message"></div>
+						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+			}
+		}
+	}
+	
 	static function taxonomy_checklist($taxonomy = 'category', $parent = 0)
 	{
 		$args = array(
@@ -620,9 +858,15 @@ class Praticas
 			{
 				$checked = get_query_var('cat') == $term->term_id ? 'checked="checked"' : '';
 			}
+			$haschildren = false;
+			if($parent == 0)
+			{
+				$children = get_term_children($term->term_id, $taxonomy);
+				$haschildren = is_array($children) && count($children) > 0 ? true : false;
+			}
 			?>
 			<li class="<?php echo $taxonomy ?>-group-col <?php echo $parent == 0 ? $taxonomy.'-group-col-'.$index : ''; ?>"><?php
-				if($parent > 0 && $input == '')
+				if( ($parent > 0 || !$haschildren ) && $input == '')
 				{?>
 					<input type="checkbox" class="taxonomy-<?php echo $taxonomy ?>-checkbox" value="<?php echo $term->term_id; ?>" name="taxonomy_<?php echo $taxonomy; ?>[]" id="taxonomy_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>"
 					<?php echo $checked; ?> autocomplete="off" /><?php
@@ -674,6 +918,45 @@ class Praticas
 			}
 		}
 	
+	}
+	
+	static function dropdownEstadoCidade($taxonomy = 'territorio', $field = array())
+	{
+		$field_default = array(
+			'id' => 'field-'.rand(),
+			'label' => '',
+			'tip' => '',
+			'required_message' => '',
+			'input_class' => '',
+			'type' => '',
+			'required' => false
+		);
+		
+		if(!is_array($field))
+		{
+			$field = array();
+		}
+		
+		$field = array_merge($field_default, $field);
+		
+		extract($field);
+		?>
+		<div class="pratica-item">
+			<label for="<?php echo $id ?>" class="pratica-item-label">
+				<div class="pratica-item-title"><?php echo $label;
+					if(array_key_exists( 'required', $field ) && $field['required'])
+					{?>
+						<span class="pratica-item-required-asterisk">*</span><?php
+					}?>
+				</div>
+				<div class="pratica-item-tip-text"><?php echo $tip; ?>
+			</div>
+			</label><?php EstadosCidades::dropdown($taxonomy); ?>
+			<div class="pratica-item-error-message"></div>
+			<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+		</div>
+		<?php
+		
 	}
 	
 }

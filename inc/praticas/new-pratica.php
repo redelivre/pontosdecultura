@@ -55,7 +55,8 @@ else
 	$has_thumbnail3 = false;
 	$has_thumbnail4 = false;
 	
-	$title = $post_type_object->labels->add_new_item;
+	//$title = $post_type_object->labels->add_new_item;
+	$title = "Preencha os campos abaixo com informações sobre sua pesquisa.";
 	
 	$editing = true;
 	$post = null;
@@ -322,65 +323,137 @@ else
 	
 	echo $form_extra;
 	
-	foreach ($pratica->getFields() as $field)
-	{
-		$id = $field['slug'];
-		$label = $field['title'];
-		$tip = $field['tip'];
-		$required_message = '';
-		$input_class = '';
-		$type = array_key_exists('type', $field) ? $field['type'] : '';
-		switch ($type)
-		{
-			case 'date':
-			default:	
-				?>
-				<div class="pratica-item">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
-								if(array_key_exists( 'required', $field ) && $field['required'])
-								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
-								}?>
-							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
-						</div>
-						</label> <input type="text" id="<?php echo $id ?>"
-							class="pratica-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
-							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
-							name="<?php echo $id ?>">
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
-					</div>
-				<?php
-			break;
-			case 'wp_editor':
-				?>
-				<div class="pratica-item">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label; ?>
-							<span class="pratica-item-required-asterisk">*</span>
-							</div>
-							<div class="pratica-item-tip-text">
-							<?php echo $tip; ?>
-						</div>
-						</label>
-					<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
-				       'tinymce' => array( 
-				            'content_css' => get_stylesheet_directory_uri() . '/inc/praticas/css/editor-styles.css' 
-				    		)
-						)
-					); ?>
-					<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message">
-						<?php echo $required_message; ?>
-					</div>
-					</div>
-				<?php
-			break;
-			
-		}
-	}//TODO Make image a field
+	
+	$fields = $pratica->getFields();
+	
+	Praticas::print_field($fields['post_title']);
+	Praticas::print_field($fields['email']);
+	Praticas::print_field($fields['url']);
+	Praticas::print_field($fields['telefone']);
+	Praticas::print_field('territorio', array(
+			'label' => 'Estado e Cidade',
+			'required' => true,
+			'type' => 'estadocidade'
+	));
+	Praticas::print_field($fields['cep']);
+	Praticas::print_field('tipo-do-objeto', array(
+			'label' => 'Tipo do Objeto',
+			'outro' => true,
+	));
+	Praticas::print_field($fields['ano-inicio']);
+ 	Praticas::print_field($fields['numero-integrantes']);
+ 	Praticas::print_field('natureza', array(
+			'label' => 'Natureza da Pesquisa',
+			'outro' => true,
+	));
+ 	Praticas::print_field($fields['espaco-fisico']);
+	Praticas::print_field('cenico-performativa', array(
+			'label' => 'Área(s) da Pesquisa Cênico-Performativa(s)',
+			'outro' => true,
+	));
+	Praticas::print_field('desdobramentos', array(
+			'label' => 'Desdobramentos',
+			'outro' => true,
+	));
+ 	Praticas::print_field($fields['post_content']);
+ 	Praticas::print_field('publico-alvo', array(
+ 			'label' => 'Público Alvo',
+ 			'outro' => true,
+ 	));
+ 	Praticas::print_field('ressonancias', array(
+ 			'label' => 'Áreas de Ressonância',
+ 			'outro' => true,
+ 	));
+ 	?><br/>
+ 	<div class="images">
+	 	<div class="images-thumbnail">
+			<label for="thumbnail" class="pratica-item-label">
+				<div class="pratica-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
+				</div>
+				<div class="pratica-item-tip-text">
+					<?php _e('Imagem que será exibida em listagens', 'pontosdecultura'); ?>
+				</div>
+			</label>
+			<input type="file" name="thumbnail" id="thumbnail"
+				value="<?php ?>"
+				onchange="displayPreview(this.files, 'thumbnail');"><?php
+			if($has_thumbnail && array_key_exists('thumbnail', $attach))
+			{?>
+				<img src="<?php echo $attach['thumbnail']; ?>"><?php
+			}?>
+		</div>
+		<div class="images-thumbnail2">
+			<label for="thumbnail2" class="pratica-item-label">
+				<div class="pratica-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
+				</div>
+				<div class="pratica-item-tip-text">
+					<?php _e('Outra imagem', 'pontosdecultura'); ?>
+				</div>
+			</label>
+			<input type="file" name="thumbnail2" id="thumbnail2"
+				value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>"
+				onchange="displayPreview(this.files, 'thumbnail2');"><?php
+			if($has_thumbnail2 && array_key_exists('thumbnail2', $attach))
+			{?>
+				<img src="<?php echo $attach['thumbnail2']; ?>"><?php
+			}?>
+		</div>
+		<div class="images-thumbnail3">
+			<label for="thumbnail3" class="pratica-item-label">
+				<div class="pratica-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
+				</div>
+				<div class="pratica-item-tip-text">
+					<?php _e('Outra imagem', 'pontosdecultura'); ?>
+				</div>
+			</label>
+			<input type="file" name="thumbnail3" id="thumbnail3"
+				value="<?php echo array_key_exists('thumbnail3', $_REQUEST) ? esc_url($_REQUEST['thumbnail3']) : ''; ?>"
+				onchange="displayPreview(this.files, 'thumbnail3');"><?php
+			if($has_thumbnail3 && array_key_exists('thumbnail3', $attach))
+			{?>
+				<img src="<?php echo $attach['thumbnail3']; ?>"><?php
+			}?>
+		</div>
+	</div>
+	<?php
+ 	Praticas::print_field($fields['publicacoes']);
+	Praticas::print_field($fields['videos']);
+	Praticas::print_field($fields['facebook']);
+	Praticas::print_field($fields['outras-redes']);
+	Praticas::print_field($fields['e-ponto']);
+	Praticas::print_field($fields['vinculo']);
+	?><label class="pratica-highlight-label">Responsável pelo Cadastro</label><?php
+	Praticas::print_field($fields['cpf']);
+	Praticas::print_field($fields['nome']);
+	Praticas::print_field($fields['nascimento']);
+	Praticas::print_field($fields['ocupacao']);
+	Praticas::print_field($fields['telefone-resp']);
+	Praticas::print_field($fields['email-resp']);?>
+	<div class="images-thumbnail4">
+		<label for="thumbnail4" class="pratica-item-label">
+			<div class="pratica-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
+			</div>
+			<div class="pratica-item-tip-text">
+				<?php _e('Imagem do Responsável', 'pontosdecultura'); ?>
+			</div>
+		</label>
+		<input type="file" name="thumbnail4" id="thumbnail4"
+			value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
+			onchange="displayPreview(this.files, 'thumbnail4');"><?php
+		if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
+		{?>
+			<img src="<?php echo $attach['thumbnail4']; ?>"><?php
+		}?>
+	</div><?php
+	Praticas::print_field($fields['facebook-resp']);
+	Praticas::print_field($fields['redes-resp']);
+	Praticas::print_field($fields['relacao-resp']);
+	
+	
+	
+	
+	/*
+	//TODO Make image a field
 	?>
 	<div class="images">
 						<div class="images-thumbnail">
@@ -446,9 +519,9 @@ else
 					</div>
 					<div class="category-group">
 	<?php 
-	Praticas::taxonomy_checklist();
+	//Praticas::taxonomy_checklist();
 	?>
-	</div>
+	</div>*/?>
 
 					<input id="original_publish" type="hidden" value="Publish"
 						name="original_publish"> <input id="publish"

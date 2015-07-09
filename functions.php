@@ -244,11 +244,11 @@ class Pontosdecultura {
 		
 		wp_register_script('map-functions', $path . '/map-functions.js', array('jquery'));
 		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar', 'map-functions'));
-		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
-		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
+		wp_register_script('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.js', array('jquery'));
+		wp_register_style('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.css');
 		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery', 'map-functions'));
 		
-		if(is_home() && !$wp_query->get('mapa-tpl'))
+		if(is_home() && ( !$wp_query->get('mapa-tpl') && !$wp_query->get('nova-pratica') ))
 		{
 			wp_enqueue_script('homescripts');
 			wp_enqueue_script('jqloader');
@@ -542,7 +542,7 @@ class Pontosdecultura {
 $pontosdecultura = new Pontosdecultura();
 
 /** Lib estadocidades **/
-include_once dirname(__FILE__).'/lib/estadoscidades/taxs.php';
+include_once dirname(__FILE__).'/inc/estadoscidades/EstadosCidades.php';
 /** Opções do Tema **/
 include_once dirname(__FILE__).'/inc/options.php';
 /** Taxs do Pontos **/
