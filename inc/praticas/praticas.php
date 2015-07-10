@@ -172,6 +172,7 @@ class Praticas
 		//add_filter('single_template', array($this, 'singleTemplate'));
 		add_action( 'save_post', array( $this, 'save' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts') );
+		add_action( 'wp_enqueue_scripts', array($this, 'css'));
 	}
 
 	function init()
@@ -614,6 +615,18 @@ class Praticas
 		}
 	}
 	
+	/**
+	 * Função responsável por controlar as folhas de estilo do site para práticas
+	 *
+	 */
+	public function css()
+	{
+		// map.css
+		wp_register_style( 'pratica', get_template_directory_uri() . '/inc/praticas/css/pratica.css', array(), '1' );
+		wp_enqueue_style( 'pratica' );
+		
+	}
+	
 	static function print_field($field, $tax = false)
 	{
 		if($tax !== false)
@@ -903,7 +916,7 @@ class Praticas
 				$haschildren = is_array($children) && count($children) > 0 ? true : false;
 			}
 			?>
-			<li class="<?php echo $taxonomy ?>-group-col <?php echo $parent == 0 ? $taxonomy.'-group-col-'.$index : ''; ?>"><?php
+			<li class="taxonomy-checkbox-group-col <?php echo $taxonomy ?>-group-col <?php echo $parent == 0 ? $taxonomy.'-group-col-'.$index : ''; ?>"><?php
 				if( ($parent > 0 || !$haschildren ) && $input == '')
 				{?>
 					<input type="checkbox" class="taxonomy-<?php echo $taxonomy ?>-checkbox" value="<?php echo $term->term_id; ?>" name="taxonomy_<?php echo $taxonomy; ?>[]" id="taxonomy_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>"

@@ -248,6 +248,12 @@ else
 			}
 		}
 		
+		// Tratando campos especiais
+		update_post_meta($post_ID, '_pratica-tem-fotos', $has_thumbnail || $has_thumbnail2 || $has_thumbnail3 ? 'S' : 'N');
+		
+		update_post_meta($post_ID, '_pratica-tem-links', array_key_exists('pratica-publicacoes', $_POST) && !empty($_POST['pratica-publicacoes']) ? 'S' : 'N' );
+		
+		
         /*
 		var_dump($message);
 		echo '<pre>';
@@ -275,17 +281,14 @@ else
 
 
 	?>
-
-<div class="home-entry">
-	<div class="row">
-		<div class="col-lg-12 sections-description">
-			<h2 class="text-center"><?php bloginfo('description'); ?></h2>
-		</div>
-	</div>
-</div>
 <div class="home-entry" style="background: #FFF">
 
 	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 sections-description">
+				<h2 class="text-center"><?php bloginfo('description'); ?></h2>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12">
 	<?php //screen_icon(); ?>

@@ -167,7 +167,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Filmes e Videos", 'desdobramentos');
 	}
 	
-	$labels = array
+	/*$labels = array
 	(
 			'name' => __('Tempo','pontosdecultura'),
 			'singular_name' => __('Tempo', 'pontosdecultura'),
@@ -249,7 +249,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("5 a 10", 'integrantes');
 		wp_insert_term("11 a 20", 'integrantes');
 		wp_insert_term("Mais de 20", 'integrantes');
-	}
+	}*/
 	
 	$labels = array
 	(
