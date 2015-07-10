@@ -88,6 +88,11 @@ else
 		/* Save Fields and Custom Fields */
 		foreach ($pratica->getFields() as $key => $field)
 		{
+			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
+			{
+				continue;
+			}
+			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
 				$message[] = __('required field').': '.$field['title'].' '.__('is empty');
@@ -109,7 +114,17 @@ else
 				}
 				else 
 				{
-					update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
+					// debug missing fields
+					/*if(! array_key_exists($field['slug'], $_POST) )
+					{
+						$message[] = 'campo não encontrado: '.$field['slug'].' em '.print_r($_POST, true);
+						$notice = true;
+					}
+					else*/
+					if( array_key_exists($field['slug'], $_POST) )
+					{
+						update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
+					}
 				}
 			}
 		}
@@ -162,7 +177,7 @@ else
 		
 		if ($_FILES) {
 			foreach ($_FILES as $file => $array) {
-				if ($_FILES[$file]['error'] !== UPLOAD_ERR_OK && $notice)
+				if ($_FILES[$file]['error'] !== UPLOAD_ERR_OK && $_FILES[$file]['error'] !== UPLOAD_ERR_NO_FILE )
 				{
 					switch($file)
 					{
@@ -189,7 +204,7 @@ else
 						
 					$notice = true;
 				}
-				else 
+				elseif( $_FILES[$file]['error'] == UPLOAD_ERR_OK )
 				{
 					$attach_id[$file] = media_handle_upload( $file, $post_ID );
 					$attach[$file] = wp_get_attachment_url($attach_id[$file]);
@@ -422,6 +437,8 @@ else
 	Praticas::print_field($fields['outras-redes']);
 	Praticas::print_field($fields['e-ponto']);
 	Praticas::print_field($fields['vinculo']);
+	Praticas::print_field($fields['suporte']);
+	Praticas::print_field($fields['suporte-obs']);
 	?><label class="pratica-highlight-label">Responsável pelo Cadastro</label><?php
 	Praticas::print_field($fields['cpf']);
 	Praticas::print_field($fields['nome']);

@@ -29,13 +29,13 @@ class Praticas
 					'tip' => __ ( '', 'pontosdecultura' ) 
 			),
 			'ano-inicio' => array (
-					'slug' => '.pratica-ano-inicio',
+					'slug' => '_pratica-ano-inicio',
 					'title' => __ ( 'Ano de Início das atividades', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ),
 					'type' => 'dropdown-ano'
 			),
 			'numero-integrantes' => array (
-					'slug' => '.pratica-numero-integrantes',
+					'slug' => '_pratica-numero-integrantes',
 					'title' => __ ( 'Nº de Integrantes estáveis', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ),
 					'type' => 'dropdown-cem'
@@ -88,6 +88,12 @@ class Praticas
 					'type' => 'radio',
 					'values' => array('N' => __('Nunca recebeu', 'pontosdecultura' ), 'P' => __('Já recebeu', 'pontosdecultura' ), 'S' => __('Recebe', 'pontosdecultura' ) )
 			),
+			'suporte-obs' => array (
+					'slug' => 'pratica-suporte-obs',
+					'title' => __ ( 'Observação', 'pontosdecultura' ),
+					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+					'type' => 'textarea',
+			),
 			'cpf' => array (
 					'slug' => 'pratica-cpf',
 					'title' => __ ( 'CPF', 'pontosdecultura' ),
@@ -136,16 +142,20 @@ class Praticas
 					'slug' => 'pratica-relacao-resp',
 					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
 					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+					'type' => 'textarea',
+					'rows' => 4,
 			),
 			'tem-fotos' => array (
-					'slug' => '.pratica-tem-fotos',
-					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
-					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+					'slug' => '_pratica-tem-fotos',
+					'title' => __ ( 'Tem Fotos', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'save' => false,
 			),
 			'tem-links' => array (
-					'slug' => '.pratica-tem-links',
-					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
-					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
+					'slug' => '_pratica-tem-links',
+					'title' => __ ( 'Tem Links', 'pontosdecultura' ),
+					'tip' => __ ( '', 'pontosdecultura' ),
+					'save' => false,
 			)
 			
 			//Espaço físico
@@ -284,6 +294,8 @@ class Praticas
 				'tip' => __('Maximum 2000 characters', 'pontosdecultura'),
 				'required' => true,
 				//'type' => 'wp_editor',
+				'type' => 'textarea',
+				'rows' => 10,
 				'buildin' => true
 			),
 		);
@@ -368,7 +380,7 @@ class Praticas
 	
 	function rewrite_rules()
 	{
-		add_rewrite_rule("^".self::NEW_PRATICA_PAGE.'(.*)', 'index.php?'.self::NEW_PRATICA_PAGE.'=true$matches[1]', 'top');
+		add_rewrite_rule('^'.self::NEW_PRATICA_PAGE.'(.*)', 'index.php?'.self::NEW_PRATICA_PAGE.'=true$matches[1]', 'top');
 		flush_rewrite_rules(false);
 	}
 	
@@ -790,6 +802,32 @@ class Praticas
 					</div>
 					<?php
 				break;
+				case 'textarea':
+				?>
+				<div class="pratica-item">
+					<label for="<?php echo $id ?>" class="pratica-item-label">
+						<div class="pratica-item-title"><?php echo $label;
+							if(array_key_exists( 'required', $field ) && $field['required'])
+							{?>
+								<span class="pratica-item-required-asterisk">*</span><?php
+							}?>
+						</div>
+						<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						</div>
+					</label>
+					<textarea id="<?php echo $id ?>"
+						class="pratica-item-input-text <?php echo $input_class ?>"
+						name="<?php echo $id ?>"
+						rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
+						<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
+					>
+						<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>
+					</textarea>
+					<div class="pratica-item-error-message"></div>
+					<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+				</div>
+				<?php
+				break;
 				case 'date':
 				default:
 					?>
@@ -951,7 +989,7 @@ class Praticas
 				</div>
 				<div class="pratica-item-tip-text"><?php echo $tip; ?>
 			</div>
-			</label><?php EstadosCidades::dropdown($taxonomy); ?>
+			</label><?php EstadosCidades::dropdown($taxonomy, 'taxonomy_'.$taxonomy.'[]', 'taxonomy_'.$taxonomy.'[]'); ?>
 			<div class="pratica-item-error-message"></div>
 			<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
 		</div>

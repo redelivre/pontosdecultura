@@ -107,21 +107,21 @@ class EstadosCidades
 	}
 	// Verifique a taxonomia, deverá conter todas as cidades dentro dos respectivos estados
 	
-	static function dropdown($taxonomy = 'territorio', $name = 'dropdown-estado')
+	static function dropdown($taxonomy = 'territorio', $nameEstado = 'dropdown-estado', $nameCidade = 'dropdown-cidade')
 	{?>
-		<select name="<?php echo $name; ?>" class="dropdown-estado" autocomplete="off">
+		<select name="<?php echo $nameEstado; ?>" class="dropdown-estado" autocomplete="off">
 		<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 		<?php
 			$terms = get_terms($taxonomy, array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
 			foreach ($terms as $term)
 			{
 				?>
-				<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+				<option value="<?php echo $term->term_id; ?>" ><?php echo $term->name; ?></option>
 				<?php
 			} 
 		?>
 		</select>
-		<select name="dropdown-cidade" class="dropdown-cidade">
+		<select name="<?php echo $nameCidade; ?>" class="dropdown-cidade">
 			<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 		</select>
 		<?php
@@ -130,19 +130,19 @@ class EstadosCidades
 	public function select_dropdown_cidade_callback()
 	{
 		?>
-			<select name="dropdown-cidade" class="dropdown-cidade">
+			<select name="taxonomy_territorio[]" class="dropdown-cidade">
 				<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 				<?php
 				if(array_key_exists('uf', $_POST) && !empty($_POST['uf']))
 				{
-					$parent = get_term_by('slug', esc_attr($_POST['uf']), 'territorio');
+					$parent = get_term_by('id', esc_attr($_POST['uf']), 'territorio');
 					if(is_object($parent))
 					{
 						$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name', 'hide_empty' => false));
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->term_id; ?>" ><?php echo $term->name; ?></option>
 							<?php
 						}
 					}
