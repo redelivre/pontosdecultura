@@ -196,7 +196,7 @@
 				<?php _e('Load data', 'pontosdecultura'); ?>
 			</div>
 			<div class="search-not-here">
-				<img class="icon-cultura" src="<?php echo get_template_directory_uri().'/images/icon-cultura.png'; ?>"/>
+				<img class="icon-cultura" src="<?php echo get_template_directory_uri().'/images/icon.png'; ?>"/>
 				<?php printf( __( 'Não encontrou seu ponto? <a href="%s">Entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato' ); ?>
 			</div>
 		</div>
