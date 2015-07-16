@@ -371,7 +371,7 @@ class Pontosdecultura {
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
-		$post_type = 'mapa';
+		$post_type = 'pratica';
 		
 		$querystr = "
 		SELECT $wpdb->posts.ID FROM $wpdb->posts
@@ -380,7 +380,7 @@ class Pontosdecultura {
 			LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 			LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 		WHERE
-			$wpdb->posts.post_type = 'mapa'
+			$wpdb->posts.post_type = '".$post_type."'
 			AND (
 				$wpdb->terms.name like '%$s%'
 				OR $wpdb->posts.post_title like '%$s%'
@@ -450,7 +450,7 @@ class Pontosdecultura {
 				$parent = get_term_by('slug', $_POST['uf'], 'territorio');
 				if(is_object($parent))
 				{
-					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name'));
+					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name', 'hide_empty' => false));
 					foreach ($terms as $term)
 					{
 						?>

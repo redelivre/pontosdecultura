@@ -90,11 +90,11 @@
 		<div class="container">
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
-				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Ponto', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
-				<select name="adv-search-tipo" class="adv-search-tipo">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Tipo do Ponto', 'pontosdecultura' ); ?></option>
+				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php //echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
+				<select name="adv-search-cenico-performativa" class="adv-search-cenico-performativa">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Área(s) da Pesquisa Cênico-Performativa(s)', 'pontosdecultura' ); ?></option>
 					<?php
-						$terms = get_terms('tipo');
+						$terms = get_terms('cenico-performativa', array('orderby' => 'name', 'hide_empty' => false));
 						foreach ($terms as $term)
 						{
 							?>
@@ -103,10 +103,46 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-publicoalvo" class="adv-search-publicoalvo">
+				<select name="adv-search-natureza" class="adv-search-natureza">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Natureza', 'pontosdecultura' ); ?></option>
+					<?php
+						$terms = get_terms('natureza', array('orderby' => 'name', 'hide_empty' => false));
+						foreach ($terms as $term)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						} 
+					?>
+				</select>
+				<select name="adv-search-desdobramentos" class="adv-search-desdobramentos">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Desdobramentos', 'pontosdecultura' ); ?></option>
+					<?php
+						$terms = get_terms('desdobramentos', array('orderby' => 'name', 'hide_empty' => false));
+						foreach ($terms as $term)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						} 
+					?>
+				</select>
+				<select name="adv-search-publico-alvo" class="adv-search-publico-alvo">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Público-alvo', 'pontosdecultura' ); ?></option>
 					<?php
-						$terms = get_terms('publicoalvo', array('orderby' => 'name'));
+						$terms = get_terms('publico-alvo', array('orderby' => 'name', 'hide_empty' => false));
+						foreach ($terms as $term)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						} 
+					?>
+				</select>
+				<select name="adv-search-ressonancias" class="adv-search-ressonancias">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Ressonâncias', 'pontosdecultura' ); ?></option>
+					<?php
+						$terms = get_terms('ressonancias', array('orderby' => 'name', 'hide_empty' => false));
 						foreach ($terms as $term)
 						{
 							?>
@@ -118,7 +154,7 @@
 				<select name="adv-search-estado" class="adv-search-estado">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 					<?php
-						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name'));
+						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
 						foreach ($terms as $term)
 						{
 							?>
