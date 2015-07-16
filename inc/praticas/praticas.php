@@ -173,6 +173,7 @@ class Praticas
 		add_action( 'save_post', array( $this, 'save' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts') );
 		add_action( 'wp_enqueue_scripts', array($this, 'css'));
+		add_action( 'wp_enqueue_scripts', array($this, 'javascript'));
 	}
 
 	function init()
@@ -591,6 +592,11 @@ class Praticas
 			update_post_meta($post_id, 'thumbnail4', $_POST['thumbnail4']); //TODO more sec
 		}
 		
+		if(function_exists('mapasdevista_save_postdata'))
+		{
+			mapasdevista_save_postdata($post_id);
+		}
+		
 	}
 	
 	/**
@@ -625,6 +631,22 @@ class Praticas
 		wp_register_style( 'pratica', get_template_directory_uri() . '/inc/praticas/css/pratica.css', array(), '1' );
 		wp_enqueue_style( 'pratica' );
 		
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_PRATICA_PAGE) == true )
+		{
+			wp_enqueue_style('mapasdevista-admin', mapasdevista_get_baseurl('template_directory') . '/admin/admin.css');
+		}
+		
+	}
+	
+	public function javascript()
+	{
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_PRATICA_PAGE) == true )
+		{
+			mapasdevista_enqueue_scripts();
+			wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/metabox.js', array('jquery', 'jquery-ui-resizable', 'jquery-ui-dialog') );
+			$data = array('options' => get_option('mapasdevista'));
+			wp_localize_script('metabox', 'mapasdevista_options', $data);
+		}
 	}
 	
 	static function print_field($field, $tax = false)
@@ -833,9 +855,7 @@ class Praticas
 						name="<?php echo $id ?>"
 						rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
 						<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
-					>
-						<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>
-					</textarea>
+					><?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?></textarea>
 					<div class="pratica-item-error-message"></div>
 					<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
 				</div>

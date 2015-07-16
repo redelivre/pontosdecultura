@@ -442,7 +442,10 @@ else
 	Praticas::print_field($fields['vinculo']);
 	Praticas::print_field($fields['suporte']);
 	Praticas::print_field($fields['suporte-obs']);
-	?><label class="pratica-highlight-label">Responsável pelo Cadastro</label><?php
+	echo '<br/>';
+	mapasdevista_metabox_map();
+	echo '<br/>';
+	?><label class="pratica-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
 	Praticas::print_field($fields['cpf']);
 	Praticas::print_field($fields['nome']);
 	Praticas::print_field($fields['nascimento']);
@@ -468,9 +471,6 @@ else
 	Praticas::print_field($fields['facebook-resp']);
 	Praticas::print_field($fields['redes-resp']);
 	Praticas::print_field($fields['relacao-resp']);
-	
-	
-	
 	
 	/*
 	//TODO Make image a field
