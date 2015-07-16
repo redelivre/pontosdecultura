@@ -6,8 +6,9 @@
     padding-left: 1em;
 }
 
-.pratica-item-label {
+.pratica-item-label, .pratica-item {
     display: block;
     float: left;
     width: 100%;
 }
+
