@@ -102,7 +102,7 @@ class PontosFilters
 		INNER JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
 		INNER JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 		INNER JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
-		WHERE $wpdb->posts.post_type = 'mapa'
+		WHERE $wpdb->posts.post_type = 'pratica'
 		AND $wpdb->postmeta.meta_key = '_mpv_inmap'
 		AND $wpdb->term_taxonomy.parent = 0
 		GROUP BY $wpdb->terms.term_id

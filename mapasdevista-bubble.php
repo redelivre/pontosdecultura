@@ -9,7 +9,7 @@
 	INNER JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 	WHERE
 	$wpdb->posts.ID = $post_ID
-	AND $wpdb->posts.post_type = 'mapa'
+	AND $wpdb->posts.post_type = 'pratica'
 	AND $wpdb->postmeta.meta_key = '_mpv_inmap'
 	AND $wpdb->term_taxonomy.taxonomy NOT IN ( 'territorio', 'tipo', 'publicoalvo', 'tematico', 'identitario' )
 	GROUP BY $wpdb->terms.term_id
