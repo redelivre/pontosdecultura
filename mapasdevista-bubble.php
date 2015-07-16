@@ -1,6 +1,10 @@
 <div class="balloon-taxs" >
 	<?php
-	$post_ID = get_the_ID(); 
+	$post_ID = get_the_ID();
+	
+	$mapinfo = get_option('mapasdevista', true);
+	$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
+	
 	$querystr = "
 	SELECT $wpdb->terms.name FROM $wpdb->posts
 	INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
@@ -9,7 +13,7 @@
 	INNER JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 	WHERE
 	$wpdb->posts.ID = $post_ID
-	AND $wpdb->posts.post_type = 'pratica'
+	AND $wpdb->posts.post_type in (".$pt.")
 	AND $wpdb->postmeta.meta_key = '_mpv_inmap'
 	AND $wpdb->term_taxonomy.taxonomy NOT IN ( 'territorio', 'tipo', 'publicoalvo', 'tematico', 'identitario' )
 	GROUP BY $wpdb->terms.term_id

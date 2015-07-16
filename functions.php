@@ -125,7 +125,7 @@ function pontosdecultura_custom_login_logo() {
 	echo '
 	<style type="text/css">
 		.login h1 a {
-			background: url("' . get_template_directory_uri() . '/images/logo-cultura-viva.png") top center no-repeat;
+			background: url("' . get_template_directory_uri() . '/images/marca.png") top center no-repeat;
 			background-size: contain;
 			margin: 0 auto;
 			height: 150px;
@@ -371,7 +371,8 @@ class Pontosdecultura {
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
-		$post_type = 'pratica';
+		$mapinfo = get_option('mapasdevista', true);
+		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
 		
 		$querystr = "
 		SELECT $wpdb->posts.ID FROM $wpdb->posts
@@ -380,7 +381,7 @@ class Pontosdecultura {
 			LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 			LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 		WHERE
-			$wpdb->posts.post_type = '".$post_type."'
+			$wpdb->posts.post_type in (".$pt.")
 			AND (
 				$wpdb->terms.name like '%$s%'
 				OR $wpdb->posts.post_title like '%$s%'
@@ -537,6 +538,12 @@ class Pontosdecultura {
 		
 		die();	
 	}
+	
+	public static function quote($str)
+	{
+		return sprintf("'%s'", $str);
+	}
+	
 }
 
 $pontosdecultura = new Pontosdecultura();

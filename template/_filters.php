@@ -96,13 +96,16 @@ class PontosFilters
 	{
 		global $wpdb;
 		
+		$mapinfo = get_option('mapasdevista', true);
+		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
+		
 		$querystr = "
 		SELECT $wpdb->term_taxonomy.taxonomy,$wpdb->terms.term_id,$wpdb->terms.name,$wpdb->terms.slug FROM $wpdb->posts
 		INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
 		INNER JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
 		INNER JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 		INNER JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
-		WHERE $wpdb->posts.post_type = 'pratica'
+		WHERE $wpdb->posts.post_type in (".$pt.")
 		AND $wpdb->postmeta.meta_key = '_mpv_inmap'
 		AND $wpdb->term_taxonomy.parent = 0
 		GROUP BY $wpdb->terms.term_id
