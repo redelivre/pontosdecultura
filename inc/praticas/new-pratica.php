@@ -20,25 +20,25 @@ $language_code = array_key_exists('icl_post_language', $_POST) ? $_POST['icl_pos
 
 if ( ! is_user_logged_in() )
 {?>
-<div class="home-entry">
-	<div class="row">
-		<div class="col-lg-12 sections-description">
-			<h2 class="text-center"><?php bloginfo('description'); ?></h2>
+<div class="login-entry" >
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 sections-description">
+				<h2 class="text-center"><?php bloginfo('description'); ?></h2>
+			</div>
 		</div>
-	</div>
-</div>
-<div class="home-entry" style="background: #FFF">
-	<div class="row">
-		<div class="col-lg-12">
-			<h2 class="text-center"><?php echo __('You do not have access to this page, please make login or change your login account', 'pontosdecultura'); ?></h2>
+		<div class="row">
+			<div class="col-lg-12 sections-advise">
+				<h2 class="text-center"><?php echo __('É necessário estar logado para acessar essa área, favor fazer o login. Obrigado', 'pontosdecultura'); ?></h2>
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
-			<div class="text-center block-center">
-			 <?php wp_login_form( ); ?> 
-		</div>
+	
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
+				<div class="text-center block-center">
+				 <?php wp_login_form( ); ?> 
+			</div>
+			</div>
 		</div>
 	</div>
 </div>

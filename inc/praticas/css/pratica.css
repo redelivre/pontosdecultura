@@ -12,3 +12,38 @@
     width: 100%;
 }
 
+.login-entry .container {
+    max-width: 600px;
+}
+
+.login-entry {
+	background-color: #dcd800;
+}
+
+.login-username label,.login-password label {
+    font-weight: bold;
+}
+
+.login-entry .login-remember {
+    display: block;
+    float: left;
+    margin-left: 60%;
+    margin-top: 0.6em;
+}
+
+.login-entry .login-submit {
+    display: block;
+    float: right;
+}
+
+.login-entry .sections-advise {
+    font-size: 0.65em;
+    text-align: center;
+    padding: 0 1em;
+}
+
+.login-entry .sections-description {
+    color: #501651;
+    font-weight: bold;
+    text-align: center;
+}
