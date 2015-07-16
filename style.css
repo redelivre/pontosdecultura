@@ -30,6 +30,12 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 	Yellow			#faba09
 	Beige 			#e9ddaf
 	Green			#5fb760
+	
+	Praticas
+	Yellow			#faba09 -> #dcd800
+	Light Blue		#34a7d6
+	Black			#2d115c
+	Red				#b00c00
 
 /* ==========================================================================
    Table of contents
@@ -417,7 +423,7 @@ button {
    ========================================================================== */
 
 .site-header {
-	background: #805783;
+	background: #FFFFFF;
 	text-align: center;
 }
 
@@ -440,7 +446,7 @@ button {
 
 /* Intro */
 .search-intro {
-	background: #faba09;
+	background: #dcd800;
 	color: #501651;
 	padding: 3em 0;
 }
@@ -541,7 +547,7 @@ button {
 
 /* Advanced Search */
 .search-advanced {
-	background: #5fb760;
+	background: #34a7d6;
 }
 
 .search-advanced .area-title {
@@ -609,7 +615,7 @@ button {
 
 /* Most searched terms */
 .search-tags {
-	background: #2f2d44;
+	background: #2d115c;
 }
 
 .search-tags .area-title {
@@ -658,7 +664,7 @@ button {
 	text-decoration: underline;
 }
 
-.icon-cultura {
+.icon-capa {
 	margin-right: 0.5em;
 }
 
