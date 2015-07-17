@@ -128,8 +128,8 @@ function pontosdecultura_custom_login_logo() {
 			background: url("' . get_template_directory_uri() . '/images/marca.png") top center no-repeat;
 			background-size: contain;
 			margin: 0 auto;
-			height: 150px;
-			width: 150px;
+			height: 89px;
+			width: 303px;
 			
 		}
 	</style>';
