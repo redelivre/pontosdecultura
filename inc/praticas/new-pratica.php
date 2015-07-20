@@ -40,6 +40,7 @@ if ( ! is_user_logged_in() )
 			</div>
 			</div>
 		</div>
+		<div class="login-register"><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.Praticas::get_new_url(); ?>"><?php _e('Cadastre-se aqui', 'pontosdecultura'); ?></a></div>
 	</div>
 </div>
 <?php

@@ -10,16 +10,12 @@
 				<?php
 				/* TODO: This should be a option inside the Customizer section */
 				$home_url = get_bloginfo('url') . '/';
-				printf( 'O <a href="%1$s">Mapa Cultura Viva</a> é <a href="%2$s">livre</a> e <a href="%3$s">aberto</a>. O objetivo é dar 
-					visibilidade e articular iniciativas e ações do <a href="%4$s">programa Cultura Viva</a>. <a href="%5$s">Utilize</a> a plataforma 
-					através das buscas aberta ou avançada, pelo mapa e também pelas palavras mais procuradas. 
-					<a href="%6$s">Participe</a> interagindo com os pontos, consultando ou atualizando informações.',
+				printf( '<a href="%1$s">Práticas de Continuidade</a> é uma iniciativa de mapeamento colaborativo e articulação de pesquisas continuadas
+					em Artes Cênicas e Performativas no Brasil. <a href="%2$s">Cadastre sua pesquisa</a>, navegue pelo <a href="%3$s">mapa e pelos filtros</a>,
+					faça busca por palavras-chave. São diversas pesquisas e núcleos de trabalho perene em todo o Brasil.',
 					$home_url . 'o-projeto',
-					$home_url . 'desenvolvedores',
-					$home_url . 'dados-abertos',
-					$home_url . 'programa-cultura-viva',
-					$home_url . 'como-usar',
-					$home_url . 'participe'
+					Praticas::get_new_url(),
+					$home_url . 'mapa'
 				);
 				?>
 			</p>
@@ -197,7 +193,7 @@
 			</div>
 			<div class="search-not-here">
 				<img class="icon-capa" src="<?php echo get_template_directory_uri().'/images/icon.png'; ?>"/>
-				<?php printf( __( 'Não encontrou seu ponto? <a href="%s">Entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato' ); ?>
+				<?php printf( __( 'Não encontrou o procurava? Participe <a href="%s">cadastre sua pesquisa</a> ou <a href="%s">entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato', Praticas::get_new_url() ); ?>
 			</div>
 		</div>
 	</section>

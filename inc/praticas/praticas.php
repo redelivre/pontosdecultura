@@ -1032,6 +1032,11 @@ class Praticas
 		
 	}
 	
+	public static function get_new_url()
+	{
+		return get_bloginfo( 'url' ) . '/'.self::NEW_PRATICA_PAGE;
+	}
+	
 }
 
 $Pratica_global = new Praticas();
