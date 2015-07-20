@@ -109,21 +109,25 @@ class EstadosCidades
 	
 	static function dropdown($taxonomy = 'territorio', $nameEstado = 'dropdown-estado', $nameCidade = 'dropdown-cidade')
 	{?>
-		<select name="<?php echo $nameEstado; ?>" class="dropdown-estado" autocomplete="off">
-		<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
-		<?php
-			$terms = get_terms($taxonomy, array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
-			foreach ($terms as $term)
-			{
-				?>
-				<option value="<?php echo $term->term_id; ?>" ><?php echo $term->name; ?></option>
+		<div class="dropdown-estado dropdown-<?php echo $nameEstado; ?>">
+			<select name="<?php echo $nameEstado; ?>" class="dropdown-estado" autocomplete="off">
+				<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 				<?php
-			} 
-		?>
-		</select>
-		<select name="<?php echo $nameCidade; ?>" class="dropdown-cidade">
-			<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-		</select>
+					$terms = get_terms($taxonomy, array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
+					foreach ($terms as $term)
+					{
+						?>
+						<option value="<?php echo $term->term_id; ?>" ><?php echo $term->name; ?></option>
+						<?php
+					} 
+				?>
+			</select>
+		</div>
+		<div class="dropdown-cidade dropdown-<?php echo $nameCidade; ?>">
+			<select name="<?php echo $nameCidade; ?>" class="dropdown-cidade">
+				<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+			</select>
+		</div>
 		<?php
 	}
 	

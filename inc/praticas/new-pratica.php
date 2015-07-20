@@ -20,7 +20,7 @@ $language_code = array_key_exists('icl_post_language', $_POST) ? $_POST['icl_pos
 
 if ( ! is_user_logged_in() )
 {?>
-<div class="login-entry" >
+<div class="login-entry <?php echo Praticas::NEW_PRATICA_PAGE ?>" >
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 sections-description">
@@ -281,7 +281,7 @@ else
 
 
 	?>
-<div class="home-entry" style="background: #FFF">
+<div class="home-entry <?php echo Praticas::NEW_PRATICA_PAGE ?> " >
 
 	<div class="container">
 		<div class="row">

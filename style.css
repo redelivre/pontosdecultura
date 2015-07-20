@@ -36,6 +36,7 @@ Pontos de Cultura is based on Underscores http://underscores.me/, (C) 2012-2014 
 	Light Blue		#34a7d6
 	Black			#2d115c
 	Red				#b00c00
+	Yellow-form		#bab700
 
 /* ==========================================================================
    Table of contents
@@ -432,7 +433,7 @@ button {
 }
 
 .site-logo {
-	max-width: 300px;
+	max-width: 303px;
 }
 
 .main-navigation .menu-item a {
@@ -1309,13 +1310,6 @@ div.wpcf7-response-output {
 
 	.main-navigation ul li {
 		margin-left: -0.45em;
-	}
-
-	.search-intro .container {
-		background: url('images/bonecos.png'), url('images/bonecos-reverse.png');
-		background-repeat: repeat-y;
-		background-position: left, right;
-		background-size: contain;
 	}
 
 	/* Content */

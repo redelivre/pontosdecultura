@@ -10,6 +10,7 @@
     display: block;
     float: left;
     width: 100%;
+    margin-top: 1em;
 }
 
 .login-entry .container {
@@ -47,3 +48,67 @@
     font-weight: bold;
     text-align: center;
 }
+
+.nova-pratica .container {
+    max-width: 1080px;
+}
+
+.home-entry.nova-pratica {
+    background-color: #dcd800;
+}
+
+.pratica-item-title {
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+.pratica-item-tip-text {
+    font-size: 0.8em;
+    padding-left: 0.7em;
+}
+
+.pratica-item-input-text {
+    border-radius: 12px;
+}
+
+h2.new-pratica {
+    font-size: 1.2em;
+    text-align: center;
+    color: #501651;
+}
+
+.dropdown-estado,
+.dropdown-cidade,
+.pratica-item-input-dropdown {
+   display: block;
+   float: left;
+   overflow: hidden;
+   background: url(../../../images/new_arrow.png) no-repeat right #faba09;
+   width: 25%;
+   border-radius: 15px;
+}
+
+.dropdown-estado select,
+.dropdown-cidade select,
+.pratica-item-input-dropdown select {
+   background: transparent;
+   padding: 0.5em;
+   border: 0;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   width: 100%;
+}
+
+.dropdown-cidade {
+    margin-left: 2em;
+}
+
+.pratica-item-checkbox {
+    background-color: #bab700;
+}
+
+.pratica-item-input-radio {
+    margin-left: 0.5em;
+    margin-right: 1em;
+}
+

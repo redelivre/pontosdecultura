@@ -700,7 +700,7 @@ class Praticas
 					extract($field);
 					
 					?>
-					<div class="pratica-item">
+					<div class="pratica-item pratica-item-checkbox">
 						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -754,7 +754,7 @@ class Praticas
 				break;
 				case 'dropdown-ano':
 					?>
-					<div class="pratica-item">
+					<div class="pratica-item pratica-item-dropdown">
 						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -764,8 +764,8 @@ class Praticas
 							</div>
 							<div class="pratica-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <select id="<?php echo $id ?>"
-							class="pratica-item-input-text <?php echo $input_class ?>"
+						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
 								<?php
@@ -777,6 +777,7 @@ class Praticas
 									} 
 								?>
 							</select>
+						</div>
 						<div class="pratica-item-error-message"></div>
 						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
 					</div>
@@ -784,7 +785,7 @@ class Praticas
 				break;
 				case 'dropdown-cem':
 					?>
-					<div class="pratica-item">
+					<div class="pratica-item pratica-item-dropdown">
 						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -794,8 +795,8 @@ class Praticas
 							</div>
 							<div class="pratica-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <select id="<?php echo $id ?>"
-							class="pratica-item-input-text <?php echo $input_class ?>"
+						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
 								<?php
@@ -808,6 +809,7 @@ class Praticas
 									} 
 								?>
 							</select>
+						</div>
 						<div class="pratica-item-error-message"></div>
 						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
 					</div>
@@ -815,7 +817,7 @@ class Praticas
 				break;
 				case 'radio':
 					?>
-					<div class="pratica-item">
+					<div class="pratica-item pratica-item-radio">
 						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -830,7 +832,7 @@ class Praticas
 							<input type="radio" name="sex" value="female">Female*/
 							foreach ($field['values'] as $value => $label_item)
 							{
-								echo '<label><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
+								echo '<label class="pratica-item-input-radio" ><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
 							}
 						?><div class="pratica-item-error-message"></div>
 						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
@@ -839,7 +841,7 @@ class Praticas
 				break;
 				case 'textarea':
 				?>
-				<div class="pratica-item">
+				<div class="pratica-item pratica-item-textarea">
 					<label for="<?php echo $id ?>" class="pratica-item-label">
 						<div class="pratica-item-title"><?php echo $label;
 							if(array_key_exists( 'required', $field ) && $field['required'])
@@ -864,7 +866,7 @@ class Praticas
 				case 'date':
 				default:
 					?>
-					<div class="pratica-item">
+					<div class="pratica-item <?php echo $type == 'date' ? 'pratica-item-date' : 'pratica-item-text'; ?>">
 						<label for="<?php echo $id ?>" class="pratica-item-label">
 							<div class="pratica-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -1012,7 +1014,7 @@ class Praticas
 		
 		extract($field);
 		?>
-		<div class="pratica-item">
+		<div class="pratica-item pratica-item-dropdown">
 			<label for="<?php echo $id ?>" class="pratica-item-label">
 				<div class="pratica-item-title"><?php echo $label;
 					if(array_key_exists( 'required', $field ) && $field['required'])
