@@ -153,6 +153,9 @@ class Pontosdecultura {
 		add_action( 'wp_ajax_home_search', array($this, 'home_search_callback') );
 		add_action( 'wp_ajax_nopriv_home_search', array($this, 'home_search_callback') );
 		
+		add_action( 'wp_ajax_home_adv_search', array($this, 'home_adv_search_callback') );
+		add_action( 'wp_ajax_nopriv_home_adv_search', array($this, 'home_adv_search_callback') );
+		
 		add_action( 'wp_ajax_map_results', array($this, 'map_results_callback') );
 		add_action( 'wp_ajax_nopriv_map_results', array($this, 'map_results_callback') );
 		
@@ -428,6 +431,117 @@ class Pontosdecultura {
 			}
 			update_option('pontosdecultura_home_searches', $pontosdecultura_home_searches);
 		}
+		
+		die(); // this is required to return a proper result
+	}
+	
+	public function home_adv_search_callback()
+	{
+		/* @var $wpdb wpdb */
+		global $wpdb; // this is how you get access to the database
+		
+		$fields = $_POST['data'];
+		
+		$mapinfo = get_option('mapasdevista', true);
+		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
+		
+		$i = 0;
+		
+		$where = '';
+		
+		foreach ($fields as $key => $value)
+		{
+			if($value != '')
+			{
+				if(strlen($where) > 0 ) $where .= " AND ";
+				
+				if($i == 0 ) // title
+				{
+					$where .= "$wpdb->posts.post_title like '%$value%'";
+				}
+				elseif($i < 8) // tax
+				{
+					$where .= "$wpdb->terms.slug = '$value'";
+				}
+				else // custom fields
+				{
+					switch($key)
+					{
+						case '_pratica-ano-inicio':
+							$vals = explode(',', $value);
+							if($vals[1] != '+')
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[1] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] ) )";
+							}
+							else
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] )";
+							}
+						break; 
+						case '_pratica-numero-integrantes':
+							$vals = explode(',', $value);
+							if($vals[1] != '+')
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
+							}
+							else 
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
+							}
+						break;
+						case 'pratica-videos':
+						case 'pratica-facebook':
+							if($value == 'S')
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value > '' )";
+							}
+							else 
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( $wpdb->postmeta.meta_value IS NULL OR $wpdb->postmeta.meta_value == '' ) )";
+							}
+						break;
+						default:
+							$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value = '$value' )";
+						break;
+					}
+				}
+			}
+			$i++;
+		}
+		
+		/**
+		 * 	$wpdb->terms.name like '%$s%'
+			OR $wpdb->posts.post_title like '%$s%'
+			OR $wpdb->posts.post_content like '%$s%'
+			OR $wpdb->posts.post_excerpt like '%$s%'
+			OR $wpdb->postmeta.meta_value like '%$s%'
+		 */
+		
+		$querystr = "
+		SELECT $wpdb->posts.ID FROM $wpdb->posts
+		LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+		LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+		LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+		LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
+		WHERE
+		$wpdb->posts.post_type in (".$pt.")
+		AND (
+			".$where."
+		)
+		GROUP BY $wpdb->posts.ID
+		ORDER BY $wpdb->posts.ID asc
+		";
+		
+		$posts = $wpdb->get_results($querystr, ARRAY_N);
+		/*echo '<div id="results" class="clearfix">';
+		 echo '<pre>';
+		 //echo $querystr;
+		 print_r($posts);
+		 echo '</pre>';
+		echo '</div>';*/
+		
+		echo $querystr;
+		echo json_encode($posts);
 		
 		die(); // this is required to return a proper result
 	}

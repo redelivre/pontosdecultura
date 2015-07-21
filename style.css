@@ -614,6 +614,33 @@ button {
    color: #404040;  
 }
 
+.adv-search-radio-block {
+    background-color: #e9ddaf;
+    display: block;
+    float: left;
+    margin: 0.75em 0;
+    padding: 0.5em;
+    width: 100%;
+}
+
+h3.adv-search-radio {
+    float: left;
+    width: 100%;
+    display: block;
+}
+
+.adv-search-radio {
+    float: left;
+    width: auto;
+    display: block;
+    margin-right: 1em;
+}
+
+.adv-search-radio input {
+    width: auto;
+    margin-right: 0.25em;
+}
+
 /* Most searched terms */
 .search-tags {
 	background: #2d115c;

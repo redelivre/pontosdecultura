@@ -106,6 +106,7 @@ function pontosdecultura_update_posts_mais_buscadas(str)
 var search_result_left = "";
 
 var adv_search_title = "";
+var adv_search_cenico = "";
 var adv_search_natureza = "";
 var adv_search_desdobramentos = "";
 var adv_search_publico_alvo = "";
@@ -114,6 +115,15 @@ var adv_search_ressonancias = "";
 var adv_search_estado = "";
 var adv_search_estado_select = "";
 var adv_search_cidade = "";
+
+var adv_search_inicio = "";
+var adv_search_integrantes = "";
+var adv_search_ponto = "";
+var adv_search_vinculo = "";
+var adv_search_fotos = "";
+var adv_search_links = "";
+var adv_search_videos = "";
+var adv_search_facebook = "";
 
 jQuery(document).ready(function()
 {
@@ -154,117 +164,178 @@ jQuery(document).ready(function()
 		map_show_result('adv', function (){
 			
 			var title = jQuery(".adv-search-title").val();
+			var cenico =  jQuery(".adv-search-cenico-performativa option:selected").val();
 			var natureza = jQuery(".adv-search-natureza option:selected").val();
 			var desdobramentos = jQuery(".adv-search-desdobramentos option:selected").val();
 			var publico_alvo = jQuery(".adv-search-publico-alvo option:selected").val();
 			var ressonancias = jQuery(".adv-search-ressonancias option:selected").val();
 			var estado = jQuery(".adv-search-estado option:selected").val();
 			var cidade = jQuery(".adv-search-cidade option:selected").val();
-			var do_filter = false;
 			
-			if(title != adv_search_title)
-			{
-				do_filter = true;
-				if(adv_search_title != "")
-				{
-					mapstraction.removeFilter('title', 'like', adv_search_title);
-				}
-				adv_search_title = title;
-				if(title != "")
-				{
-					mapstraction.addFilter('title', 'like', title);
-				}
-			}
-			if(natureza != adv_search_natureza)
-			{
-				do_filter = true;
-				if(adv_search_natureza != "")
-				{
-					mapstraction.removeFilter('natureza', 'in', adv_search_natureza);
-				}
-				adv_search_natureza = natureza;
-				if(natureza != "")
-				{
-					mapstraction.addFilter('natureza', 'in', natureza);
-				}
-			}
-			if(desdobramentos != adv_search_desdobramentos)
-			{
-				do_filter = true;
-				if(adv_search_desdobramentos != "")
-				{
-					mapstraction.removeFilter('desdobramentos', 'in', adv_search_desdobramentos);
-				}
-				adv_search_desdobramentos = desdobramentos;
-				if(desdobramentos != "")
-				{
-					mapstraction.addFilter('desdobramentos', 'in', desdobramentos);
-				}
-			}
-			if(publico_alvo != adv_search_publico_alvo)
-			{
-				do_filter = true;
-				if(adv_search_publico_alvo != "")
-				{
-					mapstraction.removeFilter('publico-alvo', 'in', adv_search_publico_alvo);
-				}
-				adv_search_publico_alvo = publico_alvo;
-				if(publico_alvo != "")
-				{
-					mapstraction.addFilter('publico-alvo', 'in', publico_alvo);
-				}
-			}
-			if(ressonancias != adv_search_ressonancias)
-			{
-				do_filter = true;
-				if(adv_search_ressonancias != "")
-				{
-					mapstraction.removeFilter('ressonancias', 'in', adv_search_ressonancias);
-				}
-				adv_search_ressonancias = ressonancias;
-				if(ressonancias != "")
-				{
-					mapstraction.addFilter('ressonancias', 'in', ressonancias);
-				}
-			}
+			var inicio = jQuery('input[name=adv-search-ano-inicio]:checked').val();
+			var integrantes = jQuery('input[name=adv-search-numero-integrantes]:checked').val();;
+			var ponto = jQuery('input[name=adv-search-e-ponto]:checked').val();;
+			var vinculo = jQuery('input[name=adv-search-vinculo]:checked').val();;
+			var fotos = jQuery('input[name=adv-search-fotos]:checked').val();;
+			var links = jQuery('input[name=adv-search-links]:checked').val();;
+			var videos = jQuery('input[name=adv-search-videos]:checked').val();;
+			var facebook = jQuery('input[name=adv-search-facebook]:checked').val();;
 			
-			if(cidade != adv_search_cidade)
+			if(
+					inicio != '' ||
+					integrantes != '' ||
+					ponto != '' ||
+					vinculo != '' ||
+					fotos != '' ||
+					links != '' ||
+					videos != '' ||
+					facebook != ''
+			) // using ajax
 			{
-				do_filter = true;
-				if(adv_search_cidade != "")
-				{
-					mapstraction.removeFilter('territorio', 'in', adv_search_cidade);
-				}
-				adv_search_cidade = cidade;
-				if(cidade != "")
-				{
-					mapstraction.addFilter('territorio', 'in', cidade);
-				}
+				var fields = {
+						"title":title,
+						"cenico":cenico,
+						"natureza":natureza,
+						"desdobramentos":desdobramentos,
+						"publico_alvo":publico_alvo,
+						"ressonancias":ressonancias,
+						"estado":estado,
+						"cidade":cidade,
+						"_pratica-ano-inicio":inicio,
+						"_pratica-numero-integrantes":integrantes,
+						"pratica-e-ponto":ponto,
+						"pratica-vinculo":vinculo,
+						"_pratica-tem-fotos":fotos,
+						"_pratica-tem-links":links,
+						"pratica-videos":videos,
+						"pratica-facebook":facebook
+				};
+				
+				pontosdecultura_update_posts_advsearch(fields);
 			}
 			else
 			{
-				if(estado != adv_search_estado)
+				var do_filter = false;
+				
+				if(title != adv_search_title)
 				{
 					do_filter = true;
-					if(adv_search_estado != "")
+					if(adv_search_title != "")
 					{
-						mapstraction.removeFilter('territorio', 'in', adv_search_estado);
+						mapstraction.removeFilter('title', 'like', adv_search_title);
 					}
-					adv_search_estado = estado;
-					if(estado != "")
+					adv_search_title = title;
+					if(title != "")
 					{
-						mapstraction.addFilter('territorio', 'in', estado);
+						mapstraction.addFilter('title', 'like', title);
 					}
 				}
+				adv_search_cenico
+				if(cenico != adv_search_cenico)
+				{
+					do_filter = true;
+					if(adv_search_cenico != "")
+					{
+						mapstraction.removeFilter('cenico-performativa', 'in', adv_search_cenico);
+					}
+					adv_search_cenico = cenico;
+					if(cenico != "")
+					{
+						mapstraction.addFilter('cenico-performativa', 'in', cenico);
+					}
+				}
+				
+				if(natureza != adv_search_natureza)
+				{
+					do_filter = true;
+					if(adv_search_natureza != "")
+					{
+						mapstraction.removeFilter('natureza', 'in', adv_search_natureza);
+					}
+					adv_search_natureza = natureza;
+					if(natureza != "")
+					{
+						mapstraction.addFilter('natureza', 'in', natureza);
+					}
+				}
+				if(desdobramentos != adv_search_desdobramentos)
+				{
+					do_filter = true;
+					if(adv_search_desdobramentos != "")
+					{
+						mapstraction.removeFilter('desdobramentos', 'in', adv_search_desdobramentos);
+					}
+					adv_search_desdobramentos = desdobramentos;
+					if(desdobramentos != "")
+					{
+						mapstraction.addFilter('desdobramentos', 'in', desdobramentos);
+					}
+				}
+				if(publico_alvo != adv_search_publico_alvo)
+				{
+					do_filter = true;
+					if(adv_search_publico_alvo != "")
+					{
+						mapstraction.removeFilter('publico-alvo', 'in', adv_search_publico_alvo);
+					}
+					adv_search_publico_alvo = publico_alvo;
+					if(publico_alvo != "")
+					{
+						mapstraction.addFilter('publico-alvo', 'in', publico_alvo);
+					}
+				}
+				if(ressonancias != adv_search_ressonancias)
+				{
+					do_filter = true;
+					if(adv_search_ressonancias != "")
+					{
+						mapstraction.removeFilter('ressonancias', 'in', adv_search_ressonancias);
+					}
+					adv_search_ressonancias = ressonancias;
+					if(ressonancias != "")
+					{
+						mapstraction.addFilter('ressonancias', 'in', ressonancias);
+					}
+				}
+				
+				if(cidade != adv_search_cidade)
+				{
+					do_filter = true;
+					if(adv_search_cidade != "")
+					{
+						mapstraction.removeFilter('territorio', 'in', adv_search_cidade);
+					}
+					adv_search_cidade = cidade;
+					if(cidade != "")
+					{
+						mapstraction.addFilter('territorio', 'in', cidade);
+					}
+				}
+				else
+				{
+					if(estado != adv_search_estado)
+					{
+						do_filter = true;
+						if(adv_search_estado != "")
+						{
+							mapstraction.removeFilter('territorio', 'in', adv_search_estado);
+						}
+						adv_search_estado = estado;
+						if(estado != "")
+						{
+							mapstraction.addFilter('territorio', 'in', estado);
+						}
+					}
+				}
+				
+				if(do_filter)
+				{
+					mapstraction.doFilter();
+					updateResults();
+				}
+				mapstraction.visibleCenterAndZoom();
+				map_show_result_end();
 			}
-			
-			if(do_filter)
-			{
-				mapstraction.doFilter();
-				updateResults();
-			}
-			mapstraction.visibleCenterAndZoom();
-			map_show_result_end();
 		});
 	});
 	
@@ -671,5 +742,33 @@ function load_map_data(from)
 		result_callback_func();
 	}
 	
+}
+
+
+
+function pontosdecultura_update_posts_advsearch(fields)
+{
+		mapstraction.removeAllFilters();
+        var data =
+        {
+                action: 'home_adv_search',
+                data: fields
+        };
+         
+        jQuery.ajax(
+        {
+            type: 'POST',
+                    url: homescripts_object.ajax_url,
+            data: data,
+            success: function(response)
+            {
+            	pontosdecultura_updateResults(response);
+            	map_show_result_end();
+            },
+            beforeSend: function()
+            {
+            	//jQuery(".Ajax-Loader").toggle();
+            }, 
+        });
 }
 

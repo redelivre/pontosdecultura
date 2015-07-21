@@ -87,7 +87,7 @@
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
 				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php //echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
-				<select name="adv-search-cenico-performativa" class="adv-search-cenico-performativa">
+				<select name="adv-search-cenico-performativa" class="adv-search-cenico-performativa" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Área(s) da Pesquisa Cênico-Performativa(s)', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('cenico-performativa', array('orderby' => 'name', 'hide_empty' => false));
@@ -99,7 +99,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-natureza" class="adv-search-natureza">
+				<select name="adv-search-natureza" class="adv-search-natureza" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Natureza', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('natureza', array('orderby' => 'name', 'hide_empty' => false));
@@ -111,7 +111,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-desdobramentos" class="adv-search-desdobramentos">
+				<select name="adv-search-desdobramentos" class="adv-search-desdobramentos" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Desdobramentos', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('desdobramentos', array('orderby' => 'name', 'hide_empty' => false));
@@ -123,7 +123,36 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-publico-alvo" class="adv-search-publico-alvo">
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Tempo</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 1; ?>,<?php echo date('Y') - 3; ?>">1 a 3 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 4; ?>,<?php echo date('Y') - 6; ?>">4 a 6 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 7; ?>,<?php echo date('Y') - 10; ?>">7 a 10 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 11; ?>,<?php echo date('Y') - 15; ?>">11 a 15 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 16; ?>,<?php echo date('Y') - 20; ?>">16 a 20 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 21; ?>,<?php echo date('Y') - 30; ?>">21 a 30 anos</label>
+						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 31; ?>,+">Mais de 30 anos</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Nº de Integrantes Estáveis</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="1">1</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="2">2</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="3">3</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="4">4</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="5,10">5 a 10</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="11,20">11 a 20</label>
+						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="20,+">Mais de 20</label>
+					</div>
+				</div>
+				
+				<select name="adv-search-publico-alvo" class="adv-search-publico-alvo" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Público-alvo', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('publico-alvo', array('orderby' => 'name', 'hide_empty' => false));
@@ -135,7 +164,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-ressonancias" class="adv-search-ressonancias">
+				<select name="adv-search-ressonancias" class="adv-search-ressonancias" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Ressonâncias', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('ressonancias', array('orderby' => 'name', 'hide_empty' => false));
@@ -147,7 +176,64 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-estado" class="adv-search-estado">
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">É Ponto de Cultura?</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="N">Não</label>
+						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="S">É Ponto de Cultura</label>
+						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="P">É Pontão de Cultura</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Vínculo Acadêmico</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="N">Nunca possuiram</label>
+						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="P">Já Possuiram</label>
+						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="S">Possuem</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Fotos</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="S">Que tenham fotos</label>
+						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="N">Que não tenham fotos</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Links para publicações</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="S">Com links para publicações</label>
+						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="N">Sem links para publicações</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Links para Videos</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="S">Com links para vídeos</label>
+						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="N">Sem links para videos</label>
+					</div>
+				</div>
+				
+				<div class="row adv-search-radio-block">
+					<h3 class="adv-search-radio area-title">Facebook</h3>
+					<div class="adv-search-radio-options">
+						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="" checked="checked">Qualquer</label>
+						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="S">Com links para o facebook</label>
+						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="N">Sem links para o facebook</label>
+					</div>
+				</div>
+				
+				<select name="adv-search-estado" class="adv-search-estado" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
@@ -159,7 +245,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-cidade" class="adv-search-cidade">
+				<select name="adv-search-cidade" class="adv-search-cidade" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
 				</select>
 				<input type="submit" class="adv-search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
