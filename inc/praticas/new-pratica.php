@@ -269,7 +269,7 @@ else
 		
 		if($notice == false && count($message) == 0)
 		{?>
-<div class="new-pratica-sucess"><?php _e('A new pratica was successfully created and waiting approval, thanks'); ?>
+<div class="new-pratica-sucess"><?php _e('Uma nova pesquisa foi criada e aguarda aprovação, obrigado'); ?>
 			</div><?php
 			return ;
 		}

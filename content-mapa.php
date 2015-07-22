@@ -11,7 +11,7 @@
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 
 		<div class="entry-meta">
-			<?php pontosdecultura_the_terms( array( 'artescenicas', 'audiovisual', 'musica', 'artesvisuais', 'patrimoniocultural', 'humanidades' ) ); ?>
+			<?php pontosdecultura_the_terms( array('tipo-do-objeto', 'cenico-performativa', 'natureza', 'desdobramentos', 'publico-alvo', 'ressonancias' ) ); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 

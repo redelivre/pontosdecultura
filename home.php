@@ -279,7 +279,7 @@
 			</div>
 			<div class="search-not-here">
 				<img class="icon-capa" src="<?php echo get_template_directory_uri().'/images/icon.png'; ?>"/>
-				<?php printf( __( 'Não encontrou o procurava? Participe <a href="%s">cadastre sua pesquisa</a> ou <a href="%s">entre em contato</a> conosco!', 'pontosdecultura' ),  get_bloginfo( 'url' ) . '/contato', Praticas::get_new_url() ); ?>
+				<?php printf( __( 'Não encontrou o procurava? Participe <a href="%s">cadastre sua pesquisa</a> ou <a href="%s">entre em contato</a> conosco!', 'pontosdecultura' ),  Praticas::get_new_url(), get_bloginfo( 'url' ) . '/contato' ); ?>
 			</div>
 		</div>
 	</section>
