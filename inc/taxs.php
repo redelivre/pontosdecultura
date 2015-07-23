@@ -43,7 +43,7 @@ function register_pontos_taxonomies()
 	
 	$labels = array
 	(
-			'name' => __('Área(s) da Pesquisa Cênico-Performativa(s)','pontosdecultura'),
+			'name' => __('Área(s) da Pesquisa Cênico-Performativa','pontosdecultura'),
 			'singular_name' => __('Área da Pesquisa Cênico-Performativa', 'pontosdecultura'),
 			'search_items' => __('Procurar por uma área da Pesquisa cênico-performativa','pontosdecultura'),
 			'all_items' => __('Todos as áreas da Pesquisa Cênico-Performativas','pontosdecultura'),
@@ -64,7 +64,7 @@ function register_pontos_taxonomies()
 	'pratica'
 			),
 			array( 'hierarchical' => true,
-			'label' => 'Área(s) da Pesquisa Cênico-Performativa(s)',
+			'label' => 'Área(s) da Pesquisa Cênico-Performativa',
 			'show_ui' => true,
 			'query_var' => true,
 			'show_admin_column' => true,

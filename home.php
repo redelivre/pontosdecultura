@@ -88,7 +88,7 @@
 			<form class="adv-search-form content-box" role="search">
 				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php //echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
 				<select name="adv-search-cenico-performativa" class="adv-search-cenico-performativa" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Área(s) da Pesquisa Cênico-Performativa(s)', 'pontosdecultura' ); ?></option>
+					<option value="" selected="selected" ><?php echo esc_attr_x('Área(s) da Pesquisa Cênico-Performativa', 'pontosdecultura' ); ?></option>
 					<?php
 						$terms = get_terms('cenico-performativa', array('orderby' => 'name', 'hide_empty' => false));
 						foreach ($terms as $term)
