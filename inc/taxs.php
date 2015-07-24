@@ -163,7 +163,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Performances", 'desdobramentos');
 		wp_insert_term("Publicações Físicas", 'desdobramentos');
 		wp_insert_term("Publicações Virtuais", 'desdobramentos');
-		wp_insert_term("Aulas", 'desdobramentos');
+		wp_insert_term("Aulas, oficinas e workshops", 'desdobramentos');
 		wp_insert_term("Filmes e Videos", 'desdobramentos');
 	}
 	
