@@ -177,6 +177,11 @@ class Pontosdecultura {
 		
 		add_filter('mapasdevista_map_div', array($this, 'mapasdevista_map_div'));
 		
+		add_filter('login_redirect', array($this, 'login_redirect'), 10, 3);
+		
+		
+		add_action('login_form', array($this, 'loginForm'));
+		
 	}
 	
 	public static function mapasdevista_create_post_overlay($load)
@@ -656,6 +661,25 @@ class Pontosdecultura {
 	public static function quote($str)
 	{
 		return sprintf("'%s'", $str);
+	}
+	
+	/**
+	 * After login, redirect the user to the page to administer campaigns.
+	 *
+	 * @param string $redirect_to
+	 * @param string $request the url the user is coming from
+	 * @param Wp_Error|Wp_User $user
+	 */
+	function login_redirect($redirect_to, $request, $user) {
+		
+		$redirect_to = $request;
+	
+		return $redirect_to;
+	}
+	
+	function loginForm()
+	{
+		wp_enqueue_style('pontosdecultura-login', get_template_directory_uri() . '/css/login.css' );
 	}
 	
 }
