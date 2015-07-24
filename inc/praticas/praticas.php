@@ -341,7 +341,37 @@ class Praticas
 			</p>
 			<?php
 			
+			if(array_key_exists($slug, $custom)) unset($custom[$slug]);
 		}
+		
+		foreach ($custom as $key => $value)
+		{
+			$input_pos = strpos($key, '_input'); 
+			if( $input_pos > 0 ) // input text
+			{
+				$taxonomy =  substr($key, 1, strpos($key, "_", 1) - 1);
+				$taxonomy_obj = get_taxonomy($taxonomy);
+				
+				$term_id = substr($key, strlen($taxonomy) + 2, $input_pos - (strlen($taxonomy) + 2));
+			
+				$term = get_term(intval( $term_id ), $taxonomy);
+				
+				$dado = array_pop($value);
+				
+				?>
+				<p>
+					<label for="<?php echo $term->slug; ?>" class="<?php echo 'label_'.$term->slug; ?>"><?php echo $taxonomy_obj->labels->name." - ".str_replace('#input#', '', $term->name) ?>:</label>
+					<input <?php echo $disable_edicao ?> id="<?php echo $term->slug; ?>"
+						name="<?php echo $term->slug; ?>"
+						class="<?php echo $term->slug; ?>"
+						value="<?php echo $dado; ?>" />
+				</p>
+				<?php
+				
+			}
+		}
+		
+		
 	}
 	
 	function second_image_meta($post)
@@ -919,7 +949,7 @@ class Praticas
 			{
 				$name = str_replace('#input#', '', $name);
 				$value = array_key_exists($taxonomy.'_'.$term->term_id.'_input', $_REQUEST) ? $_REQUEST[$taxonomy.'_'.$term->term_id.'_input'] : ''; 
-				$input = '<input type="text" class="taxonomy-'.$taxonomy.'-checkbox-text" name="'.$taxonomy.'_'.$term->term_id.'_input" id="taxonomy_'.$taxonomy.'_'.$term->slug.'_input" value="'.$value.'" />';
+				$input = '<input type="text" class="taxonomy-checkbox-text taxonomy-'.$taxonomy.'-checkbox-text" name="'.$taxonomy.'_'.$term->term_id.'_input" id="taxonomy_'.$taxonomy.'_'.$term->slug.'_input" value="'.$value.'" />';
 			}
 			$checked = 
 				isset($_REQUEST) &&
@@ -944,8 +974,8 @@ class Praticas
 					<input type="checkbox" class="taxonomy-<?php echo $taxonomy ?>-checkbox" value="<?php echo $term->term_id; ?>" name="taxonomy_<?php echo $taxonomy; ?>[]" id="taxonomy_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>"
 					<?php echo $checked; ?> autocomplete="off" /><?php
 				}?>
-				<label for="taxonomy_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>"><?php
-					echo $name;?>
+				<label for="taxonomy_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>" class="taxonomy-label-group-col <?php echo empty($input) ? '' : 'taxonomy-label-group-col-input'; ?>" ><?php
+					echo $name.(empty($input) ? '' : ':&nbsp;');?>
 				</label><?php
 				echo $input; 
 				self::taxonomy_checklist($taxonomy, $term->term_id); ?>

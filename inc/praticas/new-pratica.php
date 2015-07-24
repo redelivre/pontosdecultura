@@ -160,7 +160,31 @@ else
 					$message[] = __('error on set post taxonomy', 'pontosdecultura').': '.$taxonomy;
 					$notice = true;
 				}
+				
+				unset($_POST['taxonomy_'.$taxonomy]);
 			}
+		}
+		
+		foreach ($_POST as $key => $value)
+		{
+			$input_pos = strpos($key, '_input'); 
+			if( $input_pos > 0 && !empty($value) ) // input text
+			{
+				$taxonomy =  substr($key, 0, strpos($key, "_"));
+				$term_id = substr($key, strlen($taxonomy) + 1, $input_pos - (strlen($taxonomy) + 1));
+			
+				$result = wp_set_post_terms($post_ID, $term_id, $taxonomy); // save term
+				if( is_object($result) && get_class($result) == 'WP_Error' )
+				{
+					$message[] = __('error on set post taxonomy input', 'pontosdecultura').': '.$taxonomy;
+					$notice = true;
+				}
+				
+				//save input value
+				update_post_meta($post_ID, "_".$key, sanitize_text_field($value));
+				
+			}
+			
 		}
 		
 		/* Save Attached Content */

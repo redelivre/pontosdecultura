@@ -35,10 +35,9 @@ function register_pontos_taxonomies()
 			)
 	);
 	
-	/*if(!term_exists('Circo', 'cenico-performativa'))
+	/*if(!term_exists('????', 'tipo-do-objeto'))
 	{
-		wp_insert_term("Circo", 'cenico-performativa');
-	
+		wp_insert_term("Outra#input#", 'tipo-do-objeto');
 	}*/
 	
 	$labels = array
@@ -85,7 +84,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Teatro", 'cenico-performativa');
 		wp_insert_term("Teatro de Rua", 'cenico-performativa');
 		wp_insert_term("Teatro para Infância e Juventude", 'cenico-performativa');
-		
+		wp_insert_term("Outra#input#", 'cenico-performativa');
 	}
 	
 	$labels = array
@@ -165,6 +164,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Publicações Virtuais", 'desdobramentos');
 		wp_insert_term("Aulas, oficinas e workshops", 'desdobramentos');
 		wp_insert_term("Filmes e Videos", 'desdobramentos');
+		wp_insert_term("Outro#input#", 'desdobramentos');
 	}
 	
 	/*$labels = array
@@ -303,6 +303,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Quilombolas", 'publico-alvo');
 		wp_insert_term("Ribeirinhos", 'publico-alvo');
 		wp_insert_term("Outros segmentos Populares", 'publico-alvo');
+		wp_insert_term("Outro#input#", 'publico-alvo');
 	}
 	
 	$labels = array
@@ -393,6 +394,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Sociologia", 'ressonancias');
 		wp_insert_term("Televisão", 'ressonancias');
 		wp_insert_term("Turismo", 'ressonancias');
+		wp_insert_term("Outra#input#", 'ressonancias');
 	}
 	
 	
