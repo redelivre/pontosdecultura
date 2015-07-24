@@ -672,7 +672,14 @@ class Pontosdecultura {
 	 */
 	function login_redirect($redirect_to, $request, $user) {
 		
-		$redirect_to = $request;
+		if(!empty($request))
+		{
+			$redirect_to = $request;
+		}
+		else 
+		{
+			$redirect_to = get_bloginfo('url') . '/';
+		}
 	
 		return $redirect_to;
 	}
