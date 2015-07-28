@@ -197,23 +197,17 @@
 					<option value="N">Sem links para publicações</option>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Links para Videos</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="S">Com links para vídeos</label>
-						<label class="adv-search-radio adv-search-videos" ><input type="radio" name="adv-search-videos" autocomplete="off" value="N">Sem links para videos</label>
-					</div>
-				</div>
+				<select name="adv-search-videos" class="adv-search-videos" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Links para Videos', 'pontosdecultura' ); ?></option>
+					<option value="S">Com links para vídeos</option>
+					<option value="N">Sem links para videos</option>
+				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Facebook</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="S">Com links para o facebook</label>
-						<label class="adv-search-radio adv-search-facebook" ><input type="radio" name="adv-search-facebook" autocomplete="off" value="N">Sem links para o facebook</label>
-					</div>
-				</div>
+				<select name="adv-search-facebook" class="adv-search-facebook" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Facebook', 'pontosdecultura' ); ?></option>
+					<option value="S">Com links para o facebook</option>
+					<option value="N">Sem links para o facebook</option>
+				</select>
 				
 				<select name="adv-search-estado" class="adv-search-estado" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>

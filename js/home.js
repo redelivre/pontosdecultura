@@ -178,8 +178,8 @@ jQuery(document).ready(function()
 			var vinculo = jQuery('.adv-search-vinculo option:selected').val();;
 			var fotos = jQuery('.adv-search-fotos option:selected').val();;
 			var links = jQuery('.adv-search-links option:selected').val();;
-			var videos = jQuery('input[name=adv-search-videos]:checked').val();;
-			var facebook = jQuery('input[name=adv-search-facebook]:checked').val();;
+			var videos = jQuery('.adv-search-videos option:selected').val();;
+			var facebook = jQuery('.adv-search-facebook option:selected').val();;
 			
 			if(
 					inicio != '' ||
