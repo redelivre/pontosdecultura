@@ -185,6 +185,12 @@
 					<option value="S">Possuem</option>
 				</select>
 				
+				<select name="adv-search-fotos" class="adv-search-fotos" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Fotos', 'pontosdecultura' ); ?></option>
+					<option value="S">Que tenham fotos</option>
+					<option value="N">Que não tenham fotos</option>
+				</select>
+				
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Fotos</h3>
 					<div class="adv-search-radio-options">
