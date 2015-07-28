@@ -173,7 +173,7 @@ jQuery(document).ready(function()
 			var cidade = jQuery(".adv-search-cidade option:selected").val();
 			
 			var inicio = jQuery(".adv-search-ano-inicio option:selected").val();
-			var integrantes = jQuery('input[name=adv-search-numero-integrantes]:checked').val();;
+			var integrantes = jQuery('.adv-search-numero-integrantes option:selected').val();;
 			var ponto = jQuery('input[name=adv-search-e-ponto]:checked').val();;
 			var vinculo = jQuery('input[name=adv-search-vinculo]:checked').val();;
 			var fotos = jQuery('input[name=adv-search-fotos]:checked').val();;

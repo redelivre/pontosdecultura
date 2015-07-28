@@ -135,6 +135,17 @@
 					<option value="<?php echo date('Y') - 31; ?>,+">Mais de 30 anos</option>
 				</select>
 
+				<select name="adv-search-numero-integrantes" class="adv-search-numero-integrantes" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Nº de Integrantes Estáveis', 'pontosdecultura' ); ?></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5,10">5 a 10</option>
+					<option value="11,20">11 a 20</option>
+					<option value="20,+">Mais de 20</option>
+				</select>
+				
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Nº de Integrantes Estáveis</h3>
 					<div class="adv-search-radio-options">
