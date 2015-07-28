@@ -175,7 +175,7 @@ jQuery(document).ready(function()
 			var inicio = jQuery(".adv-search-ano-inicio option:selected").val();
 			var integrantes = jQuery('.adv-search-numero-integrantes option:selected').val();;
 			var ponto = jQuery('.adv-search-e-ponto option:selected').val();;
-			var vinculo = jQuery('input[name=adv-search-vinculo]:checked').val();;
+			var vinculo = jQuery('.name=adv-search-vinculo option:selected').val();;
 			var fotos = jQuery('input[name=adv-search-fotos]:checked').val();;
 			var links = jQuery('input[name=adv-search-links]:checked').val();;
 			var videos = jQuery('input[name=adv-search-videos]:checked').val();;

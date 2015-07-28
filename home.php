@@ -178,15 +178,12 @@
 					<option value="P">É Pontão de Cultura</option>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Vínculo Acadêmico</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="N">Nunca possuiram</label>
-						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="P">Já Possuiram</label>
-						<label class="adv-search-radio adv-search-vinculo" ><input type="radio" name="adv-search-vinculo" autocomplete="off" value="S">Possuem</label>
-					</div>
-				</div>
+				<select name="adv-search-vinculo" class="adv-search-vinculo" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Vínculo Acadêmico', 'pontosdecultura' ); ?></option>
+					<option value="N">Nunca possuiram</option>
+					<option value="P">Já Possuiram</option>
+					<option value="S">Possuem</option>
+				</select>
 				
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Fotos</h3>
