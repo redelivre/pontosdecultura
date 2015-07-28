@@ -191,14 +191,11 @@
 					<option value="N">Que não tenham fotos</option>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Links para publicações</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="S">Com links para publicações</label>
-						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="N">Sem links para publicações</label>
-					</div>
-				</div>
+				<select name="adv-search-links" class="adv-search-links" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Links para publicações', 'pontosdecultura' ); ?></option>
+					<option value="S">Com links para publicações</option>
+					<option value="N">Sem links para publicações</option>
+				</select>
 				
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Links para Videos</h3>
