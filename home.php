@@ -146,20 +146,6 @@
 					<option value="20,+">Mais de 20</option>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Nº de Integrantes Estáveis</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="1">1</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="2">2</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="3">3</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="4">4</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="5,10">5 a 10</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="11,20">11 a 20</label>
-						<label class="adv-search-radio adv-search-numero-integrantes" ><input type="radio" name="adv-search-numero-integrantes" autocomplete="off" value="20,+">Mais de 20</label>
-					</div>
-				</div>
-				
 				<select name="adv-search-publico-alvo" class="adv-search-publico-alvo" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Público-alvo', 'pontosdecultura' ); ?></option>
 					<?php
@@ -185,15 +171,12 @@
 					?>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">É Ponto de Cultura?</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="N">Não</label>
-						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="S">É Ponto de Cultura</label>
-						<label class="adv-search-radio adv-search-e-ponto" ><input type="radio" name="adv-search-e-ponto" autocomplete="off" value="P">É Pontão de Cultura</label>
-					</div>
-				</div>
+				<select name="adv-search-e-ponto" class="adv-search-e-ponto" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Ponto de Cultura?', 'pontosdecultura' ); ?></option>
+					<option value="N">Não</option>
+					<option value="S">É Ponto de Cultura</option>
+					<option value="P">É Pontão de Cultura</option>
+				</select>
 				
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Vínculo Acadêmico</h3>
