@@ -192,15 +192,6 @@
 				</select>
 				
 				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Fotos</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="S">Que tenham fotos</label>
-						<label class="adv-search-radio adv-search-fotos" ><input type="radio" name="adv-search-fotos" autocomplete="off" value="N">Que não tenham fotos</label>
-					</div>
-				</div>
-				
-				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Links para publicações</h3>
 					<div class="adv-search-radio-options">
 						<label class="adv-search-radio adv-search-links" ><input type="radio" name="adv-search-links" autocomplete="off" value="" checked="checked">Qualquer</label>
