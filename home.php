@@ -99,6 +99,21 @@
 						} 
 					?>
 				</select>
+				<select name="adv-search-estado" class="adv-search-estado" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+					<?php
+						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
+						foreach ($terms as $term)
+						{
+							?>
+							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<?php
+						} 
+					?>
+				</select>
+				<select name="adv-search-cidade" class="adv-search-cidade" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+				</select>
 				<select name="adv-search-natureza" class="adv-search-natureza" autocomplete="off">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Natureza', 'pontosdecultura' ); ?></option>
 					<?php
@@ -209,21 +224,6 @@
 					<option value="N">Sem links para o facebook</option>
 				</select>
 				
-				<select name="adv-search-estado" class="adv-search-estado" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				<select name="adv-search-cidade" class="adv-search-cidade" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-				</select>
 				<input type="submit" class="adv-search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
 			</form><!-- .adv-search-form -->
 		</div><!-- .container -->
