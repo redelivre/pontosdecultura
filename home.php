@@ -124,20 +124,17 @@
 					?>
 				</select>
 				
-				<div class="row adv-search-radio-block">
-					<h3 class="adv-search-radio area-title">Tempo</h3>
-					<div class="adv-search-radio-options">
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="" checked="checked">Qualquer</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 1; ?>,<?php echo date('Y') - 3; ?>">1 a 3 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 4; ?>,<?php echo date('Y') - 6; ?>">4 a 6 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 7; ?>,<?php echo date('Y') - 10; ?>">7 a 10 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 11; ?>,<?php echo date('Y') - 15; ?>">11 a 15 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 16; ?>,<?php echo date('Y') - 20; ?>">16 a 20 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 21; ?>,<?php echo date('Y') - 30; ?>">21 a 30 anos</label>
-						<label class="adv-search-radio adv-search-ano-inicio" ><input type="radio" name="adv-search-ano-inicio" autocomplete="off" value="<?php echo date('Y') - 31; ?>,+">Mais de 30 anos</label>
-					</div>
-				</div>
-				
+				<select name="adv-search-ano-inicio" class="adv-search-ano-inicio" autocomplete="off">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Tempo', 'pontosdecultura' ); ?></option>
+					<option value="<?php echo date('Y') - 1; ?>,<?php echo date('Y') - 3; ?>">1 a 3 anos</option>
+					<option value="<?php echo date('Y') - 4; ?>,<?php echo date('Y') - 6; ?>">4 a 6 anos</option>
+					<option value="<?php echo date('Y') - 7; ?>,<?php echo date('Y') - 10; ?>">7 a 10 anos</option>
+					<option value="<?php echo date('Y') - 11; ?>,<?php echo date('Y') - 15; ?>">11 a 15 anos</option>
+					<option value="<?php echo date('Y') - 16; ?>,<?php echo date('Y') - 20; ?>">16 a 20 anos</option>
+					<option value="<?php echo date('Y') - 21; ?>,<?php echo date('Y') - 30; ?>">21 a 30 anos</option>
+					<option value="<?php echo date('Y') - 31; ?>,+">Mais de 30 anos</option>
+				</select>
+
 				<div class="row adv-search-radio-block">
 					<h3 class="adv-search-radio area-title">Nº de Integrantes Estáveis</h3>
 					<div class="adv-search-radio-options">

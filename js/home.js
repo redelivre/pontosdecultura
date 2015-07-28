@@ -172,7 +172,7 @@ jQuery(document).ready(function()
 			var estado = jQuery(".adv-search-estado option:selected").val();
 			var cidade = jQuery(".adv-search-cidade option:selected").val();
 			
-			var inicio = jQuery('input[name=adv-search-ano-inicio]:checked').val();
+			var inicio = jQuery(".adv-search-ano-inicio option:selected").val();
 			var integrantes = jQuery('input[name=adv-search-numero-integrantes]:checked').val();;
 			var ponto = jQuery('input[name=adv-search-e-ponto]:checked').val();;
 			var vinculo = jQuery('input[name=adv-search-vinculo]:checked').val();;
