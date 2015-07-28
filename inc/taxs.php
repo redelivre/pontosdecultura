@@ -357,7 +357,7 @@ function register_pontos_taxonomies()
 		wp_insert_term("Coral", 'ressonancias');
 		wp_insert_term("Cultura Cigana", 'ressonancias');
 		wp_insert_term("Cultura Digital", 'ressonancias');
-		wp_insert_term("Cultura Estrangeira(imigrantes)", 'ressonancias');
+		wp_insert_term("Cultura Estrangeira (Imigrantes)", 'ressonancias');
 		wp_insert_term("Cultura Indígena", 'ressonancias');
 		wp_insert_term("Cultura LGBT", 'ressonancias');
 		wp_insert_term("Cultura Negra", 'ressonancias');
@@ -371,7 +371,6 @@ function register_pontos_taxonomies()
 		wp_insert_term("Fotografia", 'ressonancias');
 		wp_insert_term("Gastronomia", 'ressonancias');
 		wp_insert_term("Gestão Cultural", 'ressonancias');
-		wp_insert_term("Gestor Publico de Cultura", 'ressonancias');
 		wp_insert_term("História", 'ressonancias');
 		wp_insert_term("Jogos Eletrônicos", 'ressonancias');
 		wp_insert_term("Jornalismo", 'ressonancias');
