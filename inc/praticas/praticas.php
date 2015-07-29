@@ -859,9 +859,11 @@ class Praticas
 						</div>
 						</label>
 							<div class="pratica-item-input-radio-block"><?php
+								$i = 0;
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<label class="pratica-item-input-radio" ><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'"><label for="'.("$id-option-$i").'" class="pratica-item-input-radio" >'.$label_item.'</label>';
+									$i++;
 								}
 						?></div><div class="pratica-item-error-message"></div>
 						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>

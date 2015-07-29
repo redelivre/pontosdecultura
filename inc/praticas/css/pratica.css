@@ -144,12 +144,11 @@ ul.parent, div.pratica-item-input-radio-block {
     border-radius: 20px;
 }
 
-div.pratica-item-input-radio-block {
-	
-}
-
 .pratica-item-input-radio {
-    margin-left: 1em;
+    margin-left: 0.5em;
     margin-right: 1em;
 }
 
+.pratica-item-input-radio-block > input {
+    margin-left: 1.25em;
+}
