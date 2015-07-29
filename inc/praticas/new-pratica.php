@@ -379,10 +379,6 @@ else
 			'type' => 'estadocidade'
 	));
 	Praticas::print_field($fields['cep']);
-	Praticas::print_field('tipo-do-objeto', array(
-			'label' => 'Tipo do Objeto',
-			'outro' => true,
-	));
 	Praticas::print_field($fields['ano-inicio']);
  	Praticas::print_field($fields['numero-integrantes']);
  	Praticas::print_field('natureza', array(
