@@ -54,17 +54,17 @@ class Praticas
 			),
 			'videos' => array (
 					'slug' => 'pratica-videos',
-					'title' => __ ( 'Vídeos', 'pontosdecultura' ),
+					'title' => __ ( 'Links para Vídeos', 'pontosdecultura' ),
 					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
 			),
 			'facebook' => array (
 					'slug' => 'pratica-facebook',
-					'title' => __ ( 'Facebook', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
+					'title' => __ ( 'Links para Facebook', 'pontosdecultura' ),
+					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
 			),
 			'outras-redes' => array (
 					'slug' => 'outras-redes',
-					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
+					'title' => __ ( 'Links para outras redes sociais', 'pontosdecultura' ),
 					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
 			),
 			'e-ponto' => array (
@@ -83,7 +83,7 @@ class Praticas
 			),
 			'suporte' => array (
 					'slug' => 'pratica-suporte',
-					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações', 'pontosdecultura' ),
+					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações?', 'pontosdecultura' ),
 					'tip' => __ ( 'nos dois últimos casos prever sub-opções cumulativas “federal”, “estadual”, “municipal”e depois sub-sub-opções “Por quanto tempo” com números de meses e anos a selecionar', 'pontosdecultura' ),
 					'type' => 'radio',
 					'values' => array('N' => __('Nunca recebeu', 'pontosdecultura' ), 'P' => __('Já recebeu', 'pontosdecultura' ), 'S' => __('Recebe', 'pontosdecultura' ) )

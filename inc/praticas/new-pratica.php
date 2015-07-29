@@ -426,7 +426,7 @@ else
 				<div class="pratica-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
 				</div>
 				<div class="pratica-item-tip-text">
-					<?php _e(' ', 'pontosdecultura'); ?>
+					<?php _e('&nbsp;', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail2" id="thumbnail2"
@@ -442,7 +442,7 @@ else
 				<div class="pratica-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
 				</div>
 				<div class="pratica-item-tip-text">
-					<?php _e(' ', 'pontosdecultura'); ?>
+					<?php _e('&nbsp;', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail3" id="thumbnail3"
