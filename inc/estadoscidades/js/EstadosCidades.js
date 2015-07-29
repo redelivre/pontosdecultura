@@ -19,7 +19,7 @@ jQuery(document).ready(function()
 		        data: data,
 		        success: function(response)
 		        {
-		        	jQuery(".dropdown-cidade").replaceWith(response);
+		        	jQuery("select.dropdown-cidade").replaceWith(response);
 		        	jQuery(".Ajax-Loader").toggle();
 		        },
 		        beforeSend: function()
