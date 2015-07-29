@@ -29,7 +29,7 @@ if ( ! is_user_logged_in() )
 		</div>
 		<div class="row">
 			<div class="col-lg-12 sections-advise">
-				<h2 class="text-center"><?php echo __('É necessário estar logado para acessar essa área, favor fazer o login. Obrigado', 'pontosdecultura'); ?></h2>
+				<h2 class="text-center"><?php echo __('É necessário estar logado para acessar essa área. Faça o login ou, se ainda não tiver uma conta, clique em ', 'pontosdecultura'); ?><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.Praticas::get_new_url(); ?>"><?php _e('"Cadastre-se aqui"', 'pontosdecultura'); ?></a></h2>
 			</div>
 		</div>
 	
