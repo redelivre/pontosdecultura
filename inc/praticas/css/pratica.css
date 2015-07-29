@@ -132,11 +132,24 @@ div.dropdown-cidade {
 }
 
 .pratica-item-checkbox {
-    background-color: #bab700;
+    /*background-color: #bab700;*/
+}
+
+ul.parent, div.pratica-item-input-radio-block {
+    background-color: #faba09;
+    display: block;
+    float: left;
+    margin-top: 0;
+    padding: 0.25em 1em 0.25em 0;
+    border-radius: 20px;
+}
+
+div.pratica-item-input-radio-block {
+	
 }
 
 .pratica-item-input-radio {
-    margin-left: 0.5em;
+    margin-left: 1em;
     margin-right: 1em;
 }
 

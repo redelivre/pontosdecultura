@@ -857,14 +857,13 @@ class Praticas
 							</div>
 							<div class="pratica-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><?php
-							/*<input type="radio" name="sex" value="male">Male<br>
-							<input type="radio" name="sex" value="female">Female*/
-							foreach ($field['values'] as $value => $label_item)
-							{
-								echo '<label class="pratica-item-input-radio" ><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
-							}
-						?><div class="pratica-item-error-message"></div>
+						</label>
+							<div class="pratica-item-input-radio-block"><?php
+								foreach ($field['values'] as $value => $label_item)
+								{
+									echo '<label class="pratica-item-input-radio" ><input type="radio" name="'.$id.'" value="'.$value.'">'.$label_item.'</label>';
+								}
+						?></div><div class="pratica-item-error-message"></div>
 						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
@@ -940,6 +939,10 @@ class Praticas
 		{?>
 			<ul class='children'><?php
 		}
+		else
+		{?>
+			<ul class='parent'><?php
+		}
 		$index = 1;
 		foreach ($terms as $term)
 		{
@@ -983,7 +986,7 @@ class Praticas
 			<?php
 			$index++;
 		}
-		if ($parent > 0)
+		//if ($parent > 0)
 		{?>
 			</ul><?php
 		}
