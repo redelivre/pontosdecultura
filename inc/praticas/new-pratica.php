@@ -405,7 +405,7 @@ else
  	));
  	?><br/>
  	<div class="images">
-	 	<div class="images-thumbnail">
+	 	<div class="images-thumbnail-block images-thumbnail">
 			<label for="thumbnail" class="pratica-item-label">
 				<div class="pratica-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
 				</div>
@@ -415,13 +415,13 @@ else
 			</label>
 			<input type="file" name="thumbnail" id="thumbnail"
 				value="<?php ?>"
-				onchange="displayPreview(this.files, 'thumbnail');"><?php
+				onchange="displayPreview(this.files, 'thumbnail');" class="pratica-file-upload"><?php
 			if($has_thumbnail && array_key_exists('thumbnail', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail']; ?>"><?php
 			}?>
 		</div>
-		<div class="images-thumbnail2">
+		<div class="images-thumbnail-block images-thumbnail2">
 			<label for="thumbnail2" class="pratica-item-label">
 				<div class="pratica-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
 				</div>
@@ -431,13 +431,13 @@ else
 			</label>
 			<input type="file" name="thumbnail2" id="thumbnail2"
 				value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>"
-				onchange="displayPreview(this.files, 'thumbnail2');"><?php
+				onchange="displayPreview(this.files, 'thumbnail2');" class="pratica-file-upload"><?php
 			if($has_thumbnail2 && array_key_exists('thumbnail2', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail2']; ?>"><?php
 			}?>
 		</div>
-		<div class="images-thumbnail3">
+		<div class="images-thumbnail-block images-thumbnail3">
 			<label for="thumbnail3" class="pratica-item-label">
 				<div class="pratica-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
 				</div>
@@ -447,7 +447,7 @@ else
 			</label>
 			<input type="file" name="thumbnail3" id="thumbnail3"
 				value="<?php echo array_key_exists('thumbnail3', $_REQUEST) ? esc_url($_REQUEST['thumbnail3']) : ''; ?>"
-				onchange="displayPreview(this.files, 'thumbnail3');"><?php
+				onchange="displayPreview(this.files, 'thumbnail3');" class="pratica-file-upload"><?php
 			if($has_thumbnail3 && array_key_exists('thumbnail3', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail3']; ?>"><?php
@@ -473,7 +473,7 @@ else
 	Praticas::print_field($fields['ocupacao']);
 	Praticas::print_field($fields['telefone-resp']);
 	Praticas::print_field($fields['email-resp']);?>
-	<div class="images-thumbnail4">
+	<div class="images-thumbnail-block images-thumbnail4">
 		<label for="thumbnail4" class="pratica-item-label">
 			<div class="pratica-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
 			</div>
@@ -483,7 +483,7 @@ else
 		</label>
 		<input type="file" name="thumbnail4" id="thumbnail4"
 			value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
-			onchange="displayPreview(this.files, 'thumbnail4');"><?php
+			onchange="displayPreview(this.files, 'thumbnail4');" class="pratica-file-upload"><?php
 		if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
 		{?>
 			<img src="<?php echo $attach['thumbnail4']; ?>"><?php
@@ -493,76 +493,7 @@ else
 	Praticas::print_field($fields['redes-resp']);
 	Praticas::print_field($fields['relacao-resp']);
 	
-	/*
-	//TODO Make image a field
 	?>
-	<div class="images">
-						<div class="images-thumbnail">
-							<label for="thumbnail" class="pratica-item-label">
-								<div class="pratica-item-title"><?php _e('Highlight Image', 'pontosdecultura'); ?>
-				</div>
-								<div class="pratica-item-tip-text">
-					<?php _e('Image showed on listing, like on home or catalog!', 'pontosdecultura'); ?>
-				</div>
-							</label> <input type="file" name="thumbnail" id="thumbnail"
-								value="<?php ?>"
-								onchange="displayPreview(this.files, 'thumbnail');"><?php
-			if($has_thumbnail && array_key_exists('thumbnail', $attach))
-			{?>
-				<img src="<?php echo $attach['thumbnail']; ?>"><?php
-			}?>
-		</div>
-						<div class="images-thumbnail2">
-							<label for="thumbnail2" class="pratica-item-label">
-								<div class="pratica-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
-				</div>
-								<div class="pratica-item-tip-text">
-					<?php _e('Outra imagem', 'pontosdecultura'); ?>
-				</div>
-							</label> <input type="file" name="thumbnail2" id="thumbnail2"
-								value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>"
-								onchange="displayPreview(this.files, 'thumbnail2');"><?php
-			if($has_thumbnail2 && array_key_exists('thumbnail2', $attach))
-			{?>
-				<img src="<?php echo $attach['thumbnail2']; ?>"><?php
-			}?>
-		</div>
-		<div class="images-thumbnail3">
-							<label for="thumbnail3" class="pratica-item-label">
-								<div class="pratica-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
-				</div>
-								<div class="pratica-item-tip-text">
-					<?php _e('Outra imagem', 'pontosdecultura'); ?>
-				</div>
-							</label> <input type="file" name="thumbnail3" id="thumbnail3"
-								value="<?php echo array_key_exists('thumbnail3', $_REQUEST) ? esc_url($_REQUEST['thumbnail3']) : ''; ?>"
-								onchange="displayPreview(this.files, 'thumbnail3');"><?php
-			if($has_thumbnail3 && array_key_exists('thumbnail3', $attach))
-			{?>
-				<img src="<?php echo $attach['thumbnail3']; ?>"><?php
-			}?>
-		</div>
-		<div class="images-thumbnail4">
-							<label for="thumbnail4" class="pratica-item-label">
-								<div class="pratica-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
-				</div>
-								<div class="pratica-item-tip-text">
-					<?php _e('Imagem do Responsável', 'pontosdecultura'); ?>
-				</div>
-							</label> <input type="file" name="thumbnail4" id="thumbnail4"
-								value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
-								onchange="displayPreview(this.files, 'thumbnail4');"><?php
-			if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
-			{?>
-				<img src="<?php echo $attach['thumbnail4']; ?>"><?php
-			}?>
-		</div>
-					</div>
-					<div class="category-group">
-	<?php 
-	//Praticas::taxonomy_checklist();
-	?>
-	</div>*/?>
 
 					<input id="original_publish" type="hidden" value="Publish"
 						name="original_publish"> <input id="publish"
