@@ -3,7 +3,8 @@
 .taxonomy-checkbox-group-col {
     display: block;
     float: left;
-    padding-left: 1em;
+    min-width: 33%;
+    padding: 0.25em 1em;
 }
 
 .pratica-item-label, .pratica-item {
@@ -23,6 +24,7 @@ input[type="text"].taxonomy-checkbox-text  {
     float: left;
     width: 80%;
     padding: 0.3em 0.4em 0.1em;
+    background-color: #bab700;
 }
 
 
