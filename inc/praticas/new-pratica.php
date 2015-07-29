@@ -57,7 +57,7 @@ else
 	$has_thumbnail4 = false;
 	
 	//$title = $post_type_object->labels->add_new_item;
-	$title = "Preencha os campos abaixo com informações sobre sua pesquisa.";
+	$title = "Preencha os campos abaixo com informações sobre sua pesquisa continuada em artes cênicas ou performativas.";
 	
 	$editing = true;
 	$post = null;
