@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
 $pratica = new Praticas();
 
-$buttonLabel = __('Publicar Pratica', 'pontosdecultura');
+$buttonLabel = __('Colocar minha pesquisa no mapa', 'pontosdecultura');
 
 $publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Pratica' || $_POST['publish'] == $buttonLabel );
 
@@ -306,7 +306,13 @@ else
 		
 		if($notice == false && count($message) == 0)
 		{?>
-<div class="new-pratica-sucess"><?php _e('Uma nova pesquisa foi criada e aguarda aprovação, obrigado'); ?>
+			<div class="home-entry <?php echo Praticas::NEW_PRATICA_PAGE ?> " >
+				<div class="container">
+					<div class="row">
+						<div class="new-pratica-sucess"><?php _e('Sua pesquisa continuada foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no Mapa. Obrigado ;)'); ?>
+						</div>
+					</div>
+				</div>
 			</div><?php
 			return ;
 		}

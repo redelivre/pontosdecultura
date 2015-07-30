@@ -241,3 +241,11 @@ input.pratica-file-upload {
     text-align: center;
     width: 100%;
 }
+
+.new-pratica-sucess {
+	display: block;
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+}
