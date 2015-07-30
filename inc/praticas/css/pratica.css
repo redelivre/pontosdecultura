@@ -137,7 +137,7 @@ div.dropdown-cidade {
     /*background-color: #bab700;*/
 }
 
-ul.parent, div.pratica-item-input-radio-block {
+ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-block {
     background-color: #faba09;
     display: block;
     float: left;
@@ -146,13 +146,49 @@ ul.parent, div.pratica-item-input-radio-block {
     border-radius: 20px;
 }
 
-.pratica-item-input-radio {
+.pratica-item-input-radio, .pratica-item-input-checkbox {
     margin-left: 0.5em;
     margin-right: 1em;
 }
 
-.pratica-item-input-radio-block > input {
+.pratica-item-input-radio-block > input, .pratica-item-input-checkbox-block > input {
     margin-left: 1.25em;
+}
+
+.dropdown-pratica-suporte-tempo {
+    margin-right: 2em;
+}
+
+.nova-pratica .medium-field {
+    border-radius: 15px;
+    margin-right: 1em;
+}
+
+.nova-pratica .large-field {
+    border-radius: 15px;
+}
+
+.nova-pratica fieldset {
+	border: none;
+}
+
+.pratica-map-block {
+    display: block;
+    float: left;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.nova-pratica .iconlist div.icon {
+	height: 88px;
+	margin-bottom: 1em;
+}
+
+.publish-button-block {
+	width: 100%;
+	display: block;
+	float: left;
+	margin-top: 2em;
 }
 
 .nova-pratica .images {
@@ -187,4 +223,8 @@ input.pratica-file-upload {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.pratica-suporte-tempo, .pratica-suporte-esfera {
+	display: none;
 }

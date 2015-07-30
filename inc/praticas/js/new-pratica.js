@@ -9,3 +9,24 @@ function displayPreview(files, id) {
    }
    img.src = _URL.createObjectURL(file);
 }
+
+jQuery(document).ready(function()
+{
+	jQuery('#pratica-suporte-option-1, #pratica-suporte-option-2').click(function() {
+		jQuery('.pratica-suporte-tempo, .pratica-suporte-esfera').fadeIn(600);
+	});
+	jQuery('#pratica-suporte-option-0').click(function() {
+		jQuery('.pratica-suporte-tempo, .pratica-suporte-esfera').fadeOut(600);
+	});
+	
+	
+	if(jQuery('#pratica-suporte-option-1:checked, #pratica-suporte-option-2:checked').length > 0)
+	{
+		jQuery('.pratica-suporte-tempo, .pratica-suporte-esfera').show();
+	}
+	else
+	{
+		jQuery('.pratica-suporte-tempo, .pratica-suporte-esfera').hide();
+	}
+	
+});

@@ -4,7 +4,9 @@ require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
 $pratica = new Praticas();
 
-$publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Pratica');
+$buttonLabel = __('Publicar Pratica', 'pontosdecultura');
+
+$publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Pratica' || $_POST['publish'] == $buttonLabel );
 
 $post_type = '';
 if ( !isset($_GET['post_type']) )
@@ -115,16 +117,27 @@ else
 				}
 				else 
 				{
-					// debug missing fields
-					/*if(! array_key_exists($field['slug'], $_POST) )
-					{
-						$message[] = 'campo não encontrado: '.$field['slug'].' em '.print_r($_POST, true);
-						$notice = true;
-					}
-					else*/
 					if( array_key_exists($field['slug'], $_POST) )
 					{
-						update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
+						if(array_key_exists('type', $field) && $field['type'] == 'checkbox' && is_array($_POST[$field['slug']]))
+						{
+							update_post_meta($post_ID, $field['slug'], implode(',', $_POST[$field['slug']]));
+						}
+						else
+						{
+							update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
+						}
+					}
+					elseif(array_key_exists('type', $field) && $field['type'] == 'dropdown-meses-anos')
+					{
+						if( array_key_exists($field['slug'].'-anos', $_POST) )
+						{
+							update_post_meta($post_ID, $field['slug'].'-anos', $_POST[$field['slug'].'-anos']);
+						}
+						if( array_key_exists($field['slug'].'-meses', $_POST) )
+						{
+							update_post_meta($post_ID, $field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
+						}
 					}
 				}
 			}
@@ -297,6 +310,9 @@ else
 			</div><?php
 			return ;
 		}
+		var_dump($notice);
+		var_dump($message);
+		return ;
 	}
 	
 	$form_action = 'editpost';
@@ -462,11 +478,15 @@ else
 	Praticas::print_field($fields['e-ponto']);
 	Praticas::print_field($fields['vinculo']);
 	Praticas::print_field($fields['suporte']);
-	Praticas::print_field($fields['suporte-obs']);
-	echo '<br/>';
-	mapasdevista_metabox_map();
-	echo '<br/>';
-	?><label class="pratica-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
+	Praticas::print_field($fields['suporte-esfera']);
+	Praticas::print_field($fields['suporte-tempo']);
+	Praticas::print_field($fields['suporte-obs']);?>
+	<br/>
+	<div class="pratica-map-block">
+		<?php mapasdevista_metabox_map(); ?>
+	</div>
+	<br/>
+	<label class="pratica-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
 	Praticas::print_field($fields['cpf']);
 	Praticas::print_field($fields['nome']);
 	Praticas::print_field($fields['nascimento']);
@@ -494,13 +514,14 @@ else
 	Praticas::print_field($fields['relacao-resp']);
 	
 	?>
-
-					<input id="original_publish" type="hidden" value="Publish"
-						name="original_publish"> <input id="publish"
-						class="button button-primary button-large" type="submit"
-						accesskey="p"
-						value="<?php _e('Publish Pratica', 'pontosdecultura'); ?>"
-						name="publish">
+					<div class="publish-button-block">
+						<input id="original_publish" type="hidden" value="Publish"
+							name="original_publish"> <input id="publish"
+							class="button button-primary button-large" type="submit"
+							accesskey="p"
+							value="<?php echo $buttonLabel; ?>"
+							name="publish">
+					</div>
 				</form>
 			</div>
 		</div>
