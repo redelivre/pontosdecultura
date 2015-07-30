@@ -103,7 +103,7 @@ class Praticas
 			),
 			'suporte-obs' => array (
 					'slug' => 'pratica-suporte-obs',
-					'title' => __ ( 'Observação', 'pontosdecultura' ),
+					'title' => __ ( 'Histórico do núcleo de pesquisa continuada', 'pontosdecultura' ),
 					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
 					'type' => 'textarea',
 			),
