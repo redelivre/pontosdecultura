@@ -228,3 +228,7 @@ input.pratica-file-upload {
 .pratica-suporte-tempo, .pratica-suporte-esfera {
 	display: none;
 }
+
+.pratica-map-block fieldset:first-of-type {
+    display: none;
+}
