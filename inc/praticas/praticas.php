@@ -84,7 +84,7 @@ class Praticas
 			'suporte' => array (
 					'slug' => 'pratica-suporte',
 					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações?', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
+					'tip' => __ ( 'Bolsas de pesquisa, contemplação em editais, convênios, contratos...', 'pontosdecultura' ),
 					'type' => 'radio',
 					'values' => array('N' => __('Nunca recebeu', 'pontosdecultura' ), 'P' => __('Já recebeu', 'pontosdecultura' ), 'S' => __('Recebe', 'pontosdecultura' ) )
 			),
