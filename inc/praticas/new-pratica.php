@@ -500,7 +500,6 @@ else
 	Praticas::print_field($fields['cpf']);
 	Praticas::print_field($fields['nome']);
 	Praticas::print_field($fields['nascimento']);
-	Praticas::print_field($fields['ocupacao']);
 	Praticas::print_field($fields['telefone-resp']);
 	Praticas::print_field($fields['email-resp']);?>
 	<div class="images-thumbnail-block images-thumbnail4">
