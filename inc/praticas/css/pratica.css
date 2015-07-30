@@ -231,3 +231,13 @@ input.pratica-file-upload {
 .pratica-map-block fieldset:first-of-type {
     display: none;
 }
+
+.pratica-highlight-label {
+    display: block;
+    float: left;
+    font-size: 2em;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    text-align: center;
+    width: 100%;
+}
