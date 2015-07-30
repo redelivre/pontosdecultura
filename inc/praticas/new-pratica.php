@@ -483,7 +483,19 @@ else
 	Praticas::print_field($fields['suporte-obs']);?>
 	<br/>
 	<div class="pratica-map-block">
+		<div class="pratica-item pratica-item-map pratica-map">
+			<label class="pratica-item-label">
+				<div class="pratica-item-title"><h2><?php _e('Encontre-se no mapa', 'pontosdecultura');?></h2>
+				</div>
+				<div class="pratica-item-tip-text"><h3><?php
+					_e('1 - Dê zoom em seu território e encontre sua rua.', 'pontosdecultura');echo "<br/>";
+					_e('2 - Clique duas vezes no mapa para inserir um marcador.', 'pontosdecultura');echo "<br/>";
+					_e('3 - Se preferir, digite seu endereço no campo abaixo do mapa, aperte "Enter" e deixe que a gente te encontra.', 'pontosdecultura'); 
+					?></h3>
+				</div>
+			</label>
 		<?php mapasdevista_metabox_map(); ?>
+		</div>
 	</div>
 	<br/>
 	<label class="pratica-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
