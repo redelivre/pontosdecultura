@@ -143,17 +143,17 @@ class Praticas
 			),
 			'facebook-resp' => array (
 					'slug' => 'pratica-facebook-resp',
-					'title' => __ ( 'Facebook', 'pontosdecultura' ),
+					'title' => __ ( 'Link para Facebook', 'pontosdecultura' ),
 					'tip' => __ ( '', 'pontosdecultura' ),
 			),
 			'redes-resp' => array (
 					'slug' => 'pratica-redes-resp',
-					'title' => __ ( 'Outras redes sociais', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
+					'title' => __ ( 'Links para outras redes sociais', 'pontosdecultura' ),
+					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
 			),
 			'relacao-resp' => array (
 					'slug' => 'pratica-relacao-resp',
-					'title' => __ ( 'Sobre a relação entre o responsável pelo cadastro e a pesquisa continuada', 'pontosdecultura' ),
+					'title' => __ ( 'Sobre a relação existente entre o responsável pelo cadastro (você) e o núcleo ou pesquisa continuada em questão', 'pontosdecultura' ),
 					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
 					'type' => 'textarea',
 					'rows' => 4,
