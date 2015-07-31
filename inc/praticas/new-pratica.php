@@ -98,7 +98,7 @@ else
 			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
-				$message[] = __('required field').': '.$field['title'].' '.__('is empty');
+				$message[] = '<div onclick="pratica_scroll_to_anchor(\''.$field['slug'].'\');">'.__('O campo obrigatório').': '.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
 			else 
@@ -316,9 +316,6 @@ else
 			</div><?php
 			return ;
 		}
-		var_dump($notice);
-		var_dump($message);
-		return ;
 	}
 	
 	$form_action = 'editpost';

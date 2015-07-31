@@ -30,3 +30,11 @@ jQuery(document).ready(function()
 	}
 	
 });
+
+
+function pratica_scroll_to_anchor(id)
+{
+	jQuery('body, html').animate({
+	    scrollTop:   jQuery('#'+id).offset().top - 100
+	}, 800);
+}

@@ -249,3 +249,15 @@ input.pratica-file-upload {
     width: 100%;
     font-size: 2em;
 }
+
+.error {
+    background-color: #faba09;
+    border-radius: 20px;
+    color: #e91d24;
+    padding: 1em;
+}
+
+.error div:hover {
+    color: #501651;
+    cursor: pointer;
+}
