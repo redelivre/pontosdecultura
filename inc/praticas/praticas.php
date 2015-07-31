@@ -344,7 +344,7 @@ class Praticas
 			$type = array_key_exists('type', $campo) ? $campo['type'] : 'input';
 			$dado = array_key_exists($slug, $custom) ? array_pop($custom[$slug]) : '';
 			
-			switch ($type)
+			/*switch ($type)
 			{
 				case 'dropdown-meses-anos':
 					$dado = array_key_exists("$slug-anos", $custom) ? array_pop($custom["$slug-anos"]).__(" anos", 'pontosdecultura') : '';
@@ -366,7 +366,17 @@ class Praticas
 					</p>
 					<?php
 				break;
+			}*/
+			if($type == 'dropdown-meses-anos')
+			{
+				$_REQUEST[$campo['slug'].'-anos'] = array_key_exists("$slug-anos", $custom) ? array_pop($custom["$slug-anos"]).__(" anos", 'pontosdecultura') : '';
+				if(array_key_exists("$slug-meses", $custom))
+				{
+					$_REQUEST[$campo['slug'].'-meses'] = array_pop($custom["$slug-meses"]).__(" meses", 'pontosdecultura');
+				}
 			}
+			$_REQUEST[$campo['slug']] = $dado;
+			$this->print_field($campo);
 			
 			if(array_key_exists($slug, $custom)) unset($custom[$slug]);
 		}
@@ -824,7 +834,7 @@ class Praticas
 						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
-								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+								<option value="" <?php echo array_key_exists($id, $_REQUEST)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
 								<?php
 									for($i = date('Y'); $i >= 1900; $i--)
 									{
@@ -933,7 +943,7 @@ class Praticas
 								$i = 0;
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'"><label for="'.("$id-option-$i").'" class="pratica-item-input-radio" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="pratica-item-input-radio" >'.$label_item.'</label>';
 									$i++;
 								}
 						?></div><div class="pratica-item-error-message"></div>
@@ -956,9 +966,21 @@ class Praticas
 						</label>
 							<div class="pratica-item-input-checkbox-block"><?php
 								$i = 0;
+								$dado = array();
+								if(array_key_exists($id, $_REQUEST))
+								{
+									if (is_array($_REQUEST[$id]))
+									{
+										$dado = $_REQUEST[$id];
+									}
+									elseif(is_string($_REQUEST[$id])) 
+									{
+										$dado = explode(',', $_REQUEST[$id]);
+									}
+								}
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'"><label for="'.("$id-option-$i").'" class="pratica-item-input-checkbox" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'" '.(in_array($value, $dado) ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="pratica-item-input-checkbox" >'.$label_item.'</label>';
 									$i++;
 								}
 						?></div><div class="pratica-item-error-message"></div>
