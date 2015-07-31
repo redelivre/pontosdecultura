@@ -485,9 +485,16 @@ class Pontosdecultura {
 						break; 
 						case '_pratica-numero-integrantes':
 							$vals = explode(',', $value);
-							if($vals[1] != '+')
+							if(count($vals) == 2)
 							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
+								if($vals[1] != '+')
+								{
+									$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
+								}
+								else 
+								{
+									$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
+								}
 							}
 							else 
 							{
