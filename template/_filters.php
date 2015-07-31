@@ -27,7 +27,7 @@ class PontosFilters
 						<span class="taxonomy-filter-checkbox-wrapper">
 							<input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $term->taxonomy; ?>[]" id="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>" />
 							<label for="filter_by_<?php echo $term->taxonomy; ?>_<?php echo $term->slug; ?>">
-								<?php echo $term->name; ?>
+								<?php echo str_replace('#input#', '', $term->name); ?>
 							</label>
 						</span>
 					<?php

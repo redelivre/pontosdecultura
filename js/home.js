@@ -147,11 +147,10 @@ jQuery(document).ready(function()
 		        success: function(response)
 		        {
 		        	jQuery(".adv-search-cidade").replaceWith(response);
-		        	jQuery(".Ajax-Loader").toggle();
 		        },
 		        beforeSend: function()
 		        {
-		        	jQuery(".Ajax-Loader").toggle();
+		        	jQuery('.adv-search-cidade option:selected').text('Carregando Cidades...');
 		        }, 
 		    });
 		}
