@@ -287,8 +287,8 @@ class Praticas
 	
 	function pontosdecultura_pratica_custom_meta()
 	{
-		add_meta_box("pratica_meta", __("Pratica Details", 'pontosdecultura'), array($this, 'pratica_meta'), 'pratica', 'side', 'default');
-		add_meta_box("second_image_meta", __("Pratica Header Image", 'pontosdecultura'), array($this, 'second_image_meta'), 'pratica', 'side', 'default');
+		add_meta_box("pratica_meta", __("Detalhes da Pratica", 'pontosdecultura'), array($this, 'pratica_meta'), 'pratica', 'side', 'default');
+		add_meta_box("second_image_meta", __("Imagens da Pratica", 'pontosdecultura'), array($this, 'second_image_meta'), 'pratica', 'side', 'default');
 	}
 	
 	protected $_customs = array();
