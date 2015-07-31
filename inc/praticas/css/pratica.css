@@ -23,8 +23,9 @@ input[type="text"].taxonomy-checkbox-text  {
 	display: block;
     float: left;
     width: 80%;
-    padding: 0.3em 0.4em 0.1em;
-    background-color: #bab700;
+    padding: 0.2em 0.4em 0.2em 0.6em;
+    background-color: #dcd800;
+    border-radius: 15px; 
 }
 
 
