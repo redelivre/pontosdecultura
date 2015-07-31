@@ -73,6 +73,66 @@
 					<?php echo get_post_meta( $post->ID, 'Nº de feminino', true ); ?>
 				</li>
 				<li>
+					<strong>Nº de pessoas com deficiencia:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de pessoas com deficiencia", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de negro:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de negro", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de indios:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de indios", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de amarelos:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de amarelos", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de brancos:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de brancos", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de crianças:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de crianças", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de jovens:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de jovens", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de adultos:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de adultos", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de idosos:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de idosos", true ); ?>
+				</li>
+				<li>
+					<strong>Nº departicipantes 1 grau incompleto:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº departicipantes 1 grau incompleto", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de 1 grau completo:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de 1 grau completo", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de 2 grau incompleto:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de 2 grau incompleto", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de 2 grau completo:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de 2 grau completo", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de 3 grau incompleto:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de 3 grau incompleto", true ); ?>
+				</li>
+				<li>
+					<strong>Nº de 3 grau completo:</strong>
+					<?php echo get_post_meta( $post->ID, "Nº de 3 grau completo", true ); ?>
+				</li>
+				<li>
 					<strong>Data de chegada:</strong>
 					<?php echo get_post_meta( $post->ID, 'Data de chegada', true ); ?>
 				</li>
