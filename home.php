@@ -94,7 +94,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
@@ -106,7 +106,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
@@ -121,7 +121,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
@@ -133,7 +133,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
@@ -168,7 +168,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
@@ -180,7 +180,7 @@
 						foreach ($terms as $term)
 						{
 							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
 							<?php
 						} 
 					?>
