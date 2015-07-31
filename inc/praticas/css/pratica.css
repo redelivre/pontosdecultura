@@ -254,11 +254,25 @@ input.pratica-file-upload {
 .error {
     background-color: #faba09;
     border-radius: 20px;
-    color: #e91d24;
+    color: #9e0b0f;
     padding: 1em;
+}
+
+.error div {
+	font-weight: bold;
+}
+
+.error p {
+    margin: 0;
 }
 
 .error div:hover {
     color: #501651;
     cursor: pointer;
+}
+
+.error-msn-pre {
+    display: block;
+    float: left;
+    margin-right: 0.5em;
 }

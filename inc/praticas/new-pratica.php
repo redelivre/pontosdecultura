@@ -98,7 +98,7 @@ else
 			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
-				$message[] = '<div onclick="pratica_scroll_to_anchor(\''.$field['slug'].'\');">'.__('O campo obrigatório').': '.$field['title'].' '.__('não foi preenchido').'</div>';
+				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="pratica_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
 			else 
@@ -343,7 +343,7 @@ else
 	?></h2>
 	<?php if ( $notice ) : ?>
 	<div id="notice" class="error">
-					<p><?php echo implode( '<br/>', $message ); ?></p>
+					<p><?php echo implode( ' ', $message ); ?></p>
 				</div>
 	<?php endif; ?>
 	<?php if ( !$notice && count($message) > 0 ) : ?>
