@@ -1,0 +1,299 @@
+@CHARSET "UTF-8";
+
+.taxonomy-checkbox-group-col {
+    display: block;
+    float: left;
+    min-width: 33%;
+    padding: 0.25em 1em;
+}
+
+.iniciativa-item-label, .iniciativa-item {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.taxonomy-label-group-col-input {
+	display: block;
+    float: left;
+}
+
+input[type="text"].taxonomy-checkbox-text  {
+	display: block;
+    float: left;
+    width: 80%;
+    padding: 0.2em 0.4em 0.2em 0.6em;
+    background-color: #dcd800;
+    border-radius: 15px; 
+}
+
+
+.login-entry .container {
+    max-width: 600px;
+}
+
+.login-entry {
+	background-color: #dcd800;
+}
+
+.login-username label,.login-password label {
+    font-weight: bold;
+}
+
+.login-entry .login-remember {
+    display: block;
+    float: left;
+    margin-left: 60%;
+    margin-top: 0.6em;
+}
+
+.login-entry .login-submit {
+    display: block;
+    float: right;
+}
+
+.login-entry .sections-advise,.home-entry .sections-advise{
+    font-size: 0.65em;
+    text-align: center;
+    padding: 0 1em;
+}
+
+.login-entry .sections-description,.home-entry .sections-description {
+    color: #501651;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-register {
+    display: block;
+    margin-top: 9px;
+    position: absolute;
+    width: 130px;
+}
+
+.login-register > a {
+    color: #805783;
+}
+
+.login-register > a:HOVER {
+    color: #2f2d44;
+}
+
+.nova-iniciativa .container {
+    max-width: 1080px;
+}
+
+.home-entry.nova-iniciativa {
+    background-color: #dcd800;
+}
+
+.iniciativa-item-title {
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+.iniciativa-item-tip-text {
+    font-size: 0.8em;
+    padding-left: 0.7em;
+}
+
+.iniciativa-item-input-text {
+    border-radius: 12px;
+}
+
+h2.new-iniciativa {
+    font-size: 1.2em;
+    text-align: center;
+    color: #501651;
+}
+
+.dropdown-estado,
+.dropdown-cidade,
+.iniciativa-item-input-dropdown {
+   display: block;
+   float: left;
+   overflow: hidden;
+   background: url(../../../images/new_arrow.png) no-repeat right #faba09;
+   width: 25%;
+   border-radius: 15px;
+}
+
+.dropdown-estado select,
+.dropdown-cidade select,
+.iniciativa-item-input-dropdown select {
+   background: transparent;
+   padding: 0.5em;
+   border: 0;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   width: 100%;
+}
+
+div.dropdown-cidade {
+    margin-left: 2em;
+}
+
+.iniciativa-item-checkbox {
+    /*background-color: #bab700;*/
+}
+
+ul.parent, div.iniciativa-item-input-radio-block, div.iniciativa-item-input-checkbox-block {
+    background-color: #faba09;
+    display: block;
+    float: left;
+    margin-top: 0;
+    padding: 0.25em 1em 0.25em 0;
+    border-radius: 20px;
+}
+
+.iniciativa-item-input-radio, .iniciativa-item-input-checkbox {
+    margin-left: 0.5em;
+    margin-right: 1em;
+}
+
+.iniciativa-item-input-radio-block > input, .iniciativa-item-input-checkbox-block > input {
+    margin-left: 1.25em;
+}
+
+.dropdown-iniciativa-suporte-tempo {
+    margin-right: 2em;
+}
+
+.nova-iniciativa .medium-field {
+    border-radius: 15px;
+    margin-right: 1em;
+}
+
+.nova-iniciativa .large-field {
+    border-radius: 15px;
+}
+
+.nova-iniciativa fieldset {
+	border: none;
+}
+
+.iniciativa-map-block {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.nova-iniciativa .iconlist div.icon {
+	height: 88px;
+	margin-bottom: 1em;
+}
+
+.publish-button-block {
+	width: 100%;
+	display: block;
+	float: left;
+	margin-top: 2em;
+}
+
+.nova-iniciativa .images {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.images-thumbnail-block {
+    background-color: #faba09;
+    border-color: #d27f29;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    float: left;
+    margin: 5px;
+    overflow: hidden;
+    padding: 0 0 1em;
+    position: relative;
+    text-align: center;
+    width: 32%;
+    
+}
+
+input.iniciativa-file-upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.iniciativa-suporte-tempo, .iniciativa-suporte-esfera {
+	display: none;
+}
+
+.iniciativa-map-block fieldset:first-of-type {
+    display: none;
+}
+
+.iniciativa-highlight-label {
+    display: block;
+    float: left;
+    font-size: 2em;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    text-align: center;
+    width: 100%;
+}
+
+.new-iniciativa-sucess {
+	display: block;
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+}
+
+.error {
+    background-color: #faba09;
+    border-radius: 20px;
+    color: #9e0b0f;
+    padding: 1em;
+}
+
+.error div {
+	font-weight: bold;
+}
+
+.error p {
+    margin: 0;
+}
+
+.error div:hover {
+    color: #501651;
+    cursor: pointer;
+}
+
+.error-msn-pre {
+    display: block;
+    float: left;
+    margin-right: 0.5em;
+}
+
+.ui-datepicker {
+    background-color: #f78d02;
+    border-radius: 15px;
+    padding: 2em;
+}
+
+.ui-icon.ui-icon-circle-triangle-w {
+    margin-right: 7em;
+}
+
+.ui-datepicker-week-end, .ui-datepicker-calendar th {
+    padding-right: 0.5em;
+}
+
+.ui-datepicker-next, .ui-datepicker-prev {
+	cursor: pointer;
+}
+.ui-state-active {
+	color: #23498c;
+}

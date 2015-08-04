@@ -174,6 +174,11 @@ class Pontosdecultura {
 		
 		add_filter('mapasdevista_map_div', array($this, 'mapasdevista_map_div'));
 		
+		add_filter('login_redirect', array($this, 'login_redirect'), 10, 3);
+		
+		
+		add_action('login_form', array($this, 'loginForm'));
+		
 	}
 	
 	public static function mapasdevista_create_post_overlay($load)
@@ -244,11 +249,11 @@ class Pontosdecultura {
 		
 		wp_register_script('map-functions', $path . '/map-functions.js', array('jquery'));
 		wp_register_script('homescripts', $path . '/home.js', array('jquery', 'jquery-ui-core', 'jquery-ui-progressbar', 'map-functions'));
-		wp_register_script('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.js', array('jquery'));
-		wp_register_style('jqloader', get_template_directory_uri() . '/lib/jqloader/jqloader.debug.css');
+		wp_register_script('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.js', array('jquery'));
+		wp_register_style('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.css');
 		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery', 'map-functions'));
 		
-		if(is_home() && !$wp_query->get('mapa-tpl'))
+		if(is_home() && ( !$wp_query->get('mapa-tpl') && !$wp_query->get('nova-iniciativa') ))
 		{
 			wp_enqueue_script('homescripts');
 			wp_enqueue_script('jqloader');
@@ -371,7 +376,8 @@ class Pontosdecultura {
 	
 		$s = sanitize_text_field( $_POST['s'] );
 		
-		$post_type = 'mapa';
+		$mapinfo = get_option('mapasdevista', true);
+		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
 		
 		$querystr = "
 		SELECT $wpdb->posts.ID FROM $wpdb->posts
@@ -380,7 +386,7 @@ class Pontosdecultura {
 			LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 			LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
 		WHERE
-			$wpdb->posts.post_type = 'mapa'
+			$wpdb->posts.post_type in (".$pt.")
 			AND (
 				$wpdb->terms.name like '%$s%'
 				OR $wpdb->posts.post_title like '%$s%'
@@ -431,6 +437,124 @@ class Pontosdecultura {
 		die(); // this is required to return a proper result
 	}
 	
+	public function home_adv_search_callback()
+	{
+		/* @var $wpdb wpdb */
+		global $wpdb; // this is how you get access to the database
+		
+		$fields = $_POST['data'];
+		
+		$mapinfo = get_option('mapasdevista', true);
+		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
+		
+		$i = 0;
+		
+		$where = '';
+		
+		foreach ($fields as $key => $value)
+		{
+			if($value != '')
+			{
+				if(strlen($where) > 0 ) $where .= " AND ";
+				
+				if($i == 0 ) // title
+				{
+					$where .= "$wpdb->posts.post_title like '%$value%'";
+				}
+				elseif($i < 8) // tax
+				{
+					$where .= "$wpdb->terms.slug = '$value'";
+				}
+				else // custom fields
+				{
+					switch($key)
+					{
+						case '_iniciativa-ano-inicio':
+							$vals = explode(',', $value);
+							if($vals[1] != '+')
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[1] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] ) )";
+							}
+							else
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] )";
+							}
+						break; 
+						case '_iniciativa-numero-integrantes':
+							$vals = explode(',', $value);
+							if(count($vals) == 2)
+							{
+								if($vals[1] != '+')
+								{
+									$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
+								}
+								else 
+								{
+									$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
+								}
+							}
+							else 
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
+							}
+						break;
+						case 'iniciativa-videos':
+						case 'iniciativa-facebook':
+							if($value == 'S')
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value > '' )";
+							}
+							else 
+							{
+								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( $wpdb->postmeta.meta_value IS NULL OR $wpdb->postmeta.meta_value == '' ) )";
+							}
+						break;
+						default:
+							$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value = '$value' )";
+						break;
+					}
+				}
+			}
+			$i++;
+		}
+		
+		/**
+		 * 	$wpdb->terms.name like '%$s%'
+			OR $wpdb->posts.post_title like '%$s%'
+			OR $wpdb->posts.post_content like '%$s%'
+			OR $wpdb->posts.post_excerpt like '%$s%'
+			OR $wpdb->postmeta.meta_value like '%$s%'
+		 */
+		
+		$querystr = "
+		SELECT $wpdb->posts.ID FROM $wpdb->posts
+		LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+		LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+		LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+		LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
+		WHERE
+		$wpdb->posts.post_type in (".$pt.")
+		AND (
+			".$where."
+		)
+		GROUP BY $wpdb->posts.ID
+		ORDER BY $wpdb->posts.ID asc
+		";
+		
+		$posts = $wpdb->get_results($querystr, ARRAY_N);
+		/*echo '<div id="results" class="clearfix">';
+		 echo '<pre>';
+		 //echo $querystr;
+		 print_r($posts);
+		 echo '</pre>';
+		echo '</div>';*/
+		
+		echo $querystr;
+		echo json_encode($posts);
+		
+		die(); // this is required to return a proper result
+	}
+	
 	public static function map_results_callback()
 	{
 		echo '<div id="search-result-list" class="search-result-list gr gr-small">';
@@ -450,7 +574,7 @@ class Pontosdecultura {
 				$parent = get_term_by('slug', $_POST['uf'], 'territorio');
 				if(is_object($parent))
 				{
-					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name'));
+					$terms = get_terms('territorio', array('child_of' => $parent->term_id, 'orderby' => 'name', 'hide_empty' => false));
 					foreach ($terms as $term)
 					{
 						?>
@@ -537,15 +661,49 @@ class Pontosdecultura {
 		
 		die();	
 	}
+	
+	public static function quote($str)
+	{
+		return sprintf("'%s'", $str);
+	}
+	
+	/**
+	 * After login, redirect the user to the page to administer campaigns.
+	 *
+	 * @param string $redirect_to
+	 * @param string $request the url the user is coming from
+	 * @param Wp_Error|Wp_User $user
+	 */
+	function login_redirect($redirect_to, $request, $user) {
+		
+		if(!empty($request))
+		{
+			$redirect_to = $request;
+		}
+		else 
+		{
+			$redirect_to = get_bloginfo('url') . '/';
+		}
+	
+		return $redirect_to;
+	}
+	
+	function loginForm()
+	{
+		wp_enqueue_style('pontosdecultura-login', get_template_directory_uri() . '/css/login.css' );
+	}
+	
 }
 
 $pontosdecultura = new Pontosdecultura();
 
 /** Lib estadocidades **/
-include_once dirname(__FILE__).'/lib/estadoscidades/taxs.php';
+include_once dirname(__FILE__).'/inc/estadoscidades/EstadosCidades.php';
 /** Opções do Tema **/
 include_once dirname(__FILE__).'/inc/options.php';
 /** Taxs do Pontos **/
 include_once dirname(__FILE__).'/inc/taxs.php';
+/** Post type Iniciativa **/
+include_once dirname(__FILE__).'/inc/iniciativas/iniciativas.php';
 
 ?>
