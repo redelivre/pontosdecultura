@@ -167,7 +167,7 @@ else
 		{
 			if(array_key_exists('taxonomy_'.$taxonomy, $_POST))
 			{
-				$result = wp_set_post_terms($post_ID, $_POST['taxonomy_'.$taxonomy], $taxonomym, true);
+				$result = wp_set_post_terms($post_ID, $_POST['taxonomy_'.$taxonomy], $taxonomy);
 				if( is_object($result) && get_class($result) == 'WP_Error' )
 				{
 					$message[] = __('error on set post taxonomy', 'pontosdecultura').': '.$taxonomy;
