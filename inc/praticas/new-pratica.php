@@ -170,7 +170,7 @@ else
 				$result = wp_set_post_terms($post_ID, $_POST['taxonomy_'.$taxonomy], $taxonomy);
 				if( is_object($result) && get_class($result) == 'WP_Error' )
 				{
-					$message[] = __('error on set post taxonomy', 'pontosdecultura').': '.$taxonomy;
+					$message[] = __('Erro ao gravar categorização', 'pontosdecultura').': '.$taxonomy;
 					$notice = true;
 				}
 				
@@ -189,7 +189,7 @@ else
 				$result = wp_set_post_terms($post_ID, $term_id, $taxonomy, true); // save term
 				if( is_object($result) && get_class($result) == 'WP_Error' )
 				{
-					$message[] = __('error on set post taxonomy input', 'pontosdecultura').': '.$taxonomy;
+					$message[] = __('Erro ao gravar categorização campo de texto outra/outro', 'pontosdecultura').': '.$taxonomy;
 					$notice = true;
 				}
 				
