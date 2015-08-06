@@ -1,13 +1,69 @@
 var _URL = window.URL || window.webkitURL;
-function displayPreview(files, id) {
-   var file = files[0]
-   var img = new Image();
-   var sizeKB = file.size / 1024;
-   img.onload = function() {
-      jQuery('.images-'+id).append(img);
-      //alert("Size: " + sizeKB + "KB\nWidth: " + img.width + "\nHeight: " + img.height);
-   }
-   img.src = _URL.createObjectURL(file);
+function displayPreview(files, id)
+{
+	var file = files[0]
+	if(validateFile(id))
+	{
+		jQuery('.'+id+"-file-name").remove();
+		if(iniciativa_is_image(id))
+		{
+			var img = new Image();
+			var sizeKB = file.size / 1024;
+			img.className = id+"-file-name";
+			img.onload = function()
+			{
+				jQuery('.images-'+id).append(img);
+			}
+			img.src = _URL.createObjectURL(file);
+		}
+		else
+		{
+			
+			var newlabel = document.createElement("Label");
+			newlabel.innerHTML = file.name;
+			newlabel.className = id+"-file-name";
+			jQuery('.images-'+id).append(newlabel);
+		}
+	}
+}
+
+function validateFile(id) 
+{
+    var allowedExtension = new_iniciativa.exts;
+    var fileExtension = document.getElementById(id).value.split('.').pop().toLowerCase();
+    var isValidFile = false;
+
+        for(var index in allowedExtension) {
+
+            if(fileExtension === allowedExtension[index]) {
+                isValidFile = true; 
+                break;
+            }
+        }
+
+        if(!isValidFile) {
+            alert(new_iniciativa.error + allowedExtension.join(', *.'));
+        }
+
+        return isValidFile;
+}
+
+function iniciativa_is_image(id)
+{
+	var allowedExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'ico'];
+    var fileExtension = document.getElementById(id).value.split('.').pop().toLowerCase();
+    var isValidFile = false;
+
+    for(var index in allowedExtension)
+    {
+        if(fileExtension === allowedExtension[index])
+        {
+            isValidFile = true; 
+            break;
+        }
+    }
+
+    return isValidFile;
 }
 
 jQuery(document).ready(function()

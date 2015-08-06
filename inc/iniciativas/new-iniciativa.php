@@ -170,7 +170,7 @@ else
 				$result = wp_set_post_terms($post_ID, $_POST['taxonomy_'.$taxonomy], $taxonomy);
 				if( is_object($result) && get_class($result) == 'WP_Error' )
 				{
-					$message[] = __('error on set post taxonomy', 'pontosdecultura').': '.$taxonomy;
+					$message[] = __('Erro ao gravar categorização', 'pontosdecultura').': '.$taxonomy;
 					$notice = true;
 				}
 				
@@ -186,10 +186,10 @@ else
 				$taxonomy =  substr($key, 0, strpos($key, "_"));
 				$term_id = substr($key, strlen($taxonomy) + 1, $input_pos - (strlen($taxonomy) + 1));
 			
-				$result = wp_set_post_terms($post_ID, $term_id, $taxonomy); // save term
+				$result = wp_set_post_terms($post_ID, $term_id, $taxonomy, true); // save term
 				if( is_object($result) && get_class($result) == 'WP_Error' )
 				{
-					$message[] = __('error on set post taxonomy input', 'pontosdecultura').': '.$taxonomy;
+					$message[] = __('Erro ao gravar categorização campo de texto outra/outro', 'pontosdecultura').': '.$taxonomy;
 					$notice = true;
 				}
 				
@@ -245,7 +245,15 @@ else
 				elseif( $_FILES[$file]['error'] == UPLOAD_ERR_OK )
 				{
 					$attach_id[$file] = media_handle_upload( $file, $post_ID );
-					$attach[$file] = wp_get_attachment_url($attach_id[$file]);
+					if( is_object($attach_id[$file]) && $attach_id[$file] instanceof WP_Error )
+					{
+						$message[] = __('Erro ao carregar imagens/anexos: ', 'pontosdecultura').$attach_id[$file]->get_error_message();
+						$notice = true;
+					}
+					else 
+					{
+						$attach[$file] = wp_get_attachment_url($attach_id[$file]);
+					}
 				}
 			}
 		}
@@ -390,8 +398,15 @@ else
 	foreach ($fields as $field)
 	{
 		Iniciativas::print_field($field);
-	}?>
-	
+	}
+	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+	foreach ($taxonomies as $taxonomy)
+	{
+		Iniciativas::print_field($taxonomy->name, array(
+			'label' => $taxonomy->labels->name,
+		));
+	}
+	?>
  	<br/>
  	<div class="images">
 	 	<div class="images-thumbnail-block images-thumbnail">

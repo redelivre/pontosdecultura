@@ -5,183 +5,212 @@ class Iniciativas
 	function __construct()
 	{
 		$this->_customs = array(
-			'Código' => array
-			(
-					'slug' => 'Código',
-					'title' => __('Código', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Data da atividade' => array
-			(
-					'slug' => 'Data da atividade',
-					'title' => __('Data da atividade', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-					'type' => 'date',
-			),
-			'Hora' => array
-			(
-					'slug' => 'Hora',
-					'title' => __('Hora', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Educador responsável' => array
-			(
-					'slug' => 'Educador responsável',
-					'title' => __('Educador responsável', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Direito Violado/Abordado' => array
-			(
-					'slug' => 'Direito Violado/Abordado',
-					'title' => __('Direito Violado/Abordado', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Elementos de DH' => array
-			(
-					'slug' => 'Elementos de DH',
-					'title' => __('Elementos de DH', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Organizações/parcerias' => array
-			(
-					'slug' => 'Organizações/parcerias',
-					'title' => __('Organizações/parcerias', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de participantes' => array
-			(
-					'slug' => 'Nº de participantes',
-					'title' => __('Nº de participantes', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de masculino' => array
-			(
-					'slug' => 'Nº de masculino',
-					'title' => __('Nº de masculino', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de feminino' => array
-			(
-					'slug' => 'Nº de feminino',
-					'title' => __('Nº de feminino', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de pessoas com deficiencia' => array
-			(
-					'slug' => 'Nº de pessoas com deficiencia',
-					'title' => __('Nº de pessoas com deficiencia', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de negro' => array
-			(
-					'slug' => 'Nº de negro',
-					'title' => __('Nº de negro', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de indios' => array
-			(
-					'slug' => 'Nº de indios',
-					'title' => __('Nº de indios', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de amarelos' => array
-			(
-					'slug' => 'Nº de amarelos',
-					'title' => __('Nº de amarelos', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de brancos' => array
-			(
-					'slug' => 'Nº de brancos',
-					'title' => __('Nº de brancos', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de crianças' => array
-			(
-					'slug' => 'Nº de crianças',
-					'title' => __('Nº de crianças', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de jovens' => array
-			(
-					'slug' => 'Nº de jovens',
-					'title' => __('Nº de jovens', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de adultos' => array
-			(
-					'slug' => 'Nº de adultos',
-					'title' => __('Nº de adultos', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de idosos' => array
-			(
-					'slug' => 'Nº de idosos',
-					'title' => __('Nº de idosos', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº departicipantes 1 grau incompleto' => array
-			(
-					'slug' => 'Nº departicipantes 1 grau incompleto',
-					'title' => __('Nº departicipantes 1 grau incompleto', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de 1 grau completo' => array
-			(
-					'slug' => 'Nº de 1 grau completo',
-					'title' => __('Nº de 1 grau completo', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de 2 grau incompleto' => array
-			(
-					'slug' => 'Nº de 2 grau incompleto',
-					'title' => __('Nº de 2 grau incompleto', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de 2 grau completo' => array
-			(
-					'slug' => 'Nº de 2 grau completo',
-					'title' => __('Nº de 2 grau completo', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de 3 grau incompleto' => array
-			(
-					'slug' => 'Nº de 3 grau incompleto',
-					'title' => __('Nº de 3 grau incompleto', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Nº de 3 grau completo' => array
-			(
-					'slug' => 'Nº de 3 grau completo',
-					'title' => __('Nº de 3 grau completo', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Data de chegada' => array
-			(
-					'slug' => 'Data de chegada',
-					'title' => __('Data de chegada', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-					'type' => 'date',
-			),
-			'Sócio economico' => array
-			(
-					'slug' => 'Sócio economico',
-					'title' => __('Sócio economico', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Pendência' => array
-			(
-					'slug' => 'Pendência',
-					'title' => __('Pendência', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-			),
-			'Data de pagamento' => array
-			(
-					'slug' => 'Data de pagamento',
-					'title' => __('Data de pagamento', 'pontosdecultura'),
-					'tip' => __('', 'pontosdecultura'),
-					'type' => 'date',
-			),
+				'Código' => array
+				(
+						'custom_field' => 'Código',
+						'slug' => 'codigo',
+						'title' => __('Código', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Data da atividade' => array
+				(
+						'custom_field' => 'Data da atividade',
+						'slug' => 'data-da-atividade',
+						'title' => __('Data da atividade', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'date',
+				),
+				'Hora' => array
+				(
+						'custom_field' => 'Hora',
+						'slug' => 'hora',
+						'title' => __('Hora', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Educador responsável' => array
+				(
+						'custom_field' => 'Educador responsável',
+						'slug' => 'educador-responsavel',
+						'title' => __('Educador responsável', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Direito Violado/Abordado' => array
+				(
+						'custom_field' => 'Direito Violado/Abordado',
+						'slug' => 'direito-Violado-Abordado',
+						'title' => __('Direito Violado/Abordado', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Elementos de DH' => array
+				(
+						'custom_field' => 'Elementos de DH',
+						'slug' => 'elementos-de-dh',
+						'title' => __('Elementos de DH', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Organizações/parcerias' => array
+				(
+						'custom_field' => 'Organizações/parcerias',
+						'slug' => 'organizacoes-parcerias',
+						'title' => __('Organizações/parcerias', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de participantes' => array
+				(
+						'custom_field' => 'Nº de participantes',
+						'slug' => 'n-de-participantes',
+						'title' => __('Nº de participantes', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de masculino' => array
+				(
+						'custom_field' => 'Nº de masculino',
+						'slug' => 'n-de-masculino',
+						'title' => __('Nº de masculino', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de feminino' => array
+				(
+						'custom_field' => 'Nº de feminino',
+						'slug' => 'n-de-feminino',
+						'title' => __('Nº de feminino', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de pessoas com deficiencia' => array
+				(
+						'custom_field' => 'Nº de pessoas com deficiencia',
+						'slug' => 'n-de-pessoas-com-deficiencia',
+						'title' => __('Nº de pessoas com deficiencia', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de negro' => array
+				(
+						'custom_field' => 'Nº de negro',
+						'slug' => 'n-de-negro',
+						'title' => __('Nº de negro', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de indios' => array
+				(
+						'custom_field' => 'Nº de indios',
+						'slug' => 'n-de-indios',
+						'title' => __('Nº de indios', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de amarelos' => array
+				(
+						'custom_field' => 'Nº de amarelos',
+						'slug' => 'n-de-amarelos',
+						'title' => __('Nº de amarelos', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de brancos' => array
+				(
+						'custom_field' => 'Nº de brancos',
+						'slug' => 'n-de-brancos',
+						'title' => __('Nº de brancos', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de crianças' => array
+				(
+						'custom_field' => 'Nº de crianças',
+						'slug' => 'n-de-crianças',
+						'title' => __('Nº de crianças', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de jovens' => array
+				(
+						'custom_field' => 'Nº de jovens',
+						'slug' => 'n-de-jovens',
+						'title' => __('Nº de jovens', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de adultos' => array
+				(
+						'custom_field' => 'Nº de adultos',
+						'slug' => 'n-de-adultos',
+						'title' => __('Nº de adultos', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de idosos' => array
+				(
+						'custom_field' => 'Nº de idosos',
+						'slug' => 'n-de-idosos',
+						'title' => __('Nº de idosos', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº departicipantes 1 grau incompleto' => array
+				(
+						'custom_field' => 'Nº departicipantes 1 grau incompleto',
+						'slug' => 'n-de-departicipantes-1-grau-incompleto',
+						'title' => __('Nº departicipantes 1 grau incompleto', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de 1 grau completo' => array
+				(
+						'custom_field' => 'Nº de 1 grau completo',
+						'slug' => 'n-de-1-grau-completo',
+						'title' => __('Nº de 1 grau completo', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de 2 grau incompleto' => array
+				(
+						'custom_field' => 'Nº de 2 grau incompleto',
+						'slug' => 'n-de-2-grau-incompleto',
+						'title' => __('Nº de 2 grau incompleto', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de 2 grau completo' => array
+				(
+						'custom_field' => 'Nº de 2 grau completo',
+						'slug' => 'n-de-2-grau-completo',
+						'title' => __('Nº de 2 grau completo', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de 3 grau incompleto' => array
+				(
+						'custom_field' => 'Nº de 3 grau incompleto',
+						'slug' => 'n-de-3-grau-incompleto',
+						'title' => __('Nº de 3 grau incompleto', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Nº de 3 grau completo' => array
+				(
+						'custom_field' => 'Nº de 3 grau completo',
+						'slug' => 'n-de-3-grau-completo',
+						'title' => __('Nº de 3 grau completo', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Data de chegada' => array
+				(
+						'custom_field' => 'Data de chegada',
+						'slug' => 'data-de-chegada',
+						'title' => __('Data de chegada', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'date',
+				),
+				'Sócio economico' => array
+				(
+						'custom_field' => 'Sócio economico',
+						'slug' => 'socio-economico',
+						'title' => __('Sócio economico', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Pendência' => array
+				(
+						'custom_field' => 'Pendência',
+						'slug' => 'pendencia',
+						'title' => __('Pendência', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Data de pagamento' => array
+				(
+						'custom_field' => 'Data de pagamento',
+						'slug' => 'data-de-pagamento',
+						'title' => __('Data de pagamento', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'date',
+				),
 				
 				
 		);
@@ -259,31 +288,17 @@ class Iniciativas
 		{
 			$slug = $campo['slug'];
 			$type = array_key_exists('type', $campo) ? $campo['type'] : 'input';
-			$dado = array_key_exists($slug, $custom) ? array_pop($custom[$slug]) : '';
+			$dado = '';
 			
-			/*switch ($type)
+			if(array_key_exists($slug, $custom))
 			{
-				case 'dropdown-meses-anos':
-					$dado = array_key_exists("$slug-anos", $custom) ? array_pop($custom["$slug-anos"]).__(" anos", 'pontosdecultura') : '';
-					if(array_key_exists("$slug-meses", $custom))
-					{
-						if(strlen($dado) > 0 ) $dado .= __(' e ', 'pontosdecultura');
-						$dado .= array_pop($custom["$slug-meses"]).__(" meses", 'pontosdecultura');
-					}
-				case 'input':
-				case 'date':
-				default:
-					?>
-					<p>
-						<label for="<?php echo $slug; ?>" class="<?php echo 'label_'.$slug; ?>"><?php echo $campo['title'] ?>:</label>
-						<input <?php echo $disable_edicao ?> id="<?php echo $slug; ?>"
-							name="<?php echo $slug; ?>"
-							class="<?php echo $slug.($type == 'date' ? 'hasdatepicker' : '') ; ?> "
-							value="<?php echo $dado; ?>" />
-					</p>
-					<?php
-				break;
-			}*/
+				$dado = array_pop($custom[$slug]);
+			}
+			elseif(array_key_exists($campo['custom_field'], $custom))
+			{
+				$dado = array_pop($custom[$slug]);
+			}
+			
 			if($type == 'dropdown-meses-anos')
 			{
 				$_REQUEST[$campo['slug'].'-anos'] = array_key_exists("$slug-anos", $custom) ? array_pop($custom["$slug-anos"]).__(" anos", 'pontosdecultura') : '';
@@ -377,6 +392,14 @@ class Iniciativas
 			wp_enqueue_script('jquery-ui-datepicker-ptbr', get_template_directory_uri() . '/inc/iniciativas/js/jquery.ui.datepicker-pt-BR.js', array('jquery-ui-datepicker'));
 			wp_enqueue_script('date-scripts', get_template_directory_uri() . '/inc/iniciativas/js/date_scripts.js', array( 'jquery-ui-datepicker-ptbr'));
 			wp_enqueue_script('new-iniciativa', get_template_directory_uri().'/inc/iniciativas/js/new-iniciativa.js', array( 'jquery'));
+			wp_localize_script( 'new-iniciativa', 'new_iniciativa',
+					array(
+							'error' => __( 'Os arquivos permitidos são: *.', 'pontosdecultura' ),
+							'exts' => explode(' ', get_site_option( 'upload_filetypes', '' )),
+					)
+			);
+			wp_enqueue_script( 'meta-box-image' );
+			
 			
 			get_header();
 			$file_path = get_stylesheet_directory() . '/new-iniciativa.php';
@@ -637,6 +660,12 @@ class Iniciativas
 	{
 		if($tax !== false)
 		{
+			/*
+			 Iniciativas::print_field('ressonancias', array(
+	 			'label' => 'Áreas de Ressonância',
+	 			'outro' => true,
+	 		));
+			 */
 			$type = $tax;
 			$label = '';
 			$tip = '';
