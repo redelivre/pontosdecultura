@@ -167,6 +167,7 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"],
+input[type="number"],
 textarea {
 	color: #333;
 	border: 0;
@@ -182,6 +183,7 @@ input[type="email"]:focus,
 input[type="url"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
+input[type="number"]:focus,
 textarea:focus {
 	color: #111;
 }
@@ -191,6 +193,7 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"],
+input[type="number"],
 textarea {
 	line-height: 1;
 	padding: 0.75em 1em;

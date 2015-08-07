@@ -61,6 +61,7 @@ class Iniciativas
 						'slug' => 'n-de-participantes',
 						'title' => __('Nº de participantes', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de masculino' => array
 				(
@@ -68,6 +69,7 @@ class Iniciativas
 						'slug' => 'n-de-masculino',
 						'title' => __('Nº de masculino', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de feminino' => array
 				(
@@ -75,6 +77,7 @@ class Iniciativas
 						'slug' => 'n-de-feminino',
 						'title' => __('Nº de feminino', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de pessoas com deficiencia' => array
 				(
@@ -82,6 +85,7 @@ class Iniciativas
 						'slug' => 'n-de-pessoas-com-deficiencia',
 						'title' => __('Nº de pessoas com deficiencia', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de negro' => array
 				(
@@ -89,6 +93,7 @@ class Iniciativas
 						'slug' => 'n-de-negro',
 						'title' => __('Nº de negro', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de indios' => array
 				(
@@ -96,6 +101,7 @@ class Iniciativas
 						'slug' => 'n-de-indios',
 						'title' => __('Nº de indios', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de amarelos' => array
 				(
@@ -103,6 +109,7 @@ class Iniciativas
 						'slug' => 'n-de-amarelos',
 						'title' => __('Nº de amarelos', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de brancos' => array
 				(
@@ -110,6 +117,7 @@ class Iniciativas
 						'slug' => 'n-de-brancos',
 						'title' => __('Nº de brancos', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de crianças' => array
 				(
@@ -117,6 +125,7 @@ class Iniciativas
 						'slug' => 'n-de-crianças',
 						'title' => __('Nº de crianças', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de jovens' => array
 				(
@@ -124,6 +133,7 @@ class Iniciativas
 						'slug' => 'n-de-jovens',
 						'title' => __('Nº de jovens', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de adultos' => array
 				(
@@ -131,6 +141,7 @@ class Iniciativas
 						'slug' => 'n-de-adultos',
 						'title' => __('Nº de adultos', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de idosos' => array
 				(
@@ -138,48 +149,55 @@ class Iniciativas
 						'slug' => 'n-de-idosos',
 						'title' => __('Nº de idosos', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
-				'Nº departicipantes 1 grau incompleto' => array
+				'1-grau-incompleto' => array
 				(
 						'custom_field' => 'Nº departicipantes 1 grau incompleto',
 						'slug' => 'n-de-departicipantes-1-grau-incompleto',
-						'title' => __('Nº departicipantes 1 grau incompleto', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino fundamental incompleto', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
-				'Nº de 1 grau completo' => array
+				'1-grau-completo' => array
 				(
 						'custom_field' => 'Nº de 1 grau completo',
 						'slug' => 'n-de-1-grau-completo',
-						'title' => __('Nº de 1 grau completo', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino fundamental completo', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de 2 grau incompleto' => array
 				(
 						'custom_field' => 'Nº de 2 grau incompleto',
 						'slug' => 'n-de-2-grau-incompleto',
-						'title' => __('Nº de 2 grau incompleto', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino médio incompleto', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de 2 grau completo' => array
 				(
 						'custom_field' => 'Nº de 2 grau completo',
 						'slug' => 'n-de-2-grau-completo',
-						'title' => __('Nº de 2 grau completo', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino médio completo', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de 3 grau incompleto' => array
 				(
 						'custom_field' => 'Nº de 3 grau incompleto',
 						'slug' => 'n-de-3-grau-incompleto',
-						'title' => __('Nº de 3 grau incompleto', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino superior incompleto', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Nº de 3 grau completo' => array
 				(
 						'custom_field' => 'Nº de 3 grau completo',
 						'slug' => 'n-de-3-grau-completo',
-						'title' => __('Nº de 3 grau completo', 'pontosdecultura'),
+						'title' => __('Nº de participantes com ensino superior completo', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
+						'type' => 'number',
 				),
 				'Data de chegada' => array
 				(
@@ -670,12 +688,17 @@ class Iniciativas
 			$label = '';
 			$tip = '';
 			$id = '';
+			$required = false;
+			$required_message = '';
+			
 			if(is_array($tax))
 			{
 				$type = array_key_exists('type', $tax) ? $tax['type'] : '';
 				$label = array_key_exists('label', $tax) ? $tax['label'] : '';
 				$tip = array_key_exists('tip', $tax) ? $tax['tip'] : '';
 				$id = array_key_exists('slug', $tax) ? $tax['id'] : '';
+				$required = array_key_exists('required', $tax) ? $tax['required'] : false;
+				$required_message = array_key_exists('required_message', $tax) ? $tax['required_message'] : '';
 			}
 			
 			switch ($type)
@@ -683,7 +706,44 @@ class Iniciativas
 				
 				case 'dropdown':
 				{
-					
+					?>
+					<div class="iniciativa-item iniciativa-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="iniciativa-item-label">
+							<div class="iniciativa-item-title"><?php echo $label;
+								if($required)
+								{?>
+									<span class="iniciativa-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="iniciativa-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label><div class="iniciativa-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+							class="<?php echo $input_class ?>"
+							name="<?php echo $id ?>">
+								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+								<?php
+									$args = array(
+											'orderby' => 'name',
+											'hide_empty'=> 0,
+											'hierarchical' => 0,
+									
+									);
+									$terms = get_terms($field, $args);
+									
+									foreach ($terms as $term)
+									{
+										?>
+										<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+										<?php
+									}
+								?>
+							</select>
+						</div>
+						<div class="iniciativa-item-error-message"></div>
+						<div class="iniciativa-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+									
 				}break;
 				case 'estadocidade':
 				{
@@ -959,9 +1019,10 @@ class Iniciativas
 				<?php
 				break;
 				case 'date':
+				case 'number':
 				default:
 					?>
-					<div class="iniciativa-item <?php echo $type == 'date' ? 'iniciativa-item-date' : 'iniciativa-item-text'; ?> <?php echo $id; ?>">
+					<div class="iniciativa-item <?php echo $type == 'text' || $type == '' ? 'iniciativa-item-text' : 'iniciativa-item-'.$type; ?> <?php echo $id; ?>">
 						<label for="<?php echo $id ?>" class="iniciativa-item-label">
 							<div class="iniciativa-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
@@ -971,7 +1032,7 @@ class Iniciativas
 							</div>
 							<div class="iniciativa-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <input type="text" id="<?php echo $id ?>"
+						</label> <input type="<?php echo $type == 'number' ? 'number' : 'text' ?>" id="<?php echo $id ?>"
 							class="iniciativa-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
 							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
 							name="<?php echo $id ?>">

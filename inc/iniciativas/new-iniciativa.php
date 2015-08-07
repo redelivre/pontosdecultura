@@ -394,7 +394,7 @@ else
 	echo $form_extra;
 	
 	
-	$fields = $iniciativa->getFields();
+	/*$fields = $iniciativa->getFields();
 	foreach ($fields as $field)
 	{
 		Iniciativas::print_field($field);
@@ -405,7 +405,59 @@ else
 		Iniciativas::print_field($taxonomy->name, array(
 			'label' => $taxonomy->labels->name,
 		));
-	}
+	}*/
+	
+	$fields = $iniciativa->getFields();
+	Iniciativas::print_field($fields['Data da atividade']);
+	Iniciativas::print_field('territorio', array(
+			'label' => 'Estado e Cidade',
+			'required' => true,
+			'type' => 'estadocidade'
+	));
+	Iniciativas::print_field($fields['Educador responsável']);
+	Iniciativas::print_field($fields['post_title']);
+	Iniciativas::print_field('acao', array(
+			'label' => 'Ação em DH',
+			'outro' => true,
+			'type' => 'dropdown',
+	));
+	Iniciativas::print_field('eixo', array(
+			'label' => 'Eixo',
+			'outro' => true,
+			'type' => 'dropdown',
+	));
+	Iniciativas::print_field($fields['Direito Violado/Abordado']);
+	Iniciativas::print_field('sujeito', array(
+			'label' => 'Sujeito de direito',
+			'outro' => true,
+			'type' => 'dropdown',
+	));
+	Iniciativas::print_field($fields['Elementos de DH']);
+	Iniciativas::print_field($fields['Organizações/parcerias']);
+	Iniciativas::print_field($fields['Nº de participantes']);
+	Iniciativas::print_field($fields['Nº de masculino']);
+	Iniciativas::print_field($fields['Nº de feminino']);
+	Iniciativas::print_field($fields['Sócio economico']);
+	Iniciativas::print_field($fields['Nº de pessoas com deficiencia']);
+	Iniciativas::print_field($fields['Nº de negro']);
+	Iniciativas::print_field($fields['Nº de indios']);
+	Iniciativas::print_field($fields['Nº de amarelos']);
+	Iniciativas::print_field($fields['Nº de brancos']);
+	Iniciativas::print_field($fields['Nº de crianças']);
+	Iniciativas::print_field($fields['Nº de jovens']);
+	Iniciativas::print_field($fields['Nº de adultos']);
+	Iniciativas::print_field($fields['Nº de idosos']);
+	Iniciativas::print_field($fields['1-grau-incompleto']);
+	Iniciativas::print_field($fields['1-grau-completo']);
+	Iniciativas::print_field($fields['Nº de 2 grau incompleto']);
+	Iniciativas::print_field($fields['Nº de 2 grau completo']);
+	Iniciativas::print_field($fields['Nº de 3 grau incompleto']);
+	Iniciativas::print_field($fields['Nº de 3 grau completo']);
+	//Iniciativas::print_field($fields['Data de chegada']);
+	//Iniciativas::print_field($fields['Pendência']);
+	//Iniciativas::print_field($fields['Data de pagamento']);
+	
+	
 	?>
  	<br/>
  	<div class="images">

@@ -204,7 +204,7 @@ ul.parent, div.iniciativa-item-input-radio-block, div.iniciativa-item-input-chec
     border-style: solid;
     border-width: 3px;
     float: left;
-    margin: 5px;
+    margin: 30px 5px 5px 5px;
     overflow: hidden;
     padding: 0 0 1em;
     position: relative;
@@ -296,4 +296,9 @@ input.iniciativa-file-upload {
 }
 .ui-state-active {
 	color: #23498c;
+}
+
+.iniciativa-item-number {
+    margin-right: 0.6em;
+    width: 32%;
 }
