@@ -437,7 +437,7 @@ else
 	Iniciativas::print_field($fields['Nº de participantes']);
 	Iniciativas::print_field($fields['Nº de masculino']);
 	Iniciativas::print_field($fields['Nº de feminino']);
-	Iniciativas::print_field($fields['Sócio economico']);
+	//Iniciativas::print_field($fields['Sócio economico']);
 	Iniciativas::print_field($fields['Nº de pessoas com deficiencia']);
 	Iniciativas::print_field($fields['Nº de negro']);
 	Iniciativas::print_field($fields['Nº de indios']);
