@@ -2,7 +2,7 @@
 	<?php
 	$post_ID = get_the_ID(); 
 	$querystr = "
-	SELECT $wpdb->terms.name FROM $wpdb->posts
+	SELECT $wpdb->terms.name,$wpdb->term_taxonomy.taxonomy FROM $wpdb->posts
 	INNER JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
 	INNER JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
 	INNER JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
@@ -11,33 +11,31 @@
 	$wpdb->posts.ID = $post_ID
 	AND $wpdb->posts.post_type = 'mapa'
 	AND $wpdb->postmeta.meta_key = '_mpv_inmap'
-	AND $wpdb->term_taxonomy.taxonomy NOT IN ( 'territorio', 'tipo', 'publicoalvo', 'tematico', 'identitario' )
+	AND $wpdb->term_taxonomy.taxonomy IN ( 'acao', 'sujeito' )
 	GROUP BY $wpdb->terms.term_id
 	";
 	
-	$terms = $wpdb->get_results($querystr, ARRAY_N);
-	
-	$terms_str = "";
-	$terms_sep = ' / ';
-	
-	foreach ($terms as $term)
+	$terms_list = $wpdb->get_results($querystr, ARRAY_N);
+	$terms = array();
+	foreach ($terms_list as $term_array)
 	{
-		if(is_array($term))
+		if(!array_key_exists($term_array[1], $terms))
 		{
-			foreach ($term as $subterm)
-			{
-				$terms_str .= $terms_str != '' ? $terms_sep . $subterm : $subterm;
-			}
+			$terms[$term_array[1]] = array();
 		}
-		else
-		{
-			$terms_str .= $terms_str != '' ? $terms_sep . $subterm : $subterm;
-		}
+		$terms[$term_array[1]][] = $term_array[0];
+	}
+	
+	
+	foreach ($terms as $tax => $term)
+	{
+		$taxonomy = get_taxonomy($tax);
+		?>
+			<span class="balloon-taxs-names"><strong><?php echo $taxonomy->labels->name; ?></strong>&nbsp;<?php echo implode(', ', $term); ?></span>
+		<?php 
 	}
 	
 	?>
-	<span class="balloon-taxs-names"><strong>Áreas culturais: </strong><?php echo $terms_str;//implode(',', $terms); ?></span>
-
 </div>
 
 <div class="balloon-entry-default clearfix" >
@@ -46,7 +44,7 @@
     $balloon_excerpt = get_the_excerpt();
 
     if ( ! empty( $balloon_excerpt ) ) {
-    	echo '<strong>Objetivos: </strong>' . $balloon_excerpt;
+    	echo '<strong>Elementos de DH: </strong>' . $balloon_excerpt;
     }
     ?>
     

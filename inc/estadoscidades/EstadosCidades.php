@@ -46,7 +46,7 @@ class EstadosCidades
 		);
 		
 		register_taxonomy( 'territorio',array (
-		  'iniciativa'
+		  'iniciativa', 'mapa'
 		),
 		array( 'hierarchical' => true,
 			'label' => 'Territórios',

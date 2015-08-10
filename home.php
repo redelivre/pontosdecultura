@@ -152,10 +152,7 @@
 		<div class="container">
 			<a class="search-result-button">&#11014; <?php _e( 'Ocultar resultados', 'pontosdecultura' ); ?></a>
 			<div id="search-result-list" class="search-result-list gr gr-small clearfix">
-				<?php //mapasdevista_view_results(); ?>
-				<div class="map-results-intro3">
-        			<span class="map-results-total-prefix"><?php _e( 'Carregando&hellip;', 'pontosdecultura' ); ?></span>
-		    	</div><!-- .map-results-intro -->
+				<?php mapasdevista_view_results(); ?>
 			</div>
 			<div class="search-result-map gr gr-large">
 				<div class="map clear"><?php Pontosdecultura::the_map(); ?></div>

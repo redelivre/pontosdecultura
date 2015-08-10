@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
 $iniciativa = new Iniciativas();
 
-$buttonLabel = __('Colocar minha pesquisa no mapa', 'pontosdecultura');
+$buttonLabel = __('Colocar minha iniciativa no mapa', 'pontosdecultura');
 
 $publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Iniciativa' || $_POST['publish'] == $buttonLabel );
 

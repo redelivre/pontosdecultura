@@ -489,7 +489,7 @@ function loadBubbles()
 
 function pontos_loadPosts(total, offset)
 {
-    var posts_per_page = 400;
+    var posts_per_page = 100;
 
     jQuery.ajax({
         type: 'post',
@@ -632,15 +632,15 @@ function load_map_data(from)
 	            action: 'map_results',
 	            location: 'home'
 	    };
-		jQuery.ajax(
+		/*jQuery.ajax(
 	    {
 	        type: 'POST',
 	                url: homescripts_object.ajax_url,
 	        data: data,
 	        success: function(response)
-	        {
+	        {*/
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 4 );
-	        	jQuery(".search-result-list").replaceWith(response);
+	        	//jQuery(".search-result-list").replaceWith(response);
 	        	jQuery("#progressbar").progressbar( "value", jQuery("#progressbar").progressbar( "value" ) + 16 );
             	setTimeout(function() 
 	            	{
@@ -648,12 +648,12 @@ function load_map_data(from)
 	    				result_callback_func();
 	    			}, 1000
     			);
-	        },
+	        /*},
 	        beforeSend: function()
 	        {
 	        	//overlay_filtro();
 	        }, 
-	    });
+	    });*/
 		jQuery.ajaxSetup({async:true});
 	}
 	else

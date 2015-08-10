@@ -37,7 +37,7 @@ class Iniciativas
 				'Direito Violado/Abordado' => array
 				(
 						'custom_field' => 'Direito Violado/Abordado',
-						'slug' => 'direito-Violado-Abordado',
+						'slug' => 'direito-violado-abordado',
 						'title' => __('Direito Violado/Abordado', 'pontosdecultura'),
 						'tip' => __('', 'pontosdecultura'),
 				),
@@ -282,6 +282,30 @@ class Iniciativas
 		return array_merge($post, $this->_customs);
 	}
 	
+	/**
+	 * Para padronizar dados da importação/formulário
+	 */
+	function get_custom_field($field, $custom)
+	{
+		$fields = $this->getFields();
+		$dado = '';
+		if(array_key_exists($field, $fields))
+		{
+			$slug = $fields[$field]['slug'];
+			$custom_field = $fields[$field]['custom_field'];
+			
+			if(array_key_exists($slug, $custom))
+			{
+				$dado = array_pop($custom[$slug]);
+			}
+			elseif(array_key_exists($custom_field, $custom))
+			{
+				$dado = array_pop($custom[$custom_field]);
+			}
+		}
+		return $dado;
+	}
+	
 	function iniciativa_meta()
 	{
 		global $post;
@@ -314,7 +338,7 @@ class Iniciativas
 			}
 			elseif(array_key_exists($campo['custom_field'], $custom))
 			{
-				$dado = array_pop($custom[$slug]);
+				$dado = array_pop($custom[$campo['custom_field']]);
 			}
 			
 			if($type == 'dropdown-meses-anos')

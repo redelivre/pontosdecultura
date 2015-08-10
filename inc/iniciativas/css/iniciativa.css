@@ -34,11 +34,12 @@ input[type="text"].taxonomy-checkbox-text  {
 }
 
 .login-entry {
-	background-color: #dcd800;
+	background-color: #68bd44;
 }
 
 .login-username label,.login-password label {
     font-weight: bold;
+    color: #ffffff;
 }
 
 .login-entry .login-remember {
@@ -57,10 +58,19 @@ input[type="text"].taxonomy-checkbox-text  {
     font-size: 0.65em;
     text-align: center;
     padding: 0 1em;
+    color: #FFFFFF;
+}
+
+.login-entry .sections-advise a {
+	color: #FFFFFF;
+}
+
+.login-entry .sections-advise a:hover {
+	color: #2f2d44;
 }
 
 .login-entry .sections-description,.home-entry .sections-description {
-    color: #501651;
+    color: #FFFFFF;
     font-weight: bold;
     text-align: center;
 }
@@ -73,11 +83,15 @@ input[type="text"].taxonomy-checkbox-text  {
 }
 
 .login-register > a {
-    color: #805783;
+    color: #006e44;
 }
 
 .login-register > a:HOVER {
     color: #2f2d44;
+}
+
+.login-remember {
+	color: #FFFFFF;
 }
 
 .nova-iniciativa .container {
@@ -85,7 +99,7 @@ input[type="text"].taxonomy-checkbox-text  {
 }
 
 .home-entry.nova-iniciativa {
-    background-color: #dcd800;
+    background-color: #68bd44;
 }
 
 .iniciativa-item-title {
