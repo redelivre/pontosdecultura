@@ -13,7 +13,7 @@ if(array_key_exists('offset', $_POST))
 	        	<header class="entry-header">
 	            	<h1 class="bottom entry-title"><a class="pontos-js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;"><?php the_title(); ?></a></h1>
 	            	<div class="entry-meta">
-	            		<?php pontosdecultura_the_terms( 'eixo' ); ?>
+	            		<?php pontosdecultura_the_terms( 'acao' ); ?>
 	            		<em>em</em>
 			            <span class="balloon-state-city entry-term">
 				            <?php
@@ -66,7 +66,7 @@ else
 		        	<header class="entry-header">
 		            	<h1 class="bottom entry-title"><a class="pontos-js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="pontos_linkToPost(this); return false;"><?php the_title(); ?></a></h1>
 		            	<div class="entry-meta">
-		            		<?php pontosdecultura_the_terms( 'tipo' ); ?>
+		            		<?php pontosdecultura_the_terms( 'acao' ); ?>
 		            		<em>em</em>
 				            <span class="balloon-state-city entry-term">
 					            <?php

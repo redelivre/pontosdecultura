@@ -2,7 +2,9 @@
 
 require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
-$iniciativa = new Iniciativas();
+global $Iniciativa_global;
+
+$iniciativa = $Iniciativa_global;
 
 $buttonLabel = __('Colocar minha iniciativa no mapa', 'pontosdecultura');
 
@@ -293,12 +295,6 @@ else
 				}
 			}
 		}
-		
-		// Tratando campos especiais
-		update_post_meta($post_ID, '_iniciativa-tem-fotos', $has_thumbnail || $has_thumbnail2 || $has_thumbnail3 ? 'S' : 'N');
-		
-		update_post_meta($post_ID, '_iniciativa-tem-links', array_key_exists('iniciativa-publicacoes', $_POST) && !empty($_POST['iniciativa-publicacoes']) ? 'S' : 'N' );
-		
 		
         /*
 		var_dump($message);

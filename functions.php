@@ -153,6 +153,9 @@ class Pontosdecultura {
 		add_action( 'wp_ajax_home_search', array($this, 'home_search_callback') );
 		add_action( 'wp_ajax_nopriv_home_search', array($this, 'home_search_callback') );
 		
+		add_action( 'wp_ajax_home_adv_search', array($this, 'home_adv_search_callback') );
+		add_action( 'wp_ajax_nopriv_home_adv_search', array($this, 'home_adv_search_callback') );
+		
 		add_action( 'wp_ajax_map_results', array($this, 'map_results_callback') );
 		add_action( 'wp_ajax_nopriv_map_results', array($this, 'map_results_callback') );
 		
@@ -164,7 +167,7 @@ class Pontosdecultura {
 		
 		add_filter('mapasdevista_mapinfo_localize_script', array($this, 'mapinfo_localize_script'));
 		
-		add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_bubbles'));
+		//add_filter('mapasdevista_load_bubbles', array($this, 'mapasdevista_load_bubbles'));
 		add_filter('mapasdevista_load_style', array($this, 'mapasdevista_load_style'));
 		
 		add_filter('mapasdevista_create_post_overlay', array($this, 'mapasdevista_create_post_overlay'));
@@ -451,68 +454,29 @@ class Pontosdecultura {
 		
 		$where = '';
 		
+		global $Iniciativa_global;
+		$iniciativa_fields = $Iniciativa_global->getFields();
+		
 		foreach ($fields as $key => $value)
 		{
 			if($value != '')
 			{
+				$slug = $iniciativa_fields[$key]['slug'];
+				$custom_field = $iniciativa_fields[$key]['custom_field'];
+				
 				if(strlen($where) > 0 ) $where .= " AND ";
 				
 				if($i == 0 ) // title
 				{
 					$where .= "$wpdb->posts.post_title like '%$value%'";
 				}
-				elseif($i < 8) // tax
+				elseif($i < 6) // tax
 				{
 					$where .= "$wpdb->terms.slug = '$value'";
 				}
 				else // custom fields
 				{
-					switch($key)
-					{
-						case '_iniciativa-ano-inicio':
-							$vals = explode(',', $value);
-							if($vals[1] != '+')
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[1] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] ) )";
-							}
-							else
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] )";
-							}
-						break; 
-						case '_iniciativa-numero-integrantes':
-							$vals = explode(',', $value);
-							if(count($vals) == 2)
-							{
-								if($vals[1] != '+')
-								{
-									$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
-								}
-								else 
-								{
-									$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
-								}
-							}
-							else 
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
-							}
-						break;
-						case 'iniciativa-videos':
-						case 'iniciativa-facebook':
-							if($value == 'S')
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value > '' )";
-							}
-							else 
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( $wpdb->postmeta.meta_value IS NULL OR $wpdb->postmeta.meta_value == '' ) )";
-							}
-						break;
-						default:
-							$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value = '$value' )";
-						break;
-					}
+					$where .= "( $wpdb->postmeta.meta_key = '$slug' AND $wpdb->postmeta.meta_value = '$value' ) OR ( $wpdb->postmeta.meta_key = '$custom_field' AND $wpdb->postmeta.meta_value = '$value' ) ";
 				}
 			}
 			$i++;

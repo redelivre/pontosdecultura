@@ -616,17 +616,7 @@ class Iniciativas
 		}
 	
 		/* OK, its safe for us to save the data now. */
-		foreach ($this->_customs as $field)
-		{
-			if(array_key_exists($field['slug'], $_POST))
-			{
-				// Sanitize the user input.
-				$mydata = sanitize_text_field( $_POST[$field['slug']] );
-			
-				// Update the meta field.
-				update_post_meta( $post_id, $field['slug'], $mydata );
-			}
-		}
+		Iniciativas::save_fields($post_id);
 		
 		if(array_key_exists('thumbnail2', $_POST))
 		{
@@ -1219,6 +1209,78 @@ class Iniciativas
 	public static function get_new_url()
 	{
 		return get_bloginfo( 'url' ) . '/'.self::NEW_INICIATIVA_PAGE;
+	}
+	
+	public static function save_fields($post_ID, &$message = array(), &$notice = false)
+	{
+		global $Iniciativa_global;
+		
+		$iniciativa = $Iniciativa_global;
+		
+		$purifier = '';
+		if(!is_admin())
+		{
+			$purifier = new HTMLPurifier();
+		}
+		
+		$post = get_post($post_ID);
+		
+		foreach ($iniciativa->getFields() as $key => $field)
+		{
+			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
+			{
+				continue;
+			}
+				
+			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
+			{
+				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="iniciativa_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
+				$notice = true;
+			}
+			else
+			{
+		
+				if(array_key_exists('buildin', $field) && $field['buildin'] == true)
+				{
+					if(!is_admin())
+					{
+						if(array_key_exists('type', $field) && $field['type'] == 'wp_editor')
+						{
+							$post->{$field['slug']} = $purifier->purify(stripslashes($_POST[$field['slug']]));
+						}
+						else
+						{
+							$post->{$field['slug']} = wp_strip_all_tags($_POST[$field['slug']]);
+						}
+					}
+				}
+				else
+				{
+					if( array_key_exists($field['slug'], $_POST) )
+					{
+						if(array_key_exists('type', $field) && $field['type'] == 'checkbox' && is_array($_POST[$field['slug']]))
+						{
+							update_post_meta($post_ID, $field['slug'], implode(',', $_POST[$field['slug']]));
+						}
+						else
+						{
+							update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
+						}
+					}
+					elseif(array_key_exists('type', $field) && $field['type'] == 'dropdown-meses-anos')
+					{
+						if( array_key_exists($field['slug'].'-anos', $_POST) )
+						{
+							update_post_meta($post_ID, $field['slug'].'-anos', $_POST[$field['slug'].'-anos']);
+						}
+						if( array_key_exists($field['slug'].'-meses', $_POST) )
+						{
+							update_post_meta($post_ID, $field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 }

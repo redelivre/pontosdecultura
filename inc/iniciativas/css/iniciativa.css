@@ -316,3 +316,8 @@ input.iniciativa-file-upload {
     margin-right: 0.6em;
     width: 32%;
 }
+
+.balloon-taxs-names {
+    display: block;
+    width: 100%;
+}

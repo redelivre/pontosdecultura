@@ -11,7 +11,7 @@
 	$wpdb->posts.ID = $post_ID
 	AND $wpdb->posts.post_type = 'mapa'
 	AND $wpdb->postmeta.meta_key = '_mpv_inmap'
-	AND $wpdb->term_taxonomy.taxonomy IN ( 'acao', 'sujeito' )
+	AND $wpdb->term_taxonomy.taxonomy IN ( 'eixo', 'sujeito' )
 	GROUP BY $wpdb->terms.term_id
 	";
 	

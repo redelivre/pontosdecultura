@@ -113,6 +113,9 @@ var adv_search_estado = "";
 var adv_search_estado_select = "";
 var adv_search_cidade = "";
 
+var adv_search_direito = "";
+var adv_search_elemento = "";
+
 jQuery(document).ready(function()
 {
 	search_result_left = jQuery("#search-result").position().left;
@@ -135,11 +138,10 @@ jQuery(document).ready(function()
 		        success: function(response)
 		        {
 		        	jQuery(".adv-search-cidade").replaceWith(response);
-		        	jQuery(".Ajax-Loader").toggle();
 		        },
 		        beforeSend: function()
 		        {
-		        	jQuery(".Ajax-Loader").toggle();
+		        	jQuery('.adv-search-cidade option:selected').text('Carregando Cidades...');
 		        }, 
 		    });
 		}
@@ -164,97 +166,123 @@ jQuery(document).ready(function()
 			var eixo = jQuery(".adv-search-eixo option:selected").val();
 			var estado = jQuery(".adv-search-estado option:selected").val();
 			var cidade = jQuery(".adv-search-cidade option:selected").val();
-			var do_filter = false;
 			
-			if(title != adv_search_title)
+			var direito = jQuery(".adv-search-direito").val();
+			var elemento = jQuery(".adv-search-elemento").val();
+			
+			if(
+					direito != '' ||
+					elemento != ''
+			) // using ajax
 			{
-				do_filter = true;
-				if(adv_search_title != "")
-				{
-					mapstraction.removeFilter('title', 'like', adv_search_title);
-				}
-				adv_search_title = title;
-				if(title != "")
-				{
-					mapstraction.addFilter('title', 'like', title);
-				}
-			}
-			if(sujeito != adv_search_sujeito)
-			{
-				do_filter = true;
-				if(adv_search_sujeito != "")
-				{
-					mapstraction.removeFilter('sujeito', 'in', adv_search_sujeito);
-				}
-				adv_search_sujeito = sujeito;
-				if(sujeito != "")
-				{
-					mapstraction.addFilter('sujeito', 'in', sujeito);
-				}
-			}
-			if(acao != adv_search_acao)
-			{
-				do_filter = true;
-				if(adv_search_acao != "")
-				{
-					mapstraction.removeFilter('acao', 'in', adv_search_acao);
-				}
-				adv_search_acao = acao;
-				if(acao != "")
-				{
-					mapstraction.addFilter('acao', 'in', acao);
-				}
-			}
-			if(eixo != adv_search_eixo)
-			{
-				do_filter = true;
-				if(adv_search_eixo != "")
-				{
-					mapstraction.removeFilter('eixo', 'in', adv_search_eixo);
-				}
-				adv_search_eixo = eixo;
-				if(eixo != "")
-				{
-					mapstraction.addFilter('eixo', 'in', eixo);
-				}
-			}
-			if(cidade != adv_search_cidade)
-			{
-				do_filter = true;
-				if(adv_search_cidade != "")
-				{
-					mapstraction.removeFilter('territorio', 'in', adv_search_cidade);
-				}
-				adv_search_cidade = cidade;
-				if(cidade != "")
-				{
-					mapstraction.addFilter('territorio', 'in', cidade);
-				}
+				var fields = {
+						"title":title,
+						"sujeito":sujeito,
+						"acao":acao,
+						"eixo":eixo,
+						"estado":estado,
+						"cidade":cidade,
+						"Direito Violado/Abordado":direito,
+						"Elementos de DH":elemento
+				};
+				
+				pontosdecultura_update_posts_advsearch(fields);
 			}
 			else
 			{
-				if(estado != adv_search_estado)
+			
+				var do_filter = false;
+				
+				if(title != adv_search_title)
 				{
 					do_filter = true;
-					if(adv_search_estado != "")
+					if(adv_search_title != "")
 					{
-						mapstraction.removeFilter('territorio', 'in', adv_search_estado);
+						mapstraction.removeFilter('title', 'like', adv_search_title);
 					}
-					adv_search_estado = estado;
-					if(estado != "")
+					adv_search_title = title;
+					if(title != "")
 					{
-						mapstraction.addFilter('territorio', 'in', estado);
+						mapstraction.addFilter('title', 'like', title);
 					}
 				}
-			}
+				if(sujeito != adv_search_sujeito)
+				{
+					do_filter = true;
+					if(adv_search_sujeito != "")
+					{
+						mapstraction.removeFilter('sujeito', 'in', adv_search_sujeito);
+					}
+					adv_search_sujeito = sujeito;
+					if(sujeito != "")
+					{
+						mapstraction.addFilter('sujeito', 'in', sujeito);
+					}
+				}
+				if(acao != adv_search_acao)
+				{
+					do_filter = true;
+					if(adv_search_acao != "")
+					{
+						mapstraction.removeFilter('acao', 'in', adv_search_acao);
+					}
+					adv_search_acao = acao;
+					if(acao != "")
+					{
+						mapstraction.addFilter('acao', 'in', acao);
+					}
+				}
+				if(eixo != adv_search_eixo)
+				{
+					do_filter = true;
+					if(adv_search_eixo != "")
+					{
+						mapstraction.removeFilter('eixo', 'in', adv_search_eixo);
+					}
+					adv_search_eixo = eixo;
+					if(eixo != "")
+					{
+						mapstraction.addFilter('eixo', 'in', eixo);
+					}
+				}
+				if(cidade != adv_search_cidade)
+				{
+					do_filter = true;
+					if(adv_search_cidade != "")
+					{
+						mapstraction.removeFilter('territorio', 'in', adv_search_cidade);
+					}
+					adv_search_cidade = cidade;
+					if(cidade != "")
+					{
+						mapstraction.addFilter('territorio', 'in', cidade);
+					}
+				}
+				else
+				{
+					if(estado != adv_search_estado)
+					{
+						do_filter = true;
+						if(adv_search_estado != "")
+						{
+							mapstraction.removeFilter('territorio', 'in', adv_search_estado);
+						}
+						adv_search_estado = estado;
+						if(estado != "")
+						{
+							mapstraction.addFilter('territorio', 'in', estado);
+						}
+					}
+				}
 			
-			if(do_filter)
-			{
-				mapstraction.doFilter();
-				updateResults();
+				if(do_filter)
+				{
+					mapstraction.doFilter();
+					updateResults();
+				}
+				mapstraction.visibleCenterAndZoom();
+				map_show_result_end();
 			}
-			mapstraction.visibleCenterAndZoom();
-			map_show_result_end();
 		});
 	});
 	
@@ -266,7 +294,7 @@ jQuery(document).ready(function()
 	
 	jQuery('.search-load-button').click(function() {
 		//load_map_data('load');
-		loadBubbles();
+		//loadBubbles();
 	});
 	
 	var estadoPosition = jQuery(".search-estado").position();
@@ -558,7 +586,8 @@ function pontos_loadPosts(total, offset)
                     marker.setAttribute( 'post_type', data.posts[p].post_type );
                     marker.setAttribute( 'number', data.posts[p].number );
                     marker.setAttribute( 'author', data.posts[p].author );
-                    marker.setInfoBubble('<div>Loading...</div>');
+                    //marker.setInfoBubble('<div>Loading...</div>');
+                    marker.setInfoBubble(jQuery('#balloon_' + data.posts[p].ID).html());
                     marker.setLabel(data.posts[p].title);
                     
                     
@@ -625,7 +654,7 @@ function load_map_data(from)
 		
 		jQuery.ajaxSetup({async:false});
 		
-		loadBubbles();
+		//loadBubbles();
 		
 		var data =
 	    {
@@ -661,5 +690,33 @@ function load_map_data(from)
 		result_callback_func();
 	}
 	
+}
+
+
+
+function pontosdecultura_update_posts_advsearch(fields)
+{
+		mapstraction.removeAllFilters();
+        var data =
+        {
+                action: 'home_adv_search',
+                data: fields
+        };
+         
+        jQuery.ajax(
+        {
+            type: 'POST',
+                    url: homescripts_object.ajax_url,
+            data: data,
+            success: function(response)
+            {
+            	pontosdecultura_updateResults(response);
+            	map_show_result_end();
+            },
+            beforeSend: function()
+            {
+            	//jQuery(".Ajax-Loader").toggle();
+            }, 
+        });
 }
 

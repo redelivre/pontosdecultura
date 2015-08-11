@@ -82,11 +82,10 @@
 		<div class="container">
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
-				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Tema', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
-				<select name="adv-search-sujeito" class="adv-search-sujeito">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Sujeito de direito', 'pontosdecultura' ); ?></option>
+				<select name="adv-search-estado" class="adv-search-estado">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
 					<?php
-						$terms = get_terms('sujeito');
+						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name'));
 						foreach ($terms as $term)
 						{
 							?>
@@ -95,6 +94,10 @@
 						} 
 					?>
 				</select>
+				<select name="adv-search-cidade" class="adv-search-cidade">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+				</select>
+				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Tema', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php echo esc_attr_x( 'Buscar somente por iniciativas cujo tema contenham esse termo', 'pontosdecultura' ); ?>" />
 				<select name="adv-search-acao" class="adv-search-acao">
 					<option value="" selected="selected" ><?php echo esc_attr_x('Ação em DH', 'pontosdecultura' ); ?></option>
 					<?php
@@ -119,10 +122,11 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-estado" class="adv-search-estado">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+				<input type="search" class="adv-search-direito" placeholder="<?php echo esc_attr_x( 'Direito Violado/Abordado', 'pontosdecultura' ); ?>" value="" name="adv-search-direito" title="<?php echo esc_attr_x( 'Buscar somente por iniciativas cujo direito violado/abordado contenham esse termo', 'pontosdecultura' ); ?>" />
+				<select name="adv-search-sujeito" class="adv-search-sujeito">
+					<option value="" selected="selected" ><?php echo esc_attr_x('Sujeito de direito', 'pontosdecultura' ); ?></option>
 					<?php
-						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name'));
+						$terms = get_terms('sujeito');
 						foreach ($terms as $term)
 						{
 							?>
@@ -131,9 +135,7 @@
 						} 
 					?>
 				</select>
-				<select name="adv-search-cidade" class="adv-search-cidade">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-				</select>
+				<input type="search" class="adv-search-elemento" placeholder="<?php echo esc_attr_x( 'Elementos de DH', 'pontosdecultura' ); ?>" value="" name="adv-search-elemento" title="<?php echo esc_attr_x( 'Buscar somente por iniciativas cujo elemento de DH contenham esse termo', 'pontosdecultura' ); ?>" />
 				<input type="submit" class="adv-search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
 			</form><!-- .adv-search-form -->
 		</div><!-- .container -->

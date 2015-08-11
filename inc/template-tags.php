@@ -102,7 +102,7 @@ function pontosdecultura_the_terms( $taxonomy ) {
 	global $post;
 	
 	$terms = get_the_terms( $post->ID, $taxonomy );
-							
+	
 	if ( $terms && ! is_wp_error( $terms ) ) : 
 
 		$terms_array = array();
