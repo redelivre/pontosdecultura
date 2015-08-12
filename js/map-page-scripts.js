@@ -3,19 +3,22 @@ var filter_panel_cidade = "";
 
 jQuery(document).ready(function()
 {
-	mapstraction.maps[mapinfo.api].setOptions({
-        mapTypeControl: mapinfo.control_map_type,
-        panControl: mapinfo.control_pan,
-        zoomControl: mapinfo.control_zoom != false,
-        zoomControlOptions:{
-            style: mapinfo.control_zoom ? google.maps.ZoomControlStyle[mapinfo.control_zoom.toUpperCase()] : 0 ,
-            position: google.maps.ControlPosition.RIGHT_CENTER
-        },
-        panControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_CENTER
-        },
-        scrollwheel: true
-    });
+	if(mapinfo.api === 'googlev3')
+	{
+		mapstraction.maps[mapinfo.api].setOptions({
+	        mapTypeControl: mapinfo.control_map_type,
+	        panControl: mapinfo.control_pan,
+	        zoomControl: mapinfo.control_zoom != false,
+	        zoomControlOptions:{
+	            style: mapinfo.control_zoom ? google.maps.ZoomControlStyle[mapinfo.control_zoom.toUpperCase()] : 0 ,
+	            position: google.maps.ControlPosition.RIGHT_CENTER
+	        },
+	        panControlOptions: {
+	            position: google.maps.ControlPosition.RIGHT_CENTER
+	        },
+	        scrollwheel: true
+	    });
+	}
 	
 	jQuery(".filter-panel-tooglebox-meta-head").click(function () {
 		jQuery(this).parent('div').children('.filter-panel-tooglebox-list').toggle(400);
