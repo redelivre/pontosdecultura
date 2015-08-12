@@ -973,6 +973,14 @@ button {
 	padding: 0 1em;
 }
 
+.map-results {
+	display: none;
+}
+
+.search-result .map-results {
+	display: block;
+}
+
 .map-results .result {
 	margin-bottom: 1em;
 }
