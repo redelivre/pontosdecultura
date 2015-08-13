@@ -2,7 +2,9 @@
 
 require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
-$pratica = new Praticas();
+global $Pratica_global;
+	
+$pratica = $Pratica_global;
 
 $buttonLabel = __('Colocar minha pesquisa no mapa', 'pontosdecultura');
 
