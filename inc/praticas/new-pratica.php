@@ -497,7 +497,6 @@ else
 	Praticas::print_field($fields['vinculo']);
 	Praticas::print_field($fields['suporte']);
 	Praticas::print_field($fields['suporte-esfera']);
-	Praticas::print_field($fields['suporte-tempo']);
 	Praticas::print_field($fields['suporte-obs']);?>
 	<label class="pratica-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
 	Praticas::print_field($fields['cpf']);

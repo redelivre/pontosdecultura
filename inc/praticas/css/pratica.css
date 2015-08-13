@@ -180,8 +180,21 @@ ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-b
 }
 
 .nova-pratica .iconlist div.icon {
-	height: 88px;
-	margin-bottom: 1em;
+    background-color: #fff;
+    border-color: #fff;
+    border-radius: 35px;
+    border-width: 3px;
+    height: auto;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+.nova-pratica .iconlist div.icon:hover, .nova-pratica .iconlist div.icon.active {
+	border-color: #2d115c;
+}
+
+.nova-pratica .icon-info {
+    display: none;
 }
 
 .publish-button-block {
@@ -275,4 +288,16 @@ input.pratica-file-upload {
     display: block;
     float: left;
     margin-right: 0.5em;
+}
+
+.nova-pratica .iconlist div.icon {
+    width: auto;
+}
+
+.nova-pratica .iconlist div.icon div.icon-image {
+	height: auto;
+}
+
+.nova-pratica .icon-image {
+	
 }

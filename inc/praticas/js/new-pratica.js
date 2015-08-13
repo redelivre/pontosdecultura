@@ -29,6 +29,18 @@ jQuery(document).ready(function()
 		jQuery('.pratica-suporte-tempo, .pratica-suporte-esfera').hide();
 	}
 	
+	jQuery(".nova-pratica .iconlist div.icon").click(function () {
+		jQuery(this).find('input').prop('checked', true);
+		jQuery(".nova-pratica .iconlist div.icon").removeClass("active");
+		jQuery(this).addClass("active");
+	});
+	
+	jQuery(".nova-pratica .iconlist div.icon").each(function () {
+		if(jQuery(this).find("input[type='radio']:checked").length > 0)
+		{
+			jQuery(this).addClass("active");
+		}
+	});
 });
 
 

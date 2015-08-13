@@ -95,12 +95,6 @@ class Praticas
 					'type' => 'checkbox',
 					'values' => array('Federal' => __('Federal', 'pontosdecultura' ), 'Estadual' => __('Estadual', 'pontosdecultura' ), 'Municipal' => __('Municipal', 'pontosdecultura' ) )
 			),
-			'suporte-tempo' => array (
-					'slug' => 'pratica-suporte-tempo',
-					'title' => __ ( 'Recebeu suporte por quanto tempo?', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'dropdown-meses-anos',
-			),
 			'suporte-obs' => array (
 					'slug' => 'pratica-suporte-obs',
 					'title' => __ ( 'Histórico do núcleo de pesquisa continuada', 'pontosdecultura' ),
