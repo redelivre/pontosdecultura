@@ -6,42 +6,6 @@ function register_pontos_taxonomies()
 
 	$labels = array
 	(
-			'name' => __('Tipo do Objeto','pontosdecultura'),
-			'singular_name' => __('Tipo do Objeto', 'pontosdecultura'),
-			'search_items' => __('Procurar por Tipo do Objeto','pontosdecultura'),
-			'all_items' => __('Tipo do Objeto','pontosdecultura'),
-			'parent_item' => null,
-			'parent_item_colon' => null,
-			'edit_item' => __('Editar um Tipo do Objeto','pontosdecultura'),
-			'update_item' => __('Atualizar um Tipo do Objeto','pontosdecultura'),
-			'add_new_item' => __('Adicionar Novo Tipo do Objeto','pontosdecultura'),
-			'add_new' => __('Adicionar Tipo do Objeto', 'pontosdecultura'),
-			'new_item_name' => __('Novo Tipo do Objeto','pontosdecultura'),
-			'view_item' => __('Visualizar Tipo do Objeto','pontosdecultura'),
-			'not_found' =>  __('Nenhum Tipo do Objeto localizado','pontosdecultura'),
-			'not_found_in_trash' => __('Nenhum Tipo do Objeto localizado na lixeira','pontosdecultura'),
-			'menu_name' => __('Tipo do Objeto','pontosdecultura')
-	);
-	
-	register_taxonomy( 'tipo-do-objeto',array (
-			'pratica'
-	),
-			array( 'hierarchical' => true,
-					'label' => 'Tipo do Objeto',
-					'show_ui' => true,
-					'query_var' => true,
-					'show_admin_column' => true,
-					'labels' => $labels
-			)
-	);
-	
-	/*if(!term_exists('????', 'tipo-do-objeto'))
-	{
-		wp_insert_term("Outra#input#", 'tipo-do-objeto');
-	}*/
-	
-	$labels = array
-	(
 			'name' => __('Área(s) da Pesquisa Cênico-Performativa','pontosdecultura'),
 			'singular_name' => __('Área da Pesquisa Cênico-Performativa', 'pontosdecultura'),
 			'search_items' => __('Procurar por uma área da Pesquisa cênico-performativa','pontosdecultura'),
@@ -56,7 +20,7 @@ function register_pontos_taxonomies()
 			'view_item' => __('Visualizar Área da Pesquisa Cênico-Performativa','pontosdecultura'),
 			'not_found' =>  __('Nenhuma Área da Pesquisa Cênico-Performativa localizada','pontosdecultura'),
 			'not_found_in_trash' => __('Nenhuma Área da Pesquisa Cênico-Performativa localizada na lixeira','pontosdecultura'),
-			'menu_name' => __('Cênico-Performativa','pontosdecultura')
+			'menu_name' => __('Áreas da Pesquisa','pontosdecultura')
 	);
 	
 	register_taxonomy( 'cenico-performativa',array (

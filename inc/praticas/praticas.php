@@ -232,24 +232,24 @@ class Praticas
 	{
 		$labels = array
 		(
-				'name' => __('Praticas','pontosdecultura'),
-				'singular_name' => __('Pratica','pontosdecultura'),
-				'add_new' => __('Add new','pontosdecultura'),
-				'add_new_item' => __('Add new pratica','pontosdecultura'),
-				'edit_item' => __('Edit pratica','pontosdecultura'),
-				'new_item' => __('New Pratica','pontosdecultura'),
-				'view_item' => __('View Pratica','pontosdecultura'),
-				'search_items' => __('Search Pratica','pontosdecultura'),
-				'not_found' =>  __('Pratica not found','pontosdecultura'),
-				'not_found_in_trash' => __('Pratica not found in the trash','pontosdecultura'),
+				'name' => __('Pesquisas Continuadas','pontosdecultura'),
+				'singular_name' => __('Pesquisa Continuada','pontosdecultura'),
+				'add_new' => __('Nova Pesquisa Continuada','pontosdecultura'),
+				'add_new_item' => __('Adicionar nova Pesquisa Continuada','pontosdecultura'),
+				'edit_item' => __('Editar Pesquisa Continuada','pontosdecultura'),
+				'new_item' => __('Nova Pesquisa Continuada','pontosdecultura'),
+				'view_item' => __('Ver Pesquisa Continuada','pontosdecultura'),
+				'search_items' => __('Procurar por uma Pesquisa Continuada','pontosdecultura'),
+				'not_found' =>  __('Pesquisa Continuada não encontrada','pontosdecultura'),
+				'not_found_in_trash' => __('Pesquisa Continuada não encontrada na lixeira','pontosdecultura'),
 				'parent_item_colon' => '',
-				'menu_name' => __('Praticas','pontosdecultura')
+				'menu_name' => __('Pesquisas Continuadas','pontosdecultura')
 	
 		);
 	
 		$args = array
 		(
-				'label' => __('Praticas','pontosdecultura'),
+				'label' => __('Pesquisas Continuadas','pontosdecultura'),
 				'labels' => $labels,
 				'description' => __('Praticas','pontosdecultura'),
 				'public' => true,
@@ -264,7 +264,7 @@ class Praticas
 				'hierarchical' => false,
 				'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
 				'register_meta_box_cb' => array($this, 'pontosdecultura_pratica_custom_meta'), // função para chamar na edição
-				'taxonomies' => array('post_tag','category'), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
+				'taxonomies' => array(), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
 				'permalink_epmask' => 'EP_PERMALINK ',
 				'has_archive' => true, // Opção de arquivamento por slug
 				'rewrite' => true,
