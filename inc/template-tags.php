@@ -101,7 +101,23 @@ endif;
 function pontosdecultura_the_terms( $taxonomy ) {
 	global $post;
 	
-	$terms = get_the_terms( $post->ID, $taxonomy );
+	$terms = array();
+	
+	if(is_array($taxonomy))
+	{
+		foreach ($taxonomy as $tax)
+		{
+			$terms_tmp = get_the_terms( $post->ID, $tax );
+			if(is_array($terms_tmp))
+			{
+				$terms = array_merge($terms, $terms_tmp);
+			}
+		}
+	}
+	elseif(is_string($taxonomy))
+	{
+		$terms = get_the_terms( $post->ID, $taxonomy );
+	}
 							
 	if ( $terms && ! is_wp_error( $terms ) ) : 
 

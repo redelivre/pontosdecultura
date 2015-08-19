@@ -1381,3 +1381,12 @@ div.wpcf7-response-output {
 		width: 10%;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.site-logo {
+		max-width: 300px;
+	}
+	.search-intro .search-field {
+		width: 100%;
+	}
+}
