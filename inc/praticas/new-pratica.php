@@ -443,7 +443,7 @@ else
  	<div class="images">
 	 	<div class="images-thumbnail-block images-thumbnail">
 			<label for="thumbnail" class="pratica-item-label">
-				<div class="pratica-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
+				<div class="pratica-item-title"><?php _e('Imagem de Destaque', 'pontosdecultura'); ?>
 				</div>
 				<div class="pratica-item-tip-text">
 					<?php _e('Imagem que será exibida em listagens', 'pontosdecultura'); ?>
