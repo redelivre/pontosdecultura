@@ -31,6 +31,7 @@ jQuery(document).ready(function()
 	
 	jQuery(".nova-pratica .iconlist div.icon").click(function () {
 		jQuery(this).find('input').prop('checked', true);
+		jQuery(this).find('input').change();
 		jQuery(".nova-pratica .iconlist div.icon").removeClass("active");
 		jQuery(this).addClass("active");
 	});

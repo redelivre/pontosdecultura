@@ -400,7 +400,7 @@ else
 			'type' => 'estadocidade'
 	));?>
 	<div class="pratica-map-block">
-		<div class="pratica-item pratica-item-map pratica-map">
+		<div id="mapasdevista_metabox" class="pratica-item pratica-item-map pratica-map">
 			<label class="pratica-item-label">
 			<div class="pratica-item-title"><h2><?php _e('Encontre-se no mapa', 'pontosdecultura');?></h2>
 				</div>
