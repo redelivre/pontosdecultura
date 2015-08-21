@@ -336,11 +336,9 @@ button {
 }
 
 .icon-up:before {
-	content: '\e802';
 }
 
 .icon-down:before {
-	content: '\e804';
 }
 
 /**
@@ -1141,6 +1139,41 @@ h3.adv-search-radio {
 	position: relative;
 }
 
+.filter-panel-tooglebox {
+	
+	background-color: #faba09;
+	border: 0;
+	border-radius: 0;
+	padding: 0.5em;
+	position: relative;
+	text-indent: 0.01px;
+    text-overflow: '';
+	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	color: rgba(0, 0, 0, 0.75);
+    font-family: inherit;
+    font-size: 0.875rem;
+}
+
+.filter-panel-tooglebox-button {
+	background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    float: right;
+    margin-right: 2px;
+    min-height: 29px;
+    min-width: 29px;
+}
+
+.icon-down.filter-panel-tooglebox-button {
+	background-image: url('images/icon-down.png');
+}
+
+.icon-up.filter-panel-tooglebox-button {
+	background-image: url('images/icon-up.png');
+}
+
 .filter-panel select {
 	background-image: none;
 	background: url('images/icon-down.png') no-repeat;
@@ -1177,7 +1210,7 @@ h3.adv-search-radio {
 
 .filter-panel-tooglebox-meta-head:hover,
 .filter-panel-tooglebox-list label:hover {
-	color: #faba09;
+	color: #ffffff;
 	cursor: pointer;
 }
 

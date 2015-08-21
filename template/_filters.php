@@ -14,7 +14,7 @@ class PontosFilters
 			<div class="filter-panel-tooglebox">
 				<div class="filter-panel-tooglebox-meta-head">
 					<span class="filter-panel-tooglebox-title">
-						<?php echo $wp_taxonomies[$taxonomy]->labels->name ?>
+						<?php echo $wp_taxonomies[$taxonomy]->labels->name == 'Área(s) da Pesquisa Cênico-Performativa' ? 'Área da Pesquisa' : $wp_taxonomies[$taxonomy]->labels->name ?>
 					</span>
 					<span class="icon-down filter-panel-tooglebox-button"></span>
 					<span class="filter-panel-tooglebox-counter"></span>
