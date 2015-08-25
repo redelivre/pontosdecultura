@@ -42,6 +42,64 @@ jQuery(document).ready(function()
 			jQuery(this).addClass("active");
 		}
 	});
+	
+	jQuery("#mpv_search_address").unbind("keypress");
+	
+	jQuery("#mpv_search_address").keypress(function(e){
+        if(e.charCode===13 || e.keyCode===13){ // carriage return
+            geocoder.geocode({'address': jQuery(this).val()}, function (results, status)
+            		{
+            	  if (status == google.maps.GeocoderStatus.OK) {
+            	    var location = results[0].geometry.location;
+            	    googlemap.setCenter(location);
+            	    fill_fields(location.lat(), location.lng());
+
+            	var city = '';
+            	var uf = '';
+            	var postal_code = '';
+            	    
+            	    for( i = 0; i < results[0].address_components.length; i++ )
+            	    {
+            	      if(results[0].address_components[i].types[0] == "administrative_area_level_2")
+            		{
+            			//alert("cidade: "+results[0].address_components[i].long_name);
+            			city = results[0].address_components[i].long_name;
+            		}
+            	      if(results[0].address_components[i].types[0] == "administrative_area_level_1")
+            		{
+            			//alert("UF: "+results[0].address_components[i].short_name);
+            			uf = results[0].address_components[i].short_name;
+            			
+            		}
+            	      if(results[0].address_components[i].types[0] == "postal_code")
+            		{
+            			//alert("CEP: "+results[0].address_components[i].long_name);
+            			postal_code = results[0].address_components[i].long_name;
+            		}
+            	    }
+
+            		jQuery(".dropdown-estado select").val(jQuery(".dropdown-estado option:contains("+uf+")").val());
+            		jQuery(".dropdown-estado").change();
+            		setTimeout(function() {
+            			jQuery(".dropdown-cidade select").val(jQuery(".dropdown-cidade option:contains("+city+")").val());
+            		}, 600);
+            		jQuery("#pratica-cep").val(postal_code);
+
+            	    if(googlemarker) {
+            	      googlemarker.setPosition(location)
+            	    } else {
+            	      googlemarker = new google.maps.Marker({
+            	        map: googlemap,
+            	        draggable: true,
+            	        position: location
+            	      });
+            	    }
+            	  }
+            	});
+            return false;
+        }
+    });
+	
 });
 
 

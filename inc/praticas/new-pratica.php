@@ -394,11 +394,7 @@ else
 	Praticas::print_field($fields['email']);
 	Praticas::print_field($fields['url']);
 	Praticas::print_field($fields['telefone']);
-	Praticas::print_field('territorio', array(
-			'label' => 'Estado e Cidade',
-			'required' => true,
-			'type' => 'estadocidade'
-	));?>
+	?>
 	<div class="pratica-map-block">
 		<div id="mapasdevista_metabox" class="pratica-item pratica-item-map pratica-map">
 			<label class="pratica-item-label">
@@ -414,6 +410,11 @@ else
 			<?php mapasdevista_metabox_map(); ?>
 		</div>
 	</div><?php
+	Praticas::print_field('territorio', array(
+			'label' => 'Estado e Cidade',
+			'required' => true,
+			'type' => 'estadocidade'
+	));
 	Praticas::print_field($fields['cep']);
 	Praticas::print_field($fields['ano-inicio']);
  	Praticas::print_field($fields['numero-integrantes']);
