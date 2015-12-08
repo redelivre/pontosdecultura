@@ -48,7 +48,7 @@ class EstadosCidades
 		);
 		
 		register_taxonomy( 'territorio',array (
-		  'emrede'
+		  'remocoes'
 		),
 		array( 'hierarchical' => true,
 			'label' => 'Territórios',

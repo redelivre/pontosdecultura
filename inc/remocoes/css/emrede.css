@@ -7,7 +7,7 @@
     padding: 0.25em 1em;
 }
 
-.emrede-item-label, .emrede-item {
+.remocoes-item-label, .remocoes-item {
     display: block;
     float: left;
     width: 100%;
@@ -80,29 +80,29 @@ input[type="text"].taxonomy-checkbox-text  {
     color: #2f2d44;
 }
 
-.nova-emrede .container {
+.nova-remocoes .container {
     max-width: 1080px;
 }
 
-.home-entry.nova-emrede {
+.home-entry.nova-remocoes {
     background-color: #dcd800;
 }
 
-.emrede-item-title {
+.remocoes-item-title {
     font-weight: bold;
     padding-left: 0.5em;
 }
 
-.emrede-item-tip-text {
+.remocoes-item-tip-text {
     font-size: 0.8em;
     padding-left: 0.7em;
 }
 
-.emrede-item-input-text {
+.remocoes-item-input-text {
     border-radius: 12px;
 }
 
-h2.new-emrede {
+h2.new-remocoes {
     font-size: 1.2em;
     text-align: center;
     color: #501651;
@@ -110,7 +110,7 @@ h2.new-emrede {
 
 .dropdown-estado,
 .dropdown-cidade,
-.emrede-item-input-dropdown {
+.remocoes-item-input-dropdown {
    display: block;
    float: left;
    overflow: hidden;
@@ -121,7 +121,7 @@ h2.new-emrede {
 
 .dropdown-estado select,
 .dropdown-cidade select,
-.emrede-item-input-dropdown select {
+.remocoes-item-input-dropdown select {
    background: transparent;
    padding: 0.5em;
    border: 0;
@@ -134,11 +134,11 @@ div.dropdown-cidade {
     margin-left: 2em;
 }
 
-.emrede-item-checkbox {
+.remocoes-item-checkbox {
     /*background-color: #bab700;*/
 }
 
-ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-block {
+ul.parent, div.remocoes-item-input-radio-block, div.remocoes-item-input-checkbox-block {
     background-color: #faba09;
     display: block;
     float: left;
@@ -147,39 +147,39 @@ ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-blo
     border-radius: 20px;
 }
 
-.emrede-item-input-radio, .emrede-item-input-checkbox {
+.remocoes-item-input-radio, .remocoes-item-input-checkbox {
     margin-left: 0.5em;
     margin-right: 1em;
 }
 
-.emrede-item-input-radio-block > input, .emrede-item-input-checkbox-block > input {
+.remocoes-item-input-radio-block > input, .remocoes-item-input-checkbox-block > input {
     margin-left: 1.25em;
 }
 
-.dropdown-emrede-suporte-tempo {
+.dropdown-remocoes-suporte-tempo {
     margin-right: 2em;
 }
 
-.nova-emrede .medium-field {
+.nova-remocoes .medium-field {
     border-radius: 15px;
     margin-right: 1em;
 }
 
-.nova-emrede .large-field {
+.nova-remocoes .large-field {
     border-radius: 15px;
 }
 
-.nova-emrede fieldset {
+.nova-remocoes fieldset {
 	border: none;
 }
 
-.emrede-map-block {
+.remocoes-map-block {
     display: block;
     float: left;
     width: 100%;
 }
 
-.nova-emrede .iconlist div.icon {
+.nova-remocoes .iconlist div.icon {
     background-color: #fff;
     border-color: #fff;
     border-radius: 35px;
@@ -189,11 +189,11 @@ ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-blo
     padding: 1em;
 }
 
-.nova-emrede .iconlist div.icon:hover, .nova-emrede .iconlist div.icon.active {
+.nova-remocoes .iconlist div.icon:hover, .nova-remocoes .iconlist div.icon.active {
 	border-color: #2d115c;
 }
 
-.nova-emrede .icon-info {
+.nova-remocoes .icon-info {
     display: none;
 }
 
@@ -204,7 +204,7 @@ ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-blo
 	margin-top: 2em;
 }
 
-.nova-emrede .images {
+.nova-remocoes .images {
     display: block;
     float: left;
     width: 100%;
@@ -226,7 +226,7 @@ ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-blo
     
 }
 
-input.emrede-file-upload {
+input.remocoes-file-upload {
     position: absolute;
     top: 0;
     right: 0;
@@ -238,15 +238,15 @@ input.emrede-file-upload {
     filter: alpha(opacity=0);
 }
 
-.emrede-suporte-tempo, .emrede-suporte-esfera {
+.remocoes-suporte-tempo, .remocoes-suporte-esfera {
 	display: none;
 }
 
-.emrede-map-block fieldset:first-of-type {
+.remocoes-map-block fieldset:first-of-type {
     display: none;
 }
 
-.emrede-highlight-label {
+.remocoes-highlight-label {
     display: block;
     float: left;
     font-size: 2em;
@@ -256,7 +256,7 @@ input.emrede-file-upload {
     width: 100%;
 }
 
-.new-emrede-sucess {
+.new-remocoes-sucess {
 	display: block;
     float: left;
     text-align: center;
@@ -290,14 +290,14 @@ input.emrede-file-upload {
     margin-right: 0.5em;
 }
 
-.nova-emrede .iconlist div.icon {
+.nova-remocoes .iconlist div.icon {
     width: auto;
 }
 
-.nova-emrede .iconlist div.icon div.icon-image {
+.nova-remocoes .iconlist div.icon div.icon-image {
 	height: auto;
 }
 
-.nova-emrede .icon-image {
+.nova-remocoes .icon-image {
 	
 }

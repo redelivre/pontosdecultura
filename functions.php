@@ -703,6 +703,6 @@ $pontosdecultura = new Pontosdecultura();
 /** Opções do Tema **/
 include_once dirname(__FILE__).'/inc/options.php';
 /** Post type Pratica **/
-include_once dirname(__FILE__).'/inc/emrede/emrede.php';
+include_once dirname(__FILE__).'/inc/remocoes/remocoes.php';
 
 ?>

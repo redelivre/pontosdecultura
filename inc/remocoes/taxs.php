@@ -1,7 +1,7 @@
 <?php
 
-add_action('init', 'register_emrede_taxonomies');
-function register_emrede_taxonomies()
+add_action('init', 'register_remocoes_taxonomies');
+function register_remocoes_taxonomies()
 {
 
 	$labels = array
@@ -24,7 +24,7 @@ function register_emrede_taxonomies()
 	);
 	
 	register_taxonomy( 'publico-alvo',array (
-			'emrede'
+			'remocoes'
 	),
 			array( 'hierarchical' => true,
 					'label' => 'Público Alvo',

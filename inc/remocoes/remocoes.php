@@ -1,6 +1,6 @@
 <?php
 
-class EmRede
+class Remocoes
 {
 	function __construct()
 	{
@@ -280,37 +280,37 @@ class EmRede
 		$permissoes = array(
 			'administrator' => array('Novo' => false, 'Caps' => array
 			(
-				'delete_emrede',
-				'delete_private_emrede',
-				'edit_emrede',
-				'edit_emrede',
-				'edit_private_emrede',
-				'publish_emrede',
-				'read_emrede',
-				'read_private_emrede',
-				'delete_published_emrede',
-				'edit_published_emrede',
-				'edit_published_emrede',
-				'edit_others_emrede',
-				'edit_others_emrede',
-				'delete_others_emrede',
-				'delete_others_emrede'
+				'delete_remocoes',
+				'delete_private_remocoes',
+				'edit_remocoes',
+				'edit_remocoes',
+				'edit_private_remocoes',
+				'publish_remocoes',
+				'read_remocoes',
+				'read_private_remocoes',
+				'delete_published_remocoes',
+				'edit_published_remocoes',
+				'edit_published_remocoes',
+				'edit_others_remocoes',
+				'edit_others_remocoes',
+				'delete_others_remocoes',
+				'delete_others_remocoes'
 			)),
 			'contributor' => array('Novo' => false, 'Caps' => array
 			(
-				'read_emrede',
+				'read_remocoes',
 			)),
 			'subscriber' => array('Novo' => false, 'Caps' => array
 			(
-				'read_emrede',
+				'read_remocoes',
 			)),
 			'author' => array('Novo' => false, 'Caps' => array
 			(
-				'read_emrede',
+				'read_remocoes',
 			)),
 			'editor' => array('Novo' => false, 'Caps' => array
 			(
-				'read_emrede',
+				'read_remocoes',
 			)),
 		);
 		
@@ -322,26 +322,26 @@ class EmRede
 	{
 		$labels = array
 		(
-				'name' => __('em Rede','pontosdecultura'),
-				'singular_name' => __('em Rede','pontosdecultura'),
+				'name' => __('Remoções','pontosdecultura'),
+				'singular_name' => __('Remoção','pontosdecultura'),
 				'add_new' => __('Add new','pontosdecultura'),
-				'add_new_item' => __('Add new em Rede','pontosdecultura'),
-				'edit_item' => __('Edit em Rede','pontosdecultura'),
-				'new_item' => __('New em Rede','pontosdecultura'),
-				'view_item' => __('View em Rede','pontosdecultura'),
-				'search_items' => __('Search em Rede','pontosdecultura'),
-				'not_found' =>  __('em Rede not found','pontosdecultura'),
-				'not_found_in_trash' => __('em Rede not found in the trash','pontosdecultura'),
+				'add_new_item' => __('Add new remoção','pontosdecultura'),
+				'edit_item' => __('Edit remoção','pontosdecultura'),
+				'new_item' => __('New remoção','pontosdecultura'),
+				'view_item' => __('View remoção','pontosdecultura'),
+				'search_items' => __('Search remoção','pontosdecultura'),
+				'not_found' =>  __('Remoção not found','pontosdecultura'),
+				'not_found_in_trash' => __('Remoção not found in the trash','pontosdecultura'),
 				'parent_item_colon' => '',
-				'menu_name' => __('em Rede','pontosdecultura')
+				'menu_name' => __('Remoções','pontosdecultura')
 	
 		);
 	
 		$args = array
 		(
-				'label' => __('em Rede','pontosdecultura'),
+				'label' => __('Remoções','pontosdecultura'),
 				'labels' => $labels,
-				'description' => __('em Rede','pontosdecultura'),
+				'description' => __('Remoções','pontosdecultura'),
 				'public' => true,
 				'publicly_queryable' => true, // public
 				//'exclude_from_search' => '', // public
@@ -353,7 +353,7 @@ class EmRede
 				'map_meta_cap' => true,
 				'hierarchical' => false,
 				'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
-				'register_meta_box_cb' => array($this, 'pontos_emrede_custom_meta'), // função para chamar na edição
+				'register_meta_box_cb' => array($this, 'pontos_remocoes_custom_meta'), // função para chamar na edição
 				'taxonomies' => array('post_tag','category'), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
 				'permalink_epmask' => 'EP_PERMALINK ',
 				'has_archive' => true, // Opção de arquivamento por slug
@@ -366,13 +366,13 @@ class EmRede
 	
 		);
 	
-		register_post_type("emrede", $args);
+		register_post_type("remocoes", $args);
 	}
 	
-	function pontos_emrede_custom_meta()
+	function pontos_remocoes_custom_meta()
 	{
-		add_meta_box("emrede_meta", __("Detalhes do ponto em Rede", 'pontosdecultura'), array($this, 'emrede_meta'), 'emrede', 'side', 'default');
-		add_meta_box("second_image_meta", __("Imagens do ponto em Rede", 'pontosdecultura'), array($this, 'second_image_meta'), 'emrede', 'side', 'default');
+		add_meta_box("remocoes_meta", __("Detalhes da remoção", 'pontosdecultura'), array($this, 'remocoes_meta'), 'remocoes', 'side', 'default');
+		add_meta_box("second_image_meta", __("Imagens da remoção", 'pontosdecultura'), array($this, 'second_image_meta'), 'remocoes', 'side', 'default');
 	}
 	
 	protected $_customs = array();
@@ -402,7 +402,7 @@ class EmRede
 		return array_merge($post, $this->_customs);
 	}
 	
-	function emrede_meta()
+	function remocoes_meta()
 	{
 		global $post;
 		
@@ -420,7 +420,7 @@ class EmRede
 			$disable_edicao = 'readonly="readonly"';
 		}*/
 		
-		wp_nonce_field( 'emrede_meta_inner_custom_box', 'emrede_meta_inner_custom_box_nonce' );
+		wp_nonce_field( 'remocoes_meta_inner_custom_box', 'remocoes_meta_inner_custom_box_nonce' );
 		
 		foreach ($this->_customs as $key => $campo )
 		{
@@ -524,36 +524,36 @@ class EmRede
 		
 	}
 	
-	const NEW_EMREDE_PAGE = 'nova-emrede';
+	const NEW_REMOCOES_PAGE = 'nova-remocoes';
 	
 	function print_variables($public_query_vars) {
-		$public_query_vars[] = self::NEW_EMREDE_PAGE;
+		$public_query_vars[] = self::NEW_REMOCOES_PAGE;
 		return $public_query_vars;
 	}
 	
 	function rewrite_rules()
 	{
-		add_rewrite_rule('^'.self::NEW_EMREDE_PAGE.'(.*)', 'index.php?'.self::NEW_EMREDE_PAGE.'=true$matches[1]', 'top');
+		add_rewrite_rule('^'.self::NEW_REMOCOES_PAGE.'(.*)', 'index.php?'.self::NEW_REMOCOES_PAGE.'=true$matches[1]', 'top');
 		flush_rewrite_rules(false);
 	}
 	
 	function form()
 	{
-		if(get_query_var(self::NEW_EMREDE_PAGE) == true)
+		if(get_query_var(self::NEW_REMOCOES_PAGE) == true)
 		{
-			//wp_enqueue_script('jquery-ui-datepicker-ptbr', WP_CONTENT_URL.'/themes/fluxo/emrede/js/jquery.ui.datepicker-pt-BR.js', array('jquery-ui-datepicker'));
-			//wp_enqueue_script('date-scripts',WP_CONTENT_URL.'/themes/fluxo/emrede/js/date_scripts.js', array( 'jquery-ui-datepicker-ptbr'));
-			wp_enqueue_script('new-emrede', get_template_directory_uri().'/inc/emrede/js/new-emrede.js', array( 'jquery'));
+			//wp_enqueue_script('jquery-ui-datepicker-ptbr', WP_CONTENT_URL.'/themes/fluxo/remocoes/js/jquery.ui.datepicker-pt-BR.js', array('jquery-ui-datepicker'));
+			//wp_enqueue_script('date-scripts',WP_CONTENT_URL.'/themes/fluxo/remocoes/js/date_scripts.js', array( 'jquery-ui-datepicker-ptbr'));
+			wp_enqueue_script('new-remocoes', get_template_directory_uri().'/inc/remocoes/js/new-remocoes.js', array( 'jquery'));
 			
 			get_header();
-			$file_path = get_stylesheet_directory() . '/new-emrede.php';
+			$file_path = get_stylesheet_directory() . '/new-remocoes.php';
 			if(file_exists($file_path))
 			{
 				include $file_path;
 			}
 			else
 			{
-				include dirname(__FILE__) . '/new-emrede.php';;
+				include dirname(__FILE__) . '/new-remocoes.php';;
 			}
 			get_footer();
 			exit();
@@ -568,7 +568,7 @@ class EmRede
 	 * @param string $post_type A post type string, defaults to 'post'.
 	 * @return WP_Post Post object containing all the default post data as attributes
 	 */
-	function get_default_post_to_edit( $post_type = 'emrede', $create_in_db = false ) {
+	function get_default_post_to_edit( $post_type = 'remocoes', $create_in_db = false ) {
 		global $wpdb;
 	
 		$post_title = '';
@@ -619,7 +619,7 @@ class EmRede
 	
 	/**
 	 * Inclui os arquivos do tema relacionados com
-	 * a listagem de emrede e retorna o template
+	 * a listagem de remocoes e retorna o template
 	 * a ser usado.
 	 *
 	 * @param string $archiveTemplate
@@ -629,15 +629,15 @@ class EmRede
 	{
 		global $post;
 	
-		if (get_post_type($post) == "emrede" || is_post_type_archive('emrede'))
+		if (get_post_type($post) == "remocoes" || is_post_type_archive('remocoes'))
 		{
-			if(file_exists(get_stylesheet_directory()."/archive-emrede.php"))
+			if(file_exists(get_stylesheet_directory()."/archive-remocoes.php"))
 			{
-				$archive_template = get_stylesheet_directory()."/archive-emrede.php";
+				$archive_template = get_stylesheet_directory()."/archive-remocoes.php";
 			}
 			else
 			{
-				$archiveTemplate = $this->themeFilePath('archive-emrede.php');
+				$archiveTemplate = $this->themeFilePath('archive-remocoes.php');
 			}
 		}
 	
@@ -646,7 +646,7 @@ class EmRede
 	
 	/**
 	 * Inclui os arquivos do tema relacionados com
-	 * a página de uma emrede e retorna o template
+	 * a página de uma remocoes e retorna o template
 	 * a ser usado.
 	 *
 	 * @param string $singleTemplate
@@ -656,15 +656,15 @@ class EmRede
 	{
 		global $post;
 	
-		if (get_post_type($post) == "emrede" || is_post_type_archive('emrede'))
+		if (get_post_type($post) == "remocoes" || is_post_type_archive('remocoes'))
 		{
-			if(file_exists(get_stylesheet_directory()."/single-emrede.php"))
+			if(file_exists(get_stylesheet_directory()."/single-remocoes.php"))
 			{
-				$singleTemplate = get_stylesheet_directory()."/single-emrede.php";
+				$singleTemplate = get_stylesheet_directory()."/single-remocoes.php";
 			}
 			else
 			{
-				$singleTemplate = $this->themeFilePath('single-emrede.php');
+				$singleTemplate = $this->themeFilePath('single-remocoes.php');
 			}
 		}
 	
@@ -684,15 +684,15 @@ class EmRede
 		*/
 		
 		// Check if our nonce is set.
-		if ( ! isset( $_POST['emrede_meta_inner_custom_box_nonce'] ) )
+		if ( ! isset( $_POST['remocoes_meta_inner_custom_box_nonce'] ) )
 		{
 			return $post_id;
 		}
 		
-		$nonce = $_POST['emrede_meta_inner_custom_box_nonce'];
+		$nonce = $_POST['remocoes_meta_inner_custom_box_nonce'];
 		
 		// Verify that the nonce is valid.
-		if ( ! wp_verify_nonce( $nonce, 'emrede_meta_inner_custom_box' ) )
+		if ( ! wp_verify_nonce( $nonce, 'remocoes_meta_inner_custom_box' ) )
 		{
 			return $post_id;
 		}
@@ -705,9 +705,9 @@ class EmRede
 		}
 	
 		// Check the user's permissions.
-		if ( 'emrede' == $_POST['post_type'] )
+		if ( 'remocoes' == $_POST['post_type'] )
 		{
-			if ( ! current_user_can( 'edit_emrede', $post_id ) )
+			if ( ! current_user_can( 'edit_remocoes', $post_id ) )
 			{
 				return $post_id;
 			}
@@ -718,7 +718,7 @@ class EmRede
 		}
 	
 		/* OK, its safe for us to save the data now. */
-		EmRede::save_fields($post_id);
+		Remocoes::save_fields($post_id);
 		
 		if(array_key_exists('thumbnail2', $_POST))
 		{
@@ -746,12 +746,12 @@ class EmRede
 	function admin_enqueue_scripts()
 	{
 		global $typenow;
-		if( $typenow == 'emrede' )
+		if( $typenow == 'remocoes' )
 		{
 			wp_enqueue_media();
 	
 			// Registers and enqueues the required javascript.
-			wp_register_script( 'meta-box-image', get_template_directory_uri() . '/inc/emrede/js/meta-box-image.js', array( 'jquery' ) );
+			wp_register_script( 'meta-box-image', get_template_directory_uri() . '/inc/remocoes/js/meta-box-image.js', array( 'jquery' ) );
 			wp_localize_script( 'meta-box-image', 'meta_image',
 			array(
 			'title' => __( 'Choose or Upload an Image', 'pontosdecultura' ),
@@ -769,13 +769,13 @@ class EmRede
 	public function css()
 	{
 		// map.css
-		wp_register_style( 'emrede', get_template_directory_uri() . '/inc/emrede/css/emrede.css', array(), '1' );
+		wp_register_style( 'remocoes', get_template_directory_uri() . '/inc/remocoes/css/remocoes.css', array(), '1' );
 		
-		if( get_query_var(self::NEW_EMREDE_PAGE) == true || get_post_type() == 'emrede' )
+		if( get_query_var(self::NEW_REMOCOES_PAGE) == true || get_post_type() == 'remocoes' )
 		{
-			wp_enqueue_style( 'emrede' );
+			wp_enqueue_style( 'remocoes' );
 		}
-		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_EMREDE_PAGE) == true )
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_REMOCOES_PAGE) == true )
 		{
 			wp_enqueue_style('mapasdevista-admin', mapasdevista_get_baseurl('template_directory') . '/admin/admin.css');
 		}
@@ -784,7 +784,7 @@ class EmRede
 	
 	public function javascript()
 	{
-		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_EMREDE_PAGE) == true )
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_REMOCOES_PAGE) == true )
 		{
 			mapasdevista_enqueue_scripts();
 			wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/metabox.js', array('jquery', 'jquery-ui-resizable', 'jquery-ui-dialog') );
@@ -815,17 +815,17 @@ class EmRede
 				case 'dropdown':
 				{
 					?>
-					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if($required)
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -847,15 +847,15 @@ class EmRede
 								?>
 							</select>
 						</div>
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 									
 				}break;
 				case 'estadocidade':
 				{
-					EmRede::dropdownEstadoCidade($field, $tax);
+					Remocoes::dropdownEstadoCidade($field, $tax);
 				}break;
 				default:
 					$taxonomy = $field;
@@ -881,19 +881,19 @@ class EmRede
 					extract($field);
 					
 					?>
-					<div class="emrede-item emrede-item-checkbox <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-checkbox <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <?php EmRede::taxonomy_checklist($taxonomy); ?>
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						</label> <?php Remocoes::taxonomy_checklist($taxonomy); ?>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
@@ -911,23 +911,23 @@ class EmRede
 			{
 				case 'wp_editor':
 					?>
-					<div class="emrede-item <?php echo $id; ?>">
-							<label for="<?php echo $id ?>" class="emrede-item-label">
-								<div class="emrede-item-title"><?php echo $label; ?>
-								<span class="emrede-item-required-asterisk">*</span>
+					<div class="remocoes-item <?php echo $id; ?>">
+							<label for="<?php echo $id ?>" class="remocoes-item-label">
+								<div class="remocoes-item-title"><?php echo $label; ?>
+								<span class="remocoes-item-required-asterisk">*</span>
 								</div>
-								<div class="emrede-item-tip-text">
+								<div class="remocoes-item-tip-text">
 								<?php echo $tip; ?>
 							</div>
 							</label>
 						<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
 					       'tinymce' => array( 
-					            'content_css' => get_stylesheet_directory_uri() . '/inc/emrede/css/editor-styles.css' 
+					            'content_css' => get_stylesheet_directory_uri() . '/inc/remocoes/css/editor-styles.css' 
 					    		)
 							)
 						); ?>
-						<div class="emrede-item-error-message"></div>
-							<div class="emrede-item-required-message">
+						<div class="remocoes-item-error-message"></div>
+							<div class="remocoes-item-required-message">
 							<?php echo $required_message; ?>
 						</div>
 					</div>
@@ -935,17 +935,17 @@ class EmRede
 				break;
 				case 'dropdown-ano':
 					?>
-					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" <?php echo array_key_exists($id, $_REQUEST)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -959,24 +959,24 @@ class EmRede
 								?>
 							</select>
 						</div>
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'dropdown-meses-anos':
 					?>
-					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
+						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-meses"; ?>">
 								<option value="" <?php echo array_key_exists("$id-meses", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Meses', 'pontosdecultura' ); ?></option>
@@ -989,7 +989,7 @@ class EmRede
 									} 
 								?>
 							</select></div>
-							<div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
+							<div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-anos"; ?>">
 								<option value="" <?php echo array_key_exists("$id-anos", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Anos', 'pontosdecultura' ); ?></option>
@@ -1003,24 +1003,24 @@ class EmRede
 								?>
 							</select>
 						</div>
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'dropdown-cem':
 					?>
-					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -1035,50 +1035,50 @@ class EmRede
 								?>
 							</select>
 						</div>
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'radio':
 					?>
-					<div class="emrede-item emrede-item-radio <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-radio <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="emrede-item-input-radio-block"><?php
+							<div class="remocoes-item-input-radio-block"><?php
 								$i = 0;
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="emrede-item-input-radio" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="remocoes-item-input-radio" >'.$label_item.'</label>';
 									$i++;
 								}
-						?></div><div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						?></div><div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'checkbox':
 					?>
-					<div class="emrede-item emrede-item-checkbox <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item remocoes-item-checkbox <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="emrede-item-input-checkbox-block"><?php
+							<div class="remocoes-item-input-checkbox-block"><?php
 								$i = 0;
 								$dado = array();
 								if(array_key_exists($id, $_REQUEST))
@@ -1094,35 +1094,35 @@ class EmRede
 								}
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'" '.(in_array($value, $dado) ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="emrede-item-input-checkbox" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'" '.(in_array($value, $dado) ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="remocoes-item-input-checkbox" >'.$label_item.'</label>';
 									$i++;
 								}
-						?></div><div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						?></div><div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'textarea':
 				?>
-				<div class="emrede-item emrede-item-textarea <?php echo $id; ?>">
-					<label for="<?php echo $id ?>" class="emrede-item-label">
-						<div class="emrede-item-title"><?php echo $label;
+				<div class="remocoes-item remocoes-item-textarea <?php echo $id; ?>">
+					<label for="<?php echo $id ?>" class="remocoes-item-label">
+						<div class="remocoes-item-title"><?php echo $label;
 							if(array_key_exists( 'required', $field ) && $field['required'])
 							{?>
-								<span class="emrede-item-required-asterisk">*</span><?php
+								<span class="remocoes-item-required-asterisk">*</span><?php
 							}?>
 						</div>
-						<div class="emrede-item-tip-text"><?php echo $tip; ?>
+						<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 					</label>
 					<textarea id="<?php echo $id ?>"
-						class="emrede-item-input-text <?php echo $input_class ?>"
+						class="remocoes-item-input-text <?php echo $input_class ?>"
 						name="<?php echo $id ?>"
 						rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
 						<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
 					><?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?></textarea>
-					<div class="emrede-item-error-message"></div>
-					<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+					<div class="remocoes-item-error-message"></div>
+					<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 				</div>
 				<?php
 				break;
@@ -1130,22 +1130,22 @@ class EmRede
 				case 'number':
 				default:
 					?>
-					<div class="emrede-item <?php echo $type == 'text' || $type == '' ? 'emrede-item-text' : 'emrede-item-'.$type; ?> <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="emrede-item-label">
-							<div class="emrede-item-title"><?php echo $label;
+					<div class="remocoes-item <?php echo $type == 'text' || $type == '' ? 'remocoes-item-text' : 'remocoes-item-'.$type; ?> <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="emrede-item-required-asterisk">*</span><?php
+									<span class="remocoes-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label> <input type="<?php echo $type == 'number' ? 'number' : 'text' ?>" id="<?php echo $id ?>"
-							class="emrede-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+							class="remocoes-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
 							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
 							name="<?php echo $id ?>">
-						<div class="emrede-item-error-message"></div>
-						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
@@ -1282,19 +1282,19 @@ class EmRede
 		
 		extract($field);
 		?>
-		<div class="emrede-item emrede-item-dropdown">
-			<label for="<?php echo $id ?>" class="emrede-item-label">
-				<div class="emrede-item-title"><?php echo $label;
+		<div class="remocoes-item remocoes-item-dropdown">
+			<label for="<?php echo $id ?>" class="remocoes-item-label">
+				<div class="remocoes-item-title"><?php echo $label;
 					if(array_key_exists( 'required', $field ) && $field['required'])
 					{?>
-						<span class="emrede-item-required-asterisk">*</span><?php
+						<span class="remocoes-item-required-asterisk">*</span><?php
 					}?>
 				</div>
-				<div class="emrede-item-tip-text"><?php echo $tip; ?>
+				<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 			</div>
 			</label><?php EstadosCidades::dropdown($taxonomy, 'taxonomy_'.$taxonomy.'[]', 'taxonomy_'.$taxonomy.'[]'); ?>
-			<div class="emrede-item-error-message"></div>
-			<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+			<div class="remocoes-item-error-message"></div>
+			<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 		</div>
 		<?php
 		
@@ -1302,14 +1302,14 @@ class EmRede
 	
 	public static function get_new_url()
 	{
-		return get_bloginfo( 'url' ) . '/'.self::NEW_EMREDE_PAGE;
+		return get_bloginfo( 'url' ) . '/'.self::NEW_REMOCOES_PAGE;
 	}
 	
 	public static function save_fields($post_ID, &$message = array(), &$notice = false)
 	{
-		global $EmRede_global;
+		global $Remocoes_global;
 	
-		$emrede = $EmRede_global;
+		$remocoes = $Remocoes_global;
 	
 		$purifier = '';
 		if(!is_admin())
@@ -1320,7 +1320,7 @@ class EmRede
 		$post = get_post($post_ID);
 	
 		/* Save Fields and Custom Fields */
-		foreach ($emrede->getFields() as $key => $field)
+		foreach ($remocoes->getFields() as $key => $field)
 		{
 			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
 			{
@@ -1329,7 +1329,7 @@ class EmRede
 			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
-				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="emrede_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
+				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="remocoes_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
 			else 
@@ -1380,7 +1380,7 @@ class EmRede
 	
 }
 
-$EmRede_global = new EmRede();
+$Remocoes_global = new Remocoes();
 
 /**
  * Custom taxonomies.

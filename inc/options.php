@@ -382,7 +382,7 @@ class PontosSettingsPage
 	    				'post_author'    => 1, //The user ID number of the author.
 	    				'post_content'   => trim($row[6]),
 	    				'post_title'     => trim($row[0]), //The title of your post.
-	    				'post_type'      => 'emrede',
+	    				'post_type'      => 'remocoes',
 	    				'post_status'	 => 'publish'
 	    		);
 	    
@@ -434,7 +434,7 @@ class PontosSettingsPage
 	    			PontosSettingsPage::log($post, true);
 	    			
 	    			if($location !== false) PontosSettingsPage::log("{$row[0]};{$location['lat']};{$location['lon']}");
-	    			elseif($getLocation) PontosSettingsPage::log("$row[0] -> debug ponto em rede não encontrado");
+	    			elseif($getLocation) PontosSettingsPage::log("$row[0] -> debug remoção não encontrada");
 	    			
 	    			PontosSettingsPage::log('<br/>');
 	    		}
@@ -448,7 +448,7 @@ class PontosSettingsPage
 	    			}
 	    			elseif($getLocation) 
 	    			{
-	    				PontosSettingsPage::log("$row[0] -> ponto em rede não encontrado");
+	    				PontosSettingsPage::log("$row[0] -> remoção não encontrada");
 	    				PontosSettingsPage::log('<br/>');
 	    			}
 	    		}
@@ -468,8 +468,8 @@ class PontosSettingsPage
     				PontosSettingsPage::log("Pin: {$pin}");
     				PontosSettingsPage::log('<br/>');
     			}
-    			global $EmRede_global;
-    			$fields = $EmRede_global->getFields(); 
+    			global $Remocoes_global;
+    			$fields = $Remocoes_global->getFields(); 
     			
     			foreach ($row as $key => $custom_field)
     			{

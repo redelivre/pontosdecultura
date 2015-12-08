@@ -2,17 +2,17 @@
 
 require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
-global $EmRede_global;
+global $Remocoes_global;
 	
-$emrede = $EmRede_global;
+$remocoes = $Remocoes_global;
 
 $buttonLabel = __('Colocar minha pesquisa no mapa', 'pontosdecultura');
 
-$publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish EmRede' || $_POST['publish'] == $buttonLabel );
+$publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Remocoes' || $_POST['publish'] == $buttonLabel );
 
 $post_type = '';
 if ( !isset($_GET['post_type']) )
-	$post_type = 'emrede';
+	$post_type = 'remocoes';
 elseif ( in_array( $_GET['post_type'], get_post_types( array('show_ui' => true ) ) ) )
 	$post_type = $_GET['post_type'];
 else
@@ -24,7 +24,7 @@ $language_code = array_key_exists('icl_post_language', $_POST) ? $_POST['icl_pos
 
 if ( ! is_user_logged_in() )
 {?>
-<div class="login-entry <?php echo EmRede::NEW_EMREDE_PAGE ?>" >
+<div class="login-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?>" >
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 sections-description">
@@ -33,7 +33,7 @@ if ( ! is_user_logged_in() )
 		</div>
 		<div class="row">
 			<div class="col-lg-12 sections-advise">
-				<h2 class="text-center"><?php echo __('É necessário estar logado para acessar essa área. Faça o login ou, se ainda não tiver uma conta, clique em ', 'pontosdecultura'); ?><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.EmRede::get_new_url(); ?>"><?php _e('"Cadastre-se aqui"', 'pontosdecultura'); ?></a></h2>
+				<h2 class="text-center"><?php echo __('É necessário estar logado para acessar essa área. Faça o login ou, se ainda não tiver uma conta, clique em ', 'pontosdecultura'); ?><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.Remocoes::get_new_url(); ?>"><?php _e('"Cadastre-se aqui"', 'pontosdecultura'); ?></a></h2>
 			</div>
 		</div>
 	
@@ -44,7 +44,7 @@ if ( ! is_user_logged_in() )
 			</div>
 			</div>
 		</div>
-		<div class="login-register"><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.EmRede::get_new_url(); ?>"><?php _e('Cadastre-se aqui', 'pontosdecultura'); ?></a></div>
+		<div class="login-register"><a href="<?php echo get_bloginfo('url').'/wp-login.php?action=register&redirect_to='.Remocoes::get_new_url(); ?>"><?php _e('Cadastre-se aqui', 'pontosdecultura'); ?></a></div>
 	</div>
 </div>
 <?php
@@ -71,7 +71,7 @@ else
 	}
 	else 
 	{
-		$post = $emrede->get_default_post_to_edit( $post_type, $publish );
+		$post = $remocoes->get_default_post_to_edit( $post_type, $publish );
 	}
 	
 	$post_ID = $post->ID;
@@ -91,7 +91,7 @@ else
 	if($publish)
 	{
 		/* Save Fields and Custom Fields */
-		foreach ($emrede->getFields() as $key => $field)
+		foreach ($remocoes->getFields() as $key => $field)
 		{
 			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
 			{
@@ -100,7 +100,7 @@ else
 			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
-				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="emrede_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
+				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="remocoes_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
 			else 
@@ -289,9 +289,9 @@ else
 		}
 		
 		// Tratando campos especiais
-		update_post_meta($post_ID, '_emrede-tem-fotos', $has_thumbnail || $has_thumbnail2 || $has_thumbnail3 ? 'S' : 'N');
+		update_post_meta($post_ID, '_remocoes-tem-fotos', $has_thumbnail || $has_thumbnail2 || $has_thumbnail3 ? 'S' : 'N');
 		
-		update_post_meta($post_ID, '_emrede-tem-links', array_key_exists('emrede-publicacoes', $_POST) && !empty($_POST['emrede-publicacoes']) ? 'S' : 'N' );
+		update_post_meta($post_ID, '_remocoes-tem-links', array_key_exists('remocoes-publicacoes', $_POST) && !empty($_POST['remocoes-publicacoes']) ? 'S' : 'N' );
 		
 		
         /*
@@ -308,10 +308,10 @@ else
 		
 		if($notice == false && count($message) == 0)
 		{?>
-			<div class="home-entry <?php echo EmRede::NEW_EMREDE_PAGE ?> " >
+			<div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 				<div class="container">
 					<div class="row">
-						<div class="new-emrede-sucess"><?php _e('Sua pesquisa continuada foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no Mapa. Obrigado ;)'); ?>
+						<div class="new-remocoes-sucess"><?php _e('Sua pesquisa continuada foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no Mapa. Obrigado ;)'); ?>
 						</div>
 					</div>
 				</div>
@@ -327,7 +327,7 @@ else
 
 
 	?>
-<div class="home-entry <?php echo EmRede::NEW_EMREDE_PAGE ?> " >
+<div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 
 	<div class="container">
 		<div class="row">
@@ -338,7 +338,7 @@ else
 		<div class="row">
 			<div class="col-md-12">
 	<?php //screen_icon(); ?>
-	<h2 class="new-emrede"><?php
+	<h2 class="new-remocoes"><?php
 	echo esc_html( $title );
 	if ( isset( $post_new_file ) && current_user_can( $post_type_object->cap->create_posts ) )
 		echo ' <a href="' . esc_url( $post_new_file ) . '" class="add-new-h2">' . esc_html( $post_type_object->labels->add_new ) . '</a>';
@@ -388,23 +388,23 @@ else
 	echo $form_extra;
 	
 	
-	$fields = $emrede->getFields();
+	$fields = $remocoes->getFields();
 	
-	EmRede::print_field($fields['post_title']);
-	EmRede::print_field($fields['email']);
-	EmRede::print_field($fields['url']);
-	EmRede::print_field($fields['telefone']);
-	EmRede::print_field('territorio', array(
+	Remocoes::print_field($fields['post_title']);
+	Remocoes::print_field($fields['email']);
+	Remocoes::print_field($fields['url']);
+	Remocoes::print_field($fields['telefone']);
+	Remocoes::print_field('territorio', array(
 			'label' => 'Estado e Cidade',
 			'required' => true,
 			'type' => 'estadocidade'
 	));?>
-	<div class="emrede-map-block">
-		<div class="emrede-item emrede-item-map emrede-map">
-			<label class="emrede-item-label">
-			<div class="emrede-item-title"><h2><?php _e('Encontre-se no mapa', 'pontosdecultura');?></h2>
+	<div class="remocoes-map-block">
+		<div class="remocoes-item remocoes-item-map remocoes-map">
+			<label class="remocoes-item-label">
+			<div class="remocoes-item-title"><h2><?php _e('Encontre-se no mapa', 'pontosdecultura');?></h2>
 				</div>
-				<div class="emrede-item-tip-text"><h3><?php
+				<div class="remocoes-item-tip-text"><h3><?php
 					_e('1 - Dê zoom em seu território e encontre sua rua.', 'pontosdecultura');echo "<br/>";
 					_e('2 - Clique duas vezes no mapa para inserir um marcador.', 'pontosdecultura');echo "<br/>";
 					_e('3 - Se preferir, digite seu endereço no campo abaixo do mapa, aperte "Enter" e deixe que a gente te encontra.', 'pontosdecultura'); 
@@ -414,76 +414,76 @@ else
 			<?php mapasdevista_metabox_map(); ?>
 		</div>
 	</div><?php
-	EmRede::print_field($fields['cep']);
-	EmRede::print_field($fields['ano-inicio']);
- 	EmRede::print_field($fields['numero-integrantes']);
- 	EmRede::print_field('natureza', array(
+	Remocoes::print_field($fields['cep']);
+	Remocoes::print_field($fields['ano-inicio']);
+ 	Remocoes::print_field($fields['numero-integrantes']);
+ 	Remocoes::print_field('natureza', array(
 			'label' => 'Natureza da Pesquisa',
 			'outro' => true,
 	));
- 	EmRede::print_field($fields['espaco-fisico']);
-	EmRede::print_field('cenico-performativa', array(
+ 	Remocoes::print_field($fields['espaco-fisico']);
+	Remocoes::print_field('cenico-performativa', array(
 			'label' => 'Área(s) da Pesquisa Cênico-Performativa(s)',
 			'outro' => true,
 	));
-	EmRede::print_field('desdobramentos', array(
+	Remocoes::print_field('desdobramentos', array(
 			'label' => 'Desdobramentos',
 			'outro' => true,
 	));
- 	EmRede::print_field($fields['post_content']);
- 	EmRede::print_field('publico-alvo', array(
+ 	Remocoes::print_field($fields['post_content']);
+ 	Remocoes::print_field('publico-alvo', array(
  			'label' => 'Público Alvo',
  			'outro' => true,
  	));
- 	EmRede::print_field('ressonancias', array(
+ 	Remocoes::print_field('ressonancias', array(
  			'label' => 'Áreas de Ressonância',
  			'outro' => true,
  	));
  	?><br/>
  	<div class="images">
 	 	<div class="images-thumbnail-block images-thumbnail">
-			<label for="thumbnail" class="emrede-item-label">
-				<div class="emrede-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
+			<label for="thumbnail" class="remocoes-item-label">
+				<div class="remocoes-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
 				</div>
-				<div class="emrede-item-tip-text">
+				<div class="remocoes-item-tip-text">
 					<?php _e('Imagem que será exibida em listagens', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail" id="thumbnail"
 				value="<?php ?>"
-				onchange="displayPreview(this.files, 'thumbnail');" class="emrede-file-upload"><?php
+				onchange="displayPreview(this.files, 'thumbnail');" class="remocoes-file-upload"><?php
 			if($has_thumbnail && array_key_exists('thumbnail', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail']; ?>"><?php
 			}?>
 		</div>
 		<div class="images-thumbnail-block images-thumbnail2">
-			<label for="thumbnail2" class="emrede-item-label">
-				<div class="emrede-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
+			<label for="thumbnail2" class="remocoes-item-label">
+				<div class="remocoes-item-title"><?php _e('Imagem 2', 'pontosdecultura'); ?>
 				</div>
-				<div class="emrede-item-tip-text">
+				<div class="remocoes-item-tip-text">
 					<?php _e('&nbsp;', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail2" id="thumbnail2"
 				value="<?php echo array_key_exists('thumbnail2', $_REQUEST) ? esc_url($_REQUEST['thumbnail2']) : ''; ?>"
-				onchange="displayPreview(this.files, 'thumbnail2');" class="emrede-file-upload"><?php
+				onchange="displayPreview(this.files, 'thumbnail2');" class="remocoes-file-upload"><?php
 			if($has_thumbnail2 && array_key_exists('thumbnail2', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail2']; ?>"><?php
 			}?>
 		</div>
 		<div class="images-thumbnail-block images-thumbnail3">
-			<label for="thumbnail3" class="emrede-item-label">
-				<div class="emrede-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
+			<label for="thumbnail3" class="remocoes-item-label">
+				<div class="remocoes-item-title"><?php _e('Imagem 3', 'pontosdecultura'); ?>
 				</div>
-				<div class="emrede-item-tip-text">
+				<div class="remocoes-item-tip-text">
 					<?php _e('&nbsp;', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail3" id="thumbnail3"
 				value="<?php echo array_key_exists('thumbnail3', $_REQUEST) ? esc_url($_REQUEST['thumbnail3']) : ''; ?>"
-				onchange="displayPreview(this.files, 'thumbnail3');" class="emrede-file-upload"><?php
+				onchange="displayPreview(this.files, 'thumbnail3');" class="remocoes-file-upload"><?php
 			if($has_thumbnail3 && array_key_exists('thumbnail3', $attach))
 			{?>
 				<img src="<?php echo $attach['thumbnail3']; ?>"><?php
@@ -491,40 +491,40 @@ else
 		</div>
 	</div>
 	<?php
- 	EmRede::print_field($fields['publicacoes']);
-	EmRede::print_field($fields['videos']);
-	EmRede::print_field($fields['facebook']);
-	EmRede::print_field($fields['outras-redes']);
-	EmRede::print_field($fields['e-ponto']);
-	EmRede::print_field($fields['vinculo']);
-	EmRede::print_field($fields['suporte']);
-	EmRede::print_field($fields['suporte-esfera']);
-	EmRede::print_field($fields['suporte-obs']);?>
-	<label class="emrede-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
-	EmRede::print_field($fields['cpf']);
-	EmRede::print_field($fields['nome']);
-	EmRede::print_field($fields['nascimento']);
-	EmRede::print_field($fields['telefone-resp']);
-	EmRede::print_field($fields['email-resp']);?>
+ 	Remocoes::print_field($fields['publicacoes']);
+	Remocoes::print_field($fields['videos']);
+	Remocoes::print_field($fields['facebook']);
+	Remocoes::print_field($fields['outras-redes']);
+	Remocoes::print_field($fields['e-ponto']);
+	Remocoes::print_field($fields['vinculo']);
+	Remocoes::print_field($fields['suporte']);
+	Remocoes::print_field($fields['suporte-esfera']);
+	Remocoes::print_field($fields['suporte-obs']);?>
+	<label class="remocoes-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
+	Remocoes::print_field($fields['cpf']);
+	Remocoes::print_field($fields['nome']);
+	Remocoes::print_field($fields['nascimento']);
+	Remocoes::print_field($fields['telefone-resp']);
+	Remocoes::print_field($fields['email-resp']);?>
 	<div class="images-thumbnail-block images-thumbnail4">
-		<label for="thumbnail4" class="emrede-item-label">
-			<div class="emrede-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
+		<label for="thumbnail4" class="remocoes-item-label">
+			<div class="remocoes-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
 			</div>
-			<div class="emrede-item-tip-text">
+			<div class="remocoes-item-tip-text">
 				<?php _e('Imagem do Responsável', 'pontosdecultura'); ?>
 			</div>
 		</label>
 		<input type="file" name="thumbnail4" id="thumbnail4"
 			value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
-			onchange="displayPreview(this.files, 'thumbnail4');" class="emrede-file-upload"><?php
+			onchange="displayPreview(this.files, 'thumbnail4');" class="remocoes-file-upload"><?php
 		if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
 		{?>
 			<img src="<?php echo $attach['thumbnail4']; ?>"><?php
 		}?>
 	</div><?php
-	EmRede::print_field($fields['facebook-resp']);
-	EmRede::print_field($fields['redes-resp']);
-	EmRede::print_field($fields['relacao-resp']);
+	Remocoes::print_field($fields['facebook-resp']);
+	Remocoes::print_field($fields['redes-resp']);
+	Remocoes::print_field($fields['relacao-resp']);
 	
 	?>
 					<div class="publish-button-block">
