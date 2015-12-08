@@ -1,172 +1,262 @@
 <?php
 
-class Praticas
+class EmRede
 {
 	function __construct()
 	{
 		$this->_customs = array(
-			'url' => array
-			(
-					'slug' => 'pratica-url',
-					'title' => __('Site', 'pontosdecultura'),
-					'tip' => __('Endereço da página na Web', 'pontosdecultura'),
-			),
-			'email' => array
-			(
-					'slug' => 'pratica-email',
-					'title' => __('Email', 'pontosdecultura'),
-					'tip' => __('Endereço de E-mail', 'pontosdecultura'),
-					'required' => true
-			),
-			'telefone' => array(
-					'slug' => 'pratica-telefone',
-					'title' => __ ( 'Telefone', 'pontosdecultura' ),
-					'tip' => __ ( 'Número do Telefone', 'pontosdecultura' ) 
-			),
-			'cep' => array (
-					'slug' => 'pratica-cep',
-					'title' => __ ( 'Cep', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ) 
-			),
-			'ano-inicio' => array (
-					'slug' => '_pratica-ano-inicio',
-					'title' => __ ( 'Ano de Início das atividades', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'dropdown-ano'
-			),
-			'numero-integrantes' => array (
-					'slug' => '_pratica-numero-integrantes',
-					'title' => __ ( 'Nº de Integrantes estáveis', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'dropdown-cem'
-			),
-			'espaco-fisico' => array (
-					'slug' => 'pratica-espaco-fisico',
-					'title' => __ ( 'Tem relação com um espaço físico de maneira estável?', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'radio',
-					'values' => array('S' => __('Sim', 'pontosdecultura' ), 'N' => __('Não', 'pontosdecultura' ) )
-			),
-			'publicacoes' => array (
-					'slug' => 'pratica-publicacoes',
-					'title' => __ ( 'Links para publicações', 'pontosdecultura' ),
-					'tip' => __( 'separe-os por vírgulas', 'pontosdecultura' )
-			),
-			'videos' => array (
-					'slug' => 'pratica-videos',
-					'title' => __ ( 'Links para Vídeos', 'pontosdecultura' ),
-					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
-			),
-			'facebook' => array (
-					'slug' => 'pratica-facebook',
-					'title' => __ ( 'Links para Facebook', 'pontosdecultura' ),
-					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
-			),
-			'outras-redes' => array (
-					'slug' => 'outras-redes',
-					'title' => __ ( 'Links para outras redes sociais', 'pontosdecultura' ),
-					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
-			),
-			'e-ponto' => array (
-					'slug' => 'pratica-e-ponto',
-					'title' => __ ( 'É Ponto de Cultura?', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'radio',
-					'values' => array('N' => __('Não', 'pontosdecultura' ), 'S' => __('É Ponto de Cultura', 'pontosdecultura' ), 'P' => __('É Pontão de Cultura', 'pontosdecultura' ) )
-			),
-			'vinculo' => array (
-					'slug' => 'pratica-vinculo',
-					'title' => __ ( 'Vínculo Acadêmico', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'radio',
-					'values' => array('N' => __('Nunca possuiu', 'pontosdecultura' ), 'P' => __('Já Possuiu', 'pontosdecultura' ), 'S' => __('Possui', 'pontosdecultura' ) )
-			),
-			'suporte' => array (
-					'slug' => 'pratica-suporte',
-					'title' => __ ( 'A pesquisa ou núcleo recebem ou já receberam suporte governamental para uma ou mais de suas ações?', 'pontosdecultura' ),
-					'tip' => __ ( 'Bolsas de pesquisa, contemplação em editais, convênios, contratos...', 'pontosdecultura' ),
-					'type' => 'radio',
-					'values' => array('N' => __('Nunca recebeu', 'pontosdecultura' ), 'P' => __('Já recebeu', 'pontosdecultura' ), 'S' => __('Recebe', 'pontosdecultura' ) )
-			),
-			'suporte-esfera' => array (
-					'slug' => 'pratica-suporte-esfera',
-					'title' => __ ( 'Recebeu suporte de qual esfera', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'type' => 'checkbox',
-					'values' => array('Federal' => __('Federal', 'pontosdecultura' ), 'Estadual' => __('Estadual', 'pontosdecultura' ), 'Municipal' => __('Municipal', 'pontosdecultura' ) )
-			),
-			'suporte-obs' => array (
-					'slug' => 'pratica-suporte-obs',
-					'title' => __ ( 'Histórico do núcleo de pesquisa continuada', 'pontosdecultura' ),
-					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
-					'type' => 'textarea',
-			),
-			'cpf' => array (
-					'slug' => 'pratica-cpf',
-					'title' => __ ( 'CPF', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'required' => true
-			),
-			'nome' => array (
-					'slug' => 'pratica-nome',
-					'title' => __ ( 'Nome Completo', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'required' => true
-			),
-			'nascimento' => array (
-					'slug' => 'pratica-nascimento',
-					'title' => __ ( 'Nascimento', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'required' => true
-			),
-			'ocupacao' => array (
-					'slug' => 'pratica-ocupacao',
-					'title' => __ ( 'Ocupação', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-			),
-			'telefone-resp' => array (
-					'slug' => 'pratica-telefone-resp',
-					'title' => __ ( 'Telefone', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-			),
-			'email-resp' => array (
-					'slug' => 'pratica-email-resp',
-					'title' => __ ( 'Email', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'required' => true
-			),
-			'facebook-resp' => array (
-					'slug' => 'pratica-facebook-resp',
-					'title' => __ ( 'Link para Facebook', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-			),
-			'redes-resp' => array (
-					'slug' => 'pratica-redes-resp',
-					'title' => __ ( 'Links para outras redes sociais', 'pontosdecultura' ),
-					'tip' => __ ( 'separe-os por vírgulas', 'pontosdecultura' ),
-			),
-			'relacao-resp' => array (
-					'slug' => 'pratica-relacao-resp',
-					'title' => __ ( 'Sobre a relação existente entre o responsável pelo cadastro (você) e o núcleo ou pesquisa continuada em questão', 'pontosdecultura' ),
-					'tip' => __ ( 'até 500 caracteres', 'pontosdecultura' ),
-					'type' => 'textarea',
-					'rows' => 4,
-			),
-			'tem-fotos' => array (
-					'slug' => '_pratica-tem-fotos',
-					'title' => __ ( 'Tem Fotos', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'save' => false,
-			),
-			'tem-links' => array (
-					'slug' => '_pratica-tem-links',
-					'title' => __ ( 'Tem Links', 'pontosdecultura' ),
-					'tip' => __ ( '', 'pontosdecultura' ),
-					'save' => false,
-			)
-			
-			//Espaço físico
-			
+				/*'Nome do projeto' => array
+				(
+						'slug' => 'Nome do projeto',
+						'title' => __('Nome do projeto', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'Fórum' => array
+				(
+						'slug' => 'forum',
+						'title' => __('Fórum', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Domínios' => array
+				(
+						'slug' => 'dominios',
+						'title' => __('Domínios', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Responsável pelo preenchimento' => array
+				(
+						'slug' => '_responsavel-pelo-preenchimento',
+						'title' => __('Responsável pelo preenchimento', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Situação' => array
+				(
+						'slug' => 'situacao',
+						'title' => __('Situação', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'radio',
+						'values' => array('Ativo' => __('Ativo', 'pontosdecultura' ), 'Em desenvolvimento' => __('Em desenvolvimento', 'pontosdecultura' ) )
+				),
+				'Carta de apoio' => array
+				(
+						'slug' => 'carta-de-apoio',
+						'title' => __('Carta de apoio', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				/*'Descrição' => array
+				(
+						'slug' => 'Descrição',
+						'title' => __('Descrição', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'Número de Postagens' => array
+				(
+						'slug' => 'numero-de-postagens',
+						'title' => __('Número de Postagens', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Número de Páginas' => array
+				(
+						'slug' => 'numero-de-paginas',
+						'title' => __('Número de Páginas', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Número de Comentários' => array
+				(
+						'slug' => 'numero-de-comentarios',
+						'title' => __('Número de Comentários', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Participa de alguma rede, qual? ' => array
+				(
+						'slug' => 'participa-de-alguma-rede',
+						'title' => __('Participa de alguma rede, qual? ', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				/*tax: 'Público alvo' => array
+				(
+						'slug' => 'Público alvo',
+						'title' => __('Público alvo', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'Número de Pessoas Atingidas' => array
+				(
+						'slug' => 'numero-de-pessoas-atingidas',
+						'title' => __('Número de Pessoas Atingidas', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Imagem' => array
+				(
+						'slug' => 'imagem',
+						'title' => __('Imagem', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'image',
+				),
+				/*tax: 'Categoria' => array
+				(
+						'slug' => 'Categoria',
+						'title' => __('Categoria', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'É ponto de cultura? (Sim ou não)' => array
+				(
+						'slug' => 'e-ponto-de-cultura',
+						'title' => __('É ponto de cultura?', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'radio',
+						'values' => array('S' => __('Sim', 'pontosdecultura' ), 'N' => __('Não', 'pontosdecultura' ) )
+				),
+				'Email' => array
+				(
+						'slug' => 'email',
+						'title' => __('Email', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Telefone' => array
+				(
+						'slug' => 'telefone',
+						'title' => __('Telefone', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Facebook' => array
+				(
+						'slug' => 'facebook',
+						'title' => __('Facebook', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				/*'Cidade' => array
+				(
+						'slug' => 'Cidade',
+						'title' => __('Cidade', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Estado' => array
+				(
+						'slug' => 'Estado',
+						'title' => __('Estado', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'País' => array
+				(
+						'slug' => 'pais',
+						'title' => __('País', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Endereço' => array
+				(
+						'slug' => 'endereco',
+						'title' => __('Endereço', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Data de Criação' => array
+				(
+						'slug' => 'data-de-criacao',
+						'title' => __('Data de Criação', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+						'type' => 'date',
+				),
+				/*'location' => array
+				(
+						'slug' => 'location',
+						'title' => __('location', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),*/
+				'user_id' => array
+				(
+						'slug' => '_user_id',
+						'title' => __('user_id', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'plan_id' => array
+				(
+						'slug' => '_plan_id',
+						'title' => __('plan_id', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'blog_id' => array
+				(
+						'slug' => '_blog_id',
+						'title' => __('blog_id', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'own_domain' => array
+				(
+						'slug' => 'own_domain',
+						'title' => __('own_domain', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'template' => array
+				(
+						'slug' => '_template',
+						'title' => __('template', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'styleshee' => array
+				(
+						'slug' => '_stylesheet',
+						'title' => __('stylesheet', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'current_theme' => array
+				(
+						'slug' => '_current_theme',
+						'title' => __('current_theme', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'user_email' => array
+				(
+						'slug' => 'user_email',
+						'title' => __('E-mail do usuário', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'display_name' => array
+				(
+						'slug' => 'display_name',
+						'title' => __('Nome do usuário', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'user_url' => array
+				(
+						'slug' => 'user_url',
+						'title' => __('Site do usuário', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'mídias' => array
+				(
+						'slug' => '_midias',
+						'title' => __('mídias', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'eventos' => array
+				(
+						'slug' => '_eventos',
+						'title' => __('eventos', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'newletters' => array
+				(
+						'slug' => '_newletters',
+						'title' => __('newletters', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'outros post types' => array
+				(
+						'slug' => '_outros-post-types',
+						'title' => __('outros post types', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Contribuição contínua(anual)' => array
+				(
+						'slug' => 'contribuicao-continua',
+						'title' => __('Contribuição contínua(anual)', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
+				'Contribuição em projeto' => array
+				(
+						'slug' => 'contribuicao-em-projeto',
+						'title' => __('Contribuição em projeto', 'pontosdecultura'),
+						'tip' => __('', 'pontosdecultura'),
+				),
 		);
 		
 		add_action('init', array($this, 'init'));
@@ -190,37 +280,37 @@ class Praticas
 		$permissoes = array(
 			'administrator' => array('Novo' => false, 'Caps' => array
 			(
-				'delete_praticas',
-				'delete_private_praticas',
-				'edit_pratica',
-				'edit_praticas',
-				'edit_private_praticas',
-				'publish_praticas',
-				'read_pratica',
-				'read_private_praticas',
-				'delete_published_praticas',
-				'edit_published_praticas',
-				'edit_published_pratica',
-				'edit_others_praticas',
-				'edit_others_pratica',
-				'delete_others_praticas',
-				'delete_others_pratica'
+				'delete_emrede',
+				'delete_private_emrede',
+				'edit_emrede',
+				'edit_emrede',
+				'edit_private_emrede',
+				'publish_emrede',
+				'read_emrede',
+				'read_private_emrede',
+				'delete_published_emrede',
+				'edit_published_emrede',
+				'edit_published_emrede',
+				'edit_others_emrede',
+				'edit_others_emrede',
+				'delete_others_emrede',
+				'delete_others_emrede'
 			)),
 			'contributor' => array('Novo' => false, 'Caps' => array
 			(
-				'read_pratica',
+				'read_emrede',
 			)),
 			'subscriber' => array('Novo' => false, 'Caps' => array
 			(
-				'read_pratica',
+				'read_emrede',
 			)),
 			'author' => array('Novo' => false, 'Caps' => array
 			(
-				'read_pratica',
+				'read_emrede',
 			)),
 			'editor' => array('Novo' => false, 'Caps' => array
 			(
-				'read_pratica',
+				'read_emrede',
 			)),
 		);
 		
@@ -232,26 +322,26 @@ class Praticas
 	{
 		$labels = array
 		(
-				'name' => __('Pesquisas Continuadas','pontosdecultura'),
-				'singular_name' => __('Pesquisa Continuada','pontosdecultura'),
-				'add_new' => __('Nova Pesquisa Continuada','pontosdecultura'),
-				'add_new_item' => __('Adicionar nova Pesquisa Continuada','pontosdecultura'),
-				'edit_item' => __('Editar Pesquisa Continuada','pontosdecultura'),
-				'new_item' => __('Nova Pesquisa Continuada','pontosdecultura'),
-				'view_item' => __('Ver Pesquisa Continuada','pontosdecultura'),
-				'search_items' => __('Procurar por uma Pesquisa Continuada','pontosdecultura'),
-				'not_found' =>  __('Pesquisa Continuada não encontrada','pontosdecultura'),
-				'not_found_in_trash' => __('Pesquisa Continuada não encontrada na lixeira','pontosdecultura'),
+				'name' => __('em Rede','pontosdecultura'),
+				'singular_name' => __('em Rede','pontosdecultura'),
+				'add_new' => __('Add new','pontosdecultura'),
+				'add_new_item' => __('Add new em Rede','pontosdecultura'),
+				'edit_item' => __('Edit em Rede','pontosdecultura'),
+				'new_item' => __('New em Rede','pontosdecultura'),
+				'view_item' => __('View em Rede','pontosdecultura'),
+				'search_items' => __('Search em Rede','pontosdecultura'),
+				'not_found' =>  __('em Rede not found','pontosdecultura'),
+				'not_found_in_trash' => __('em Rede not found in the trash','pontosdecultura'),
 				'parent_item_colon' => '',
-				'menu_name' => __('Pesquisas Continuadas','pontosdecultura')
+				'menu_name' => __('em Rede','pontosdecultura')
 	
 		);
 	
 		$args = array
 		(
-				'label' => __('Pesquisas Continuadas','pontosdecultura'),
+				'label' => __('em Rede','pontosdecultura'),
 				'labels' => $labels,
-				'description' => __('Praticas','pontosdecultura'),
+				'description' => __('em Rede','pontosdecultura'),
 				'public' => true,
 				'publicly_queryable' => true, // public
 				//'exclude_from_search' => '', // public
@@ -259,12 +349,12 @@ class Praticas
 				'show_in_menu' => true,
 				'menu_position' => 5,
 				// 'menu_icon' => '',
-				'capability_type' => array('pratica','praticas'),
+				'capability_type' => 'post',
 				'map_meta_cap' => true,
 				'hierarchical' => false,
 				'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
-				'register_meta_box_cb' => array($this, 'pontosdecultura_pratica_custom_meta'), // função para chamar na edição
-				'taxonomies' => array(), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
+				'register_meta_box_cb' => array($this, 'pontos_emrede_custom_meta'), // função para chamar na edição
+				'taxonomies' => array('post_tag','category'), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
 				'permalink_epmask' => 'EP_PERMALINK ',
 				'has_archive' => true, // Opção de arquivamento por slug
 				'rewrite' => true,
@@ -276,13 +366,13 @@ class Praticas
 	
 		);
 	
-		register_post_type("pratica", $args);
+		register_post_type("emrede", $args);
 	}
 	
-	function pontosdecultura_pratica_custom_meta()
+	function pontos_emrede_custom_meta()
 	{
-		add_meta_box("pratica_meta", __("Detalhes da Pratica", 'pontosdecultura'), array($this, 'pratica_meta'), 'pratica', 'side', 'default');
-		add_meta_box("second_image_meta", __("Imagens da Pratica", 'pontosdecultura'), array($this, 'second_image_meta'), 'pratica', 'side', 'default');
+		add_meta_box("emrede_meta", __("Detalhes do ponto em Rede", 'pontosdecultura'), array($this, 'emrede_meta'), 'emrede', 'side', 'default');
+		add_meta_box("second_image_meta", __("Imagens do ponto em Rede", 'pontosdecultura'), array($this, 'second_image_meta'), 'emrede', 'side', 'default');
 	}
 	
 	protected $_customs = array();
@@ -312,7 +402,7 @@ class Praticas
 		return array_merge($post, $this->_customs);
 	}
 	
-	function pratica_meta()
+	function emrede_meta()
 	{
 		global $post;
 		
@@ -330,7 +420,7 @@ class Praticas
 			$disable_edicao = 'readonly="readonly"';
 		}*/
 		
-		wp_nonce_field( 'pratica_meta_inner_custom_box', 'pratica_meta_inner_custom_box_nonce' );
+		wp_nonce_field( 'emrede_meta_inner_custom_box', 'emrede_meta_inner_custom_box_nonce' );
 		
 		foreach ($this->_customs as $key => $campo )
 		{
@@ -410,7 +500,7 @@ class Praticas
 		$stored_meta = get_post_meta( $post->ID, 'thumbnail2', true)
 		?>
 		<p>
-		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Segunda Imagem', 'pontosdecultura' )?></label>
+		    <label for="meta-image" class="pontos-second-image-meta"><?php _e( 'Segunda Imagem', 'pontosdecultura' )?></label>
 		    <input type="text" name="thumbnail2" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
 		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
 		</p>
@@ -418,7 +508,7 @@ class Praticas
 		$stored_meta = get_post_meta( $post->ID, 'thumbnail3', true)
 		?>
 		<p>
-		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Terceira Imagem', 'pontosdecultura' )?></label>
+		    <label for="meta-image" class="pontos-second-image-meta"><?php _e( 'Terceira Imagem', 'pontosdecultura' )?></label>
 		    <input type="text" name="thumbnail3" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
 		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
 		</p>
@@ -426,7 +516,7 @@ class Praticas
 		$stored_meta = get_post_meta( $post->ID, 'thumbnail4', true)
 		?>
 		<p>
-		    <label for="meta-image" class="pontosdecultura-second-image-meta"><?php _e( 'Foto do Responsável', 'pontosdecultura' )?></label>
+		    <label for="meta-image" class="pontos-second-image-meta"><?php _e( 'Foto do Responsável', 'pontosdecultura' )?></label>
 		    <input type="text" name="thumbnail4" id="meta-image" value="<?php if ( isset ( $stored_meta ) ) echo $stored_meta; ?>" />
 		    <input type="button" id="meta-image-button" class="button" value="<?php _e( 'Choose or Upload an Image', 'pontosdecultura' )?>" />
 		</p>
@@ -434,36 +524,36 @@ class Praticas
 		
 	}
 	
-	const NEW_PRATICA_PAGE = 'nova-pratica';
+	const NEW_EMREDE_PAGE = 'nova-emrede';
 	
 	function print_variables($public_query_vars) {
-		$public_query_vars[] = self::NEW_PRATICA_PAGE;
+		$public_query_vars[] = self::NEW_EMREDE_PAGE;
 		return $public_query_vars;
 	}
 	
 	function rewrite_rules()
 	{
-		add_rewrite_rule('^'.self::NEW_PRATICA_PAGE.'(.*)', 'index.php?'.self::NEW_PRATICA_PAGE.'=true$matches[1]', 'top');
+		add_rewrite_rule('^'.self::NEW_EMREDE_PAGE.'(.*)', 'index.php?'.self::NEW_EMREDE_PAGE.'=true$matches[1]', 'top');
 		flush_rewrite_rules(false);
 	}
 	
 	function form()
 	{
-		if(get_query_var(self::NEW_PRATICA_PAGE) == true)
+		if(get_query_var(self::NEW_EMREDE_PAGE) == true)
 		{
-			//wp_enqueue_script('jquery-ui-datepicker-ptbr', WP_CONTENT_URL.'/themes/pontosdecultura/praticas/js/jquery.ui.datepicker-pt-BR.js', array('jquery-ui-datepicker'));
-			//wp_enqueue_script('date-scripts',WP_CONTENT_URL.'/themes/pontosdecultura/praticas/js/date_scripts.js', array( 'jquery-ui-datepicker-ptbr'));
-			wp_enqueue_script('new-pratica', get_template_directory_uri().'/inc/praticas/js/new-pratica.js', array( 'jquery'));
+			//wp_enqueue_script('jquery-ui-datepicker-ptbr', WP_CONTENT_URL.'/themes/fluxo/emrede/js/jquery.ui.datepicker-pt-BR.js', array('jquery-ui-datepicker'));
+			//wp_enqueue_script('date-scripts',WP_CONTENT_URL.'/themes/fluxo/emrede/js/date_scripts.js', array( 'jquery-ui-datepicker-ptbr'));
+			wp_enqueue_script('new-emrede', get_template_directory_uri().'/inc/emrede/js/new-emrede.js', array( 'jquery'));
 			
 			get_header();
-			$file_path = get_stylesheet_directory() . '/new-pratica.php';
+			$file_path = get_stylesheet_directory() . '/new-emrede.php';
 			if(file_exists($file_path))
 			{
 				include $file_path;
 			}
 			else
 			{
-				include dirname(__FILE__) . '/new-pratica.php';;
+				include dirname(__FILE__) . '/new-emrede.php';;
 			}
 			get_footer();
 			exit();
@@ -478,7 +568,7 @@ class Praticas
 	 * @param string $post_type A post type string, defaults to 'post'.
 	 * @return WP_Post Post object containing all the default post data as attributes
 	 */
-	function get_default_post_to_edit( $post_type = 'pratica', $create_in_db = false ) {
+	function get_default_post_to_edit( $post_type = 'emrede', $create_in_db = false ) {
 		global $wpdb;
 	
 		$post_title = '';
@@ -529,7 +619,7 @@ class Praticas
 	
 	/**
 	 * Inclui os arquivos do tema relacionados com
-	 * a listagem de praticas e retorna o template
+	 * a listagem de emrede e retorna o template
 	 * a ser usado.
 	 *
 	 * @param string $archiveTemplate
@@ -539,15 +629,15 @@ class Praticas
 	{
 		global $post;
 	
-		if (get_post_type($post) == "pratica" || is_post_type_archive('pratica'))
+		if (get_post_type($post) == "emrede" || is_post_type_archive('emrede'))
 		{
-			if(file_exists(get_stylesheet_directory()."/archive-pratica.php"))
+			if(file_exists(get_stylesheet_directory()."/archive-emrede.php"))
 			{
-				$archive_template = get_stylesheet_directory()."/archive-pratica.php";
+				$archive_template = get_stylesheet_directory()."/archive-emrede.php";
 			}
 			else
 			{
-				$archiveTemplate = $this->themeFilePath('archive-pratica.php');
+				$archiveTemplate = $this->themeFilePath('archive-emrede.php');
 			}
 		}
 	
@@ -556,7 +646,7 @@ class Praticas
 	
 	/**
 	 * Inclui os arquivos do tema relacionados com
-	 * a página de uma pratica e retorna o template
+	 * a página de uma emrede e retorna o template
 	 * a ser usado.
 	 *
 	 * @param string $singleTemplate
@@ -566,15 +656,15 @@ class Praticas
 	{
 		global $post;
 	
-		if (get_post_type($post) == "pratica" || is_post_type_archive('pratica'))
+		if (get_post_type($post) == "emrede" || is_post_type_archive('emrede'))
 		{
-			if(file_exists(get_stylesheet_directory()."/single-pratica.php"))
+			if(file_exists(get_stylesheet_directory()."/single-emrede.php"))
 			{
-				$singleTemplate = get_stylesheet_directory()."/single-pratica.php";
+				$singleTemplate = get_stylesheet_directory()."/single-emrede.php";
 			}
 			else
 			{
-				$singleTemplate = $this->themeFilePath('single-pratica.php');
+				$singleTemplate = $this->themeFilePath('single-emrede.php');
 			}
 		}
 	
@@ -594,15 +684,15 @@ class Praticas
 		*/
 		
 		// Check if our nonce is set.
-		if ( ! isset( $_POST['pratica_meta_inner_custom_box_nonce'] ) )
+		if ( ! isset( $_POST['emrede_meta_inner_custom_box_nonce'] ) )
 		{
 			return $post_id;
 		}
 		
-		$nonce = $_POST['pratica_meta_inner_custom_box_nonce'];
+		$nonce = $_POST['emrede_meta_inner_custom_box_nonce'];
 		
 		// Verify that the nonce is valid.
-		if ( ! wp_verify_nonce( $nonce, 'pratica_meta_inner_custom_box' ) )
+		if ( ! wp_verify_nonce( $nonce, 'emrede_meta_inner_custom_box' ) )
 		{
 			return $post_id;
 		}
@@ -615,9 +705,9 @@ class Praticas
 		}
 	
 		// Check the user's permissions.
-		if ( 'pratica' == $_POST['post_type'] )
+		if ( 'emrede' == $_POST['post_type'] )
 		{
-			if ( ! current_user_can( 'edit_pratica', $post_id ) )
+			if ( ! current_user_can( 'edit_emrede', $post_id ) )
 			{
 				return $post_id;
 			}
@@ -628,7 +718,7 @@ class Praticas
 		}
 	
 		/* OK, its safe for us to save the data now. */
-		Praticas::save_fields($post_id);
+		EmRede::save_fields($post_id);
 		
 		if(array_key_exists('thumbnail2', $_POST))
 		{
@@ -656,12 +746,12 @@ class Praticas
 	function admin_enqueue_scripts()
 	{
 		global $typenow;
-		if( $typenow == 'pratica' )
+		if( $typenow == 'emrede' )
 		{
 			wp_enqueue_media();
 	
 			// Registers and enqueues the required javascript.
-			wp_register_script( 'meta-box-image', get_template_directory_uri() . '/inc/praticas/js/meta-box-image.js', array( 'jquery' ) );
+			wp_register_script( 'meta-box-image', get_template_directory_uri() . '/inc/emrede/js/meta-box-image.js', array( 'jquery' ) );
 			wp_localize_script( 'meta-box-image', 'meta_image',
 			array(
 			'title' => __( 'Choose or Upload an Image', 'pontosdecultura' ),
@@ -679,10 +769,13 @@ class Praticas
 	public function css()
 	{
 		// map.css
-		wp_register_style( 'pratica', get_template_directory_uri() . '/inc/praticas/css/pratica.css', array(), '1' );
-		wp_enqueue_style( 'pratica' );
+		wp_register_style( 'emrede', get_template_directory_uri() . '/inc/emrede/css/emrede.css', array(), '1' );
 		
-		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_PRATICA_PAGE) == true )
+		if( get_query_var(self::NEW_EMREDE_PAGE) == true || get_post_type() == 'emrede' )
+		{
+			wp_enqueue_style( 'emrede' );
+		}
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_EMREDE_PAGE) == true )
 		{
 			wp_enqueue_style('mapasdevista-admin', mapasdevista_get_baseurl('template_directory') . '/admin/admin.css');
 		}
@@ -691,7 +784,7 @@ class Praticas
 	
 	public function javascript()
 	{
-		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_PRATICA_PAGE) == true )
+		if( function_exists('mapasdevista_enqueue_scripts') && get_query_var(self::NEW_EMREDE_PAGE) == true )
 		{
 			mapasdevista_enqueue_scripts();
 			wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/metabox.js', array('jquery', 'jquery-ui-resizable', 'jquery-ui-dialog') );
@@ -721,11 +814,48 @@ class Praticas
 				
 				case 'dropdown':
 				{
-					
+					?>
+					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
+								if($required)
+								{?>
+									<span class="emrede-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+							class="<?php echo $input_class ?>"
+							name="<?php echo $id ?>">
+								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+								<?php
+									$args = array(
+											'orderby' => 'name',
+											'hide_empty'=> 0,
+											'hierarchical' => 0,
+									
+									);
+									$terms = get_terms($field, $args);
+									
+									foreach ($terms as $term)
+									{
+										?>
+										<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+										<?php
+									}
+								?>
+							</select>
+						</div>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+									
 				}break;
 				case 'estadocidade':
 				{
-					Praticas::dropdownEstadoCidade($field, $tax);
+					EmRede::dropdownEstadoCidade($field, $tax);
 				}break;
 				default:
 					$taxonomy = $field;
@@ -751,19 +881,19 @@ class Praticas
 					extract($field);
 					
 					?>
-					<div class="pratica-item pratica-item-checkbox <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-checkbox <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <?php Praticas::taxonomy_checklist($taxonomy); ?>
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						</label> <?php EmRede::taxonomy_checklist($taxonomy); ?>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
@@ -781,23 +911,23 @@ class Praticas
 			{
 				case 'wp_editor':
 					?>
-					<div class="pratica-item <?php echo $id; ?>">
-							<label for="<?php echo $id ?>" class="pratica-item-label">
-								<div class="pratica-item-title"><?php echo $label; ?>
-								<span class="pratica-item-required-asterisk">*</span>
+					<div class="emrede-item <?php echo $id; ?>">
+							<label for="<?php echo $id ?>" class="emrede-item-label">
+								<div class="emrede-item-title"><?php echo $label; ?>
+								<span class="emrede-item-required-asterisk">*</span>
 								</div>
-								<div class="pratica-item-tip-text">
+								<div class="emrede-item-tip-text">
 								<?php echo $tip; ?>
 							</div>
 							</label>
 						<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
 					       'tinymce' => array( 
-					            'content_css' => get_stylesheet_directory_uri() . '/inc/praticas/css/editor-styles.css' 
+					            'content_css' => get_stylesheet_directory_uri() . '/inc/emrede/css/editor-styles.css' 
 					    		)
 							)
 						); ?>
-						<div class="pratica-item-error-message"></div>
-							<div class="pratica-item-required-message">
+						<div class="emrede-item-error-message"></div>
+							<div class="emrede-item-required-message">
 							<?php echo $required_message; ?>
 						</div>
 					</div>
@@ -805,17 +935,17 @@ class Praticas
 				break;
 				case 'dropdown-ano':
 					?>
-					<div class="pratica-item pratica-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" <?php echo array_key_exists($id, $_REQUEST)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -829,24 +959,24 @@ class Praticas
 								?>
 							</select>
 						</div>
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'dropdown-meses-anos':
 					?>
-					<div class="pratica-item pratica-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
+						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-meses"; ?>">
 								<option value="" <?php echo array_key_exists("$id-meses", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Meses', 'pontosdecultura' ); ?></option>
@@ -859,7 +989,7 @@ class Praticas
 									} 
 								?>
 							</select></div>
-							<div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
+							<div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-anos"; ?>">
 								<option value="" <?php echo array_key_exists("$id-anos", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Anos', 'pontosdecultura' ); ?></option>
@@ -873,24 +1003,24 @@ class Praticas
 								?>
 							</select>
 						</div>
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'dropdown-cem':
 					?>
-					<div class="pratica-item pratica-item-dropdown <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-dropdown <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="pratica-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="emrede-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -905,50 +1035,50 @@ class Praticas
 								?>
 							</select>
 						</div>
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'radio':
 					?>
-					<div class="pratica-item pratica-item-radio <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-radio <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="pratica-item-input-radio-block"><?php
+							<div class="emrede-item-input-radio-block"><?php
 								$i = 0;
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="pratica-item-input-radio" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="emrede-item-input-radio" >'.$label_item.'</label>';
 									$i++;
 								}
-						?></div><div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						?></div><div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'checkbox':
 					?>
-					<div class="pratica-item pratica-item-checkbox <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item emrede-item-checkbox <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="pratica-item-input-checkbox-block"><?php
+							<div class="emrede-item-input-checkbox-block"><?php
 								$i = 0;
 								$dado = array();
 								if(array_key_exists($id, $_REQUEST))
@@ -964,57 +1094,58 @@ class Praticas
 								}
 								foreach ($field['values'] as $value => $label_item)
 								{
-									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'" '.(in_array($value, $dado) ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="pratica-item-input-checkbox" >'.$label_item.'</label>';
+									echo '<input id="'.("$id-option-$i").'" type="checkbox" name="'.$id.'[]" value="'.$value.'" '.(in_array($value, $dado) ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="emrede-item-input-checkbox" >'.$label_item.'</label>';
 									$i++;
 								}
-						?></div><div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						?></div><div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
 				case 'textarea':
 				?>
-				<div class="pratica-item pratica-item-textarea <?php echo $id; ?>">
-					<label for="<?php echo $id ?>" class="pratica-item-label">
-						<div class="pratica-item-title"><?php echo $label;
+				<div class="emrede-item emrede-item-textarea <?php echo $id; ?>">
+					<label for="<?php echo $id ?>" class="emrede-item-label">
+						<div class="emrede-item-title"><?php echo $label;
 							if(array_key_exists( 'required', $field ) && $field['required'])
 							{?>
-								<span class="pratica-item-required-asterisk">*</span><?php
+								<span class="emrede-item-required-asterisk">*</span><?php
 							}?>
 						</div>
-						<div class="pratica-item-tip-text"><?php echo $tip; ?>
+						<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
 					</label>
 					<textarea id="<?php echo $id ?>"
-						class="pratica-item-input-text <?php echo $input_class ?>"
+						class="emrede-item-input-text <?php echo $input_class ?>"
 						name="<?php echo $id ?>"
 						rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
 						<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
 					><?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?></textarea>
-					<div class="pratica-item-error-message"></div>
-					<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+					<div class="emrede-item-error-message"></div>
+					<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 				</div>
 				<?php
 				break;
 				case 'date':
+				case 'number':
 				default:
 					?>
-					<div class="pratica-item <?php echo $type == 'date' ? 'pratica-item-date' : 'pratica-item-text'; ?> <?php echo $id; ?>">
-						<label for="<?php echo $id ?>" class="pratica-item-label">
-							<div class="pratica-item-title"><?php echo $label;
+					<div class="emrede-item <?php echo $type == 'text' || $type == '' ? 'emrede-item-text' : 'emrede-item-'.$type; ?> <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="emrede-item-label">
+							<div class="emrede-item-title"><?php echo $label;
 								if(array_key_exists( 'required', $field ) && $field['required'])
 								{?>
-									<span class="pratica-item-required-asterisk">*</span><?php
+									<span class="emrede-item-required-asterisk">*</span><?php
 								}?>
 							</div>
-							<div class="pratica-item-tip-text"><?php echo $tip; ?>
+							<div class="emrede-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <input type="text" id="<?php echo $id ?>"
-							class="pratica-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+						</label> <input type="<?php echo $type == 'number' ? 'number' : 'text' ?>" id="<?php echo $id ?>"
+							class="emrede-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
 							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
 							name="<?php echo $id ?>">
-						<div class="pratica-item-error-message"></div>
-						<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+						<div class="emrede-item-error-message"></div>
+						<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
 				break;
@@ -1151,19 +1282,19 @@ class Praticas
 		
 		extract($field);
 		?>
-		<div class="pratica-item pratica-item-dropdown">
-			<label for="<?php echo $id ?>" class="pratica-item-label">
-				<div class="pratica-item-title"><?php echo $label;
+		<div class="emrede-item emrede-item-dropdown">
+			<label for="<?php echo $id ?>" class="emrede-item-label">
+				<div class="emrede-item-title"><?php echo $label;
 					if(array_key_exists( 'required', $field ) && $field['required'])
 					{?>
-						<span class="pratica-item-required-asterisk">*</span><?php
+						<span class="emrede-item-required-asterisk">*</span><?php
 					}?>
 				</div>
-				<div class="pratica-item-tip-text"><?php echo $tip; ?>
+				<div class="emrede-item-tip-text"><?php echo $tip; ?>
 			</div>
 			</label><?php EstadosCidades::dropdown($taxonomy, 'taxonomy_'.$taxonomy.'[]', 'taxonomy_'.$taxonomy.'[]'); ?>
-			<div class="pratica-item-error-message"></div>
-			<div class="pratica-item-required-message"><?php echo $required_message; ?></div>
+			<div class="emrede-item-error-message"></div>
+			<div class="emrede-item-required-message"><?php echo $required_message; ?></div>
 		</div>
 		<?php
 		
@@ -1171,14 +1302,14 @@ class Praticas
 	
 	public static function get_new_url()
 	{
-		return get_bloginfo( 'url' ) . '/'.self::NEW_PRATICA_PAGE;
+		return get_bloginfo( 'url' ) . '/'.self::NEW_EMREDE_PAGE;
 	}
 	
 	public static function save_fields($post_ID, &$message = array(), &$notice = false)
 	{
-		global $Pratica_global;
+		global $EmRede_global;
 	
-		$pratica = $Pratica_global;
+		$emrede = $EmRede_global;
 	
 		$purifier = '';
 		if(!is_admin())
@@ -1189,7 +1320,7 @@ class Praticas
 		$post = get_post($post_ID);
 	
 		/* Save Fields and Custom Fields */
-		foreach ($pratica->getFields() as $key => $field)
+		foreach ($emrede->getFields() as $key => $field)
 		{
 			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
 			{
@@ -1198,7 +1329,7 @@ class Praticas
 			
 			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
 			{
-				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="pratica_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
+				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="emrede_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
 			else 
@@ -1249,6 +1380,13 @@ class Praticas
 	
 }
 
-$Pratica_global = new Praticas();
+$EmRede_global = new EmRede();
+
+/**
+ * Custom taxonomies.
+ */
+require dirname(__FILE__) . '/taxs.php';
+
+require dirname(__FILE__) . '/../estadoscidades/EstadosCidades.php';
 
 ?>

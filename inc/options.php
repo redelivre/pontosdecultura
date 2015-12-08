@@ -22,13 +22,15 @@ class PontosSettingsPage
 	public function add_theme_page()
 	{
 		// This page will be under "Settings"
-		add_options_page(
-		__('Configurações do Tema', 'pontosdecultura'),
-		__('Configurações do Tema', 'pontosdecultura'),
-		'manage_options',
-		'pontos-setting-admin',
-		array( $this, 'create_admin_page' )
+		$page_hook = add_management_page( 
+			__('Importar do arquivo','pontosdecultura'),
+			__('Importar do arquivo','pontosdecultura'),
+			'import',
+			'pontos-import-file',
+			array(&$this, 'create_admin_page')
 		);
+		//add_action('load-' . $page_hook, array(&$this, 'admin_load'));
+		
 	}
 
 	/**
@@ -38,16 +40,17 @@ class PontosSettingsPage
 	{
 		// Set class property
 		$this->options = get_option( 'pontos_theme_options', array() );
-		$this->ImportPins();
 		?>
         <div class="wrap">
-            <h2><?php _e('Configurações do Tema Pontos de Cultura', 'pontosdecultura') ?></h2>           
+            <h2><?php _e('Import File Tool', 'pontosdecultura') ?></h2>           
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
                 settings_fields( 'pontos_option_group' );   
-                do_settings_sections( 'pontos-setting-admin' );
+                do_settings_sections( 'pontos-import-file' );
+                submit_button("Check Estado/Cidades", 'secundary', 'check-estado-cidade' );
                 submit_button("Importar Csv", 'secundary', 'importcsv' );
+                submit_button("Importar Pins", 'secundary', 'importpins' );
                 submit_button(); 
             ?>
             </form>
@@ -70,39 +73,34 @@ class PontosSettingsPage
 
         add_settings_section(
             'setting_estatos_cidades', // ID
-            __('Configurações personalizadas', 'pontosdecultura'), // Title
+            __('Importações personalizadas', 'pontosdecultura'), // Title
             array( $this, 'print_section_info' ), // Callback
-            'pontos-setting-admin' // Page
+            'pontos-import-file' // Page
         );  
 
         add_settings_field(
             'criar_estatos_cidades', // ID
             'Criar Estatos e Cidades?', // Title 
             array( $this, 'criar_estatos_cidades_callback' ), // Callback
-            'pontos-setting-admin', // Page
+            'pontos-import-file', // Page
             'setting_estatos_cidades' // Section           
         );
-        add_settings_field(
-        'pins_imported', // ID
-        '', // Title
-        array( $this, 'pins_imported_callback' ), // Callback
-        'pontos-setting-admin', // Page
-        'setting_estatos_cidades' // Section
-        );
         
+        update_option('setting_estatos_cidades', 'N');
         
-		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-setting-admin')
+		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-import-file')
 		{
-			$path = get_template_directory_uri() . '/js';
-			wp_register_script('pontos_options_scripts', $path . '/pontos_options_scripts.js', array('jquery'));
+			wp_register_script('pontos_import_scripts', get_template_directory_uri() . '/assets/js/pontos_import_scripts.js', array('jquery'));
 			
-			wp_enqueue_script('pontos_options_scripts');
+			wp_enqueue_script('pontos_import_scripts');
 					
-			wp_localize_script( 'pontos_options_scripts', 'pontos_options_scripts_object',
+			wp_localize_script( 'pontos_import_scripts', 'pontos_import_scripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 		}
 		add_action( 'wp_ajax_ImportarCsv', array($this, 'ImportarCsv_callback') );
-		add_action( 'wp_ajax_nopriv_ImportarCsv', array($this, 'ImportarCsv_callback') );
+		add_action( 'wp_ajax_ImportPins', array($this, 'ImportPins') );
+		add_action( 'wp_ajax_CheckEstadoCidade', array('EstadosCidades', 'check_location_terms') );
+		
     }
 
     /**
@@ -116,26 +114,22 @@ class PontosSettingsPage
         if( array_key_exists('criar_estatos_cidades', $input ))
         {
 			$new_input['criar_estatos_cidades'] = $input['criar_estatos_cidades'] == 'S'? 'S' : 'N';
+        
+			if($new_input['criar_estatos_cidades'] == 'S')
+			{
+				if(!is_array($this->options))
+	        		$this->options = get_option( 'pontos_theme_options', array() );
+				
+	        	if( !array_key_exists('criar_estatos_cidades', $this->options) || $this->options['criar_estatos_cidades'] != 'S')
+	        	{
+	        		ini_set("memory_limit", "2048M");
+	        		set_time_limit(0);
+	        		global $EstadosCidades;
+        			$EstadosCidades->create_location_terms();
+	        	}
+			}
         }
         
-		if($new_input['criar_estatos_cidades'] == 'S')
-		{
-			if(!is_array($this->options))
-        		$this->options = get_option( 'pontos_theme_options', array() );
-			
-        	if( !array_key_exists('criar_estatos_cidades', $this->options) || $this->options['criar_estatos_cidades'] != 'S')
-        	{
-        		ini_set("memory_limit", "2048M");
-        		set_time_limit(0);
-        		create_location_terms();
-        	}
-		}
-		
-		if( array_key_exists('pins_imported', $input ) && is_bool( (bool)$input['pins_imported']) )
-		{
-			$new_input['pins_imported'] = $input['pins_imported'];
-		}
-
         return $new_input;
     }
 
@@ -144,7 +138,7 @@ class PontosSettingsPage
      */
     public function print_section_info()
     {
-        _e('Configurações personalizadas do Tema: Pontos de cultura', 'pontosdecultura');
+        _e('Importações especiais do Tema:', 'pontosdecultura');
     }
 
     /** 
@@ -157,17 +151,6 @@ class PontosSettingsPage
             <input type="checkbox" id="criar_estatos_cidades" name="pontos_theme_options[criar_estatos_cidades]" value="S" <?php echo $checked; ?> /><?php _e('Criar', 'pontosdecultura'); ?>
         <?php 
     }
-    
-    /**
-     * Get the settings option array and print one of its values
-     */
-    public function pins_imported_callback()
-    {
-    	$checked = isset( $this->options['pins_imported'] ) && $this->options['pins_imported'] == 'S' ? 'checked="checked"' : '';
-    	?>
-        	<input type="hidden" id="pins_imported" name="pontos_theme_options[pins_imported]" value="<?php echo isset( $this->options['pins_imported'] ) && $this->options['pins_imported'] ? 'true' : 'false' ;?>" />
-        <?php 
-	}
     
     public function fetch_remote_file( $url, $post ) {
     
@@ -248,36 +231,32 @@ class PontosSettingsPage
     
     public function ImportPins()
     {
-    	if(!array_key_exists('pins_imported', $this->options) || $this->options['pins_imported'] === false )
-    	{
-	    	if ($handle = opendir(WP_CONTENT_DIR . '/themes/pontosdecultura/images/pins'))
+    	if ($handle = opendir(get_stylesheet_directory() . '/assets/images/pins'))
+		{
+    		while (false !== ($entry = readdir($handle)))
 			{
-	    		while (false !== ($entry = readdir($handle)))
+    			if (substr($entry, -3) == "png")
 				{
-	    			if (substr($entry, -3) == "png")
-					{
-	    				$newatt = array
-						(
-	    					'post_title' => $entry,
-	    					'post_status' => 'publish',
-	    					'post_parent' => 0,
-	    					'post_type' => 'attachment'
-	    				);
-							    	
-	    				$ret = $this->process_attachment( $newatt, get_template_directory_uri().'/images/pins/'.$entry);
-	    				if(is_object($ret) && get_class($ret) == 'WP_Error')
-	    				{
-	    					
-	    					wp_die(print_r($ret, true)." URL:".get_template_directory_uri().'/images/pins/'.$entry);
-	    				}
-	    	
-	    			}
-	    		}
-	    		closedir($handle);
-	    		$this->options['pins_imported'] = true;
-	    		update_option('pontos_theme_options', $this->options);
-	    	}
+    				$newatt = array
+					(
+    					'post_title' => $entry,
+    					'post_status' => 'publish',
+    					'post_parent' => 0,
+    					'post_type' => 'attachment'
+    				);
+						    	
+    				$ret = $this->process_attachment( $newatt, get_template_directory_uri().'/assets/images/pins/'.$entry);
+    				if(is_object($ret) && get_class($ret) == 'WP_Error')
+    				{
+    					
+    					wp_die(print_r($ret, true)." URL:".get_template_directory_uri().'/assets/images/pins/'.$entry);
+    				}
+    	
+    			}
+    		}
+    		closedir($handle);
     	}
+    	die();//ajax callback
     }
     
     protected $logfilename = 'csv_import.log';
@@ -313,10 +292,11 @@ class PontosSettingsPage
     	{
     		include_once dirname(__FILE__).'/Tratar.php';
     		
-    		$debug = true;
-    		$getLocation = false;
+    		$debug = false;
+    		$getLocation = true;
     		$begin = 0;
-    		$ids = array(142);
+    		$limit = 20;
+    		$ids = array();
     		
     		$pins_args = array (
 	    		'post_type' => 'attachment',
@@ -329,27 +309,10 @@ class PontosSettingsPage
 			
 			foreach ($pinsTodos as $pin)
 			{
-				switch ($pin->post_name)
-				{
-					case 'ponto-png':
-						$pins['Ponto Direto'] = $pin->ID;
-						$pins['Rede Estadual'] = $pin->ID;
-						$pins['Rede Intermunicipal'] = $pin->ID;
-						$pins['Rede Intemunicipal'] = $pin->ID;
-						$pins['Rede Municipal'] = $pin->ID;
-					break;
-					case 'ponto-de-bens-png':
-						$pins['Pontão de Bens'] = $pin->ID;
-					break;
-					case 'ponto-indigena-png':
-						$pins['Ponto de Cultura Indígena'] = $pin->ID;
-						$pins['Ponto de Cultura  Indígena'] = $pin->ID;
-					break;
-					case 'pontao-png':
-						$pins['Pontão Direto'] = $pin->ID;
-					break;
-				}
+				$pins[] = $pin->ID;
 			}
+			
+			PontosSettingsPage::log(print_r($pins,true));
 			
 	    	ini_set("memory_limit", "2048M");
 	    	set_time_limit(0);
@@ -372,11 +335,11 @@ class PontosSettingsPage
 	    		}
 	    		
 	    	}
-	    	
-	    	for ($i = 0; $i < 4; $i++) // first 4 lines has header
+	    	//cabeçalho da planilha
+	    	for ($i = 0; $i < 3; $i++) // first 4 lines has header
 	    	{
 	    		$row = fgetcsv( $file, 0, ';');
-	    		$names[$i] = $row;
+	    		$names[$i] = array_map('trim',$row);
 	    	}
 	    	
 	    	for ($i = 0; $i < $begin; $i++) // move pointer to begin of data
@@ -399,70 +362,102 @@ class PontosSettingsPage
 	    			if($row === false) break;
 	    		}
 	    		
+	    		$row[0] = trim($row[0]);
+	    		$row[1] = trim($row[1]);
+	    		
+	    		if( (empty($row[0]) && empty($row[1]) ) || strcasecmp($row[0],'Inexistente') == 0)
+	    		{
+	    			$row = fgetcsv( $file, 0, ';');
+	    			$i++;
+	    			continue;
+	    		}
+	    		
+	    		if(empty($row[0]))
+	    		{
+	    			$row[0] = $row[1];
+	    		}
+	    		
+	    		// definir titulo e descrição
 	    		$post = array(
 	    				'post_author'    => 1, //The user ID number of the author.
-	    				'post_content'   => $row[19],
-	    				'post_title'     => $row[16], //The title of your post.
-	    				'post_type'      => 'mapa',
+	    				'post_content'   => trim($row[6]),
+	    				'post_title'     => trim($row[0]), //The title of your post.
+	    				'post_type'      => 'emrede',
 	    				'post_status'	 => 'publish'
 	    		);
 	    
 				$post_id = 0;
 	    		if(!$debug) $post_id = wp_insert_post($post);
-	    
-	    		$no_import = array(0, 16, 19, 20, 21, 23, 24, 25);
+	    		//colunas que eu não quero importar como texto livre (custom fields)
+	    		$no_import = array(7, 8, 10);
 
 	    		$location = false;
 	    		
 	    		if(count($coords) > 0)
 	    		{
-	    			$location = $coords[$row[3]];
+	    			$location = $coords[$row[1]];
 	    		}
 	    		
+	    		$row[19] = trim($row[19]);
+	    		$row[20] = trim($row[20]);
+	    		$row[21] = trim($row[21]);
+	    		$row[22] = trim($row[22]);
+	    		
+	    		$row[19] = trim(array_shift(explode(';', $row[19])));
+	    		$row[19] = trim(array_shift(explode(',', $row[19])));
+	    		$row[19] = trim(array_shift(explode('-', $row[19])));
 	    		if($getLocation && $location === false)
-	    		{
-		    		$location = mapasdevista_get_coords($row[17].' '.$row[18]); // Endereço do ponto
-		    		if($location === false)
-		    		{
-		    			$location = mapasdevista_get_coords($row[8].' '.$row[9]); // Endereço da Entidade
-		    			if($location === false)
-		    			{
-		    				$location = mapasdevista_get_coords("cep: {$row[10]}"); // CEP da entidade
-		    				if($location === false)
-		    				{
-		    					$location = mapasdevista_get_coords($row[9]); // Município
-		    				}
-		    			}
-		    		}
+	    		{ 
+	    			//lets try address first
+	    			$uf = $row[20];
+	    			if(!empty($row[21])) // país
+	    				$uf .=  ",".$row[21];
+	    			
+	    			if(!empty($row[22]))
+	    			{
+	    				$row[22] = array_shift(explode(';', $row[22]));
+	    				$location = mapasdevista_get_coords($row[22].",".$row[19].','.$uf); // Endereço
+	    				if($location == false)
+	    				{
+	    					$location = mapasdevista_get_coords($row[19].','.$uf); // Município e estado
+	    				}
+	    			}
+	    			else
+	    			{
+		    			//setar coluna do municipio
+			    		$location = mapasdevista_get_coords($row[19].','.$uf); // Município e estado
+	    			}
 	    		}
 	    		
 	    		if($debug)
 	    		{
 	    			PontosSettingsPage::log($post, true);
 	    			
-	    			if($location !== false) PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}");
-	    			else PontosSettingsPage::log("$row[3] -> ponto não encontrado");
+	    			if($location !== false) PontosSettingsPage::log("{$row[0]};{$location['lat']};{$location['lon']}");
+	    			elseif($getLocation) PontosSettingsPage::log("$row[0] -> debug ponto em rede não encontrado");
 	    			
 	    			PontosSettingsPage::log('<br/>');
 	    		}
 	    		else
 	    		{
 	    			if($location !== false)
-	    			{
-	    				PontosSettingsPage::log("{$row[3]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
+	    			{ //setar coluna id 
+	    				PontosSettingsPage::log("{$row[0]};{$location['lat']};{$location['lon']}"); // exportar lat e lon
 	    				PontosSettingsPage::log('<br/>');
 	    				update_post_meta($post_id, '_mpv_location', $location);
 	    			}
-	    			else 
+	    			elseif($getLocation) 
 	    			{
-	    				PontosSettingsPage::log("$row[3] -> ponto não encontrado");
+	    				PontosSettingsPage::log("$row[0] -> ponto em rede não encontrado");
 	    				PontosSettingsPage::log('<br/>');
 	    			}
 	    		}
 	    		
+	    		$pin = $pins[rand(0, count($pins) - 1)];
+	    		
     			if(!$debug && is_int($post_id) )
     			{
-    				update_post_meta($post_id, '_mpv_pin', $pins[$row[0]]);
+    				update_post_meta($post_id, '_mpv_pin', $pin);
     					
     				delete_post_meta($post_id, '_mpv_inmap');
     				delete_post_meta($post_id, '_mpv_in_img_map');
@@ -470,44 +465,42 @@ class PontosSettingsPage
     			}
     			else
     			{
-    				PontosSettingsPage::log("Pin: {$pins[$row[0]]}");
+    				PontosSettingsPage::log("Pin: {$pin}");
     				PontosSettingsPage::log('<br/>');
     			}
+    			global $EmRede_global;
+    			$fields = $EmRede_global->getFields(); 
     			
     			foreach ($row as $key => $custom_field)
     			{
-    				if($key > 22 && $key < 44) // stop on column with tax
+    				$custom_field = trim($custom_field);
+    				
+    				if(in_array($key, array(0,1,2,3,5,6,11,12,13,14,19,20,24,26,28,29,36,38,42,))) // stop on column with tax
     				{
     					continue;
     				}
-    				if($key > 54)
+    				if($key > 44) // fim
     				{
     					break;
     				}
     				
     				if(!in_array($key, $no_import))
     				{
-    					$h = ''; // "super" nome da coluna
-    					if ($key > 3 && $key < 12)
+    					if(array_key_exists($names[0][$key], $fields))
     					{
-    						$h = $names[2][4].": ";
+	    					if($debug)
+	    					{
+	    						PontosSettingsPage::log("update_post_meta($post_id, {$fields[$names[0][$key]]['slug']}, $custom_field);<br/>");
+	    					}
+	    					else 
+	    					{
+	    						update_post_meta($post_id, $fields[$names[0][$key]]['slug'], $custom_field);
+	    					}
     					}
-    					elseif ($key > 11 && $key < 16)
+    					else
     					{
-    						$h = $names[2][12].": ";
-    					}
-    					elseif ($key > 16 && $key < 19)
-    					{
-    						$h = $names[2][17].": ";
-    					}
-    					
-    					if($debug)
-    					{
-    						PontosSettingsPage::log("update_post_meta($post_id, $h.{$names[3][$key]}, $custom_field);<br/>");
-    					}
-    					else 
-    					{
-    						update_post_meta($post_id, $h.$names[3][$key], $custom_field);
+    						PontosSettingsPage::log("$row[0] -> campo não encontrado: {$names[0][$key]}");
+    						PontosSettingsPage::log('<br/>');
     					}
     				}
     			}
@@ -516,21 +509,13 @@ class PontosSettingsPage
     			/**
 				 * Taxonomies
     			 */
-    			Tratar::tipo($post_id, 'tipo', $row[0]);
-    			Tratar::territorio($post_id, 'territorio', $row[18], $row[9], $row[10]);
-				Tratar::tematico($post_id, 'tematico', $row[20]);
-				Tratar::identitario($post_id, 'identitario', $row[21]);
-				Tratar::publicoalvo($post_id, 'publicoalvo', $row[23], $row[24], $row[25]);
-				Tratar::artescenicas($post_id, 'artescenicas', $row[26], $row[27], $row[28]);
-				Tratar::audiovisual($post_id, 'audiovisual', $row[29], $row[30], $row[31]);
-				Tratar::musica($post_id, 'musica', $row[32], $row[33], $row[34]);
-				Tratar::artesvisuais($post_id, 'artesvisuais', $row[35], $row[36], $row[37]);
-				Tratar::patrimoniocultural($post_id, 'patrimoniocultural', $row[38], $row[39], $row[40]);
-				Tratar::humanidades($post_id, 'humanidades', $row[41], $row[42], $row[43]);
-	    
+    			Tratar::territorio($post_id, 'territorio', $row[19], $row[20]);
+    			Tratar::tags($post_id, 'category', $row[14]);
+    			Tratar::publicoalvo($post_id, 'publico-alvo', $row[11]);
+    			
 	    		$row = fgetcsv( $file, 0, ';');
 	    		$i++;
-	    	} while ($row !== false);// && $i < 10);
+	    	} while ($row !== false && ( !$debug || $i < $limit ) );
 	    	PontosSettingsPage::log('</pre>');
 	    	fclose ( $file );
     	}

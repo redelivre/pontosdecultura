@@ -7,7 +7,7 @@
     padding: 0.25em 1em;
 }
 
-.pratica-item-label, .pratica-item {
+.emrede-item-label, .emrede-item {
     display: block;
     float: left;
     width: 100%;
@@ -80,29 +80,29 @@ input[type="text"].taxonomy-checkbox-text  {
     color: #2f2d44;
 }
 
-.nova-pratica .container {
+.nova-emrede .container {
     max-width: 1080px;
 }
 
-.home-entry.nova-pratica {
+.home-entry.nova-emrede {
     background-color: #dcd800;
 }
 
-.pratica-item-title {
+.emrede-item-title {
     font-weight: bold;
     padding-left: 0.5em;
 }
 
-.pratica-item-tip-text {
+.emrede-item-tip-text {
     font-size: 0.8em;
     padding-left: 0.7em;
 }
 
-.pratica-item-input-text {
+.emrede-item-input-text {
     border-radius: 12px;
 }
 
-h2.new-pratica {
+h2.new-emrede {
     font-size: 1.2em;
     text-align: center;
     color: #501651;
@@ -110,7 +110,7 @@ h2.new-pratica {
 
 .dropdown-estado,
 .dropdown-cidade,
-.pratica-item-input-dropdown {
+.emrede-item-input-dropdown {
    display: block;
    float: left;
    overflow: hidden;
@@ -121,7 +121,7 @@ h2.new-pratica {
 
 .dropdown-estado select,
 .dropdown-cidade select,
-.pratica-item-input-dropdown select {
+.emrede-item-input-dropdown select {
    background: transparent;
    padding: 0.5em;
    border: 0;
@@ -134,11 +134,11 @@ div.dropdown-cidade {
     margin-left: 2em;
 }
 
-.pratica-item-checkbox {
+.emrede-item-checkbox {
     /*background-color: #bab700;*/
 }
 
-ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-block {
+ul.parent, div.emrede-item-input-radio-block, div.emrede-item-input-checkbox-block {
     background-color: #faba09;
     display: block;
     float: left;
@@ -147,39 +147,39 @@ ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-b
     border-radius: 20px;
 }
 
-.pratica-item-input-radio, .pratica-item-input-checkbox {
+.emrede-item-input-radio, .emrede-item-input-checkbox {
     margin-left: 0.5em;
     margin-right: 1em;
 }
 
-.pratica-item-input-radio-block > input, .pratica-item-input-checkbox-block > input {
+.emrede-item-input-radio-block > input, .emrede-item-input-checkbox-block > input {
     margin-left: 1.25em;
 }
 
-.dropdown-pratica-suporte-tempo {
+.dropdown-emrede-suporte-tempo {
     margin-right: 2em;
 }
 
-.nova-pratica .medium-field {
+.nova-emrede .medium-field {
     border-radius: 15px;
     margin-right: 1em;
 }
 
-.nova-pratica .large-field {
+.nova-emrede .large-field {
     border-radius: 15px;
 }
 
-.nova-pratica fieldset {
+.nova-emrede fieldset {
 	border: none;
 }
 
-.pratica-map-block {
+.emrede-map-block {
     display: block;
     float: left;
     width: 100%;
 }
 
-.nova-pratica .iconlist div.icon {
+.nova-emrede .iconlist div.icon {
     background-color: #fff;
     border-color: #fff;
     border-radius: 35px;
@@ -189,11 +189,11 @@ ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-b
     padding: 1em;
 }
 
-.nova-pratica .iconlist div.icon:hover, .nova-pratica .iconlist div.icon.active {
+.nova-emrede .iconlist div.icon:hover, .nova-emrede .iconlist div.icon.active {
 	border-color: #2d115c;
 }
 
-.nova-pratica .icon-info {
+.nova-emrede .icon-info {
     display: none;
 }
 
@@ -204,7 +204,7 @@ ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-b
 	margin-top: 2em;
 }
 
-.nova-pratica .images {
+.nova-emrede .images {
     display: block;
     float: left;
     width: 100%;
@@ -226,7 +226,7 @@ ul.parent, div.pratica-item-input-radio-block, div.pratica-item-input-checkbox-b
     
 }
 
-input.pratica-file-upload {
+input.emrede-file-upload {
     position: absolute;
     top: 0;
     right: 0;
@@ -238,15 +238,15 @@ input.pratica-file-upload {
     filter: alpha(opacity=0);
 }
 
-.pratica-suporte-tempo, .pratica-suporte-esfera {
+.emrede-suporte-tempo, .emrede-suporte-esfera {
 	display: none;
 }
 
-.pratica-map-block fieldset:first-of-type {
+.emrede-map-block fieldset:first-of-type {
     display: none;
 }
 
-.pratica-highlight-label {
+.emrede-highlight-label {
     display: block;
     float: left;
     font-size: 2em;
@@ -256,7 +256,7 @@ input.pratica-file-upload {
     width: 100%;
 }
 
-.new-pratica-sucess {
+.new-emrede-sucess {
 	display: block;
     float: left;
     text-align: center;
@@ -290,14 +290,14 @@ input.pratica-file-upload {
     margin-right: 0.5em;
 }
 
-.nova-pratica .iconlist div.icon {
+.nova-emrede .iconlist div.icon {
     width: auto;
 }
 
-.nova-pratica .iconlist div.icon div.icon-image {
+.nova-emrede .iconlist div.icon div.icon-image {
 	height: auto;
 }
 
-.nova-pratica .icon-image {
+.nova-emrede .icon-image {
 	
 }
