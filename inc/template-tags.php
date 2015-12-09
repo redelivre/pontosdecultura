@@ -65,11 +65,11 @@ function the_post_navigation() {
 }
 endif;
 
-if ( ! function_exists( 'pontos_posted_on' ) ) :
+if ( ! function_exists( 'pontosdecultura_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function pontos_posted_on() {
+function pontosdecultura_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -97,11 +97,11 @@ function pontos_posted_on() {
 }
 endif;
 
-if ( ! function_exists( 'pontos_entry_footer' ) ) :
+if ( ! function_exists( 'pontosdecultura_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function pontos_entry_footer() {
+function pontosdecultura_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
@@ -265,14 +265,14 @@ function pontosdecultura_category_transient_flusher() {
 add_action( 'edit_category', 'pontosdecultura_category_transient_flusher' );
 add_action( 'save_post',     'pontosdecultura_category_transient_flusher' );
 
-function pontos_before_signup_form()
+function pontosdecultura_before_signup_form()
 {
 	echo '<div class="row">';
 }
-add_action('before_signup_form', 'pontos_before_signup_form');
+add_action('before_signup_form', 'pontosdecultura_before_signup_form');
 
-function pontos_after_signup_form()
+function pontosdecultura_after_signup_form()
 {
 	echo '</div>';
 }
-add_action('after_signup_form', 'pontos_after_signup_form');
+add_action('after_signup_form', 'pontosdecultura_after_signup_form');

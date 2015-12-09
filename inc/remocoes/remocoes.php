@@ -353,7 +353,7 @@ class Remocoes
 				'map_meta_cap' => true,
 				'hierarchical' => false,
 				'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
-				'register_meta_box_cb' => array($this, 'pontos_remocoes_custom_meta'), // função para chamar na edição
+				'register_meta_box_cb' => array($this, 'pontosdecultura_remocoes_custom_meta'), // função para chamar na edição
 				'taxonomies' => array('post_tag','category'), // Taxionomias já existentes relaciondas, vamos criar e registrar na sequência
 				'permalink_epmask' => 'EP_PERMALINK ',
 				'has_archive' => true, // Opção de arquivamento por slug
@@ -369,7 +369,7 @@ class Remocoes
 		register_post_type("remocoes", $args);
 	}
 	
-	function pontos_remocoes_custom_meta()
+	function pontosdecultura_remocoes_custom_meta()
 	{
 		add_meta_box("remocoes_meta", __("Detalhes da remoção", 'pontosdecultura'), array($this, 'remocoes_meta'), 'remocoes', 'side', 'default');
 		add_meta_box("second_image_meta", __("Imagens da remoção", 'pontosdecultura'), array($this, 'second_image_meta'), 'remocoes', 'side', 'default');
