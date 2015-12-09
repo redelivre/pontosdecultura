@@ -21,16 +21,145 @@ class PontosSettingsPage
 	 */
 	public function add_theme_page()
 	{
-		// This page will be under "Settings"
-		$page_hook = add_management_page( 
-			__('Importar do arquivo','pontosdecultura'),
-			__('Importar do arquivo','pontosdecultura'),
+		// These will be under "Tools"
+		add_management_page(
+			__('Importar remoções do arquivo','pontosdecultura'),
+			__('Importar remoções do arquivo','pontosdecultura'),
 			'import',
 			'pontos-import-file',
 			array(&$this, 'create_admin_page')
 		);
-		//add_action('load-' . $page_hook, array(&$this, 'admin_load'));
-		
+		add_management_page(
+			__('Configurar campos das remoções','pontosdecultura'),
+			__('Configurar campos das remoções','pontosdecultura'),
+			'edit_theme_options',
+			'pontos-edit-fields',
+			array(&$this, 'create_edit_page')
+		);
+	}
+
+	private function handleEditPost()
+	{
+		/* Die silently if the form is not filled properly,
+			 error messages are handled by the frontend */
+		if (!$this->validateEditPost())
+			return;
+
+		$typeData = self::getTypeData();
+		$fields = array();
+		$i = 0;
+		foreach ($_POST['remocoes-custom'] as $field)
+		{
+			$data = array();
+			$extraData = $typeData[$field['type']]['extra_data'];
+
+			$slug = sanitize_title($field['name']) . "_$i";
+			$i++;
+			$data['slug'] = $slug;
+
+			$data['title'] = trim($field['name']);
+			$data['tip'] = array_key_exists('tip', $field)?
+				trim($field['tip']) : '';
+			$data['type'] = $field['type'];
+			$data['download'] = $field['download'];
+			$data['hide'] = array_key_exists('hide', $field);
+			$data['required'] = array_key_exists('required', $field);
+
+			if (in_array('values', $extraData, true))
+			{
+				$data['values'] = array();
+				$j = 0;
+				foreach ($field['values'] as $v)
+				{
+					$data['values'][sanitize_title($v) . "_$j"] = trim($v);
+					$j++;
+				}
+			}
+
+			if (in_array('rows', $extraData, true))
+			{
+				$data['rows'] = (int) $field['rows'];
+			}
+
+			if (in_array('cols', $extraData, true))
+			{
+				$data['cols'] = (int) $field['cols'];
+			}
+
+			$fields[$slug] = $data;
+		}
+
+		update_option('remocoes_custom_fields', $fields);
+	}
+
+	private function validateValuesArray($values)
+	{
+		foreach ($values as $v)
+		{
+			if (empty($v))
+				return false;
+		}
+
+		return true;
+	}
+
+	private function validateEditPost()
+	{
+		if (!array_key_exists('remocoes-custom', $_POST))
+			return false;
+		if (!is_array($_POST['remocoes-custom']))
+			return false;
+
+		$typeData = self::getTypeData();
+
+		foreach ($_POST['remocoes-custom'] as $field)
+		{
+			if (!is_array($field))
+				return false;
+
+			if (!array_key_exists('type', $field)
+					|| !array_key_exists($field['type'], $typeData))
+				return false;
+			$extraData = $typeData[$field['type']]['extra_data'];
+
+			if (empty($field['name']) || is_array($field['name']))
+				return false;
+
+			if (!array_key_exists('download', $field)
+					|| !in_array($field['download'], array('admin', 'everyone'), true))
+				return false;
+
+			if (in_array('values', $extraData, true) &&
+				(!array_key_exists('values', $field)
+				 || !is_array($field['values'])
+				 || !$this->validateValuesArray($field['values'])))
+				return false;
+
+			if (in_array('rows', $extraData, true) &&
+				(empty($field['rows'])
+				 || !is_numeric($field['rows'])
+				 || (int) $field['rows'] <= 0))
+				return false;
+
+			if (in_array('cols', $extraData, true) &&
+				(empty($field['cols'])
+				 || !is_numeric($field['cols'])
+				 || (int) $field['cols'] <= 0))
+				return false;
+		}
+
+		return true;
+	}
+
+	public function create_edit_page()
+	{
+		$this->handleEditPost();
+		$current = get_option('remocoes_custom_fields', array());
+		wp_enqueue_script('remocoes-edit',
+				get_template_directory_uri() . '/inc/remocoes/js/edit.js');
+		echo '<div class="wrap">';
+		require dirname(__FILE__ ) . '/remocoes/edit.php';
+		echo '</div>';
 	}
 
 	/**
@@ -39,14 +168,14 @@ class PontosSettingsPage
 	public function create_admin_page()
 	{
 		// Set class property
-		$this->options = get_option( 'pontos_theme_options', array() );
+		$this->options = get_option( 'pontosdecultura_theme_options', array() );
 		?>
         <div class="wrap">
             <h2><?php _e('Import File Tool', 'pontosdecultura') ?></h2>           
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
-                settings_fields( 'pontos_option_group' );   
+                settings_fields( 'pontosdecultura_option_group' );   
                 do_settings_sections( 'pontos-import-file' );
                 submit_button("Check Estado/Cidades", 'secundary', 'check-estado-cidade' );
                 submit_button("Importar Csv", 'secundary', 'importcsv' );
@@ -60,14 +189,69 @@ class PontosSettingsPage
         <?php
     }
 
+	public static function getTypeData()
+	{
+		return array(
+				'input' => array(
+					'label' => __('Linha de texto', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'date' => array(
+					'label' => __('Data', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'dropdown' => array(
+					'label' => __('Dropdown', 'pontosdecultura'),
+					'extra_data' => array('values'),
+				),
+				'estadocidade' => array(
+					'label' => __('Estado e cidade', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'wp_editor' => array(
+					'label' => __('Editor Wordpress', 'pontosdecultura'),
+					'extra_data' => array('rows', 'cols'),
+				),
+				'dropdown-ano' => array(
+					'label' => __('Dropdown ano', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'dropdown-meses-anos' => array(
+					'label' => __('Dropdown meses anos', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'dropdown-cem' => array(
+					'label' => __('Dropdown cem', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+				'radio' => array(
+					'label' => __('Radio', 'pontosdecultura'),
+					'extra_data' => array('values'),
+				),
+				'checkbox' => array(
+					'label' => __('Checkbox', 'pontosdecultura'),
+					'extra_data' => array('values'),
+				),
+				'textarea' => array(
+					'label' => __('Texto multilinha', 'pontosdecultura'),
+					'extra_data' => array('rows', 'cols'),
+				),
+				'number' => array(
+					'label' => __('Número', 'pontosdecultura'),
+					'extra_data' => array(),
+				),
+		);
+	}
+
+
     /**
      * Register and add settings
      */
     public function page_init()
     {        
         register_setting(
-            'pontos_option_group', // Option group
-            'pontos_theme_options', // Option name
+            'pontosdecultura_option_group', // Option group
+            'pontosdecultura_theme_options', // Option name
             array( $this, 'sanitize' ) // Sanitize
         );
 
@@ -90,11 +274,11 @@ class PontosSettingsPage
         
 		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-import-file')
 		{
-			wp_register_script('pontos_import_scripts', get_template_directory_uri() . '/assets/js/pontos_import_scripts.js', array('jquery'));
+			wp_register_script('pontosdecultura_import_scripts', get_template_directory_uri() . '/assets/js/pontosdecultura_import_scripts.js', array('jquery'));
 			
-			wp_enqueue_script('pontos_import_scripts');
+			wp_enqueue_script('pontosdecultura_import_scripts');
 					
-			wp_localize_script( 'pontos_import_scripts', 'pontos_import_scripts_object',
+			wp_localize_script( 'pontosdecultura_import_scripts', 'pontosdecultura_import_scripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 		}
 		add_action( 'wp_ajax_ImportarCsv', array($this, 'ImportarCsv_callback') );
@@ -118,7 +302,7 @@ class PontosSettingsPage
 			if($new_input['criar_estatos_cidades'] == 'S')
 			{
 				if(!is_array($this->options))
-	        		$this->options = get_option( 'pontos_theme_options', array() );
+	        		$this->options = get_option( 'pontosdecultura_theme_options', array() );
 				
 	        	if( !array_key_exists('criar_estatos_cidades', $this->options) || $this->options['criar_estatos_cidades'] != 'S')
 	        	{
@@ -148,7 +332,7 @@ class PontosSettingsPage
     {
     	$checked = isset( $this->options['criar_estatos_cidades'] ) && $this->options['criar_estatos_cidades'] == 'S' ? 'checked="checked"' : '';
     	?>
-            <input type="checkbox" id="criar_estatos_cidades" name="pontos_theme_options[criar_estatos_cidades]" value="S" <?php echo $checked; ?> /><?php _e('Criar', 'pontosdecultura'); ?>
+            <input type="checkbox" id="criar_estatos_cidades" name="pontosdecultura_theme_options[criar_estatos_cidades]" value="S" <?php echo $checked; ?> /><?php _e('Criar', 'pontosdecultura'); ?>
         <?php 
     }
     
@@ -526,4 +710,4 @@ class PontosSettingsPage
 }
 
 if( is_admin() )
-    $pontos_settings_page = new PontosSettingsPage();
+    $pontosdecultura_settings_page = new PontosSettingsPage();
