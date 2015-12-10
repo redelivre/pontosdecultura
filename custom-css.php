@@ -23,4 +23,8 @@
 	.site-header {
 		background: <?php echo get_theme_mod('header_bgcolor'); ?>
 	}
+
+	.main-navigation .menu-item a {
+		background: <?php echo get_theme_mod('menu_bgcolor'); ?>
+	}
 </style>

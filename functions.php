@@ -258,10 +258,54 @@ class Pontosdecultura {
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'header_bgcolor', array(
-						'label' => __('Cor de fundo dos cabeçalho',
-							'pontosdecultura'),
+						'label' => __('Cor de fundo do cabeçalho', 'pontosdecultura'),
 						'section' => 'colors',
 						'settings' => 'header_bgcolor',
+					)));
+
+		$wp_customize->add_setting('menu_bgcolor',
+				array(
+					'default' => '#faba09',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'menu_bgcolor', array(
+						'label' => __('Cor de fundo do menu', 'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'menu_bgcolor',
+					)));
+
+		$home_url = get_bloginfo('url') . '/';
+		$default_presentation = sprintf('<a href="%1$s">Este site</a> é uma '
+			 . 'iniciativa de mapeamento colaborativo. '
+			 . '<a href="%2$s">Cadastre seus pontos</a>, navegue pelo '
+			 . '<a href="%3$s">mapa e pelos filtros</a>, faça busca por '
+			 . 'palavras-chave. São diversos pontos em todo o Brasil.',
+			 $home_url . 'o-projeto',
+				Remocoes::get_new_url(),
+				$home_url . 'mapa');
+
+		$wp_customize->add_setting('presentation',
+				array(
+					'default' => $default_presentation,
+				));
+		$wp_customize->add_control(new WP_Customize_Control($wp_customize,
+					'presentation', array(
+						'label' => __('Apresentação', 'pontosdecultura'),
+						'type' => 'textarea',
+						'section' => 'title_tagline',
+						'settings' => 'presentation',
+					)));
+
+		$wp_customize->add_setting('banner',
+				array(
+					'default' => 'http://mapa222.testao.com/wp-content/themes/'
+						. 'observatorio-de-remocoes/images/marca.png',
+				));
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
+					'banner', array(
+						'label' => __('Banner', 'pontosdecultura'),
+						'section' => 'title_tagline',
+						'settings' => 'banner',
 					)));
 	}
 

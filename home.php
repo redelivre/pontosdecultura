@@ -7,17 +7,7 @@
 	<section class="search-intro search-area clearfix">
 		<div class="container">
 			<p class="intro-text content-box">
-				<?php
-				/* TODO: This should be a option inside the Customizer section */
-				$home_url = get_bloginfo('url') . '/';
-				printf( '<a href="%1$s">Práticas de Continuidade</a> é uma iniciativa de mapeamento colaborativo e articulação de pesquisas continuadas
-					em Artes Cênicas e Performativas no Brasil. <a href="%2$s">Cadastre sua pesquisa</a>, navegue pelo <a href="%3$s">mapa e pelos filtros</a>,
-					faça busca por palavras-chave. São diversas pesquisas e núcleos de trabalho perene em todo o Brasil.',
-					$home_url . 'o-projeto',
-					Remocoes::get_new_url(),
-					$home_url . 'mapa'
-				);
-				?>
+				<?php echo get_theme_mod('presentation'); ?>
 			</p>
 			<?php get_search_form(); ?>
 		</div><!-- .container -->
