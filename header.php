@@ -35,7 +35,8 @@
 			<header id="masthead" class="site-header site-area clearfix" role="banner">
 				<div class="container">
 					<div class="site-branding">
-						<?php $logo_uri = get_theme_mod('banner'); ?>
+						<?php $logo_uri = get_theme_mod('banner',
+								Pontosdecultura::get_default_values('banner')); ?>
 						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 							 <img class="site-logo" src="<?php echo $logo_uri; ?>" alt="Logo <?php bloginfo ( 'name' ); ?>" />
 						</a>

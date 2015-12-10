@@ -7,7 +7,8 @@
 	<section class="search-intro search-area clearfix">
 		<div class="container">
 			<p class="intro-text content-box">
-				<?php echo get_theme_mod('presentation'); ?>
+				<?php echo get_theme_mod('presentation',
+						Pontosdecultura::get_default_values('presentation')); ?>
 			</p>
 			<?php get_search_form(); ?>
 		</div><!-- .container -->

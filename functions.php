@@ -191,11 +191,37 @@ class Pontosdecultura {
 		require get_template_directory() . '/custom-css.php';
 	}
 
+	public static function get_default_values($key)
+	{
+		$home_url = get_bloginfo('url') . '/';
+		$values = array(
+			'presentation' => sprintf(__('<a href="%1$s">Este site</a> é uma '
+				 . 'iniciativa de mapeamento colaborativo. '
+				 . '<a href="%2$s">Cadastre seus pontos</a>, navegue pelo '
+				 . '<a href="%3$s">mapa e pelos filtros</a>, faça busca por '
+				 . 'palavras-chave. São diversos pontos em todo o Brasil.',
+				 'pontosdecultura'),
+				 $home_url . 'o-projeto',
+					Remocoes::get_new_url(),
+					$home_url . 'mapa'),
+			'advancedsearch_bgcolor' => '#34a7d6',
+			'statesearch_bgcolor' => '#ffffff',
+			'introsearch_bgcolor' => '#dcd800',
+			'mostsearched_bgcolor' => '#2d115c',
+			'footerwidget_bgcolor' => '#e9ddaf',
+			'header_bgcolor' => '#ffffff',
+			'menu_bgcolor' => '#faba09',
+			'banner' => get_template_directory_uri() . '/images/marca.png',
+		);
+
+		return $values[$key];
+	}
+
 	public static function customizer($wp_customize)
 	{
 		$wp_customize->add_setting('advancedsearch_bgcolor',
 				array(
-					'default' => '#34a7d6',
+					'default' => self::get_default_values('advancedsearch_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'advancedsearch_bgcolor', array(
@@ -206,7 +232,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('statesearch_bgcolor',
 				array(
-					'default' => '#ffffff',
+					'default' => self::get_default_values('statesearch_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'statesearch_bgcolor', array(
@@ -218,7 +244,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('introsearch_bgcolor',
 				array(
-					'default' => '#dcd800',
+					'default' => self::get_default_values('introsearch_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'introsearch_bgcolor', array(
@@ -230,7 +256,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('mostsearched_bgcolor',
 				array(
-					'default' => '#2d115c',
+					'default' => self::get_default_values('mostsearched_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'mostsearched_bgcolor', array(
@@ -242,7 +268,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('footerwidget_bgcolor',
 				array(
-					'default' => '#e9ddaf',
+					'default' => self::get_default_values('footerwidget_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'footerwidget_bgcolor', array(
@@ -254,7 +280,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('header_bgcolor',
 				array(
-					'default' => '#ffffff',
+					'default' => self::get_default_values('header_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'header_bgcolor', array(
@@ -265,7 +291,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('menu_bgcolor',
 				array(
-					'default' => '#faba09',
+					'default' => self::get_default_values('menu_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
 					'menu_bgcolor', array(
@@ -274,19 +300,9 @@ class Pontosdecultura {
 						'settings' => 'menu_bgcolor',
 					)));
 
-		$home_url = get_bloginfo('url') . '/';
-		$default_presentation = sprintf('<a href="%1$s">Este site</a> é uma '
-			 . 'iniciativa de mapeamento colaborativo. '
-			 . '<a href="%2$s">Cadastre seus pontos</a>, navegue pelo '
-			 . '<a href="%3$s">mapa e pelos filtros</a>, faça busca por '
-			 . 'palavras-chave. São diversos pontos em todo o Brasil.',
-			 $home_url . 'o-projeto',
-				Remocoes::get_new_url(),
-				$home_url . 'mapa');
-
 		$wp_customize->add_setting('presentation',
 				array(
-					'default' => $default_presentation,
+					'default' => self::get_default_values('presentation'),
 				));
 		$wp_customize->add_control(new WP_Customize_Control($wp_customize,
 					'presentation', array(
@@ -298,8 +314,7 @@ class Pontosdecultura {
 
 		$wp_customize->add_setting('banner',
 				array(
-					'default' => 'http://mapa222.testao.com/wp-content/themes/'
-						. 'observatorio-de-remocoes/images/marca.png',
+					'default' => self::get_default_values('banner'),
 				));
 		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
 					'banner', array(
