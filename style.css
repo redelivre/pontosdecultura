@@ -422,7 +422,6 @@ button {
    ========================================================================== */
 
 .site-header {
-	background: #FFFFFF;
 	text-align: center;
 }
 
@@ -445,7 +444,6 @@ button {
 
 /* Intro */
 .search-intro {
-	background: #dcd800;
 	color: #501651;
 	padding: 3em 0;
 }
@@ -487,7 +485,6 @@ button {
 
 /* State / Estado */
 .search-estado {
-	background-color: #FFFFFF;
 	position: relative;
 	z-index: 9999;
 }
@@ -542,11 +539,6 @@ button {
 
 .state-list--s .state-name a:hover {
 	background-color: #2f2d44;
-}
-
-/* Advanced Search */
-.search-advanced {
-	background: #34a7d6;
 }
 
 .search-advanced .area-title {
@@ -637,11 +629,6 @@ h3.adv-search-radio {
 .adv-search-radio input {
     width: auto;
     margin-right: 0.25em;
-}
-
-/* Most searched terms */
-.search-tags {
-	background: #2d115c;
 }
 
 .search-tags .area-title {
@@ -1285,7 +1272,6 @@ div.wpcf7-response-output {
    ========================================================================== */
 
 .widget-area--footer {
-	background: #e9ddaf url('images/footer-pattern.png') repeat-x bottom;
 	text-align: center;
 }
 

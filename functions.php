@@ -182,8 +182,89 @@ class Pontosdecultura {
 		
 		add_action('login_form', array($this, 'loginForm'));
 		
+		add_action('customize_register', array($this, 'customizer'));
+		add_action('wp_head', array($this, 'custom_css'));
 	}
-	
+
+	public static function custom_css()
+	{
+		require get_template_directory() . '/custom-css.php';
+	}
+
+	public static function customizer($wp_customize)
+	{
+		$wp_customize->add_setting('advancedsearch_bgcolor',
+				array(
+					'default' => '#34a7d6',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'advancedsearch_bgcolor', array(
+						'label' => __('Cor de fundo da busca avançada', 'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'advancedsearch_bgcolor',
+					)));
+
+		$wp_customize->add_setting('statesearch_bgcolor',
+				array(
+					'default' => '#ffffff',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'statesearch_bgcolor', array(
+						'label' => __('Cor de fundo da busca por estado',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'statesearch_bgcolor',
+					)));
+
+		$wp_customize->add_setting('introsearch_bgcolor',
+				array(
+					'default' => '#dcd800',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'introsearch_bgcolor', array(
+						'label' => __('Cor de fundo da busca simples',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'introsearch_bgcolor',
+					)));
+
+		$wp_customize->add_setting('mostsearched_bgcolor',
+				array(
+					'default' => '#2d115c',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'mostsearched_bgcolor', array(
+						'label' => __('Cor de fundo dos mais buscados',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'mostsearched_bgcolor',
+					)));
+
+		$wp_customize->add_setting('footerwidget_bgcolor',
+				array(
+					'default' => '#e9ddaf',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'footerwidget_bgcolor', array(
+						'label' => __('Cor de fundo dos widgets do rodapé',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'footerwidget_bgcolor',
+					)));
+
+		$wp_customize->add_setting('header_bgcolor',
+				array(
+					'default' => '#ffffff',
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'header_bgcolor', array(
+						'label' => __('Cor de fundo dos cabeçalho',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'header_bgcolor',
+					)));
+	}
+
 	public static function mapasdevista_create_post_overlay($load)
 	{
 		global $wp_query;
