@@ -4,261 +4,7 @@ class Remocoes
 {
 	function __construct()
 	{
-		$this->_customs = array(
-				/*'Nome do projeto' => array
-				(
-						'slug' => 'Nome do projeto',
-						'title' => __('Nome do projeto', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'Fórum' => array
-				(
-						'slug' => 'forum',
-						'title' => __('Fórum', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Domínios' => array
-				(
-						'slug' => 'dominios',
-						'title' => __('Domínios', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Responsável pelo preenchimento' => array
-				(
-						'slug' => '_responsavel-pelo-preenchimento',
-						'title' => __('Responsável pelo preenchimento', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Situação' => array
-				(
-						'slug' => 'situacao',
-						'title' => __('Situação', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-						'type' => 'radio',
-						'values' => array('Ativo' => __('Ativo', 'pontosdecultura' ), 'Em desenvolvimento' => __('Em desenvolvimento', 'pontosdecultura' ) )
-				),
-				'Carta de apoio' => array
-				(
-						'slug' => 'carta-de-apoio',
-						'title' => __('Carta de apoio', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				/*'Descrição' => array
-				(
-						'slug' => 'Descrição',
-						'title' => __('Descrição', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'Número de Postagens' => array
-				(
-						'slug' => 'numero-de-postagens',
-						'title' => __('Número de Postagens', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Número de Páginas' => array
-				(
-						'slug' => 'numero-de-paginas',
-						'title' => __('Número de Páginas', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Número de Comentários' => array
-				(
-						'slug' => 'numero-de-comentarios',
-						'title' => __('Número de Comentários', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Participa de alguma rede, qual? ' => array
-				(
-						'slug' => 'participa-de-alguma-rede',
-						'title' => __('Participa de alguma rede, qual? ', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				/*tax: 'Público alvo' => array
-				(
-						'slug' => 'Público alvo',
-						'title' => __('Público alvo', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'Número de Pessoas Atingidas' => array
-				(
-						'slug' => 'numero-de-pessoas-atingidas',
-						'title' => __('Número de Pessoas Atingidas', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Imagem' => array
-				(
-						'slug' => 'imagem',
-						'title' => __('Imagem', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-						'type' => 'image',
-				),
-				/*tax: 'Categoria' => array
-				(
-						'slug' => 'Categoria',
-						'title' => __('Categoria', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'É ponto de cultura? (Sim ou não)' => array
-				(
-						'slug' => 'e-ponto-de-cultura',
-						'title' => __('É ponto de cultura?', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-						'type' => 'radio',
-						'values' => array('S' => __('Sim', 'pontosdecultura' ), 'N' => __('Não', 'pontosdecultura' ) )
-				),
-				'Email' => array
-				(
-						'slug' => 'email',
-						'title' => __('Email', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Telefone' => array
-				(
-						'slug' => 'telefone',
-						'title' => __('Telefone', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Facebook' => array
-				(
-						'slug' => 'facebook',
-						'title' => __('Facebook', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				/*'Cidade' => array
-				(
-						'slug' => 'Cidade',
-						'title' => __('Cidade', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Estado' => array
-				(
-						'slug' => 'Estado',
-						'title' => __('Estado', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'País' => array
-				(
-						'slug' => 'pais',
-						'title' => __('País', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Endereço' => array
-				(
-						'slug' => 'endereco',
-						'title' => __('Endereço', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Data de Criação' => array
-				(
-						'slug' => 'data-de-criacao',
-						'title' => __('Data de Criação', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-						'type' => 'date',
-				),
-				/*'location' => array
-				(
-						'slug' => 'location',
-						'title' => __('location', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),*/
-				'user_id' => array
-				(
-						'slug' => '_user_id',
-						'title' => __('user_id', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'plan_id' => array
-				(
-						'slug' => '_plan_id',
-						'title' => __('plan_id', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'blog_id' => array
-				(
-						'slug' => '_blog_id',
-						'title' => __('blog_id', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'own_domain' => array
-				(
-						'slug' => 'own_domain',
-						'title' => __('own_domain', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'template' => array
-				(
-						'slug' => '_template',
-						'title' => __('template', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'styleshee' => array
-				(
-						'slug' => '_stylesheet',
-						'title' => __('stylesheet', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'current_theme' => array
-				(
-						'slug' => '_current_theme',
-						'title' => __('current_theme', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'user_email' => array
-				(
-						'slug' => 'user_email',
-						'title' => __('E-mail do usuário', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'display_name' => array
-				(
-						'slug' => 'display_name',
-						'title' => __('Nome do usuário', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'user_url' => array
-				(
-						'slug' => 'user_url',
-						'title' => __('Site do usuário', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'mídias' => array
-				(
-						'slug' => '_midias',
-						'title' => __('mídias', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'eventos' => array
-				(
-						'slug' => '_eventos',
-						'title' => __('eventos', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'newletters' => array
-				(
-						'slug' => '_newletters',
-						'title' => __('newletters', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'outros post types' => array
-				(
-						'slug' => '_outros-post-types',
-						'title' => __('outros post types', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Contribuição contínua(anual)' => array
-				(
-						'slug' => 'contribuicao-continua',
-						'title' => __('Contribuição contínua(anual)', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-				'Contribuição em projeto' => array
-				(
-						'slug' => 'contribuicao-em-projeto',
-						'title' => __('Contribuição em projeto', 'pontosdecultura'),
-						'tip' => __('', 'pontosdecultura'),
-				),
-		);
-		
+		$this->_customs = get_option('remocoes_custom_fields', array());
 		add_action('init', array($this, 'init'));
 		add_action('init', array($this, 'rewrite_rules'));
 		add_action('template_redirect', array($this, 'form'));
@@ -405,12 +151,12 @@ class Remocoes
 	function remocoes_meta()
 	{
 		global $post;
-		
+
 		$custom = get_post_custom($post->ID);
 		if(!is_array($custom)) $custom = array();
-		
+
 		$disable_edicao = '';
-		
+
 		/*if (
 				!($post->post_status == 'draft' ||
 				$post->post_status == 'auto-draft' ||
@@ -419,15 +165,15 @@ class Remocoes
 		{
 			$disable_edicao = 'readonly="readonly"';
 		}*/
-		
+
 		wp_nonce_field( 'remocoes_meta_inner_custom_box', 'remocoes_meta_inner_custom_box_nonce' );
-		
+
 		foreach ($this->_customs as $key => $campo )
 		{
 			$slug = $campo['slug'];
 			$type = array_key_exists('type', $campo) ? $campo['type'] : 'input';
 			$dado = array_key_exists($slug, $custom) ? array_pop($custom[$slug]) : '';
-			
+
 			/*switch ($type)
 			{
 				case 'dropdown-meses-anos':
@@ -461,24 +207,24 @@ class Remocoes
 			}
 			$_REQUEST[$campo['slug']] = $dado;
 			$this->print_field($campo);
-			
+
 			if(array_key_exists($slug, $custom)) unset($custom[$slug]);
 		}
-		
+
 		foreach ($custom as $key => $value)
 		{
-			$input_pos = strpos($key, '_input'); 
+			$input_pos = strpos($key, '_input');
 			if( $input_pos > 0 ) // input text
 			{
 				$taxonomy =  substr($key, 1, strpos($key, "_", 1) - 1);
 				$taxonomy_obj = get_taxonomy($taxonomy);
-				
+
 				$term_id = substr($key, strlen($taxonomy) + 2, $input_pos - (strlen($taxonomy) + 2));
-			
+
 				$term = get_term(intval( $term_id ), $taxonomy);
-				
+
 				$dado = array_pop($value);
-				
+
 				?>
 				<p>
 					<label for="<?php echo $term->slug; ?>" class="<?php echo 'label_'.$term->slug; ?>"><?php echo $taxonomy_obj->labels->name." - ".str_replace('#input#', '', $term->name) ?>:</label>
@@ -488,13 +234,13 @@ class Remocoes
 						value="<?php echo $dado; ?>" />
 				</p>
 				<?php
-				
+
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	function second_image_meta($post)
 	{
 		$stored_meta = get_post_meta( $post->ID, 'thumbnail2', true)
@@ -1061,6 +807,40 @@ class Remocoes
 									$i++;
 								}
 						?></div><div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
+				break;
+				case 'dropdown':
+					?>
+					<div class="remocoes-item remocoes-item-dropdown<?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
+								if(array_key_exists( 'required', $field ) && $field['required'])
+								{?>
+									<span class="remocoes-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label>
+							<div class="remocoes-item-input-dropdown-block">
+								<select name="<?php echo $id; ?>"
+									class="remocoes-item-input-dropdown"><?php
+									$i = 0;
+									foreach ($field['values'] as $value => $label_item)
+									{
+										echo "<option id=\"$id-option-$i\" value=\"$value\"";
+										if (array_key_exists($id, $_REQUEST)
+												&& wp_strip_all_tags($_REQUEST[$id]) == $value)
+											echo ' selected="true"';
+										echo '>';
+										echo htmlspecialchars($label_item);
+										echo '</option>';
+										$i++;
+									}
+							?></select>
+						</div><div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
