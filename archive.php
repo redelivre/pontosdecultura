@@ -91,7 +91,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php pontosdecultura_paging_nav(); ?>
+			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>
 
