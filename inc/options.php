@@ -38,26 +38,21 @@ class PontosSettingsPage
 		);
 	}
 
-	private function handleEditPost()
+	private function updateCustomFields($new)
 	{
-		/* Die silently if the form is not filled properly,
-			 error messages are handled by the frontend */
-		if (!$this->validateEditPost())
-			return;
-
 		$typeData = self::getTypeData();
 		$fields = array();
 		$i = 0;
-		foreach ($_POST['remocoes-custom'] as $field)
+		foreach ($new as $field)
 		{
 			$data = array();
 			$extraData = $typeData[$field['type']]['extra_data'];
 
-			$slug = sanitize_title($field['name']) . "_$i";
+			$slug = sanitize_title($field['title']) . "_$i";
 			$i++;
 			$data['slug'] = $slug;
 
-			$data['title'] = trim($field['name']);
+			$data['title'] = trim($field['title']);
 			$data['tip'] = array_key_exists('tip', $field)?
 				trim($field['tip']) : '';
 			$data['type'] = $field['type'];
@@ -92,6 +87,17 @@ class PontosSettingsPage
 		update_option('remocoes_custom_fields', $fields);
 	}
 
+	private function handleEditPost()
+	{
+		/* Die silently if the form is not filled properly,
+			 error messages are handled by the frontend */
+		if (!array_key_exists('remocoes-custom', $_POST)
+				|| !$this->validateFields($_POST['remocoes-custom']))
+			return;
+
+		$this->updateCustomFields($_POST['remocoes-custom']);
+	}
+
 	private function validateValuesArray($values)
 	{
 		foreach ($values as $v)
@@ -103,57 +109,81 @@ class PontosSettingsPage
 		return true;
 	}
 
-	private function validateEditPost()
+	private function validateSingleField($field)
 	{
-		if (!array_key_exists('remocoes-custom', $_POST))
-			return false;
-		if (!is_array($_POST['remocoes-custom']))
-			return false;
-
 		$typeData = self::getTypeData();
 
-		foreach ($_POST['remocoes-custom'] as $field)
+		if (!is_array($field))
+			return false;
+
+		if (!array_key_exists('type', $field)
+				|| !array_key_exists($field['type'], $typeData))
+			return false;
+		$extraData = $typeData[$field['type']]['extra_data'];
+
+		if (empty($field['title']) || is_array($field['title']))
+			return false;
+
+		if (!array_key_exists('download', $field)
+				|| !in_array($field['download'], array('admin', 'everyone'), true))
+			return false;
+
+		if (in_array('values', $extraData, true) &&
+			(!array_key_exists('values', $field)
+			 || !is_array($field['values'])
+			 || !$this->validateValuesArray($field['values'])))
+			return false;
+
+		if (in_array('rows', $extraData, true) &&
+			(empty($field['rows'])
+			 || !is_numeric($field['rows'])
+			 || (int) $field['rows'] <= 0))
+			return false;
+
+		if (in_array('cols', $extraData, true) &&
+			(empty($field['cols'])
+			 || !is_numeric($field['cols'])
+			 || (int) $field['cols'] <= 0))
+			return false;
+
+		return true;
+	}
+
+	private function validateFields($fields)
+	{
+		if (!is_array($fields))
+			return false;
+
+		foreach ($fields as $field)
 		{
-			if (!is_array($field))
-				return false;
-
-			if (!array_key_exists('type', $field)
-					|| !array_key_exists($field['type'], $typeData))
-				return false;
-			$extraData = $typeData[$field['type']]['extra_data'];
-
-			if (empty($field['name']) || is_array($field['name']))
-				return false;
-
-			if (!array_key_exists('download', $field)
-					|| !in_array($field['download'], array('admin', 'everyone'), true))
-				return false;
-
-			if (in_array('values', $extraData, true) &&
-				(!array_key_exists('values', $field)
-				 || !is_array($field['values'])
-				 || !$this->validateValuesArray($field['values'])))
-				return false;
-
-			if (in_array('rows', $extraData, true) &&
-				(empty($field['rows'])
-				 || !is_numeric($field['rows'])
-				 || (int) $field['rows'] <= 0))
-				return false;
-
-			if (in_array('cols', $extraData, true) &&
-				(empty($field['cols'])
-				 || !is_numeric($field['cols'])
-				 || (int) $field['cols'] <= 0))
+			if (!$this->validateSingleField($field))
 				return false;
 		}
 
 		return true;
 	}
 
+	private function importFields()
+	{
+		if (!array_key_exists('remocoes-import-file', $_FILES)
+				|| !array_key_exists('tmp_name', $_FILES['remocoes-import-file']))
+			return;
+
+		$json = json_decode(file_get_contents(
+					$_FILES["remocoes-import-file"]["tmp_name"]), true);
+
+		if (!$this->validateFields($json))
+			return;
+
+		$this->updateCustomFields($json);
+	}
+
 	public function create_edit_page()
 	{
-		$this->handleEditPost();
+		if (array_key_exists('remocoes-import', $_POST))
+			$this->importFields();
+		else
+			$this->handleEditPost();
 		$current = get_option('remocoes_custom_fields', array());
 		wp_enqueue_script('remocoes-edit',
 				get_template_directory_uri() . '/inc/remocoes/js/edit.js');

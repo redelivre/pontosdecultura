@@ -24,7 +24,7 @@
 			<br>
 			<label><?php _e('Nome*:', 'pontosdecultura'); ?></label>
 			<input type="text" class="remocoes-required remocoes-custom-title"
-				name="remocoes-custom[%ID%][name]">
+				name="remocoes-custom[%ID%][title]">
 			<br>
 			<label><?php _e('Dica:', 'pontosdecultura'); ?></label>
 			<input type="text" name="remocoes-custom[%ID%][tip]"
@@ -87,6 +87,13 @@
 <form id="remocoes-export-fields-form" method="post">
 	<input type="submit" name="remocoes-export"
 		value="<?php _e('Exportar para arquivo', 'pontosdecultura'); ?>">
+</form>
+<form enctype="multipart/form-data" method="POST"
+	id="remocoes-import-fields-form">
+	<?php _e("Arquivo a importar:", "pontosdecultura"); ?>
+	<input name="remocoes-import-file" type="file">
+	<input type="submit" name="remocoes-import"
+		value="<?php _e('Importar', 'pontosdecultura') ?>">
 </form>
 
 <form id="remocoes-add-field-form">
