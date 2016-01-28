@@ -83,6 +83,12 @@
 	<?php endforeach; ?>
 </div>
 
+<h3><?php _e('Importar/Exportar configuração', 'pontosdecultura'); ?></h3>
+<form id="remocoes-export-fields-form" method="post">
+	<input type="submit" name="remocoes-export"
+		value="<?php _e('Exportar para arquivo', 'pontosdecultura'); ?>">
+</form>
+
 <form id="remocoes-add-field-form">
 	<h3><?php _e('Adicionar novo campo', 'pontosdecultura'); ?></h3>
 	<select name="type" id="remocoes-add-field-type">

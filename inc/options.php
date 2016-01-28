@@ -243,49 +243,62 @@ class PontosSettingsPage
 		);
 	}
 
+	private function exportFieldsJson()
+	{
+		header('Content-disposition: attachment; filename=fields.json');
+		header('Content-type: application/json');
+		$current = get_option('remocoes_custom_fields', array());
+		echo json_encode($current);
+		die;
+	}
 
-    /**
-     * Register and add settings
-     */
-    public function page_init()
-    {        
-        register_setting(
-            'pontosdecultura_option_group', // Option group
-            'pontosdecultura_theme_options', // Option name
-            array( $this, 'sanitize' ) // Sanitize
-        );
+	/**
+	 * Register and add settings
+	 */
+	public function page_init()
+	{
+		if (array_key_exists('remocoes-export', $_POST))
+		{
+			$this->exportFieldsJson();
+		}
 
-        add_settings_section(
-            'setting_estatos_cidades', // ID
-            __('Importações personalizadas', 'pontosdecultura'), // Title
-            array( $this, 'print_section_info' ), // Callback
-            'pontos-import-file' // Page
-        );  
+		register_setting(
+			'pontosdecultura_option_group', // Option group
+			'pontosdecultura_theme_options', // Option name
+			array( $this, 'sanitize' ) // Sanitize
+		);
 
-        add_settings_field(
-            'criar_estatos_cidades', // ID
-            'Criar Estatos e Cidades?', // Title 
-            array( $this, 'criar_estatos_cidades_callback' ), // Callback
-            'pontos-import-file', // Page
-            'setting_estatos_cidades' // Section           
-        );
-        
-        update_option('setting_estatos_cidades', 'N');
-        
+		add_settings_section(
+			'setting_estatos_cidades', // ID
+			__('Importações personalizadas', 'pontosdecultura'), // Title
+			array( $this, 'print_section_info' ), // Callback
+			'pontos-import-file' // Page
+		);
+
+		add_settings_field(
+			'criar_estatos_cidades', // ID
+			'Criar Estatos e Cidades?', // Title
+			array( $this, 'criar_estatos_cidades_callback' ), // Callback
+			'pontos-import-file', // Page
+			'setting_estatos_cidades' // Section
+		);
+
+		update_option('setting_estatos_cidades', 'N');
+
 		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-import-file')
 		{
 			wp_register_script('pontosdecultura_import_scripts', get_template_directory_uri() . '/assets/js/pontosdecultura_import_scripts.js', array('jquery'));
-			
+
 			wp_enqueue_script('pontosdecultura_import_scripts');
-					
+
 			wp_localize_script( 'pontosdecultura_import_scripts', 'pontosdecultura_import_scripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 		}
 		add_action( 'wp_ajax_ImportarCsv', array($this, 'ImportarCsv_callback') );
 		add_action( 'wp_ajax_ImportPins', array($this, 'ImportPins') );
 		add_action( 'wp_ajax_CheckEstadoCidade', array('EstadosCidades', 'check_location_terms') );
-		
-    }
+
+	}
 
     /**
      * Sanitize each setting field as needed
