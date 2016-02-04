@@ -214,6 +214,8 @@ class Pontosdecultura {
 			'button_bgcolor' => '#faba09',
 			'button_textcolor' => '#ffffff',
 			'button_hovercolor' => '#252525',
+			'link_textcolor' => '#ffffff',
+			'link_hovercolor' => '#252525',
 			'banner' => get_template_directory_uri() . '/images/marca.png',
 			'headerbg' => '',
 			'searchbg' => '',
@@ -332,6 +334,30 @@ class Pontosdecultura {
 							'pontosdecultura'),
 						'section' => 'colors',
 						'settings' => 'button_hovercolor',
+					)));
+
+		$wp_customize->add_setting('link_textcolor',
+				array(
+					'default' => self::get_default_values('link_textcolor'),
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'link_textcolor', array(
+						'label' => __('Cor do texto dos links',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'link_textcolor',
+					)));
+
+		$wp_customize->add_setting('link_hovercolor',
+				array(
+					'default' => self::get_default_values('link_hovercolor'),
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'link_hovercolor', array(
+						'label' => __('Cor do texto dos links debaixo do mouse',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'link_hovercolor',
 					)));
 
 		$wp_customize->add_setting('presentation',

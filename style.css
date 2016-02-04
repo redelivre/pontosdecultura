@@ -121,19 +121,8 @@ img {
 
 /* Links */
 a {
-	color: #2f2d44;
 	font-weight: bold;
 	text-decoration: none;
-}
-
-a:visited {
-	color: #2f2d44;
-}
-
-a:hover,
-a:focus,
-a:active {
-	color: #23498c;
 }
 
 /* Forms, inputs and buttons */
@@ -169,7 +158,7 @@ input[type="search"],
 textarea {
 	color: #333;
 	border: 0;
-	background-color: #faba09;
+	background-color: #e9ddaf;
 	width: 100%;
 	-moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

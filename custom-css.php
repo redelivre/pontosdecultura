@@ -51,6 +51,7 @@
 	}
 
 	.site-header,
+	.login-entry,
 	.search-intro {
 		<?php
 			$headerbg = get_theme_mod('headerbg',
@@ -67,6 +68,8 @@
 	}
 
 	.menu-item a:hover,
+	.menu-item a:active,
+	.menu-item a:focus,
 	button,
   input[type="submit"]:hover,
   input[type="button"]:hover,
@@ -78,6 +81,7 @@
 	}
 
 	.menu-item a,
+	.menu-item a:visited,
 	button,
   input[type="submit"],
   input[type="button"],
@@ -89,6 +93,23 @@
 		color: <?php
 			echo get_theme_mod('button_textcolor',
 					Pontosdecultura::get_default_values('button_textcolor'));
+		?>;
+	}
+
+	a:hover,
+	a:active,
+	a:focus {
+		color: <?php
+			echo get_theme_mod('link_hovercolor',
+					Pontosdecultura::get_default_values('link_hovercolor'));
+		?>;
+	}
+
+	a,
+	a:visited {
+		color: <?php
+			echo get_theme_mod('link_textcolor',
+					Pontosdecultura::get_default_values('link_textcolor'));
 		?>;
 	}
 </style>
