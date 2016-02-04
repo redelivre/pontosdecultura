@@ -350,6 +350,8 @@ jQuery(document).ready(function()
 	});
 	
 	var estadoPosition = jQuery(".search-estado").position();
+	if (jQuery('.search-estado').css('display') == 'none')
+		estadoPosition = jQuery('.advanced-search').position();
 	
 	jQuery("#search-result").css({ 'left' : "-"+(estadoPosition.left + (jQuery( window ).width()+jQuery(".search-estado .container").width())), 'top' : estadoPosition.top });
 	jQuery("#search-result").ajaxloader("Aguarde um instante enquanto os dados são carregados<br/>Atenção: Primeira pesquisa é mais demorada.");
@@ -466,7 +468,9 @@ function map_voltar_click(search)
 	jQuery('#search-result').animate({
 	    'left' : "-"+(jQuery( window ).width()+jQuery("#search-result").width())+"px"
 	}, map_result_animation_durations);*/
-	jQuery('.search-estado').animate({'margin-top' : '-='+jQuery("#search-result").height()}, {'duration' : 800, 'queue' : false})
+	var topObject = jQuery('.search-estado').css('display') == 'none'?
+		jQuery('.advanced-search') : jQuery('.search-estado');
+	topObject.animate({'margin-top' : '-='+jQuery("#search-result").height()}, {'duration' : 800, 'queue' : false})
 }
 var from_search = '';
 var result_callback_func = function () { alert("Error!");}
@@ -477,6 +481,8 @@ function map_show_result(from, callback)
 	from_search = from;
 	result_callback_func = callback;
 	jQuery('#post_overlay').hide();
+	var topObject = jQuery('.search-estado').css('display') == 'none'?
+		jQuery('.advanced-search') : jQuery('.search-estado');
 	jQuery('body, html').animate({scrollTop:jQuery("#search-result").offset().top}, {
 		'dutarion' : 1200,
 		'queue' : false,
@@ -485,9 +491,9 @@ function map_show_result(from, callback)
 			if(!scrollOnce)
 			{
 				scrollOnce = true;
-				if( parseInt(jQuery('.search-estado').css('margin-top')) < 100 )
+				if( parseInt(topObject.css('margin-top')) < 100 )
 				{
-					jQuery('.search-estado').animate (
+					topObject.animate (
 						{
 							'margin-top' : '+='+jQuery("#search-result").height()
 						},

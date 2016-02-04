@@ -14,7 +14,11 @@
 		</div><!-- .container -->
 	</section>
 	<section class="search-estado search-area clearfix">
-		<div class="container">
+		<div class="container" <?php
+				if (!get_theme_mod('showmap',
+								Pontosdecultura::get_default_values('showmap')))
+					echo 'style="display: none;';
+			?>>
 			<h2 class="area-title">Busca por estado</h2>
 			<div class="gr gr-small">
 				<ul class="state-list">

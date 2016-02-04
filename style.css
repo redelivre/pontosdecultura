@@ -465,7 +465,7 @@ button {
 }
 
 .search-estado .area-title {
-	color: #0b4d89;
+	color: #252525;
 }
 
 .state-list,
@@ -514,6 +514,11 @@ button {
 
 .state-list--s .state-name a:hover {
 	background-color: #2f2d44;
+}
+
+.search-advanced {
+	position: relative;
+	z-index: 9998;
 }
 
 .search-advanced .area-title {
