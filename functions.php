@@ -215,6 +215,7 @@ class Pontosdecultura {
 			'button_hovercolor' => '#252525',
 			'banner' => get_template_directory_uri() . '/images/marca.png',
 			'headerbg' => '',
+			'searchbg' => '',
 			'showmap' => true,
 		);
 
@@ -365,6 +366,19 @@ class Pontosdecultura {
 							'pontosdecultura'),
 						'section' => 'title_tagline',
 						'settings' => 'showmap',
+					)));
+
+		$wp_customize->add_setting('searchbg',
+				array(
+					'default' => self::get_default_values('searchbg'),
+				));
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
+					'searchbg', array(
+						'label' => __(
+							'Imagem de fundo da busca avançada (se definida, ignora a cor)',
+							'pontosdecultura'),
+						'section' => 'title_tagline',
+						'settings' => 'searchbg',
 					)));
 	}
 

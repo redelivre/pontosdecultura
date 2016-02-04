@@ -1,10 +1,17 @@
 <style type="text/css">
-	/* Advanced Search */
 	.search-advanced {
-		background: <?php
-			echo get_theme_mod('advancedsearch_bgcolor',
-					Pontosdecultura::get_default_values('advancedsearch_bgcolor'));
-		?>;
+		<?php
+			$searchbg = get_theme_mod('searchbg',
+					Pontosdecultura::get_default_values('searchbg'));
+		?>
+		<?php if (empty($searchbg)): ?>
+			background: <?php
+				echo get_theme_mod('advancedsearch_bgcolor',
+						Pontosdecultura::get_default_values('advancedsearch_bgcolor'));
+			?>;
+		<?php else: ?>
+			background-image: url("<?php echo htmlspecialchars($searchbg); ?>");
+		<?php endif; ?>
 	}
 
 	.search-estado {

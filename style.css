@@ -522,7 +522,7 @@ button {
 }
 
 .search-advanced .area-title {
-	color: #2f2d44;
+	color: #252525;
 }
 
 /* Dropdown select style: https://gist.github.com/joaocunha/6273016 */
@@ -555,7 +555,6 @@ button {
 }
 
 .adv-search-form .adv-search-submit {
-	background-color: #2f2d44;
 	font-size: 1.25em;
 }
 
