@@ -210,8 +210,11 @@ class Pontosdecultura {
 			'mostsearched_bgcolor' => '#2d115c',
 			'footerwidget_bgcolor' => '#e9ddaf',
 			'header_bgcolor' => '#ffffff',
-			'menu_bgcolor' => '#faba09',
+			'button_bgcolor' => '#faba09',
+			'button_textcolor' => '#ffffff',
+			'button_hovercolor' => '#252525',
 			'banner' => get_template_directory_uri() . '/images/marca.png',
+			'headerbg' => '',
 		);
 
 		return $values[$key];
@@ -240,18 +243,6 @@ class Pontosdecultura {
 							'pontosdecultura'),
 						'section' => 'colors',
 						'settings' => 'statesearch_bgcolor',
-					)));
-
-		$wp_customize->add_setting('introsearch_bgcolor',
-				array(
-					'default' => self::get_default_values('introsearch_bgcolor'),
-				));
-		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
-					'introsearch_bgcolor', array(
-						'label' => __('Cor de fundo da busca simples',
-							'pontosdecultura'),
-						'section' => 'colors',
-						'settings' => 'introsearch_bgcolor',
 					)));
 
 		$wp_customize->add_setting('mostsearched_bgcolor',
@@ -289,15 +280,39 @@ class Pontosdecultura {
 						'settings' => 'header_bgcolor',
 					)));
 
-		$wp_customize->add_setting('menu_bgcolor',
+		$wp_customize->add_setting('button_bgcolor',
 				array(
-					'default' => self::get_default_values('menu_bgcolor'),
+					'default' => self::get_default_values('button_bgcolor'),
 				));
 		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
-					'menu_bgcolor', array(
+					'button_bgcolor', array(
 						'label' => __('Cor de fundo do menu', 'pontosdecultura'),
 						'section' => 'colors',
-						'settings' => 'menu_bgcolor',
+						'settings' => 'button_bgcolor',
+					)));
+
+		$wp_customize->add_setting('button_textcolor',
+				array(
+					'default' => self::get_default_values('button_textcolor'),
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'button_textcolor', array(
+						'label' => __('Cor do texto do botão',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'button_textcolor',
+					)));
+
+		$wp_customize->add_setting('button_hovercolor',
+				array(
+					'default' => self::get_default_values('button_hovercolor'),
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'button_hovercolor', array(
+						'label' => __('Cor do texto do botão debaixo do mouse',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'button_hovercolor',
 					)));
 
 		$wp_customize->add_setting('presentation',
@@ -321,6 +336,19 @@ class Pontosdecultura {
 						'label' => __('Banner', 'pontosdecultura'),
 						'section' => 'title_tagline',
 						'settings' => 'banner',
+					)));
+
+		$wp_customize->add_setting('headerbg',
+				array(
+					'default' => self::get_default_values('headerbg'),
+				));
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
+					'headerbg', array(
+						'label' => __(
+							'Imagem de fundo do cabeçalho (se definida, ignora a cor)',
+							'pontosdecultura'),
+						'section' => 'title_tagline',
+						'settings' => 'headerbg',
 					)));
 	}
 

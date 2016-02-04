@@ -14,13 +14,6 @@
 		?>;
 	}
 
-	.search-intro {
-		background: <?php
-			echo get_theme_mod('introsearch_bgcolor',
-					Pontosdecultura::get_default_values('introsearch_bgcolor'));
-		?>;
-	}
-
 	.search-tags {
 		background: <?php
 			echo get_theme_mod('mostsearched_bgcolor',
@@ -35,17 +28,45 @@
 		?> url('images/footer-pattern.png') repeat-x bottom;
 	}
 
-	.site-header {
-		background: <?php
-			echo get_theme_mod('header_bgcolor',
-					Pontosdecultura::get_default_values('header_bgcolor'));
+	.site-header,
+	.search-intro {
+		<?php
+			$headerbg = get_theme_mod('headerbg',
+					Pontosdecultura::get_default_values('headerbg'));
+		?>
+		<?php if (empty($headerbg)): ?>
+			background: <?php
+				echo get_theme_mod('header_bgcolor',
+						Pontosdecultura::get_default_values('header_bgcolor'));
+			?>;
+		<?php else: ?>
+			background-image: url("<?php echo htmlspecialchars($headerbg); ?>");
+		<?php endif; ?>
+	}
+
+	.menu-item a:hover,
+	button,
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  input[type="reset"]:hover {
+		color: <?php
+			echo get_theme_mod('button_hovercolor',
+					Pontosdecultura::get_default_values('button_hovercolor'));
 		?>;
 	}
 
-	.main-navigation .menu-item a {
+	.menu-item a,
+	button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"] {
 		background: <?php
-			echo get_theme_mod('menu_bgcolor',
-					Pontosdecultura::get_default_values('menu_bgcolor'));
+			echo get_theme_mod('button_bgcolor',
+					Pontosdecultura::get_default_values('button_bgcolor'));
+		?>;
+		color: <?php
+			echo get_theme_mod('button_textcolor',
+					Pontosdecultura::get_default_values('button_textcolor'));
 		?>;
 	}
 </style>

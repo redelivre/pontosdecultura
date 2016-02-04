@@ -103,7 +103,7 @@ button,
 input,
 select,
 textarea {
-	color: #404040;
+	color: #252525;
 	font-size: 1em;
 	line-height: 1.5;
 }
@@ -141,7 +141,6 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	background: #805783;
 	border: 0;
 	color: #fff;
 	font-size: 1.125em;
@@ -149,13 +148,6 @@ input[type="submit"] {
 	line-height: 1;
 	padding: 0.75em 1em;
 	position: relative;
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-	background: #501651;
 }
 
 button:focus,
@@ -204,19 +196,19 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-   color: #501651;
+   color: #252525;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #501651;  
+   color: #252525;  
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #501651;  
+   color: #252525;  
 }
 
 :-ms-input-placeholder {  
-   color: #501651;  
+   color: #252525;  
 }
 
 select,
@@ -433,7 +425,7 @@ button {
 	max-width: 449px;
 }
 
-.main-navigation .menu-item a {
+.menu-item a {
 	display: inline-block;
 }
 
@@ -443,16 +435,8 @@ button {
 
 /* Intro */
 .search-intro {
-	color: #501651;
+	color: #252525;
 	padding: 3em 0;
-}
-
-.search-intro a {
-	color: #501651;
-}
-
-.search-intro a:hover {
-	color: #805783;
 }
 
 .search-intro .intro-text {
@@ -472,14 +456,6 @@ button {
 .search-intro .search-field {
 	background-color: #fff;
 	width: 40%;
-}
-
-.search-intro .search-submit {
-	background: #501651;
-}
-
-.search-intro .search-submit:hover {
-	color: #faba09;
 }
 
 /* State / Estado */
@@ -562,7 +538,7 @@ button {
 .adv-search-form select {
 	background-color: #e9ddaf;
 	border: 0;
-	color: #404040;
+	color: #252525;
 	line-height: 1.5;
 	margin-bottom: 0.5em;
 }
@@ -588,19 +564,19 @@ button {
 }
 
 .adv-search-form  ::-webkit-input-placeholder {
-   color: #404040;
+   color: #252525;
 }
 
 .adv-search-form  :-moz-placeholder { /* Firefox 18- */
-   color: #404040;  
+   color: #252525;  
 }
 
 .adv-search-form  ::-moz-placeholder {  /* Firefox 19+ */
-   color: #404040;  
+   color: #252525;  
 }
 
 .adv-search-form :-ms-input-placeholder {  
-   color: #404040;  
+   color: #252525;  
 }
 
 .adv-search-radio-block {
@@ -832,7 +808,7 @@ h3.adv-search-radio {
 
 .single-mapa .entry-content h2,
 .single-mapa .entry-content h3 {
-	color: #404040;
+	color: #252525;
 }
 
 .single-mapa .entry-content h3 {

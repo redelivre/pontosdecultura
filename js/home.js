@@ -403,7 +403,14 @@ jQuery(document).ready(function()
         }, 
     });
 	
+    jQuery(window).on('resize', fix_bg_offset);
+    fix_bg_offset();
 });
+
+function fix_bg_offset() {
+  var h = jQuery('#masthead').height();
+  jQuery('.search-intro').css('background-position', '0px ' + -h + 'px');
+}
 
 var estado_search = "";
 var map_result_animation_durations = 3000;
