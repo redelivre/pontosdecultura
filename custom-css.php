@@ -22,16 +22,31 @@
 	}
 
 	.search-tags {
-		background: <?php
-			echo get_theme_mod('mostsearched_bgcolor',
-					Pontosdecultura::get_default_values('mostsearched_bgcolor'));
-		?>;
+		<?php
+			$tagsbg = get_theme_mod('tagsbg',
+					Pontosdecultura::get_default_values('tagsbg'));
+		?>
+		<?php if (empty($tagsbg)): ?>
+			background: <?php
+				echo get_theme_mod('mostsearched_bgcolor',
+						Pontosdecultura::get_default_values('mostsearched_bgcolor'));
+			?>;
+		<?php else: ?>
+			background-image: url("<?php echo htmlspecialchars($tagsbg); ?>");
+		<?php endif; ?>
 	}
 
 	.widget-area--footer {
 		background: <?php
 			echo get_theme_mod('footerwidget_bgcolor',
 					Pontosdecultura::get_default_values('footerwidget_bgcolor'));
+		?> url('images/footer-pattern.png') repeat-x bottom;
+	}
+
+	.support-area {
+		background: <?php
+			echo get_theme_mod('support_bgcolor',
+					Pontosdecultura::get_default_values('support_bgcolor'));
 		?> url('images/footer-pattern.png') repeat-x bottom;
 	}
 

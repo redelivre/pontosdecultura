@@ -208,6 +208,7 @@ class Pontosdecultura {
 			'statesearch_bgcolor' => '#ffffff',
 			'introsearch_bgcolor' => '#dcd800',
 			'mostsearched_bgcolor' => '#2d115c',
+			'support_bgcolor' => '#e9ddaf',
 			'footerwidget_bgcolor' => '#e9ddaf',
 			'header_bgcolor' => '#ffffff',
 			'button_bgcolor' => '#faba09',
@@ -216,6 +217,8 @@ class Pontosdecultura {
 			'banner' => get_template_directory_uri() . '/images/marca.png',
 			'headerbg' => '',
 			'searchbg' => '',
+			'tagsbg' => '',
+			'supportimg' => '',
 			'showmap' => true,
 		);
 
@@ -271,6 +274,18 @@ class Pontosdecultura {
 							'pontosdecultura'),
 						'section' => 'colors',
 						'settings' => 'footerwidget_bgcolor',
+					)));
+
+		$wp_customize->add_setting('support_bgcolor',
+				array(
+					'default' => self::get_default_values('support_bgcolor'),
+				));
+		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,
+					'support_bgcolor', array(
+						'label' => __('Cor de fundo das marcas de apoio',
+							'pontosdecultura'),
+						'section' => 'colors',
+						'settings' => 'support_bgcolor',
 					)));
 
 		$wp_customize->add_setting('header_bgcolor',
@@ -379,6 +394,32 @@ class Pontosdecultura {
 							'pontosdecultura'),
 						'section' => 'title_tagline',
 						'settings' => 'searchbg',
+					)));
+
+		$wp_customize->add_setting('tagsbg',
+				array(
+					'default' => self::get_default_values('tagsbg'),
+				));
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
+					'tagsbg', array(
+						'label' => __(
+							'Imagem de fundo dos mais buscados (se definida, ignora a cor)',
+							'pontosdecultura'),
+						'section' => 'title_tagline',
+						'settings' => 'tagsbg',
+					)));
+
+		$wp_customize->add_setting('supportimg',
+				array(
+					'default' => self::get_default_values('supportimg'),
+				));
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,
+					'supportimg', array(
+						'label' => __(
+							'Marcas de Apoio',
+							'pontosdecultura'),
+						'section' => 'title_tagline',
+						'settings' => 'supportimg',
 					)));
 	}
 

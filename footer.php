@@ -15,6 +15,17 @@
 				<?php endif; ?>
 			</div><!-- #content .site-content -->
 
+			<?php
+				$supportimg = get_theme_mod('supportimg',
+							Pontosdecultura::get_default_values('supportimg'));
+				if (!empty($supportimg)): ?>
+				<section id="support" class="support-area">
+					<div class="container">
+						<img src=<?php echo esc_html($supportimg); ?>>
+					</div>
+				</setion>
+			<?php endif; ?>
+
 			<?php if ( is_active_sidebar( 'sidebar-footer' ) ) : ?>
 				<section id="tertiary" class="widget-area widget-area--footer" role="complementary">
 					<div class="container">

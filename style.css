@@ -611,7 +611,7 @@ h3.adv-search-radio {
 }
 
 .search-tags .area-title {
-	color: #faba09;
+	color: #acacac;
 }
 
 .search-tags a {
@@ -1243,6 +1243,10 @@ span.wpcf7-not-valid-tip {
 div.wpcf7-response-output {
 	font-size: 0.875em;
 	margin: 2em 0 0;
+}
+
+.support-area {
+	text-align: center;
 }
 
 
