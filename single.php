@@ -57,7 +57,43 @@ get_header(); ?>
 							}
 
 						} // end check for categories on this blog
+					?>
 
+					<div class="sharing">
+						<p class="borda-cor-1">
+							<?php _e('Compartilhe', 'pontosdecultura'); ?>
+							<span><?php _e('este post nas redes sociais',
+									'pontosdecultura'); ?></span>
+						</p>
+
+						<a class="share share-twitter" title="<?php
+								_e('Twitter', 'pontosdecultura');
+							?>" href="http://twitter.com/intent/tweet?original_referer=<?php
+								the_permalink();
+							?>&text=<?php
+								echo $post->post_title;
+							?>&url=<?php
+								echo get_permalink();
+							?>" rel="nofollow" target="_blank"><span><?php
+								_e('Twitter', 'pontosdecultura');
+							?></span></a>
+						<a class="share share-facebook" title="<?php
+								_e('Facebook', 'pontosdecultura');
+							?>" href="https://www.facebook.com/sharer.php?u=<?php
+								the_permalink();
+							?>" rel="nofollow" target="_blank"><span><?php
+								_e('Facebook', 'pontosdecultura');
+							?></span></a>
+						<a class="share share-googleplus" title="<?php
+								_e('Google+', 'pontosdecultura');
+							?>" href="https://plus.google.com/share?url=<?php
+								the_permalink();
+							?>" rel="nofollow" target="_blank"><span><?php
+								_e('Google+', 'pontosdecultura');
+							?></span></a>
+					</div>
+
+					<?php
 						printf(
 							$meta_text,
 							$category_list,

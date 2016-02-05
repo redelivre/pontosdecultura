@@ -1400,3 +1400,91 @@ div.wpcf7-response-output {
 		width: 100%;
 	}
 }
+
+
+/* Sharing */
+.sharing a {
+	color:#fff;
+}
+
+.sharing a:hover {
+	color:#fff;	
+}
+
+.sharing p {
+	font-weight: 700;
+	font-size: 18px;
+	margin-bottom: 20px;
+	border-top: 5px solid #ccc;
+	padding-top:25px;	
+}
+
+.sharing span {
+	font-weight: 300;
+	font-size: 16px;
+}
+
+.sharing .share-twitter {
+	background: url('images/sprite.png') #ccc no-repeat -6px -2px; 
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	border-radius: 2px;
+	-webkit-border-radius: 2px; /*safari e chrome*/
+	-moz-border-radius: 2px; /*firefox*/
+	-o-border-radius: 2px; /*opera hipster*/
+	font-size: 24px;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.sharing .share-twitter:hover {
+	background: url('images/sprite.png') #019ad2 no-repeat -6px -4px;
+}
+
+.sharing .share-facebook {
+	background: url('images/sprite.png') #ccc no-repeat -6px -41px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	border-radius: 2px;
+	-webkit-border-radius: 2px; /*safari e chrome*/
+	-moz-border-radius: 2px; /*firefox*/
+	-o-border-radius: 2px; /*opera hipster*/
+	font-size: 24px;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.sharing .share-facebook:hover {
+	background: url('images/sprite.png') #3b5999 no-repeat -6px -43px;
+}
+
+.sharing .share-googleplus {
+	background: url('images/sprite.png') #ccc no-repeat -5px -118px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	border-radius: 2px;
+	-webkit-border-radius: 2px; /*safari e chrome*/
+	-moz-border-radius: 2px; /*firefox*/
+	-o-border-radius: 2px; /*opera hipster*/
+	font-size: 24px;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.sharing .share-googleplus:hover {
+	background: url('images/sprite.png') #cf3e2d no-repeat -5px -120px;
+}
+
+.share {
+	width: 170px;
+	padding: 0px 5px 0px 60px;
+}
