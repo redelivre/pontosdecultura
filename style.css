@@ -747,7 +747,7 @@ h3.adv-search-radio {
 }
 
 .entry-title {
-	color: #805783;
+	color: #252525;
 	line-height: 1.2;
 }
 
@@ -776,6 +776,30 @@ h3.adv-search-radio {
 	font-size: 0.875em;
 	padding: 0.25em 0.5em;
 	text-transform: uppercase;
+}
+
+.entry-meta {
+  padding-bottom: 3em;
+}
+
+.comment-list {
+  background: #ebebeb;
+}
+
+#secondary {
+  background: #e9ddaf;
+  text-align: center;
+  margin: auto;
+  max-width: 720px;
+}
+
+#secondary aside {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#secondary .widget_search {
+  margin-top: 2em;
 }
 
 /*
@@ -1328,11 +1352,6 @@ div.wpcf7-response-output {
 
 	.main-navigation ul li {
 		margin-left: -0.45em;
-	}
-
-	/* Content */
-	.singular .site-content {
-		background: url('images/bg-map.jpg') fixed;
 	}
 
 	.singular .site-main {

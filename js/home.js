@@ -414,6 +414,7 @@ function fix_bg_offset() {
   var h = jQuery('#masthead').height();
   jQuery('.search-intro').css('background-position', '0px ' + -h + 'px');
   jQuery('.login-entry').css('background-position', '0px ' + -h + 'px');
+  jQuery('.singular').css('background-position', '0px ' + -h + 'px');
 }
 
 var estado_search = "";
