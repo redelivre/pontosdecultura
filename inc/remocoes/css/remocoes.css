@@ -72,10 +72,6 @@ input[type="text"].taxonomy-checkbox-text  {
     max-width: 1080px;
 }
 
-.home-entry.nova-remocoes {
-    background-color: #dcd800;
-}
-
 .remocoes-item-title {
     font-weight: bold;
     padding-left: 0.5em;
