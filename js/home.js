@@ -131,6 +131,9 @@ jQuery(document).ready(function()
 	jQuery(window).on('resize', fix_bg_offset);
 	fix_bg_offset();
 
+	if (jQuery('#search-result').position() == null)
+		return;
+
 	search_result_left = jQuery("#search-result").position().left;
 	
 	jQuery(".adv-search-estado").change(function () {
