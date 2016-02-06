@@ -571,7 +571,7 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -691,7 +691,7 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" <?php echo array_key_exists($id, $_REQUEST)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
@@ -722,7 +722,7 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
+						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-meses"; ?>">
 								<option value="" <?php echo array_key_exists("$id-meses", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Meses', 'pontosdecultura' ); ?></option>
@@ -735,7 +735,7 @@ class Remocoes
 									} 
 								?>
 							</select></div>
-							<div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
+							<div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
 							class="<?php echo $input_class; ?>"
 							name="<?php echo "$id-anos"; ?>">
 								<option value="" <?php echo array_key_exists("$id-anos", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Anos', 'pontosdecultura' ); ?></option>
@@ -766,7 +766,7 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
 							class="<?php echo $input_class ?>"
 							name="<?php echo $id ?>">
 								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>

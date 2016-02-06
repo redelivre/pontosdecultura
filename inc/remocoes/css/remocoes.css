@@ -98,7 +98,7 @@ h2.new-remocoes {
 
 .dropdown-estado,
 .dropdown-cidade,
-.remocoes-item-input-dropdown {
+.remocoes-item-input-dropdown-block {
    display: block;
    float: left;
    overflow: hidden;
@@ -109,7 +109,7 @@ h2.new-remocoes {
 
 .dropdown-estado select,
 .dropdown-cidade select,
-.remocoes-item-input-dropdown select {
+.remocoes-item-input-dropdown-block select {
    background: transparent;
    padding: 0.5em;
    border: 0;
