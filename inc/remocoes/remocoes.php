@@ -128,15 +128,15 @@ class Remocoes
 		$post = array(
 			'post_title' => array(
 				'slug' => 'post_title',
-				'title' => __('Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura'),
+				'title' => __('Nome', 'pontosdecultura'),
 				'tip' => '',
 				'required' => true,
 				'buildin' => true
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
-				'title' => __('Descreva a pesquisa do seu núcleo', 'pontosdecultura'),
-				'tip' => __('Maximum 2000 characters', 'pontosdecultura'),
+				'title' => __('Descrição', 'pontosdecultura'),
+				'tip' => __('Limite de 2000 caracteres', 'pontosdecultura'),
 				'required' => true,
 				//'type' => 'wp_editor',
 				'type' => 'textarea',
@@ -541,6 +541,8 @@ class Remocoes
 	
 	static function print_field($field, $tax = false)
 	{
+		$purifier = new HTMLPurifier();
+
 		if($tax !== false)
 		{
 			$type = $tax;

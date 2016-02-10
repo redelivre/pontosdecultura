@@ -61,7 +61,8 @@ else
 	$has_thumbnail4 = false;
 	
 	//$title = $post_type_object->labels->add_new_item;
-	$title = "Preencha os campos abaixo com informações sobre sua pesquisa continuada em artes cênicas ou performativas.";
+	$title = __('Preencha os campos abaixo com as informações',
+			'pontosdecultura');
 	
 	$editing = true;
 	$post = null;
@@ -389,15 +390,9 @@ else
 	
 	
 	$fields = $remocoes->getFields();
-	
-	Remocoes::print_field($fields['post_title']);
-	Remocoes::print_field($fields['email']);
-	Remocoes::print_field($fields['url']);
-	Remocoes::print_field($fields['telefone']);
-	Remocoes::print_field('territorio', array(
-			'label' => 'Estado e Cidade',
-			'required' => true,
-			'type' => 'estadocidade'
+
+	foreach ($fields as $k => $f)
+		Remocoes::print_field($f);
 	));?>
 	<div class="remocoes-map-block">
 		<div class="remocoes-item remocoes-item-map remocoes-map">
@@ -413,33 +408,8 @@ else
 			</label>
 			<?php mapasdevista_metabox_map(); ?>
 		</div>
-	</div><?php
-	Remocoes::print_field($fields['cep']);
-	Remocoes::print_field($fields['ano-inicio']);
- 	Remocoes::print_field($fields['numero-integrantes']);
- 	Remocoes::print_field('natureza', array(
-			'label' => 'Natureza da Pesquisa',
-			'outro' => true,
-	));
- 	Remocoes::print_field($fields['espaco-fisico']);
-	Remocoes::print_field('cenico-performativa', array(
-			'label' => 'Área(s) da Pesquisa Cênico-Performativa(s)',
-			'outro' => true,
-	));
-	Remocoes::print_field('desdobramentos', array(
-			'label' => 'Desdobramentos',
-			'outro' => true,
-	));
- 	Remocoes::print_field($fields['post_content']);
- 	Remocoes::print_field('publico-alvo', array(
- 			'label' => 'Público Alvo',
- 			'outro' => true,
- 	));
- 	Remocoes::print_field('ressonancias', array(
- 			'label' => 'Áreas de Ressonância',
- 			'outro' => true,
- 	));
- 	?><br/>
+	</div>
+ 	<br/>
  	<div class="images">
 	 	<div class="images-thumbnail-block images-thumbnail">
 			<label for="thumbnail" class="remocoes-item-label">
@@ -490,43 +460,6 @@ else
 			}?>
 		</div>
 	</div>
-	<?php
- 	Remocoes::print_field($fields['publicacoes']);
-	Remocoes::print_field($fields['videos']);
-	Remocoes::print_field($fields['facebook']);
-	Remocoes::print_field($fields['outras-redes']);
-	Remocoes::print_field($fields['e-ponto']);
-	Remocoes::print_field($fields['vinculo']);
-	Remocoes::print_field($fields['suporte']);
-	Remocoes::print_field($fields['suporte-esfera']);
-	Remocoes::print_field($fields['suporte-obs']);?>
-	<label class="remocoes-highlight-label"><strong>Responsável pelo Cadastro</strong></label><?php
-	Remocoes::print_field($fields['cpf']);
-	Remocoes::print_field($fields['nome']);
-	Remocoes::print_field($fields['nascimento']);
-	Remocoes::print_field($fields['telefone-resp']);
-	Remocoes::print_field($fields['email-resp']);?>
-	<div class="images-thumbnail-block images-thumbnail4">
-		<label for="thumbnail4" class="remocoes-item-label">
-			<div class="remocoes-item-title"><?php _e('Foto do responsável', 'pontosdecultura'); ?>
-			</div>
-			<div class="remocoes-item-tip-text">
-				<?php _e('Imagem do Responsável', 'pontosdecultura'); ?>
-			</div>
-		</label>
-		<input type="file" name="thumbnail4" id="thumbnail4"
-			value="<?php echo array_key_exists('thumbnail4', $_REQUEST) ? esc_url($_REQUEST['thumbnail4']) : ''; ?>"
-			onchange="displayPreview(this.files, 'thumbnail4');" class="remocoes-file-upload"><?php
-		if($has_thumbnail4 && array_key_exists('thumbnail4', $attach))
-		{?>
-			<img src="<?php echo $attach['thumbnail4']; ?>"><?php
-		}?>
-	</div><?php
-	Remocoes::print_field($fields['facebook-resp']);
-	Remocoes::print_field($fields['redes-resp']);
-	Remocoes::print_field($fields['relacao-resp']);
-	
-	?>
 					<div class="publish-button-block">
 						<input id="original_publish" type="hidden" value="Publish"
 							name="original_publish"> <input id="publish"
