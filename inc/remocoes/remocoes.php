@@ -1162,6 +1162,8 @@ class Remocoes
 	
 }
 
+require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
+
 $Remocoes_global = new Remocoes();
 
 /**
