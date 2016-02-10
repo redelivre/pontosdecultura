@@ -166,7 +166,8 @@ class PontosSettingsPage
 	private function importFields()
 	{
 		if (!array_key_exists('remocoes-import-file', $_FILES)
-				|| !array_key_exists('tmp_name', $_FILES['remocoes-import-file']))
+				|| !array_key_exists('tmp_name', $_FILES['remocoes-import-file'])
+				|| $_FILES['remocoes-import-file']['error'])
 			return;
 
 		$json = json_decode(file_get_contents(
