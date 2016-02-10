@@ -393,7 +393,7 @@ else
 
 	foreach ($fields as $k => $f)
 		Remocoes::print_field($f);
-	));?>
+	?>
 	<div class="remocoes-map-block">
 		<div class="remocoes-item remocoes-item-map remocoes-map">
 			<label class="remocoes-item-label">
