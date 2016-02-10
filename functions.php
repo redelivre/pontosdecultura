@@ -520,8 +520,11 @@ class Pontosdecultura {
 		wp_register_script('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.js', array('jquery'));
 		wp_register_style('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.css');
 		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery', 'map-functions'));
+		wp_register_script('bg-alignment', $path . '/bg.js', array('jquery'));
+
+		wp_enqueue_script('bg-alignment');
 		
-		if(is_home() && ( !$wp_query->get('mapa-tpl') && !$wp_query->get('nova-pratica') ))
+		if(is_home() && ( !$wp_query->get('mapa-tpl') && !$wp_query->get('nova-remocoes') ))
 		{
 			wp_enqueue_script('homescripts');
 			wp_enqueue_script('jqloader');

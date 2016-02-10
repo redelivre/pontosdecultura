@@ -127,10 +127,6 @@ var adv_search_facebook = "";
 
 jQuery(document).ready(function()
 {
-	
-	jQuery(window).on('resize', fix_bg_offset);
-	fix_bg_offset();
-
 	if (jQuery('#search-result').position() == null)
 		return;
 
@@ -412,14 +408,6 @@ jQuery(document).ready(function()
         }, 
     });
 });
-
-function fix_bg_offset() {
-  var h = jQuery('#masthead').height();
-  jQuery('.search-intro').css('background-position', '0px ' + -h + 'px');
-  jQuery('.login-entry').css('background-position', '0px ' + -h + 'px');
-  jQuery('.nova-remocoes').css('background-position', '0px ' + -h + 'px');
-  jQuery('.singular').css('background-position', '0px ' + -h + 'px');
-}
 
 var estado_search = "";
 var map_result_animation_durations = 3000;

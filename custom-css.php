@@ -51,9 +51,7 @@
 	}
 
 	.site-header,
-	.login-entry,
-	.search-intro,
-	.singular {
+	.site-content {
 		<?php
 			$headerbg = get_theme_mod('headerbg',
 					Pontosdecultura::get_default_values('headerbg'));
