@@ -57,8 +57,9 @@ class PontosSettingsPage
 				trim($field['tip']) : '';
 			$data['type'] = $field['type'];
 			$data['download'] = $field['download'];
-			$data['hide'] = array_key_exists('hide', $field);
-			$data['required'] = array_key_exists('required', $field);
+			$data['hide'] = array_key_exists('hide', $field) && $field['hide'];
+			$data['required'] = array_key_exists('required', $field)
+				&& $field['required'];
 
 			if (in_array('values', $extraData, true))
 			{
