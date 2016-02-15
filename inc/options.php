@@ -60,6 +60,10 @@ class PontosSettingsPage
 			$data['hide'] = array_key_exists('hide', $field) && $field['hide'];
 			$data['required'] = array_key_exists('required', $field)
 				&& $field['required'];
+			$data['advanced'] = array_key_exists('advanced', $field)
+				&& $field['advanced'];
+			$data['multiple'] = array_key_exists('multiple', $field)
+				&& $field['multiple'];
 
 			if (in_array('values', $extraData, true))
 			{

@@ -38,6 +38,14 @@
 				class="remocoes-custom-hide">
 			<label><?php _e('Esconder', 'pontosdecultura'); ?></label>
 			<br>
+			<input type="checkbox" name="remocoes-custom[%ID%][advanced]"
+				class="remocoes-custom-advanced">
+			<label><?php _e('Usar na busca avançada', 'pontosdecultura'); ?></label>
+			<br>
+			<input type="checkbox" name="remocoes-custom[%ID%][multiple]"
+				class="remocoes-custom-multiple">
+			<label><?php _e('Múltiplas entradas', 'pontosdecultura'); ?></label>
+			<br>
 			<label><?php _e('Quem pode baixar:', 'pontosdecultura'); ?></label>
 			<select name="remocoes-custom[%ID%][download]"
 				class="remocoes-custom-download">
