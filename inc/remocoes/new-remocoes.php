@@ -306,7 +306,17 @@ else
 		echo '</pre>';
 		
         */
-		
+		if (class_exists('siCaptcha'))
+		{
+			global $si_image_captcha, $si_captcha_opt;
+
+			if ($si_image_captcha->si_captcha_validate_code() !== 'valid')
+			{
+				$message[] = __('O captcha não confere', 'pontosdecultura');
+				$notice = true;
+			}
+		}
+
 		if($notice == false && count($message) == 0)
 		{?>
 			<div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
@@ -461,6 +471,27 @@ else
 		</div>
 	</div>
 					<div class="publish-button-block">
+						<?php
+							if (class_exists('siCaptcha'))
+							{
+								global $si_image_captcha, $si_captcha_opt;
+								$si_aria_required = $si_captcha_opt['si_captcha_aria_required']
+									== 'true'? ' aria-required="true" ' : '';
+
+							  echo '<h4>';
+								echo $si_captcha_opt['si_captcha_label_captcha'] != ''?
+									$si_captcha_opt['si_captcha_label_captcha']
+									: __('CAPTCHA Code', 'si-captcha');
+								echo '</h4>';
+
+								$si_image_captcha->si_captcha_captcha_html();
+								?>
+								<input id="captcha_code" name="captcha_code" class="input"
+									type="text" value="" <?php echo $si_aria_required; ?>>
+								<br><br>
+							  <?php
+							}
+						?>
 						<input id="original_publish" type="hidden" value="Publish"
 							name="original_publish"> <input id="publish"
 							class="button button-primary button-large" type="submit"
