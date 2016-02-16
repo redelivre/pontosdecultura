@@ -406,7 +406,7 @@ class Pontosdecultura {
 						'label' => __(
 							'Imagem de fundo do cabeçalho (se definida, ignora a cor)',
 							'pontosdecultura'),
-						'section' => 'title_tagline',
+						'section' => 'colors',
 						'settings' => 'headerbg',
 					)));
 
@@ -432,7 +432,7 @@ class Pontosdecultura {
 						'label' => __(
 							'Imagem de fundo da busca avançada (se definida, ignora a cor)',
 							'pontosdecultura'),
-						'section' => 'title_tagline',
+						'section' => 'colors',
 						'settings' => 'searchbg',
 					)));
 
@@ -445,7 +445,7 @@ class Pontosdecultura {
 						'label' => __(
 							'Imagem de fundo dos mais buscados (se definida, ignora a cor)',
 							'pontosdecultura'),
-						'section' => 'title_tagline',
+						'section' => 'colors',
 						'settings' => 'tagsbg',
 					)));
 
