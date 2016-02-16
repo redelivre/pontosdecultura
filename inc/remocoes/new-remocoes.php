@@ -99,7 +99,21 @@ else
 				continue;
 			}
 			
-			if( (array_key_exists('required', $field) && $field['required']) && (! array_key_exists($field['slug'], $_POST) || empty($_POST[$field['slug']]) ))
+			if (array_key_exists($field['slug'], $_POST))
+			{
+				if (is_array($_POST[$field['slug']]))
+					$_POST[$field['slug']] = array_filter($_POST[$field['slug']]);
+
+				if (empty($field['multiple']) && is_array($_POST[$field['slug']]))
+					unset($_POST[$field['slug']]);
+				elseif (!empty($field['multiple'])
+						&& !is_array($_POST[$field['slug']]))
+					unset($_POST[$field['slug']]);
+			}
+
+			if((array_key_exists('required', $field) && $field['required'])
+					&& (!array_key_exists($field['slug'], $_POST)
+					 	|| empty($_POST[$field['slug']])))
 			{
 				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="remocoes_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;

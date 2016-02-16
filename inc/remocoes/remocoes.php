@@ -131,13 +131,15 @@ class Remocoes
 				'title' => __('Nome', 'pontosdecultura'),
 				'tip' => '',
 				'required' => true,
-				'buildin' => true
+				'buildin' => true,
+				'multiple' => false
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
 				'title' => __('Descrição', 'pontosdecultura'),
 				'tip' => __('Limite de 2000 caracteres', 'pontosdecultura'),
 				'required' => true,
+				'multiple' => false,
 				//'type' => 'wp_editor',
 				'type' => 'textarea',
 				'rows' => 10,
@@ -205,6 +207,8 @@ class Remocoes
 					$_REQUEST[$campo['slug'].'-meses'] = array_pop($custom["$slug-meses"]).__(" meses", 'pontosdecultura');
 				}
 			}
+			if (!empty($campo['multiple']))
+				$dado = unserialize($dado);
 			$_REQUEST[$campo['slug']] = $dado;
 			$this->print_field($campo);
 
@@ -505,6 +509,10 @@ class Remocoes
 			)
 			);
 			wp_enqueue_script( 'meta-box-image' );
+
+			wp_enqueue_script('jquery-ui-datepicker', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker.js', array('jquery'));
+			wp_enqueue_script('date-scripts', get_template_directory_uri().'/inc/remocoes/js/date_scripts.js', array('jquery-ui-datepicker'));
+			wp_enqueue_script('new-remocoes', get_template_directory_uri().'/inc/remocoes/js/new-remocoes.js', array( 'jquery'));
 		}
 	}
 	
@@ -537,6 +545,15 @@ class Remocoes
 			$data = array('options' => get_option('mapasdevista'));
 			wp_localize_script('metabox', 'mapasdevista_options', $data);
 		}
+	}
+
+	static function get_clean_request_data($id, $multiple=false)
+	{
+		return $multiple
+			&& array_key_exists($id, $_REQUEST)
+			&& is_array($_REQUEST[$id])?
+			array_map('wp_strip_all_tags', $_REQUEST[$id])
+			: array(empty($_REQUEST[$id])? '' : $_REQUEST[$id]);
 	}
 	
 	static function print_field($field, $tax = false)
@@ -655,6 +672,9 @@ class Remocoes
 			$required_message = '';
 			$input_class = '';
 			$type = array_key_exists('type', $field) ? $field['type'] : '';
+			$multiple = array_key_exists('multiple', $field)?
+				$field['multiple'] : false;
+			$clean_data = Remocoes::get_clean_request_data($id, $multiple);
 			switch ($type)
 			{
 				case 'wp_editor':
@@ -668,12 +688,16 @@ class Remocoes
 								<?php echo $tip; ?>
 							</div>
 							</label>
-						<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,  array( 
-					       'tinymce' => array( 
-					            'content_css' => get_stylesheet_directory_uri() . '/inc/remocoes/css/editor-styles.css' 
-					    		)
+							<div class="remocoes-set">
+						<?php wp_editor((array_key_exists($id, $_POST) ? stripslashes($purifier->purify($_POST[$id])) : ''), $id,
+								array(
+								 //'textarea_name' => $multiple? "${id}[]" : $id,
+								 'tinymce' => array(
+											'content_css' => get_stylesheet_directory_uri() . '/inc/remocoes/css/editor-styles.css' 
+									)
 							)
 						); ?>
+						</div>
 						<div class="remocoes-item-error-message"></div>
 							<div class="remocoes-item-required-message">
 							<?php echo $required_message; ?>
@@ -693,20 +717,28 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
-							class="<?php echo $input_class ?>"
-							name="<?php echo $id ?>">
-								<option value="" <?php echo array_key_exists($id, $_REQUEST)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
-								<?php
-									for($i = date('Y'); $i >= 1900; $i--)
-									{
-										?>
-										<option value="<?php echo $i; ?>" <?php echo array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $i ? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
-										<?php
-									} 
-								?>
-							</select>
-						</div>
+						</label>
+						<?php foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set"><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+								class="<?php echo $input_class ?>"
+								name="<?php echo $multiple? "${id}[]" : $id; ?>">
+									<option value="" <?php echo empty($entry)? '' : 'selected="selected"'; ?> ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+									<?php
+										for($i = date('Y'); $i >= 1900; $i--)
+										{
+											?>
+											<option value="<?php echo $i; ?>" <?php echo $entry == $i ? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
+											<?php
+										}
+									?>
+								</select>
+							</div></div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
@@ -724,33 +756,47 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
-							class="<?php echo $input_class; ?>"
-							name="<?php echo "$id-meses"; ?>">
-								<option value="" <?php echo array_key_exists("$id-meses", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Meses', 'pontosdecultura' ); ?></option>
-								<?php
-									for($i = 1; $i < 13; $i++)
-									{
-										?>
-										<option value="<?php echo $i; ?>" <?php echo array_key_exists("$id-meses", $_REQUEST) && wp_strip_all_tags($_REQUEST["$id-meses"]) == $i ? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
-										<?php
-									} 
-								?>
-							</select></div>
-							<div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
-							class="<?php echo $input_class; ?>"
-							name="<?php echo "$id-anos"; ?>">
-								<option value="" <?php echo array_key_exists("$id-anos", $_REQUEST) ? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Anos', 'pontosdecultura' ); ?></option>
-								<?php
-									for($i = 1; $i < 101; $i++)
-									{
-										?>
-										<option value="<?php echo $i; ?>" <?php echo array_key_exists("$id-anos", $_REQUEST) && wp_strip_all_tags($_REQUEST["$id-anos"]) == $i ? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
-										<?php
-									} 
-								?>
-							</select>
-						</div>
+						</label>
+						<?php
+						$meses = Remocoes::get_clean_request_data("$id-meses", $multiple);
+						$anos = Remocoes::get_clean_request_data("$id-anos", $multiple);
+						$clean_data = array_map(null, $meses, $anos);
+						foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set"><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-meses"; ?>"
+								class="<?php echo $input_class; ?>"
+								name="<?php echo $multiple?
+									"${id}-meses[]" : "$id-meses"; ?>">
+									<option value="" <?php echo !empty($entry[0])? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Meses', 'pontosdecultura' ); ?></option>
+									<?php
+										for($i = 1; $i < 13; $i++)
+										{
+											?>
+											<option value="<?php echo $i; ?>" <?php echo $entry[0] == $i? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
+											<?php
+										}
+									?>
+								</select></div>
+								<div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo "$id-anos"; ?>"
+								class="<?php echo $input_class; ?>"
+								name="<?php echo $multiple?
+									"${id}-anos[]" : "$id-anos"; ?>">
+									<option value="" <?php echo !empty($entry[1])? '' : 'selected="selected"';?> ><?php echo esc_attr_x('Anos', 'pontosdecultura' ); ?></option>
+									<?php
+										for($i = 1; $i < 101; $i++)
+										{
+											?>
+											<option value="<?php echo $i; ?>" <?php echo $entry[1] == $i? 'selected="selected"': ''; ?> ><?php echo $i; ?></option>
+											<?php
+										}
+									?>
+								</select>
+							</div></div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
@@ -768,21 +814,29 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
-							class="<?php echo $input_class ?>"
-							name="<?php echo $id ?>">
-								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
-								<?php
-									for($i = 1; $i < 100; $i++)
-									{
-										$label = $i == 99 ? '99+' : $i;
-										?>
-										<option value="<?php echo $i; ?>" <?php echo array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $i ? 'selected="selected"': ''; ?> ><?php echo $label; ?></option>
-										<?php
-									} 
-								?>
-							</select>
-						</div>
+						</label>
+						<?php foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set"><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
+								class="<?php echo $input_class ?>"
+								name="<?php echo $multiple? "${id}[]" : $id; ?>">
+									<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+									<?php
+										for($i = 1; $i < 100; $i++)
+										{
+											$label = $i == 99 ? '99+' : $i;
+											?>
+											<option value="<?php echo $i; ?>" <?php echo $entry == $i ? 'selected="selected"': ''; ?> ><?php echo $label; ?></option>
+											<?php
+										}
+									?>
+								</select>
+							</div></div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
@@ -801,14 +855,15 @@ class Remocoes
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="remocoes-item-input-radio-block"><?php
+							<div class="remocoes-set"><div class="remocoes-item-input-radio-block"><?php
 								$i = 0;
 								foreach ($field['values'] as $value => $label_item)
 								{
 									echo '<input id="'.("$id-option-$i").'" type="radio" name="'.$id.'" value="'.$value.'" '.(array_key_exists($id, $_REQUEST) && wp_strip_all_tags($_REQUEST[$id]) == $value ? 'checked="checked"': '').' ><label for="'.("$id-option-$i").'" class="remocoes-item-input-radio" >'.$label_item.'</label>';
 									$i++;
 								}
-						?></div><div class="remocoes-item-error-message"></div>
+						?></div></div>
+						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
@@ -826,23 +881,31 @@ class Remocoes
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label>
-							<div class="remocoes-item-input-dropdown-block">
-								<select name="<?php echo $id; ?>"
+						<?php foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set remocoes-item-input-dropdown-block">
+								<select
+									name="<?php echo $multiple? "${id}[]" : $id; ?>"
 									class="remocoes-item-input-dropdown"><?php
 									$i = 0;
 									foreach ($field['values'] as $value => $label_item)
 									{
 										echo "<option id=\"$id-option-$i\" value=\"$value\"";
-										if (array_key_exists($id, $_REQUEST)
-												&& wp_strip_all_tags($_REQUEST[$id]) == $value)
+										if ($entry == $value)
 											echo ' selected="true"';
 										echo '>';
 										echo htmlspecialchars($label_item);
 										echo '</option>';
 										$i++;
 									}
-							?></select>
-						</div><div class="remocoes-item-error-message"></div>
+								?></select>
+							</div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
+						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
 					<?php
@@ -897,12 +960,21 @@ class Remocoes
 						<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 					</label>
-					<textarea id="<?php echo $id ?>"
-						class="remocoes-item-input-text <?php echo $input_class ?>"
-						name="<?php echo $id ?>"
-						rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
-						<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
-					><?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?></textarea>
+					<?php foreach ($clean_data as $entry): ?>
+						<div class="remocoes-set">
+							<textarea id="<?php echo $id ?>"
+								class="remocoes-item-input-text <?php echo $input_class ?>"
+								name="<?php echo $multiple? "${id}[]" : $id; ?>"
+								rows="<?php echo array_key_exists('rows', $field) ? $field['rows'] : 4; ?>"
+								<?php echo array_key_exists('cols', $field) ? 'cols="'.$field['cols'].'"' : ''; ?>
+							><?php echo $entry; ?></textarea>
+						</div>
+					<?php endforeach; ?>
+					<?php if ($multiple): ?>
+							<input type="button"
+								class="remocoes-add-another"
+								value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+					<?php endif; ?>
 					<div class="remocoes-item-error-message"></div>
 					<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 				</div>
@@ -922,10 +994,23 @@ class Remocoes
 							</div>
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
-						</label> <input type="<?php echo $type == 'number' ? 'number' : 'text' ?>" id="<?php echo $id ?>"
-							class="remocoes-item-input-text <?php echo $type == 'date' ? 'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
-							value="<?php echo array_key_exists($id, $_REQUEST) ? wp_strip_all_tags($_REQUEST[$id]) : ''; ?>"
-							name="<?php echo $id ?>">
+						</label>
+						<?php foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set">
+								<input
+									type="<?php echo $type == 'number'? 'number' : 'text'; ?>"
+									class="remocoes-item-input-text <?php echo $type == 'date'?
+										'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+									value="<?php echo $entry; ?>"
+									name="<?php echo $multiple? "${id}[]" : $id; ?>"
+									>
+							</div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 					</div>
