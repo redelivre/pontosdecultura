@@ -165,11 +165,21 @@ textarea {
     box-sizing: border-box;
 }
 
+input[type="number"] {
+	color: #333;
+	border: 0;
+	background-color: #e9ddaf;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
+input[type="number"]:focus,
 textarea:focus {
 	color: #111;
 }
@@ -179,6 +189,7 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"],
+input[type="number"],
 textarea {
 	line-height: 1;
 	padding: 0.75em 1em;
