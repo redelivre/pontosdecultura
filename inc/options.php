@@ -276,6 +276,10 @@ class PontosSettingsPage
 					'label' => __('Número', 'pontosdecultura'),
 					'extra_data' => array(),
 				),
+				'event' => array(
+					'label' => __('Evento', 'pontosdecultura'),
+					'extra_data' => array('values'),
+				),
 		);
 	}
 

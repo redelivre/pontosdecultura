@@ -45,8 +45,8 @@ jQuery(document).ready(function()
 	jQuery('.remocoes-add-another').click(function()
 	{
 		var copy = jQuery(this).parent().children('.remocoes-set').eq(0).clone();
-		copy.children('input').val('');
-		copy.children('input').html('');
+		copy.find('input').val('');
+		copy.find('input').html('');
 		jQuery(this).before(copy);
 		copy.find('input.hasdatepicker')
 			.attr('id', '')

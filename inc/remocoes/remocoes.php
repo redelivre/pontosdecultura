@@ -549,13 +549,19 @@ class Remocoes
 
 	static function get_clean_request_data($id, $multiple=false)
 	{
-		return $multiple
-			&& array_key_exists($id, $_REQUEST)
-			&& is_array($_REQUEST[$id])?
-			array_map('wp_strip_all_tags', $_REQUEST[$id])
-			: array(empty($_REQUEST[$id])? '' : $_REQUEST[$id]);
+		if (array_key_exists($id, $_REQUEST) && is_array($_REQUEST[$id]))
+		{
+			$r = $_REQUEST[$id];
+			if ($multiple)
+				array_walk_recursive($_REQUEST[$id], 'wp_strip_all_tags');
+			else
+				$r = '';
+			return $r;
+		}
+		return array(empty($_REQUEST[$id])?
+				'' : wp_strip_all_tags($_REQUEST[$id]));
 	}
-	
+
 	static function print_field($field, $tax = false)
 	{
 		$purifier = new HTMLPurifier();
@@ -979,6 +985,76 @@ class Remocoes
 					<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
 				</div>
 				<?php
+				break;
+				case 'event':
+					?>
+					<div class="remocoes-item remocoes-item-event <?php echo $id; ?>">
+						<label for="<?php echo $id ?>" class="remocoes-item-label">
+							<div class="remocoes-item-title"><?php echo $label;
+								if(array_key_exists('required', $field ) && $field['required'])
+								{?>
+									<span class="remocoes-item-required-asterisk">*</span><?php
+								}?>
+							</div>
+							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
+						</div>
+						</label>
+						<?php
+						if (array_key_exists('type', $clean_data)
+								&& array_key_exists('date', $clean_data)
+								&& array_key_exists('about', $clean_data))
+							$clean_data = array_map(null, $clean_data['type'],
+									$clean_data['date'], $clean_data['about']);
+						else
+							$clean_data = array(array('', '', ''));
+						foreach ($clean_data as $entry): ?>
+							<div class="remocoes-set">
+								<div class="remocoes-item-input-event-block">
+									<div class="remocoes-item-input-event-dropdown">
+										<select
+											class="<?php echo $input_class; ?>"
+											value=""
+											name="<?php echo $multiple?
+												"${id}[type][]" : "$id[type]"; ?>">
+											<option><?php _e('Tipo', 'pontosdecultura'); ?></option>
+											<?php foreach ($field['values'] as $k => $v): ?>
+												<option value="<?php echo $k; ?>"
+													<?php echo $entry[0] == $k?
+														'selected="selected"': ''; ?> >
+													<?php echo $v; ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+									<input
+										type="text"
+										class="remocoes-item-input-text hasdatepicker"
+										value="<?php echo $entry[1]; ?>"
+										maxlength="10"
+										size="10"
+										name="<?php echo $multiple?
+											"${id}[date][]" : "${id}[date]"; ?>"
+										>
+									<input
+										type="text"
+										class="remocoes-item-input-text"
+										value="<?php echo $entry[2]; ?>"
+										maxlength="256"
+										size="64"
+										name="<?php echo $multiple?
+											"${id}[about][]" : "${id}[about]"; ?>"
+										>
+								</div>
+							</div>
+						<?php endforeach; ?>
+						<?php if ($multiple): ?>
+								<input type="button"
+									class="remocoes-add-another"
+									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+						<?php endif; ?>
+						<div class="remocoes-item-error-message"></div>
+						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
+					</div>
+					<?php
 				break;
 				case 'date':
 				case 'number':

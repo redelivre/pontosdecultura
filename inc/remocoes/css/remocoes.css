@@ -94,6 +94,7 @@ h2.new-remocoes {
 
 .dropdown-estado,
 .dropdown-cidade,
+.remocoes-item-input-event-dropdown,
 .remocoes-item-input-dropdown-block {
    display: block;
    float: left;
@@ -105,6 +106,7 @@ h2.new-remocoes {
 
 .dropdown-estado select,
 .dropdown-cidade select,
+.remocoes-item-input-event-block select,
 .remocoes-item-input-dropdown-block select {
    background: transparent;
    padding: 0.5em;
@@ -284,4 +286,8 @@ input.remocoes-file-upload {
 
 .nova-remocoes .icon-image {
 	
+}
+
+.remocoes-item-input-event-block input[type="text"] {
+	width: auto;
 }

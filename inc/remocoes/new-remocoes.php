@@ -111,6 +111,47 @@ else
 					unset($_POST[$field['slug']]);
 			}
 
+			if (array_key_exists('type', $field) && $field['type'] == 'event'
+					&& array_key_exists($field['slug'], $_POST))
+			{
+				$fd = $_POST[$field['slug']];
+
+				if (!array_key_exists('type', $fd)
+						|| !array_key_exists('date', $fd)
+						|| !array_key_exists('about', $fd))
+						unset($_POST[$field['slug']]);
+				elseif (empty($field['multiple']))
+				{
+					if (!empty($fd['type']) && !empty($fd['date']))
+						unset($_POST[$field['slug']]);
+				}
+				else
+				{
+					$n = array(
+						'type' => array(),
+						'date' => array(),
+						'about' => array(),
+						);
+					$len = min(array_map('sizeof', $fd));
+					$ok = false;
+					for ($i = 0; $i < $len; $i++)
+					{
+						if (!empty($fd['type'][$i]) && !empty($fd['date'][$i]))
+						{
+							$n['type'][] = $fd['type'][$i];
+							$n['date'][] = $fd['date'][$i];
+							$n['about'][] = $fd['about'][$i];
+							$ok = true;
+						}
+					}
+
+					if ($ok)
+						$_POST[$field['slug']] = $n;
+					else
+						unset($_POST[$field['slug']]);
+				}
+			}
+
 			if((array_key_exists('required', $field) && $field['required'])
 					&& (!array_key_exists($field['slug'], $_POST)
 					 	|| empty($_POST[$field['slug']])))
