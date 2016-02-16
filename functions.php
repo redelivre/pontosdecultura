@@ -134,10 +134,12 @@ require get_template_directory() . '/inc/extras.php';
  * 
  */
 function pontosdecultura_custom_login_logo() {
+	$logo_uri = get_theme_mod('banner',
+			Pontosdecultura::get_default_values('banner'));
 	echo '
 	<style type="text/css">
 		.login h1 a {
-			background: url("' . get_template_directory_uri() . '/images/marca.png") top center no-repeat;
+			background: url("'.$logo_uri.'") top center no-repeat;
 			background-size: contain;
 			margin: 0 auto;
 			height: 89px;
