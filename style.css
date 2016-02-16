@@ -1488,3 +1488,7 @@ div.wpcf7-response-output {
 	width: 170px;
 	padding: 0px 5px 0px 60px;
 }
+
+.ui-datepicker {
+	background-color: #fff;
+}
