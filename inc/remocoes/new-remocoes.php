@@ -6,7 +6,7 @@ global $Remocoes_global;
 	
 $remocoes = $Remocoes_global;
 
-$buttonLabel = __('Colocar minha pesquisa no mapa', 'pontosdecultura');
+$buttonLabel = __('Colocar remoção no mapa', 'pontosdecultura');
 
 $publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Remocoes' || $_POST['publish'] == $buttonLabel );
 
@@ -377,7 +377,7 @@ else
 			<div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 				<div class="container">
 					<div class="row">
-						<div class="new-remocoes-sucess"><?php _e('Sua pesquisa continuada foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no Mapa. Obrigado ;)'); ?>
+						<div class="new-remocoes-sucess"><?php _e('Sua remoção foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no mapa. Obrigado.'); ?>
 						</div>
 					</div>
 				</div>
@@ -462,12 +462,12 @@ else
 	<div class="remocoes-map-block">
 		<div class="remocoes-item remocoes-item-map remocoes-map">
 			<label class="remocoes-item-label">
-			<div class="remocoes-item-title"><h2><?php _e('Encontre-se no mapa', 'pontosdecultura');?></h2>
+			<div class="remocoes-item-title"><h2><?php _e('Localize a remoção no mapa', 'pontosdecultura');?></h2>
 				</div>
 				<div class="remocoes-item-tip-text"><h3><?php
-					_e('1 - Dê zoom em seu território e encontre sua rua.', 'pontosdecultura');echo "<br/>";
-					_e('2 - Clique duas vezes no mapa para inserir um marcador.', 'pontosdecultura');echo "<br/>";
-					_e('3 - Se preferir, digite seu endereço no campo abaixo do mapa, aperte "Enter" e deixe que a gente te encontra.', 'pontosdecultura'); 
+					_e('1. Digite o endereço no campo abaixo do mapa e aperte "Enter".', 'pontosdecultura');echo "<br/>";
+					_e('2. Se preferir, dê zoom no respectivo território e encontre a área da remoção.', 'pontosdecultura');echo "<br/>";
+					_e('3. Clique duas vezes no mapa para inserir o marcador.', 'pontosdecultura'); 
 					?></h3>
 				</div>
 			</label>
