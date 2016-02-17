@@ -75,7 +75,7 @@ class Remocoes
 			register_taxonomy($field['slug'], array('remocoes'),
 					array(
 						'label' => $field['title'],
-						'show_admin_column' => true,
+						'hierarchical' => true,
 					));
 
 			foreach ($field['values'] as $v)
