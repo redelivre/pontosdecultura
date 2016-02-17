@@ -221,6 +221,7 @@ else
 		$output = 'names'; // or objects
 		$operator = 'and'; // 'and' or 'or'
 		$taxonomies = get_taxonomies( $args, $output, $operator );
+		$ok_taxes = array();
 		
 		foreach ($taxonomies as $taxonomy)
 		{
@@ -229,6 +230,7 @@ else
 				$ids = $_POST['taxonomy_'.$taxonomy];
 				if (!is_array($ids))
 					$ids = array($ids);
+				$ids = array_filter($ids);
 
 				/* Territorio is a special case with two values */
 				if (($taxonomy == 'territorio' && sizeof($ids) == 2)
@@ -258,10 +260,25 @@ else
 									'pontosdecultura').': '.$taxonomy;
 							$notice = true;
 						}
+						$ok_taxes[] = $taxonomy;
 					}
 				}
 				
 				unset($_POST['taxonomy_'.$taxonomy]);
+			}
+		}
+
+		foreach ($remocoes->getFields() as $field)
+		{
+			if (empty($field['taxonomy']) || empty($field['required']))
+				continue;
+
+			if (!in_array($field['slug'], $ok_taxes)) {
+				$message[] = '<span class="error-msn-pre">'
+					.__('*O campo obrigatório').': '
+					.'</span><div>'.$field['title'].' '
+					.__('não foi preenchido').'</div>';
+				$notice = true;
 			}
 		}
 		
