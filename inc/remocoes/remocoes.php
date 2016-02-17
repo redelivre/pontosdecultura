@@ -69,7 +69,7 @@ class Remocoes
 	{
 		foreach ($this->_customs as $field)
 		{
-			if (empty($field['taxonomy']))
+			if (empty($field['taxonomy']) || !array_key_exists('values', $field))
 				continue;
 
 			register_taxonomy($field['slug'], array('remocoes'),
@@ -605,6 +605,7 @@ class Remocoes
 					$tax['required'] : false;
 				$selected = array_key_exists('taxonomy_'.$id, $_REQUEST)?
 					$_REQUEST['taxonomy_'.$id] : '';
+				$tax['label'] = $label;
 			}
 			
 			switch ($type)
@@ -639,8 +640,8 @@ class Remocoes
 									{
 										?>
 										<option
-											value="<?php echo $term->slug; ?>"
-											<?php if ($selected == $term->slug): ?>
+											value="<?php echo $term->term_id; ?>"
+											<?php if ($selected == $term->term_id): ?>
 												selected="selected"
 											<?php endif; ?>
 										><?php echo $term->name; ?></option>
@@ -1254,7 +1255,10 @@ class Remocoes
 		
 		$field = array_merge($field_default, $field);
 		
-		extract($field);
+		$label = $field['label'];
+		$tip = $field['tip'];
+		$id = $field['id'];
+		$required_message = isset($required_message)? $required_message : '';
 		?>
 		<div class="remocoes-item remocoes-item-dropdown">
 			<label for="<?php echo $id ?>" class="remocoes-item-label">

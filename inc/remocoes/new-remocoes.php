@@ -226,19 +226,38 @@ else
 		{
 			if(array_key_exists('taxonomy_'.$taxonomy, $_POST))
 			{
-				$slug = $_POST['taxonomy_'.$taxonomy];
-				$t = get_terms($taxonomy, array('hide_empty' => 0, 'slug' => $slug));
+				$ids = $_POST['taxonomy_'.$taxonomy];
+				if (!is_array($ids))
+					$ids = array($ids);
 
-				if (sizeof($t))
+				/* Territorio is a special case with two values */
+				if (($taxonomy == 'territorio' && sizeof($ids) == 2)
+						|| ($taxonomy != 'territorio' && sizeof($ids) == 1))
 				{
-					$result = wp_set_post_terms($post_ID,
-							array($t[0]->term_id), $taxonomy);
-
-					if(is_object($result) && get_class($result) == 'WP_Error' )
+					$terms = array();
+					foreach ($ids as $id)
 					{
-						$message[] = __('Erro ao gravar categorização',
-								'pontosdecultura').': '.$taxonomy;
-						$notice = true;
+						/* Explode to prevent injected values,
+							 as include accepts a comma separated list */
+						$id = explode(',', $id)[0];
+
+						$t = get_terms($taxonomy,
+								array('hide_empty' => 0, 'include' => $id, 'number' => 1));
+						if (sizeof($t))
+							$terms[] = $t[0]->term_id;
+					}
+
+					if (sizeof($terms) == sizeof($ids))
+					{
+						$result = wp_set_post_terms($post_ID,
+								$terms, $taxonomy);
+
+						if(is_object($result) && get_class($result) == 'WP_Error' )
+						{
+							$message[] = __('Erro ao gravar categorização',
+									'pontosdecultura').': '.$taxonomy;
+							$notice = true;
+						}
 					}
 				}
 				

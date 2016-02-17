@@ -43,29 +43,47 @@ class PontosSettingsPage
 		$typeData = self::getTypeData();
 		$fields = array();
 		$i = 0;
+		$used = array();
 		foreach ($new as $field)
 		{
 			$data = array();
 			$extraData = $typeData[$field['type']]['extra_data'];
 
-			$slug = sanitize_title($field['title']) . "_$i";
-			$i++;
-			$data['slug'] = $slug;
+			if (!empty($typeData[$field['type']]['unique']))
+			{
+				if (in_array($field['type'], $used))
+					continue;
+				$used[] = $field['type'];
+			}
 
-			$data['title'] = trim($field['title']);
-			$data['tip'] = array_key_exists('tip', $field)?
-				trim($field['tip']) : '';
-			$data['type'] = $field['type'];
-			$data['download'] = $field['download'];
-			$data['hide'] = array_key_exists('hide', $field) && $field['hide'];
-			$data['required'] = array_key_exists('required', $field)
-				&& $field['required'];
-			$data['advanced'] = array_key_exists('advanced', $field)
-				&& $field['advanced'];
-			$data['multiple'] = array_key_exists('multiple', $field)
-				&& $field['multiple'];
-			$data['taxonomy'] = array_key_exists('taxonomy', $field)
-				&& $field['taxonomy'] && in_array('values', $extraData, true);
+			$data = $this->forceField($field);
+			$i++;
+			if (!array_key_exists('slug', $data))
+				$data['slug'] = sanitize_title($field['title']) . "_$i";
+
+			if (!array_key_exists('title', $data))
+				$data['title'] = trim($field['title']);
+			if (!array_key_exists('tip', $data))
+				$data['tip'] = array_key_exists('tip', $field)?
+					trim($field['tip']) : '';
+			if (!array_key_exists('type', $data))
+				$data['type'] = $field['type'];
+			if (!array_key_exists('download', $data))
+				$data['download'] = $field['download'];
+			if (!array_key_exists('hide', $data))
+				$data['hide'] = array_key_exists('hide', $field) && $field['hide'];
+			if (!array_key_exists('required', $data))
+				$data['required'] = array_key_exists('required', $field)
+					&& $field['required'];
+			if (!array_key_exists('advanced', $data))
+				$data['advanced'] = array_key_exists('advanced', $field)
+					&& $field['advanced'];
+			if (!array_key_exists('multiple', $data))
+				$data['multiple'] = array_key_exists('multiple', $field)
+					&& $field['multiple'];
+			if (!array_key_exists('taxonomy', $data))
+				$data['taxonomy'] = array_key_exists('taxonomy', $field)
+					&& $field['taxonomy'] && in_array('values', $extraData, true);
 
 			if (in_array('values', $extraData, true))
 			{
@@ -88,10 +106,21 @@ class PontosSettingsPage
 				$data['cols'] = (int) $field['cols'];
 			}
 
-			$fields[$slug] = $data;
+			$fields[$data['slug']] = $data;
 		}
 
 		update_option('remocoes_custom_fields', $fields);
+	}
+
+	private function forceField($field)
+	{
+		$typeData = self::getTypeData();
+
+		$forced = array_key_exists('forced', $typeData[$field['type']])?
+			$typeData[$field['type']]['forced'] : array();
+		foreach ($forced as $k => $v)
+			$field[$k] = $v;
+		return $field;
 	}
 
 	private function handleEditPost()
@@ -126,6 +155,7 @@ class PontosSettingsPage
 		if (!array_key_exists('type', $field)
 				|| !array_key_exists($field['type'], $typeData))
 			return false;
+		$field = $this->forceField($field);
 		$extraData = $typeData[$field['type']]['extra_data'];
 
 		if (empty($field['title']) || is_array($field['title']))
@@ -245,6 +275,16 @@ class PontosSettingsPage
 				'estadocidade' => array(
 					'label' => __('Estado e cidade', 'pontosdecultura'),
 					'extra_data' => array(),
+					'unique' => true,
+					'forced' => array(
+						'taxonomy' => true,
+						'title' => __('Território', 'pontosdecultura'),
+						'slug' => 'territorio',
+						'required' => true,
+						'download' => 'everyone',
+						'hide' => false,
+						'advanced' => true,
+					),
 				),
 				'wp_editor' => array(
 					'label' => __('Editor Wordpress', 'pontosdecultura'),

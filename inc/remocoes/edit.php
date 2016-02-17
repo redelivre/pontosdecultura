@@ -21,41 +21,44 @@
 			<button class='remocoes-remove-field'><?php
 				_e('Remover', 'pontosdecultura'); ?>
 			</button>
-			<br>
-			<label><?php _e('Nome*:', 'pontosdecultura'); ?></label>
-			<input type="text" class="remocoes-required remocoes-custom-title"
-				name="remocoes-custom[%ID%][title]">
-			<br>
-			<label><?php _e('Dica:', 'pontosdecultura'); ?></label>
-			<input type="text" name="remocoes-custom[%ID%][tip]"
-				class="remocoes-custom-tip">
-			<br>
-			<input type="checkbox" name="remocoes-custom[%ID%][required]"
-				class="remocoes-custom-required">
-			<label><?php _e('Obrigatório', 'pontosdecultura'); ?></label>
-			<br>
-			<input type="checkbox" name="remocoes-custom[%ID%][hide]"
-				class="remocoes-custom-hide">
-			<label><?php _e('Esconder', 'pontosdecultura'); ?></label>
-			<br>
-			<input type="checkbox" name="remocoes-custom[%ID%][advanced]"
-				class="remocoes-custom-advanced">
-			<label><?php _e('Usar na busca avançada', 'pontosdecultura'); ?></label>
-			<br>
-			<input type="checkbox" name="remocoes-custom[%ID%][multiple]"
-				class="remocoes-custom-multiple">
-			<label><?php _e('Múltiplas entradas', 'pontosdecultura'); ?></label>
-			<br>
-			<label><?php _e('Quem pode baixar:', 'pontosdecultura'); ?></label>
-			<select name="remocoes-custom[%ID%][download]"
-				class="remocoes-custom-download">
-				<option value="admin"><?php
-					_e('Apenas administrador', 'pontosdecultura');
-				?></option>
-				<option value="everyone"><?php
-					_e('Todos', 'pontosdecultura');
-				?></option>
-			</select>
+			<?php if (empty($d['unique'])): ?>
+				<br>
+				<label><?php _e('Nome*:', 'pontosdecultura'); ?></label>
+				<input type="text" class="remocoes-required remocoes-custom-title"
+					name="remocoes-custom[%ID%][title]">
+				<br>
+				<label><?php _e('Dica:', 'pontosdecultura'); ?></label>
+				<input type="text" name="remocoes-custom[%ID%][tip]"
+					class="remocoes-custom-tip">
+				<br>
+				<input type="checkbox" name="remocoes-custom[%ID%][required]"
+					class="remocoes-custom-required">
+				<label><?php _e('Obrigatório', 'pontosdecultura'); ?></label>
+				<br>
+				<input type="checkbox" name="remocoes-custom[%ID%][hide]"
+					class="remocoes-custom-hide">
+				<label><?php _e('Esconder', 'pontosdecultura'); ?></label>
+				<br>
+				<input type="checkbox" name="remocoes-custom[%ID%][advanced]"
+					class="remocoes-custom-advanced">
+				<label><?php _e('Usar na busca avançada', 'pontosdecultura');
+					?></label>
+				<br>
+				<input type="checkbox" name="remocoes-custom[%ID%][multiple]"
+					class="remocoes-custom-multiple">
+				<label><?php _e('Múltiplas entradas', 'pontosdecultura'); ?></label>
+				<br>
+				<label><?php _e('Quem pode baixar:', 'pontosdecultura'); ?></label>
+				<select name="remocoes-custom[%ID%][download]"
+					class="remocoes-custom-download">
+					<option value="admin"><?php
+						_e('Apenas administrador', 'pontosdecultura');
+					?></option>
+					<option value="everyone"><?php
+						_e('Todos', 'pontosdecultura');
+					?></option>
+				</select>
+			<?php endif; ?>
 			<?php if (in_array('values', $d['extra_data'], true)): ?>
 				<br>
 				<input type="checkbox" name="remocoes-custom[%ID%][taxonomy]"
