@@ -67,19 +67,33 @@ class Remocoes
 
 	function registerTaxonomies()
 	{
+		$mapa = get_option('mapasdevista');
+
 		foreach ($this->_customs as $field)
 		{
-			if (empty($field['taxonomy']) || !array_key_exists('values', $field))
+			if (empty($field['taxonomy']))
 				continue;
 
-			register_taxonomy($field['slug'], array('remocoes'),
-					array(
-						'label' => $field['title'],
-						'hierarchical' => true,
-					));
+			if (array_key_exists('values', $field))
+			{
+				register_taxonomy($field['slug'], array('remocoes'),
+						array(
+							'label' => $field['title'],
+							'hierarchical' => true,
+						));
 
-			foreach ($field['values'] as $v)
-				wp_insert_term($v, $field['slug']);
+				foreach ($field['values'] as $v)
+					wp_insert_term($v, $field['slug']);
+			}
+
+			if ($mapa !== false)
+				$mapa['taxonomies'][] = $field['slug'];
+		}
+
+		if ($mapa !== false)
+		{
+			$mapa['taxonomies'] = array_unique($mapa['taxonomies']);
+			update_option('mapasdevista', $mapa);
 		}
 	}
 
