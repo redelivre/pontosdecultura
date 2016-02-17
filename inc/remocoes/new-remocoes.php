@@ -65,7 +65,7 @@ else
 			'pontosdecultura');
 	
 	$editing = true;
-	$post = null;
+	global $post;
 	if($publish && array_key_exists('post_ID', $_POST) && $_POST['post_ID'] > 0)
 	{
 		$post = get_post($_POST['post_ID']);
@@ -94,7 +94,9 @@ else
 		/* Save Fields and Custom Fields */
 		foreach ($remocoes->getFields() as $key => $field)
 		{
-			if(array_key_exists('save', $field) && $field['save'] == false ) /* do not save especial fields */
+			/* do not save especial fields */
+			if((array_key_exists('save', $field) && $field['save'] == false)
+					|| !empty($field['taxonomy']))
 			{
 				continue;
 			}
@@ -213,7 +215,6 @@ else
 		}
 		
 		/* Save Categories */
-		
 		$args = array(
 			'public'   => true,
 		);
@@ -225,11 +226,20 @@ else
 		{
 			if(array_key_exists('taxonomy_'.$taxonomy, $_POST))
 			{
-				$result = wp_set_post_terms($post_ID, $_POST['taxonomy_'.$taxonomy], $taxonomy);
-				if( is_object($result) && get_class($result) == 'WP_Error' )
+				$slug = $_POST['taxonomy_'.$taxonomy];
+				$t = get_terms($taxonomy, array('hide_empty' => 0, 'slug' => $slug));
+
+				if (sizeof($t))
 				{
-					$message[] = __('Erro ao gravar categorização', 'pontosdecultura').': '.$taxonomy;
-					$notice = true;
+					$result = wp_set_post_terms($post_ID,
+							array($t[0]->term_id), $taxonomy);
+
+					if(is_object($result) && get_class($result) == 'WP_Error' )
+					{
+						$message[] = __('Erro ao gravar categorização',
+								'pontosdecultura').': '.$taxonomy;
+						$notice = true;
+					}
 				}
 				
 				unset($_POST['taxonomy_'.$taxonomy]);
@@ -389,9 +399,6 @@ else
 	$form_action = 'editpost';
 	$nonce_action = 'update-post_' . $post_ID;
 	$form_extra .= "<input type='hidden' id='post_ID' name='post_ID' value='" . esc_attr($post_ID) . "' />";
-	
-
-
 	?>
 <div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 
@@ -457,7 +464,10 @@ else
 	$fields = $remocoes->getFields();
 
 	foreach ($fields as $k => $f)
-		Remocoes::print_field($f);
+		if (empty($f['taxonomy']))
+			Remocoes::print_field($f);
+		else
+			Remocoes::print_field($f['slug'], $f);
 	?>
 	<div class="remocoes-map-block">
 		<div class="remocoes-item remocoes-item-map remocoes-map">

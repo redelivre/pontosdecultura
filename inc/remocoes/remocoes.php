@@ -594,12 +594,17 @@ class Remocoes
 			$label = '';
 			$tip = '';
 			$id = '';
+			$required_message = '';
 			if(is_array($tax))
 			{
 				$type = array_key_exists('type', $tax) ? $tax['type'] : '';
-				$label = array_key_exists('label', $tax) ? $tax['label'] : '';
+				$label = array_key_exists('title', $tax) ? $tax['title'] : '';
 				$tip = array_key_exists('tip', $tax) ? $tax['tip'] : '';
-				$id = array_key_exists('slug', $tax) ? $tax['id'] : '';
+				$id = array_key_exists('slug', $tax) ? $tax['slug'] : '';
+				$required = array_key_exists('required', $tax)?
+					$tax['required'] : false;
+				$selected = array_key_exists('taxonomy_'.$id, $_REQUEST)?
+					$_REQUEST['taxonomy_'.$id] : '';
 			}
 			
 			switch ($type)
@@ -619,9 +624,8 @@ class Remocoes
 							<div class="remocoes-item-tip-text"><?php echo $tip; ?>
 						</div>
 						</label><div class="remocoes-item-input-dropdown-block dropdown-<?php echo $id; ?>"><select id="<?php echo $id ?>"
-							class="<?php echo $input_class ?>"
-							name="<?php echo $id ?>">
-								<option value="" selected="selected" ><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
+							name="<?php echo "taxonomy_$id" ?>">
+								<option value=""><?php echo esc_attr_x('Selecione', 'pontosdecultura' ); ?></option>
 								<?php
 									$args = array(
 											'orderby' => 'name',
@@ -634,7 +638,12 @@ class Remocoes
 									foreach ($terms as $term)
 									{
 										?>
-										<option value="<?php echo $term->slug; ?>" ><?php echo $term->name; ?></option>
+										<option
+											value="<?php echo $term->slug; ?>"
+											<?php if ($selected == $term->slug): ?>
+												selected="selected"
+											<?php endif; ?>
+										><?php echo $term->name; ?></option>
 										<?php
 									}
 								?>
