@@ -191,6 +191,9 @@ class Remocoes
 
 		foreach ($this->_customs as $key => $campo )
 		{
+			if (!empty($campo['taxonomy']))
+				continue;
+
 			$slug = $campo['slug'];
 			$type = array_key_exists('type', $campo) ? $campo['type'] : 'input';
 			$dado = array_key_exists($slug, $custom) ? array_pop($custom[$slug]) : '';
