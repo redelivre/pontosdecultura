@@ -64,6 +64,8 @@ class PontosSettingsPage
 				&& $field['advanced'];
 			$data['multiple'] = array_key_exists('multiple', $field)
 				&& $field['multiple'];
+			$data['taxonomy'] = array_key_exists('taxonomy', $field)
+				&& $field['taxonomy'] && in_array('values', $extraData, true);
 
 			if (in_array('values', $extraData, true))
 			{

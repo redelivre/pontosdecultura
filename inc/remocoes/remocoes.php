@@ -7,6 +7,7 @@ class Remocoes
 		$this->_customs = get_option('remocoes_custom_fields', array());
 		add_action('init', array($this, 'init'));
 		add_action('init', array($this, 'rewrite_rules'));
+		add_action('init', array($this, 'registerTaxonomies'));
 		add_action('template_redirect', array($this, 'form'));
 		add_action('wp_ajax_resetpass', array($this, 'form'));
 		add_action('wp_ajax_nopriv_resetpass', array($this, 'form'));
@@ -63,7 +64,25 @@ class Remocoes
 		$this->roles_install($permissoes);
 		
 	}
-	
+
+	function registerTaxonomies()
+	{
+		foreach ($this->_customs as $field)
+		{
+			if (empty($field['taxonomy']))
+				continue;
+
+			register_taxonomy($field['slug'], array('remocoes'),
+					array(
+						'label' => $field['title'],
+						'show_admin_column' => true,
+					));
+
+			foreach ($field['values'] as $v)
+				wp_insert_term($v, $field['slug']);
+		}
+	}
+
 	function Add_custom_Post()
 	{
 		$labels = array
@@ -1330,8 +1349,6 @@ $Remocoes_global = new Remocoes();
 /**
  * Custom taxonomies.
  */
-require dirname(__FILE__) . '/taxs.php';
-
 require dirname(__FILE__) . '/../estadoscidades/EstadosCidades.php';
 
 ?>
