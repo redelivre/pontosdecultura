@@ -56,18 +56,17 @@ class PontosSettingsPage
 				$used[] = $field['type'];
 			}
 
-			$data = $this->forceField($field);
+			$data['type'] = $field['type'];
+			$data = $this->forceField($data);
 			$i++;
+
 			if (!array_key_exists('slug', $data))
 				$data['slug'] = sanitize_title($field['title']) . "_$i";
-
 			if (!array_key_exists('title', $data))
 				$data['title'] = trim($field['title']);
 			if (!array_key_exists('tip', $data))
 				$data['tip'] = array_key_exists('tip', $field)?
 					trim($field['tip']) : '';
-			if (!array_key_exists('type', $data))
-				$data['type'] = $field['type'];
 			if (!array_key_exists('download', $data))
 				$data['download'] = $field['download'];
 			if (!array_key_exists('hide', $data))
