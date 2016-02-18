@@ -165,7 +165,9 @@ class Remocoes
 				'tip' => '',
 				'required' => true,
 				'buildin' => true,
-				'multiple' => false
+				'multiple' => false,
+				'advanced' => true,
+				'type' => 'text',
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
@@ -596,6 +598,146 @@ class Remocoes
 		}
 		return array(empty($_REQUEST[$id])?
 				'' : wp_strip_all_tags($_REQUEST[$id]));
+	}
+
+	static function print_search_field($field)
+	{
+		switch ($field['type'])
+		{
+			case 'dropdown':
+			case 'dropdown-cem':
+			case 'dropdown-ano':
+			case 'checkbox':
+			case 'radio':
+			case 'number':
+				$values = array();
+				if ($field['type'] == 'dropdown-cem' || $field['type'] == 'number')
+				{
+					foreach (range(1, 99) as $i)
+						$values[$i] = $i;
+					$values[99] = '99+';
+				}
+				else if ($field['type'] == 'dropdown-ano')
+				{
+					for($i = date('Y'); $i >= 1900; $i--)
+						$values[$i] = $i;
+				}
+				else
+					$values = $field['values'];
+				?>
+				<select
+					name="<?php echo $field['slug']; ?>"
+					class="adv-search" autocomplete="off">
+					<option value=""><?php echo esc_attr($field['title']); ?></option>
+					<?php foreach ($values as $k => $v): ?>
+							<option value="<?php echo $k; ?>" ><?php
+								echo esc_attr($v); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php
+				break;
+
+			case 'text':
+			case 'textarea':
+			case 'date':
+			case 'wp-editor':
+				?>
+				<input
+					type="search"
+					class="adv-search"
+					placeholder="<?php echo esc_attr($field['title']); ?>"
+					value="" name="<?php echo esc_attr($field['slug']); ?>"
+					>
+				<?php
+				break;
+			case 'event':
+				?>
+				<select
+					name="<?php echo $field['slug']; ?>-type"
+					class="adv-search" autocomplete="off">
+					<option value=""><?php echo esc_attr($field['title'])
+							. esc_attr_x(' - Tipo', 'pontosdecultura' ); ?></option>
+					<?php foreach ($values as $k => $v): ?>
+							<option value="<?php echo $k; ?>" ><?php
+								echo esc_attr($v); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<input
+					type="search"
+					class="adv-search"
+					placeholder="<?php echo esc_attr($field['title'])
+							. esc_attr_x(' - Data', 'pontosdecultura' ); ?>"
+					value="" name="<?php echo esc_attr($field['slug']); ?>-date"
+					>
+				<?php
+				break;
+			case 'dropdown-meses-anos':
+				?>
+					<select
+						name="<?php echo $field['slug']; ?>-meses"
+						class="adv-search"
+						autocomplete="off">
+						<option value="" selected="selected" ><?php
+							echo esc_attr($field['title'])
+								. esc_attr_x(' - Meses', 'pontosdecultura' ); ?></option>
+						<?php
+							foreach (range(1, 12) as $i)
+							{
+								?>
+								<option value="<?php echo $i; ?>" ><?php echo $i; ?></option>
+								<?php
+							}
+						?>
+					</select>
+					<select
+						name="<?php echo $field['slug']; ?>-anos"
+						class="adv-search"
+						autocomplete="off">
+						<option value="" selected="selected" ><?php
+							echo esc_attr($field['title'])
+								. esc_attr_x(' - Anos', 'pontosdecultura' ); ?></option>
+						<?php
+							foreach (range(1, 100) as $i)
+							{
+								?>
+								<option value="<?php echo $i; ?>" ><?php echo $i; ?></option>
+								<?php
+							}
+						?>
+					</select>
+				<?php
+				break;
+			case 'estadocidade':
+				?>
+					<select name="estado" class="adv-search adv-search-estado"
+						autocomplete="off">
+						<option value="" selected="selected" ><?php
+							echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
+						<?php
+							$terms = get_terms('territorio',
+									array('parent' => 0, 'orderby' => 'name',
+										'hide_empty' => false));
+							foreach ($terms as $term)
+							{
+								?>
+								<option value="<?php echo $term->slug; ?>" ><?php
+									echo esc_attr($term->name); ?></option>
+								<?php
+							}
+						?>
+					</select>
+					<select name="cidade" class="adv-search adv-search-cidade"
+						autocomplete="off">
+						<option value="" selected="selected" ><?php
+							echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
+					</select>
+				<?php
+				break;
+			default:
+				echo '<h3>'.__(sprintf('Tipo %s não implementado',
+							$field['type']), 'pontosdecultura').'</h3>';
+				break;
+		}
 	}
 
 	static function print_field($field, $tax = false)

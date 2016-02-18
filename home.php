@@ -81,150 +81,20 @@
 		<div class="container">
 			<h2 class="area-title">Busca avançada</h2>
 			<form class="adv-search-form content-box" role="search">
-				<input type="search" class="adv-search-title" placeholder="<?php echo esc_attr_x( 'Nome do Núcleo ou Artista Pesquisador', 'pontosdecultura' ); ?>" value="" name="adv-search-title" title="<?php //echo esc_attr_x( 'Buscar somente por pontos cujo nome contenham esse termo', 'pontosdecultura' ); ?>" />
-				<select name="adv-search-cenico-performativa" class="adv-search-cenico-performativa" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Área(s) da Pesquisa Cênico-Performativa', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('cenico-performativa', array('orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				<select name="adv-search-estado" class="adv-search-estado" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Estado', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('territorio', array('parent' => 0, 'orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				<select name="adv-search-cidade" class="adv-search-cidade" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Cidade', 'pontosdecultura' ); ?></option>
-				</select>
-				<select name="adv-search-natureza" class="adv-search-natureza" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Natureza', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('natureza', array('orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				<select name="adv-search-desdobramentos" class="adv-search-desdobramentos" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Desdobramentos', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('desdobramentos', array('orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				
-				<select name="adv-search-ano-inicio" class="adv-search-ano-inicio" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Tempo', 'pontosdecultura' ); ?></option>
-					<option value="<?php echo date('Y') - 1; ?>,<?php echo date('Y') - 3; ?>">1 a 3 anos</option>
-					<option value="<?php echo date('Y') - 4; ?>,<?php echo date('Y') - 6; ?>">4 a 6 anos</option>
-					<option value="<?php echo date('Y') - 7; ?>,<?php echo date('Y') - 10; ?>">7 a 10 anos</option>
-					<option value="<?php echo date('Y') - 11; ?>,<?php echo date('Y') - 15; ?>">11 a 15 anos</option>
-					<option value="<?php echo date('Y') - 16; ?>,<?php echo date('Y') - 20; ?>">16 a 20 anos</option>
-					<option value="<?php echo date('Y') - 21; ?>,<?php echo date('Y') - 30; ?>">21 a 30 anos</option>
-					<option value="<?php echo date('Y') - 31; ?>,+">Mais de 30 anos</option>
-				</select>
+				<?php
+					global $Remocoes_global;
 
-				<select name="adv-search-numero-integrantes" class="adv-search-numero-integrantes" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Nº de Integrantes Estáveis', 'pontosdecultura' ); ?></option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11,20">11 a 20</option>
-					<option value="20,+">Mais de 20</option>
-				</select>
-				
-				<select name="adv-search-publico-alvo" class="adv-search-publico-alvo" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Público-alvo', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('publico-alvo', array('orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				<select name="adv-search-ressonancias" class="adv-search-ressonancias" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Ressonâncias', 'pontosdecultura' ); ?></option>
-					<?php
-						$terms = get_terms('ressonancias', array('orderby' => 'name', 'hide_empty' => false));
-						foreach ($terms as $term)
-						{
-							?>
-							<option value="<?php echo $term->slug; ?>" ><?php echo str_replace('#input#', '', $term->name); ?></option>
-							<?php
-						} 
-					?>
-				</select>
-				
-				<select name="adv-search-e-ponto" class="adv-search-e-ponto" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Ponto de Cultura?', 'pontosdecultura' ); ?></option>
-					<option value="N">Não</option>
-					<option value="S">É Ponto de Cultura</option>
-					<option value="P">É Pontão de Cultura</option>
-				</select>
-				
-				<select name="adv-search-vinculo" class="adv-search-vinculo" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Vínculo Acadêmico', 'pontosdecultura' ); ?></option>
-					<option value="N">Nunca possuiram</option>
-					<option value="P">Já Possuiram</option>
-					<option value="S">Possuem</option>
-				</select>
-				
-				<select name="adv-search-fotos" class="adv-search-fotos" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Fotos', 'pontosdecultura' ); ?></option>
-					<option value="S">Que tenham fotos</option>
-					<option value="N">Que não tenham fotos</option>
-				</select>
-				
-				<select name="adv-search-links" class="adv-search-links" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Links para publicações', 'pontosdecultura' ); ?></option>
-					<option value="S">Com links para publicações</option>
-					<option value="N">Sem links para publicações</option>
-				</select>
-				
-				<select name="adv-search-videos" class="adv-search-videos" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Links para Videos', 'pontosdecultura' ); ?></option>
-					<option value="S">Com links para vídeos</option>
-					<option value="N">Sem links para videos</option>
-				</select>
-				
-				<select name="adv-search-facebook" class="adv-search-facebook" autocomplete="off">
-					<option value="" selected="selected" ><?php echo esc_attr_x('Facebook', 'pontosdecultura' ); ?></option>
-					<option value="S">Com links para o facebook</option>
-					<option value="N">Sem links para o facebook</option>
-				</select>
-				
-				<input type="submit" class="adv-search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
+					$fields = $Remocoes_global->getFields();
+					foreach ($fields as $field)
+					{
+						if (empty($field['advanced']))
+							continue;
+
+						Remocoes::print_search_field($field);
+					}
+				?>
+				<input type="submit" class="adv-search-submit"
+					value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>">
 			</form><!-- .adv-search-form -->
 		</div><!-- .container -->
 	</section>
