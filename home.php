@@ -124,8 +124,7 @@
 				<?php _e('Load data', 'pontosdecultura'); ?>
 			</div>
 			<div class="search-not-here">
-				<img class="icon-capa" src="<?php echo get_template_directory_uri().'/images/icon.png'; ?>"/>
-				<?php printf( __( 'Não encontrou o procurava? Participe <a href="%s">cadastre sua pesquisa</a> ou <a href="%s">entre em contato</a> conosco!', 'pontosdecultura' ),  Remocoes::get_new_url(), get_bloginfo( 'url' ) . '/contato' ); ?>
+				<?php printf( __( 'Não encontrou o procurava? Participe <a href="%s">cadastre sua remoção</a> ou <a href="%s">entre em contato</a> conosco!', 'pontosdecultura' ),  Remocoes::get_new_url(), get_bloginfo( 'url' ) . '/contato' ); ?>
 			</div>
 		</div>
 	</section>
