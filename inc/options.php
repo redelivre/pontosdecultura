@@ -90,7 +90,7 @@ class PontosSettingsPage
 				$j = 0;
 				foreach ($field['values'] as $v)
 				{
-					$data['values'][sanitize_title($v) . "_$j"] = trim($v);
+					$data['values'][$data['slug'].'_'.sanitize_title($v)."_$j"]=trim($v);
 					$j++;
 				}
 			}

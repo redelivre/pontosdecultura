@@ -82,8 +82,8 @@ class Remocoes
 							'hierarchical' => true,
 						));
 
-				foreach ($field['values'] as $v)
-					wp_insert_term($v, $field['slug']);
+				foreach ($field['values'] as $k => $v)
+					wp_insert_term($v, $field['slug'], array('slug' => $k));
 			}
 
 			if ($mapa !== false)
@@ -593,7 +593,7 @@ class Remocoes
 			if ($multiple)
 				array_walk_recursive($_REQUEST[$id], 'wp_strip_all_tags');
 			else
-				$r = '';
+				$r = array('');
 			return $r;
 		}
 		return array(empty($_REQUEST[$id])?
