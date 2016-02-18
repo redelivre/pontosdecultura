@@ -39,15 +39,17 @@
 	.widget-area--footer {
 		background: <?php
 			echo get_theme_mod('footerwidget_bgcolor',
-					Pontosdecultura::get_default_values('footerwidget_bgcolor'));
-		?> url('images/footer-pattern.png') repeat-x bottom;
+					Pontosdecultura::get_default_values('footerwidget_bgcolor'))
+			. "url('" . get_template_directory_uri() . "/images/footer-pattern.png')"
+			. 'repeat-x bottom'; ?>
 	}
 
 	.support-area {
 		background: <?php
 			echo get_theme_mod('support_bgcolor',
-					Pontosdecultura::get_default_values('support_bgcolor'));
-		?> url('images/footer-pattern.png') repeat-x bottom;
+					Pontosdecultura::get_default_values('support_bgcolor'))
+			. "url('" . get_template_directory_uri() . "/images/footer-pattern.png')"
+			. 'repeat-x bottom'; ?>
 	}
 
 	.site-header,
