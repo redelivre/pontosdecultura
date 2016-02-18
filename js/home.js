@@ -26,7 +26,8 @@ function pontosdecultura_updateResults(ids)
     
     var count = 0;
     
-    //mapstraction.markerclusterer.setOptions({map:null});
+    if(mapstraction.markerclusterer != null)
+        mapstraction.markerclusterer.setOptions({map:null});
     jQuery(".result").hide();
     
     for (var i = 0; i < mapstraction.markers.length; i ++)
@@ -46,7 +47,8 @@ function pontosdecultura_updateResults(ids)
     
     jQuery('#filter_total').html(count);
     
-    //mapstraction.markerclusterer.setOptions({map:mapstraction.getMap()});
+    if(mapstraction.markerclusterer != null)
+      mapstraction.markerclusterer.setOptions({map:mapstraction.getMap()});
     
     mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
 
@@ -58,13 +60,15 @@ function pontosdecultura_update_posts()
 		
 		if(searchVal == '')
 		{
-			mapstraction.markerclusterer.setOptions({map:null});
+                        if(mapstraction.markerclusterer != null)
+                            mapstraction.markerclusterer.setOptions({map:null});
 			jQuery(".result").show();
 			for (var i = 0; i < mapstraction.markers.length; i ++)
 		    {
 				mapstraction.markers[i].show();
 		    }
-			mapstraction.markerclusterer.setOptions({map:mapstraction.getMap()});
+                        if(mapstraction.markerclusterer != null)
+                            mapstraction.markerclusterer.setOptions({map:mapstraction.getMap()});
 			jQuery('#filter_total').html(mapstraction.markers.length);
 		}
 		else
