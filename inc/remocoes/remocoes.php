@@ -240,14 +240,43 @@ class Remocoes
 			if($type == 'dropdown-meses-anos')
 			{
 				$_REQUEST[$campo['slug'].'-anos'] = array_key_exists("$slug-anos", $custom) ? array_pop($custom["$slug-anos"]).__(" anos", 'pontosdecultura') : '';
+				if (!empty($campo['multiple']))
+					$_REQUEST[$campo['slug'].'-anos'] = serialize(
+							$_REQUEST[$campo['slug'].'-anos']);
+
 				if(array_key_exists("$slug-meses", $custom))
 				{
 					$_REQUEST[$campo['slug'].'-meses'] = array_pop($custom["$slug-meses"]).__(" meses", 'pontosdecultura');
+					if (!empty($campo['multiple']))
+						$_REQUEST[$campo['slug'].'-meses'] = serialize(
+								$_REQUEST[$campo['slug'].'-meses']);
 				}
 			}
-			if (!empty($campo['multiple']))
-				$dado = unserialize($dado);
-			$_REQUEST[$campo['slug']] = $dado;
+			elseif ($type == 'event')
+			{
+				if(array_key_exists("$slug-type", $custom))
+					$_REQUEST[$campo['slug'].'-type'] = array_pop($custom["$slug-type"]);
+					$_REQUEST[$campo['slug'].'-date'] = array_pop($custom["$slug-date"]);
+					$_REQUEST[$campo['slug'].'-about'] = array_pop(
+							$custom["$slug-about"]);
+
+					if (!empty($campo['multiple']))
+					{
+						$_REQUEST[$campo['slug'].'-type'] = unserialize(
+								$_REQUEST[$campo['slug'].'-type']);
+						$_REQUEST[$campo['slug'].'-date'] = unserialize(
+								$_REQUEST[$campo['slug'].'-date']);
+						$_REQUEST[$campo['slug'].'-about'] = unserialize(
+								$_REQUEST[$campo['slug'].'-about']);
+					}
+			}
+			else
+			{
+				if (!empty($campo['multiple']))
+					$dado = unserialize($dado);
+				$_REQUEST[$campo['slug']] = $dado;
+			}
+
 			$this->print_field($campo);
 
 			if(array_key_exists($slug, $custom)) unset($custom[$slug]);
@@ -1188,13 +1217,10 @@ class Remocoes
 						</div>
 						</label>
 						<?php
-						if (array_key_exists('type', $clean_data)
-								&& array_key_exists('date', $clean_data)
-								&& array_key_exists('about', $clean_data))
-							$clean_data = array_map(null, $clean_data['type'],
-									$clean_data['date'], $clean_data['about']);
-						else
-							$clean_data = array(array('', '', ''));
+						$type = Remocoes::get_clean_request_data("$id-type", $multiple);
+						$date = Remocoes::get_clean_request_data("$id-date", $multiple);
+						$about = Remocoes::get_clean_request_data("$id-about", $multiple);
+						$clean_data = array_map(null, $type, $date, $about);
 						foreach ($clean_data as $entry): ?>
 							<div class="remocoes-set">
 								<div class="remocoes-item-input-event-block">
@@ -1203,7 +1229,7 @@ class Remocoes
 											class="<?php echo $input_class; ?>"
 											value=""
 											name="<?php echo $multiple?
-												"${id}[type][]" : "$id[type]"; ?>">
+												"${id}-type[]" : "${id}-type"; ?>">
 											<option><?php _e('Tipo', 'pontosdecultura'); ?></option>
 											<?php foreach ($field['values'] as $k => $v): ?>
 												<option value="<?php echo $k; ?>"
@@ -1220,7 +1246,7 @@ class Remocoes
 										maxlength="10"
 										size="10"
 										name="<?php echo $multiple?
-											"${id}[date][]" : "${id}[date]"; ?>"
+											"${id}-date[]" : "${id}-date"; ?>"
 										>
 									<input
 										type="text"
@@ -1229,7 +1255,7 @@ class Remocoes
 										maxlength="256"
 										size="64"
 										name="<?php echo $multiple?
-											"${id}[about][]" : "${id}[about]"; ?>"
+											"${id}-about[]" : "${id}-about"; ?>"
 										>
 								</div>
 							</div>
@@ -1506,6 +1532,18 @@ class Remocoes
 						{
 							update_post_meta($post_ID, $field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
 						}
+					}
+					elseif(array_key_exists('type', $field) && $field['type'] == 'event')
+					{
+						if( array_key_exists($field['slug'].'-type', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-type',
+									$_POST[$field['slug'].'-type']);
+						if( array_key_exists($field['slug'].'-date', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-date',
+									$_POST[$field['slug'].'-date']);
+						if( array_key_exists($field['slug'].'-about', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-about',
+									$_POST[$field['slug'].'-about']);
 					}
 				}
 			}

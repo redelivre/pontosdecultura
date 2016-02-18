@@ -100,7 +100,7 @@ else
 			{
 				continue;
 			}
-			
+
 			if (array_key_exists($field['slug'], $_POST))
 			{
 				if (is_array($_POST[$field['slug']]))
@@ -114,28 +114,27 @@ else
 			}
 
 			if (array_key_exists('type', $field) && $field['type'] == 'event'
-					&& array_key_exists($field['slug'], $_POST))
+					&& array_key_exists($field['slug'].'-type', $_POST)
+					&& array_key_exists($field['slug'].'-date', $_POST)
+					&& array_key_exists($field['slug'].'-about', $_POST))
 			{
-				$fd = $_POST[$field['slug']];
+				$fd = array(
+						'type' => $_POST[$field['slug'].'-type'],
+						'date' => $_POST[$field['slug'].'-date'],
+						'about' => $_POST[$field['slug'].'-about'],
+				);
 
-				if (!array_key_exists('type', $fd)
-						|| !array_key_exists('date', $fd)
-						|| !array_key_exists('about', $fd))
-						unset($_POST[$field['slug']]);
-				elseif (empty($field['multiple']))
+				$n = array(
+					'type' => array(),
+					'date' => array(),
+					'about' => array(),
+					);
+
+
+				$ok = false;
+				if (!empty($field['multiple']))
 				{
-					if (!empty($fd['type']) && !empty($fd['date']))
-						unset($_POST[$field['slug']]);
-				}
-				else
-				{
-					$n = array(
-						'type' => array(),
-						'date' => array(),
-						'about' => array(),
-						);
 					$len = min(array_map('sizeof', $fd));
-					$ok = false;
 					for ($i = 0; $i < $len; $i++)
 					{
 						if (!empty($fd['type'][$i]) && !empty($fd['date'][$i]))
@@ -146,12 +145,31 @@ else
 							$ok = true;
 						}
 					}
-
-					if ($ok)
-						$_POST[$field['slug']] = $n;
-					else
-						unset($_POST[$field['slug']]);
 				}
+				else
+				{
+					$n = $fd;
+					$ok = true;
+				}
+
+				if ($ok)
+				{
+					$_POST[$field['slug'].'-type'] = $n['type'];
+					$_POST[$field['slug'].'-date'] = $n['date'];
+					$_POST[$field['slug'].'-about'] = $n['about'];
+				}
+				else
+				{
+					unset($_POST[$field['slug'].'-type']);
+					unset($_POST[$field['slug'].'-date']);
+					unset($_POST[$field['slug'].'-about']);
+				}
+			}
+			else
+			{
+				unset($_POST[$field['slug'].'-type']);
+				unset($_POST[$field['slug'].'-date']);
+				unset($_POST[$field['slug'].'-about']);
 			}
 
 			if((array_key_exists('required', $field) && $field['required'])
@@ -198,6 +216,18 @@ else
 						{
 							update_post_meta($post_ID, $field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
 						}
+					}
+					elseif(array_key_exists('type', $field) && $field['type'] == 'event')
+					{
+						if( array_key_exists($field['slug'].'-type', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-type',
+									$_POST[$field['slug'].'-type']);
+						if( array_key_exists($field['slug'].'-date', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-date',
+									$_POST[$field['slug'].'-date']);
+						if( array_key_exists($field['slug'].'-about', $_POST) )
+							update_post_meta($post_ID, $field['slug'].'-about',
+									$_POST[$field['slug'].'-about']);
 					}
 				}
 			}
