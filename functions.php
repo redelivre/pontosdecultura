@@ -721,125 +721,108 @@ class Pontosdecultura {
 		
 		die(); // this is required to return a proper result
 	}
-	
+
 	public function home_adv_search_callback()
 	{
-		/* @var $wpdb wpdb */
-		global $wpdb; // this is how you get access to the database
-		
-		$fields = $_POST['data'];
-		
+		global $wpdb;
+		global $Remocoes_global;
+		$fields = $Remocoes_global->getFields();
+		$data = $_POST['data'];
+
 		$mapinfo = get_option('mapasdevista', true);
-		$pt = implode(',', array_map(array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
-		
-		$i = 0;
-		
+		$pt = implode(',', array_map(
+					array('Pontosdecultura', 'quote'), $mapinfo['post_types']));
+
 		$where = '';
-		
-		foreach ($fields as $key => $value)
+		$data = array_filter($data);
+		$query_vals = array();
+		foreach ($fields as $k => $value)
 		{
-			if($value != '')
+			$keys = array($k => $value['type']);
+			if ($value['type'] == 'dropdown-meses-anos')
+				$keys = array("$k-meses" => $value['type'],
+						"$k-anos" => $value['type']);
+			elseif ($value['type'] == 'estadocidade')
+				$keys = array("$k-estado" => $value['type'],
+						"$k-cidade" => $value['type']);
+			elseif ($value['type'] == 'event')
+				$keys = array("$k-type" => 'dropdown', "$k-date" => 'date');
+
+			foreach ($keys as $key => $type)
 			{
-				if(strlen($where) > 0 ) $where .= " AND ";
-				
-				if($i == 0 ) // title
+				if (!array_key_exists($key, $data))
+					continue;
+
+				if (strlen($where) > 0)
+					$where .= " AND ";
+
+				if ($key == 'post_title')
 				{
-					$where .= "$wpdb->posts.post_title like '%$value%'";
+					$where .= "$wpdb->posts.post_title like %s";
+					$query_vals[] = "%${data[$key]}%";
 				}
-				elseif($i < 8) // tax
+				else if (!empty($value['taxonomy']))
 				{
-					$where .= "$wpdb->terms.slug = '$value'";
+					$where .= "$wpdb->terms.slug = %s";
+					$query_vals[] = $data[$key];
 				}
-				else // custom fields
+				else if (in_array($type,
+							array('text', 'textarea', 'date', 'wp-editor')))
 				{
-					switch($key)
+					$where .= "($wpdb->postmeta.meta_key = %s "
+						. "AND $wpdb->postmeta.meta_value = %s )";
+					$query_vals[] = $key;
+					$query_vals[] = "%${data[$key]}%";
+				}
+				else {
+					if (($type == 'dropdown-cem'
+							|| $type == 'number')
+							&& $data[$key] == 99)
 					{
-						case '_pratica-ano-inicio':
-							$vals = explode(',', $value);
-							if($vals[1] != '+')
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[1] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] ) )";
-							}
-							else
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[0] )";
-							}
-						break; 
-						case '_pratica-numero-integrantes':
-							$vals = explode(',', $value);
-							if(count($vals) == 2)
-							{
-								if($vals[1] != '+')
-								{
-									$where .= "($wpdb->postmeta.meta_key = '$key' AND ( CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) <= $vals[1] ) )";
-								}
-								else 
-								{
-									$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
-								}
-							}
-							else 
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND CAST($wpdb->postmeta.meta_value AS UNSIGNED) >= $vals[0] )";
-							}
-						break;
-						case 'pratica-videos':
-						case 'pratica-facebook':
-							if($value == 'S')
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value > '' )";
-							}
-							else 
-							{
-								$where .= "($wpdb->postmeta.meta_key = '$key' AND ( $wpdb->postmeta.meta_value IS NULL OR $wpdb->postmeta.meta_value == '' ) )";
-							}
-						break;
-						default:
-							$where .= "($wpdb->postmeta.meta_key = '$key' AND $wpdb->postmeta.meta_value = '$value' )";
-						break;
+						$where .= "($wpdb->postmeta.meta_key = %s "
+							. "AND ( CAST $wpdb->postmeta.meta_value AS UNSIGNED ) "
+							. '>= ( CAST %s AS UNSIGNED ) )';
+						$query_vals[] = $key;
+						$query_vals[] = $data[$key];
+					}
+					else
+					{
+						$where .= "($wpdb->postmeta.meta_key = %s "
+							. "AND $wpdb->postmeta.meta_value = %s )";
+						$query_vals[] = $key;
+						$query_vals[] = $data[$key];
 					}
 				}
 			}
-			$i++;
 		}
-		
-		/**
-		 * 	$wpdb->terms.name like '%$s%'
-			OR $wpdb->posts.post_title like '%$s%'
-			OR $wpdb->posts.post_content like '%$s%'
-			OR $wpdb->posts.post_excerpt like '%$s%'
-			OR $wpdb->postmeta.meta_value like '%$s%'
-		 */
-		
-		$querystr = "
-		SELECT $wpdb->posts.ID FROM $wpdb->posts
-		LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
-		LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
-		LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
-		LEFT JOIN $wpdb->terms ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id)
-		WHERE
-		$wpdb->posts.post_type in (".$pt.")
-		AND (
-			".$where."
-		)
-		GROUP BY $wpdb->posts.ID
-		ORDER BY $wpdb->posts.ID asc
-		";
-		
-		$posts = $wpdb->get_results($querystr, ARRAY_N);
-		/*echo '<div id="results" class="clearfix">';
-		 echo '<pre>';
-		 //echo $querystr;
-		 print_r($posts);
-		 echo '</pre>';
-		echo '</div>';*/
-		
-		echo $querystr;
+
+		if (empty($query_vals))
+		{
+			die;
+		}
+
+		$querystr = "SELECT $wpdb->posts.ID FROM $wpdb->posts "
+			. "LEFT JOIN $wpdb->postmeta "
+			. "ON($wpdb->posts.ID = $wpdb->postmeta.post_id) "
+			. "LEFT JOIN $wpdb->term_relationships "
+			. "ON($wpdb->posts.ID = $wpdb->term_relationships.object_id) "
+			. "LEFT JOIN $wpdb->term_taxonomy "
+			. "ON($wpdb->term_relationships.term_taxonomy_id "
+			. "= $wpdb->term_taxonomy.term_taxonomy_id) "
+			. "LEFT JOIN $wpdb->terms "
+			. "ON($wpdb->term_taxonomy.term_id = $wpdb->terms.term_id) "
+			. "WHERE $wpdb->posts.post_type in ( $pt ) "
+			. "AND ( $where ) "
+			. "GROUP BY $wpdb->posts.ID "
+			. "ORDER BY $wpdb->posts.ID asc";
+
+		$posts = $wpdb->get_results(
+				$wpdb->prepare($querystr, $query_vals), ARRAY_N);
 		echo json_encode($posts);
-		
-		die(); // this is required to return a proper result
+
+		die;
 	}
-	
+
 	public static function map_results_callback()
 	{
 		echo '<div id="search-result-list" class="search-result-list gr gr-small">';
@@ -847,7 +830,7 @@ class Pontosdecultura {
 		echo '</div>';
 		die();
 	}
-	
+
 	public static function select_cidade_callback()
 	{
 	?>
