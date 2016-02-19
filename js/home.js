@@ -134,6 +134,10 @@ jQuery(document).ready(function()
 	if (jQuery('#search-result').position() == null)
 		return;
 
+        min_height = jQuery('#search-result').height();
+        if (jQuery('.search-advanced').height() < min_height)
+          jQuery('.search-advanced').height(min_height);
+
 	search_result_left = jQuery("#search-result").position().left;
 	
 	jQuery(".adv-search-estado").change(function () {
