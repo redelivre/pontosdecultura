@@ -345,7 +345,8 @@ else
 						{
 							/* Explode to prevent injected values,
 								 as include accepts a comma separated list */
-							$id = explode(',', $id)[0];
+							$id_array = explode(',', $id);
+							$id = $id_array[0];
 						}
 						else 
 						{
