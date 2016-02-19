@@ -19,7 +19,7 @@
 			global $post;
 			foreach ($Remocoes_global->getFields() as $field)
 			{
-				if (!empty($field['buildin']))
+				if (!empty($field['buildin']) || !empty($field['hide']))
 					continue;
 
 				echo '<h3>', esc_attr($field['title']), '</h3>';
