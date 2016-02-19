@@ -9,48 +9,87 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
-
-		<div class="entry-meta">
-			<?php pontosdecultura_the_terms( array('cenico-performativa', 'natureza', 'desdobramentos', 'publico-alvo', 'ressonancias' ) ); ?>
-		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
 	<div class="entry-content clearfix">
-		<div class="entry-contact-info">
-			<h2>Contatos do ponto</h2>
-			<ul>
-				<li>
-					<strong>Entidade responsável:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Entidade Responsável pelo Projeto', true ); ?>
-				<li>
-					<strong>Endereço:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço - Entidade ', true ); ?>
-					<?php pontosdecultura_the_terms( 'territorio' ); ?>
-				</li>
-				<li>
-					<strong>Telefone:</strong>
-					<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Telefone da Entidade ', true ); ?>
-				</li>
-				<li><strong>Email:</strong>
-				<?php echo get_post_meta( $post->ID, 'Dados da Entidade: Endereço Eletrônico da Entidade (e-mail)', true ); ?>
-				</li>
-			</ul>
-		</div>
-
-		<h2>Informações</h2>
-
-		<h3>Local de atuação do ponto</h3>
-		<?php echo get_post_meta( $post->ID, 'Local de Realização das Atividades do Projeto: Município (UF)', true ); ?>
-
-		<h3>Público-alvo</h3>
-		<?php pontosdecultura_the_terms( 'publicoalvo' ); ?>
-		
-		<h3>Objetivos do plano de trabalho</h3>
 		<?php the_content(); ?>
+		<h2>Informações</h2>
+		<?php
+			global $Remocoes_global;
+			global $post;
+			foreach ($Remocoes_global->getFields() as $field)
+			{
+				if (!empty($field['buildin']))
+					continue;
 
-		<h3>Resultados</h3>
-		<?php echo get_post_meta( $post->ID, 'ATIVIDADES DESENVOLVIDAS NO PROJETO', true ); ?>
-		
+				echo '<h3>', esc_attr($field['title']), '</h3>';
+
+				if ($field['type'] == 'estadocidade')
+				{
+					echo '<p>';
+					pontosdecultura_the_terms('territorio');
+					echo '</p>';
+				}
+				else
+				{
+					if (!empty($field['taxonomy']))
+					{
+						$terms = get_the_terms($post->ID, $field['slug']);
+						$meta = array();
+						foreach ($terms as $t)
+							$meta[] = $t->slug;
+					}
+					else if ($field['type'] == 'dropdown-meses-anos')
+					{
+						$meses = array_filter(get_post_meta($post->ID,
+									$field['slug'].'-meses'));
+						$anos = array_filter(get_post_meta($post->ID,
+									$field['slug'].'-anos'));
+						$meta = array_map(null, $meses, $anos);
+					}
+					elseif ($field['type'] == 'event')
+					{
+						$raw_type = array_filter(get_post_meta($post->ID,
+									$field['slug'].'-type'));
+						$type = array();
+						foreach ($raw_type as $t)
+							$type[] = array_key_exists($t, $field['values'])?
+								$field['values'][$t] : $t;
+
+						$date = array_filter(get_post_meta($post->ID,
+									$field['slug'].'-date'));
+						$about = array_filter(get_post_meta($post->ID,
+									$field['slug'].'-about'));
+						$meta = array_map(null, $date, $type, $about);
+					}
+					else
+						$meta = array_filter(get_post_meta($post->ID, $field['slug']));
+
+					foreach ($meta as $k => $v)
+					{
+						if (is_array($v))
+							$meta[$k] = implode(' - ', $v);
+						elseif (array_key_exists('values', $field)
+								&& array_key_exists($v, $field['values']))
+							$meta[$k] = $field['values'][$v];
+					}
+
+					if (sizeof($meta) == 1)
+					{
+						echo '<p>', esc_attr($meta[0]), '</p>';
+					}
+					elseif (sizeof($meta) > 1)
+					{
+						echo '<ul>';
+						foreach ($meta as $v)
+						{
+							echo '<li>', esc_attr($v), '</li>';
+						}
+						echo '</ul>';
+					}
+				}
+			}
+		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
