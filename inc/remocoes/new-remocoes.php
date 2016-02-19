@@ -341,9 +341,16 @@ else
 					$terms = array();
 					foreach ($ids as $id)
 					{
-						/* Explode to prevent injected values,
-							 as include accepts a comma separated list */
-						$id = explode(',', $id)[0];
+						if(strpos($id, ',') !== false)
+						{
+							/* Explode to prevent injected values,
+								 as include accepts a comma separated list */
+							$id = explode(',', $id)[0];
+						}
+						else 
+						{
+							$id = intval($id);
+						}
 
 						$t = get_terms($taxonomy,
 								array('hide_empty' => 0, 'include' => $id, 'number' => 1));
