@@ -743,8 +743,8 @@ class Pontosdecultura {
 				$keys = array("$k-meses" => $value['type'],
 						"$k-anos" => $value['type']);
 			elseif ($value['type'] == 'estadocidade')
-				$keys = array("$k-estado" => $value['type'],
-						"$k-cidade" => $value['type']);
+				$keys = array("estado" => $value['type'],
+						"cidade" => $value['type']);
 			elseif ($value['type'] == 'event')
 				$keys = array("$k-type" => 'dropdown', "$k-date" => 'date');
 
