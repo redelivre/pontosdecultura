@@ -631,6 +631,21 @@ class Remocoes
 
 	static function print_search_field($field)
 	{
+		$values = array();
+		if ($field['type'] == 'dropdown-cem' || $field['type'] == 'number')
+		{
+			foreach (range(1, 99) as $i)
+				$values[$i] = $i;
+			$values[99] = '99+';
+		}
+		else if ($field['type'] == 'dropdown-ano')
+		{
+			for($i = date('Y'); $i >= 1900; $i--)
+				$values[$i] = $i;
+		}
+		else if (array_key_exists('values', $field))
+			$values = $field['values'];
+
 		switch ($field['type'])
 		{
 			case 'dropdown':
@@ -639,20 +654,6 @@ class Remocoes
 			case 'checkbox':
 			case 'radio':
 			case 'number':
-				$values = array();
-				if ($field['type'] == 'dropdown-cem' || $field['type'] == 'number')
-				{
-					foreach (range(1, 99) as $i)
-						$values[$i] = $i;
-					$values[99] = '99+';
-				}
-				else if ($field['type'] == 'dropdown-ano')
-				{
-					for($i = date('Y'); $i >= 1900; $i--)
-						$values[$i] = $i;
-				}
-				else
-					$values = $field['values'];
 				?>
 				<select
 					name="<?php echo $field['slug']; ?>"

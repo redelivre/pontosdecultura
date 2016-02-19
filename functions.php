@@ -790,7 +790,13 @@ class Pontosdecultura {
 						$where .= "($wpdb->postmeta.meta_key = %s "
 							. "AND $wpdb->postmeta.meta_value = %s )";
 						$query_vals[] = $key;
-						$query_vals[] = $data[$key];
+						/* Multiple values are stored as serialized arrays,
+							 as opposed to multiple metas, to preserve the order in which
+							 they were stored in */
+						if (!empty($value['multiple']))
+							$query_vals[] = ':"'.$data[$key].'";';
+						else
+							$query_vals[] = $data[$key];
 					}
 				}
 			}
