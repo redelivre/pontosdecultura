@@ -59,12 +59,14 @@
 					?></option>
 				</select>
 			<?php endif; ?>
-			<?php if (in_array('values', $d['extra_data'], true)): ?>
+			<?php if (!empty($d['can_be_tax'])): ?>
 				<br>
 				<input type="checkbox" name="remocoes-custom[%ID%][taxonomy]"
 					class="remocoes-custom-taxonomy">
 				<label><?php _e('Taxonomia', 'pontosdecultura'); ?></label>
 				<br>
+			<?php endif; ?>
+			<?php if (in_array('values', $d['extra_data'], true)): ?>
 				<div class="remocoes-value-editor">
 					<form class="remocoes-value-form">
 						<label><?php _e('Valor*:', 'pontosdecultura'); ?></label>

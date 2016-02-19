@@ -82,7 +82,8 @@ class PontosSettingsPage
 					&& $field['multiple'];
 			if (!array_key_exists('taxonomy', $data))
 				$data['taxonomy'] = array_key_exists('taxonomy', $field)
-					&& $field['taxonomy'] && in_array('values', $extraData, true);
+					&& $field['taxonomy']
+					&& !empty($typeData[$field['type']]['can_be_tax']);
 
 			if (in_array('values', $extraData, true))
 			{
@@ -270,6 +271,7 @@ class PontosSettingsPage
 				'dropdown' => array(
 					'label' => __('Dropdown', 'pontosdecultura'),
 					'extra_data' => array('values'),
+					'can_be_tax' => true,
 				),
 				'estadocidade' => array(
 					'label' => __('Estado e cidade', 'pontosdecultura'),
