@@ -966,6 +966,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1024,6 +1027,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1064,6 +1070,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1132,6 +1141,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1202,6 +1214,9 @@ class Remocoes
 							<input type="button"
 								class="remocoes-add-another"
 								value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+							<input type="button"
+								class="remocoes-remove-last"
+								value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 					<?php endif; ?>
 					<div class="remocoes-item-error-message"></div>
 					<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1269,6 +1284,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>
@@ -1305,6 +1323,9 @@ class Remocoes
 								<input type="button"
 									class="remocoes-add-another"
 									value="<?php _e('Adicionar outro', 'pontosdecultura'); ?>">
+								<input type="button"
+									class="remocoes-remove-last"
+									value="<?php _e('Remover último', 'pontosdecultura'); ?>">
 						<?php endif; ?>
 						<div class="remocoes-item-error-message"></div>
 						<div class="remocoes-item-required-message"><?php echo $required_message; ?></div>

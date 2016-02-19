@@ -58,6 +58,12 @@ jQuery(document).ready(function()
 				dateFormat: 'dd/mm/yy',
 		});
 	});
+	jQuery('.remocoes-remove-last').click(function()
+	{
+		var sets = jQuery(this).parent().children('.remocoes-set');
+                if (sets.length > 1)
+                  sets.eq(sets.length-1).remove();
+	});
 });
 
 
