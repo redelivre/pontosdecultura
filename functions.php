@@ -61,18 +61,6 @@ function pontosdecultura_setup() {
 endif; // pontosdecultura_setup
 add_action( 'after_setup_theme', 'pontosdecultura_setup' );
 
-function pontosdecultura_after_switch_theme()
-{
-	$mapa = get_option('mapasdevista');
-	if ($mapa !== false)
-	{
-		$mapa['post_types'][] = 'remocoes';
-		$mapa['post_types'] = array_unique($mapa['post_types']);
-	}
-	update_option('mapasdevista', $mapa);
-}
-add_action('after_switch_theme', 'pontosdecultura_after_switch_theme');
-
 /**
  * Register widget area.
  *
