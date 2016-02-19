@@ -8,6 +8,7 @@ class Remocoes
 		add_action('init', array($this, 'init'));
 		add_action('init', array($this, 'rewrite_rules'));
 		add_action('init', array($this, 'registerTaxonomies'));
+		add_action('init', array($this, 'forcePostType'));
 		add_action('template_redirect', array($this, 'form'));
 		add_action('wp_ajax_resetpass', array($this, 'form'));
 		add_action('wp_ajax_nopriv_resetpass', array($this, 'form'));
@@ -63,6 +64,19 @@ class Remocoes
 		
 		$this->roles_install($permissoes);
 		
+	}
+
+	function forcePostType()
+	{
+		$mapa = get_option('mapasdevista');
+		if (is_array($mapa)
+				&& array_key_exists('post_types', $mapa)
+				&& is_array($mapa['post_types'])
+				&& !in_array('remocoes', $mapa['post_types']))
+		{
+			$mapa['post_types'][] = 'remocoes';
+			update_option('mapasdevista', $mapa);
+		}
 	}
 
 	function registerTaxonomies()
