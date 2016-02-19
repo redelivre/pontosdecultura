@@ -677,7 +677,8 @@ class Remocoes
 				?>
 				<input
 					type="search"
-					class="adv-search"
+					class="adv-search <?php
+						echo $field['type'] == 'date'? 'hasdatepicker' : '' ?>"
 					placeholder="<?php echo esc_attr($field['title']); ?>"
 					value="" name="<?php echo esc_attr($field['slug']); ?>"
 					>
@@ -697,7 +698,7 @@ class Remocoes
 				</select>
 				<input
 					type="search"
-					class="adv-search"
+					class="adv-search hasdatepicker"
 					placeholder="<?php echo esc_attr($field['title'])
 							. esc_attr_x(' - Data', 'pontosdecultura' ); ?>"
 					value="" name="<?php echo esc_attr($field['slug']); ?>-date"

@@ -535,6 +535,8 @@ class Pontosdecultura {
 		wp_register_style('jqloader', get_template_directory_uri() . '/inc/jqloader/jqloader.debug.css');
 		wp_register_script('map-page-scripts', $path . '/map-page-scripts.js', array('jquery', 'map-functions'));
 		wp_register_script('bg-alignment', $path . '/bg.js', array('jquery'));
+		wp_register_script('jquery-ui-datepicker', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker.js', array('jquery'));
+		wp_register_script('date-scripts', get_template_directory_uri().'/inc/remocoes/js/date_scripts.js', array('jquery-ui-datepicker'));
 
 		wp_enqueue_script('bg-alignment');
 		
@@ -558,6 +560,8 @@ class Pontosdecultura {
 		if(is_home()) // has map
 		{
 			wp_enqueue_script('map-functions');
+			wp_enqueue_script('jquery-ui-datepicker');
+			wp_enqueue_script('date-scripts');
 		}
 		
 	}

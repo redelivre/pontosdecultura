@@ -54,8 +54,8 @@ jQuery(document).ready(function()
 			.removeData('datepicker')
 			.unbind()
 			.datepicker({
-				userLang	: 'pt-BR',
-				americanMode: false,
+				userLang: 'pt-BR',
+				dateFormat: 'dd/mm/yy',
 		});
 	});
 });
