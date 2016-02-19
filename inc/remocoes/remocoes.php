@@ -173,7 +173,7 @@ class Remocoes
 				'slug' => 'post_content',
 				'title' => __('Descrição', 'pontosdecultura'),
 				'tip' => __('Limite de 2000 caracteres', 'pontosdecultura'),
-				'required' => true,
+				'required' => false,
 				'multiple' => false,
 				//'type' => 'wp_editor',
 				'type' => 'textarea',
