@@ -113,6 +113,60 @@ else
 					unset($_POST[$field['slug']]);
 			}
 
+			if (array_key_exists('type', $field)
+					&& $field['type'] == 'dropdown-meses-anos'
+					&& array_key_exists($field['slug'].'-meses', $_POST)
+					&& array_key_exists($field['slug'].'-anos', $_POST))
+			{
+				$fd = array(
+						'meses' => $_POST[$field['slug'].'-meses'],
+						'anos' => $_POST[$field['slug'].'-anos'],
+				);
+
+				$n = array(
+					'meses' => array(),
+					'anos' => array(),
+					);
+
+
+				$ok = false;
+				if (!empty($field['multiple']))
+				{
+					$len = min(array_map('sizeof', $fd));
+					for ($i = 0; $i < $len; $i++)
+					{
+						if (!empty($fd['meses'][$i]) && !empty($fd['anos'][$i]))
+						{
+							$n['meses'][] = $fd['meses'][$i];
+							$n['anos'][] = $fd['anos'][$i];
+							$ok = true;
+						}
+					}
+				}
+				else
+				{
+					$n = $fd;
+					$ok = true;
+				}
+
+				if ($ok)
+				{
+					$_POST[$field['slug'].'-meses'] = $n['meses'];
+					$_POST[$field['slug'].'-anos'] = $n['anos'];
+					$_POST[$field['slug']] = 'filled';
+				}
+				else
+				{
+					unset($_POST[$field['slug'].'-meses']);
+					unset($_POST[$field['slug'].'-anos']);
+				}
+			}
+			else
+			{
+				unset($_POST[$field['slug'].'-meses']);
+				unset($_POST[$field['slug'].'-anos']);
+			}
+
 			if (array_key_exists('type', $field) && $field['type'] == 'event'
 					&& array_key_exists($field['slug'].'-type', $_POST)
 					&& array_key_exists($field['slug'].'-date', $_POST)
@@ -157,6 +211,7 @@ else
 					$_POST[$field['slug'].'-type'] = $n['type'];
 					$_POST[$field['slug'].'-date'] = $n['date'];
 					$_POST[$field['slug'].'-about'] = $n['about'];
+					$_POST[$field['slug']] = 'filled';
 				}
 				else
 				{
@@ -179,64 +234,81 @@ else
 				$message[] = '<span class="error-msn-pre">'.__('*O campo obrigatório').': '.'</span><div onclick="remocoes_scroll_to_anchor(\''.$field['slug'].'\');">'.$field['title'].' '.__('não foi preenchido').'</div>';
 				$notice = true;
 			}
-			else 
+			else
 			{
-				
+
 				if(array_key_exists('buildin', $field) && $field['buildin'] == true)
 				{
 					if(array_key_exists('type', $field) && $field['type'] == 'wp_editor')
 					{
 						$post->{$field['slug']} = $purifier->purify(stripslashes($_POST[$field['slug']]));
 					}
-					else 
+					else
 					{
 						$post->{$field['slug']} = wp_strip_all_tags($_POST[$field['slug']]);
 					}
 				}
-				else 
+				else
 				{
-					if( array_key_exists($field['slug'], $_POST) )
+					if(array_key_exists('type', $field)
+							&& $field['type'] == 'dropdown-meses-anos')
 					{
-						if(array_key_exists('type', $field) && $field['type'] == 'checkbox' && is_array($_POST[$field['slug']]))
+						delete_post_meta($post_ID, $field['slug'].'-anos');
+						delete_post_meta($post_ID, $field['slug'].'-meses');
+						if(array_key_exists($field['slug'].'-anos', $_POST))
 						{
-							update_post_meta($post_ID, $field['slug'], implode(',', $_POST[$field['slug']]));
+							Remocoes::add_non_tax_field_meta($post_ID,
+									$field['slug'].'-anos', $_POST[$field['slug'].'-anos']);
 						}
-						else
+						if(array_key_exists($field['slug'].'-meses', $_POST))
 						{
-							update_post_meta($post_ID, $field['slug'], $_POST[$field['slug']]);
-						}
-					}
-					elseif(array_key_exists('type', $field) && $field['type'] == 'dropdown-meses-anos')
-					{
-						if( array_key_exists($field['slug'].'-anos', $_POST) )
-						{
-							update_post_meta($post_ID, $field['slug'].'-anos', $_POST[$field['slug'].'-anos']);
-						}
-						if( array_key_exists($field['slug'].'-meses', $_POST) )
-						{
-							update_post_meta($post_ID, $field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
+							Remocoes::add_non_tax_field_meta($post_ID,
+									$field['slug'].'-meses', $_POST[$field['slug'].'-meses']);
 						}
 					}
 					elseif(array_key_exists('type', $field) && $field['type'] == 'event')
 					{
-						if( array_key_exists($field['slug'].'-type', $_POST) )
-							update_post_meta($post_ID, $field['slug'].'-type',
-									$_POST[$field['slug'].'-type']);
-						if( array_key_exists($field['slug'].'-date', $_POST) )
-							update_post_meta($post_ID, $field['slug'].'-date',
-									$_POST[$field['slug'].'-date']);
-						if( array_key_exists($field['slug'].'-about', $_POST) )
-							update_post_meta($post_ID, $field['slug'].'-about',
-									$_POST[$field['slug'].'-about']);
+						delete_post_meta($post_ID, $field['slug'].'-type');
+						delete_post_meta($post_ID, $field['slug'].'-date');
+						delete_post_meta($post_ID, $field['slug'].'-about');
+
+						if (array_key_exists($field['slug'].'-type', $_POST))
+							Remocoes::add_non_tax_field_meta($post_ID,
+									$field['slug'].'-type', $_POST[$field['slug'].'-type']);
+						if (array_key_exists($field['slug'].'-date', $_POST))
+							Remocoes::add_non_tax_field_meta($post_ID,
+									$field['slug'].'-date', $_POST[$field['slug'].'-date']);
+						if (array_key_exists($field['slug'].'-about', $_POST))
+							Remocoes::add_non_tax_field_meta($post_ID,
+									$field['slug'].'-about', $_POST[$field['slug'].'-about']);
+					}
+					elseif(array_key_exists($field['slug'], $_POST) )
+					{
+						delete_post_meta($post_ID, $field['slug']);
+						if(array_key_exists($field['slug'], $_POST))
+						{
+							if(array_key_exists('type', $field)
+									&& $field['type'] == 'checkbox'
+									&& is_array($_POST[$field['slug']]))
+							{
+								Remocoes::add_non_tax_field_meta($post_ID, $field['slug'],
+										implode(',', $_POST[$field['slug']]));
+							}
+							else
+							{
+								Remocoes::add_non_tax_field_meta($post_ID, $field['slug'],
+										$_POST[$field['slug']]);
+							}
+						}
 					}
 				}
 			}
 		}
-		
+
 		$post->post_name = sanitize_title($post->post_title);
-		
+
 		wp_update_post($post);
-		
+
 		/* Save Language */
 		global $sitepress;
 		if(is_object($sitepress))

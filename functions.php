@@ -758,7 +758,7 @@ class Pontosdecultura {
 
 				if ($key == 'post_title')
 				{
-					$where .= "$wpdb->posts.post_title like %s";
+					$where .= "$wpdb->posts.post_title LIKE %s";
 					$query_vals[] = "%${data[$key]}%";
 				}
 				else if (!empty($value['taxonomy']))
@@ -767,10 +767,10 @@ class Pontosdecultura {
 					$query_vals[] = $data[$key];
 				}
 				else if (in_array($type,
-							array('text', 'textarea', 'date', 'wp-editor')))
+							array('input', 'text', 'textarea', 'date', 'wp-editor')))
 				{
 					$where .= "($wpdb->postmeta.meta_key = %s "
-						. "AND $wpdb->postmeta.meta_value = %s )";
+						. "AND $wpdb->postmeta.meta_value LIKE %s )";
 					$query_vals[] = $key;
 					$query_vals[] = "%${data[$key]}%";
 				}
@@ -790,13 +790,7 @@ class Pontosdecultura {
 						$where .= "($wpdb->postmeta.meta_key = %s "
 							. "AND $wpdb->postmeta.meta_value = %s )";
 						$query_vals[] = $key;
-						/* Multiple values are stored as serialized arrays,
-							 as opposed to multiple metas, to preserve the order in which
-							 they were stored in */
-						if (!empty($value['multiple']))
-							$query_vals[] = ':"'.$data[$key].'";';
-						else
-							$query_vals[] = $data[$key];
+						$query_vals[] = $data[$key];
 					}
 				}
 			}
