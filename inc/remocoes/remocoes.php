@@ -361,6 +361,7 @@ class Remocoes
 		if(get_query_var(self::NEW_REMOCOES_PAGE) == true)
 		{
 			wp_enqueue_script('jquery-ui-datepicker', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker.js', array('jquery'));
+			wp_enqueue_script('jquery-ui-datepicker-pt-BR', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker-pt-BR.js', array('jquery'));
 			wp_enqueue_script('date-scripts', get_template_directory_uri().'/inc/remocoes/js/date_scripts.js', array('jquery-ui-datepicker'));
 			wp_enqueue_script('new-remocoes', get_template_directory_uri().'/inc/remocoes/js/new-remocoes.js', array( 'jquery'));
 			
@@ -580,6 +581,7 @@ class Remocoes
 			wp_enqueue_script( 'meta-box-image' );
 
 			wp_enqueue_script('jquery-ui-datepicker', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker.js', array('jquery'));
+			wp_enqueue_script('jquery-ui-datepicker-pt-BR', get_template_directory_uri().'/inc/remocoes/js/jquery.ui.datepicker-pt-BR.js', array('jquery'));
 			wp_enqueue_script('date-scripts', get_template_directory_uri().'/inc/remocoes/js/date_scripts.js', array('jquery-ui-datepicker'));
 			wp_enqueue_script('new-remocoes', get_template_directory_uri().'/inc/remocoes/js/new-remocoes.js', array( 'jquery'));
 		}
