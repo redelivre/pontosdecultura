@@ -36,8 +36,9 @@
 					{
 						$terms = get_the_terms($post->ID, $field['slug']);
 						$meta = array();
-						foreach ($terms as $t)
-							$meta[] = $t->slug;
+						if ($terms !== false)
+							foreach ($terms as $t)
+								$meta[] = $t->slug;
 					}
 					else if ($field['type'] == 'dropdown-meses-anos')
 					{
