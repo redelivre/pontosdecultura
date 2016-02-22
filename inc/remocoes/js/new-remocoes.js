@@ -64,6 +64,9 @@ jQuery(document).ready(function()
                 if (sets.length > 1)
                   sets.eq(sets.length-1).remove();
 	});
+
+	if (typeof googlemap != 'undefined' && googlemap)
+		googlemap.setOptions({scrollwheel: true});
 });
 
 
