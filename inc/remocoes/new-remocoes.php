@@ -31,10 +31,16 @@ function custom_mapasdevista_metabox_map($user = false)
     );
     $pins = get_posts($args);
 
+		$mapa = get_option('mapasdevista', array());
+		$map_type = array_key_exists('type', $mapa)? $mapa['type'] : 'roadmap';
+
+
     // Use nonce for verification
     wp_nonce_field( plugin_basename( __FILE__ ), 'mapasdevista_noncename' );
     ?>
     <fieldset>
+				<input type="hidden" class="mpv_map_type"
+					value="<?php echo esc_attr($map_type); ?>">
         <label for="mpv_lat"><?php _e('Latitude', 'mpv');?>:</label>
         <input type="text" class="medium-field" name="mpv_lat" id="mpv_lat" value="<?php echo $location['lat'];?>"/>
 
@@ -77,7 +83,7 @@ function custom_mapasdevista_metabox_map($user = false)
 }
 
 global $Remocoes_global;
-	
+
 $remocoes = $Remocoes_global;
 
 $buttonLabel = __('Colocar remoção no mapa', 'pontosdecultura');

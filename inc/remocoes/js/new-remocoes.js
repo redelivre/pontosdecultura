@@ -68,6 +68,7 @@ jQuery(document).ready(function()
 	if (typeof googlemap != 'undefined' && googlemap)
 	{
 		googlemap.setOptions({scrollwheel: true});
+		googlemap.setMapTypeId(jQuery('.mpv_map_type').val());
 		jQuery("#mpv_search_address").keypress(function(e){
 			if(e.charCode===13 || e.keyCode===13){
 				geocoder.geocode({'address': $(this).val()}, geocode_callback);
