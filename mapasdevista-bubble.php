@@ -40,22 +40,13 @@
 	
 	?>
 
-<div class="balloon-email" >
-	<span class="balloon-taxs-names"><strong>E-mail: </strong><?php echo get_post_meta($post_ID, 'pratica-email', true); ?></span>
-</div>
-<div class="balloon-taxs" >
-	
-	<span class="balloon-taxs-names"><strong>Área(s) da Pesquisa Cênico-Performativa(s): </strong><?php echo $terms_str;//implode(',', $terms); ?></span>
-
-</div>
-
 <div class="balloon-entry-default clearfix" >
 
     <?php
     $balloon_excerpt = get_the_excerpt();
 
     if ( ! empty( $balloon_excerpt ) ) {
-    	echo '<strong>Descrição da Pesquisa do Núcleo: </strong>' . $balloon_excerpt;
+    	echo $balloon_excerpt;
     }
     ?>
     
