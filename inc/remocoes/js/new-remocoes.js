@@ -4,8 +4,8 @@ function displayPreview(files, id) {
    var img = new Image();
    var sizeKB = file.size / 1024;
    img.onload = function() {
-      jQuery('.images-'+id).append(img);
-      //alert("Size: " + sizeKB + "KB\nWidth: " + img.width + "\nHeight: " + img.height);
+	  jQuery('.images-'+id).append(img);
+	  //alert("Size: " + sizeKB + "KB\nWidth: " + img.width + "\nHeight: " + img.height);
    }
    img.src = _URL.createObjectURL(file);
 }
@@ -61,18 +61,45 @@ jQuery(document).ready(function()
 	jQuery('.remocoes-remove-last').click(function()
 	{
 		var sets = jQuery(this).parent().children('.remocoes-set');
-                if (sets.length > 1)
-                  sets.eq(sets.length-1).remove();
+				if (sets.length > 1)
+				  sets.eq(sets.length-1).remove();
 	});
 
 	if (typeof googlemap != 'undefined' && googlemap)
+	{
 		googlemap.setOptions({scrollwheel: true});
+		jQuery("#mpv_search_address").keypress(function(e){
+			if(e.charCode===13 || e.keyCode===13){
+				geocoder.geocode({'address': $(this).val()}, geocode_callback);
+				return false;
+			}
+		});
+	}
 });
 
 
 function remocoes_scroll_to_anchor(id)
 {
 	jQuery('body, html').animate({
-	    scrollTop:   jQuery('#'+id).offset().top - 100
+		scrollTop:   jQuery('#'+id).offset().top - 100
 	}, 800);
+}
+
+function geocode_callback(results, status) {
+	if (status == google.maps.GeocoderStatus.OK) {
+		var location = results[0].geometry.location;
+		googlemap.setCenter(location);
+				googlemap.setZoom(17);
+		fill_fields(location.lat(), location.lng());
+
+		if(googlemarker) {
+			googlemarker.setPosition(location)
+		} else {
+			googlemarker = new google.maps.Marker({
+				map: googlemap,
+				draggable: true,
+				position: location
+			});
+		}
+	}
 }
