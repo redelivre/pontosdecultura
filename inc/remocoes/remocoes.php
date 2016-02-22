@@ -175,7 +175,7 @@ class Remocoes
 		$post = array(
 			'post_title' => array(
 				'slug' => 'post_title',
-				'title' => __('Nome', 'pontosdecultura'),
+				'title' => __('Nome da comunidade', 'pontosdecultura'),
 				'tip' => '',
 				'required' => true,
 				'buildin' => true,
