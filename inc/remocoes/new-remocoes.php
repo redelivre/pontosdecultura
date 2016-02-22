@@ -2,6 +2,80 @@
 
 require_once dirname(__FILE__).'/HTMLPurifier.standalone.php';
 
+function custom_mapasdevista_metabox_map($user = false)
+{
+	global $post, $post_type;
+	$location = array('lat'=>'', 'lon'=>'');
+	$post_pin = 0;
+
+	if(is_object($user) && get_class($user) == 'WP_User')
+	{
+		if( !$location=get_user_meta($user->ID, '_mpv_location', true) )
+		{
+			$location = apply_filters('mapasdevista_default_user_location', array('lat'=>'', 'lon'=>''), $user);
+		}
+		$post_pin = get_user_meta($user->ID, '_mpv_pin', true);
+	}
+	else
+	{
+	    if( !$location=get_post_meta($post->ID, '_mpv_location', true) ) {
+	        $location = array('lat'=>'', 'lon'=>'');
+	    }
+	    $post_pin = get_post_meta($post->ID, '_mpv_pin', true);
+	}
+
+    $args = array(
+        'post_type' => 'attachment',
+        'meta_key' => '_pin_anchor',
+        'posts_per_page' => '-1'
+    );
+    $pins = get_posts($args);
+
+    // Use nonce for verification
+    wp_nonce_field( plugin_basename( __FILE__ ), 'mapasdevista_noncename' );
+    ?>
+    <fieldset>
+        <label for="mpv_lat"><?php _e('Latitude', 'mpv');?>:</label>
+        <input type="text" class="medium-field" name="mpv_lat" id="mpv_lat" value="<?php echo $location['lat'];?>"/>
+
+        <label for="mpv_lon"><?php _e('Longitude', 'mpv');?>:</label>
+        <input type="text" class="medium-field" name="mpv_lon" id="mpv_lon" value="<?php echo $location['lon'];?>"/>
+
+        <input type="button" id="mpv_load_coords" value="Exibir"/>
+    </fieldset>
+    <fieldset>
+        <label for="mpv_search_address"><?php _e('Search address', 'mapasdevista');?>:</label>
+        <input type="text" id="mpv_search_address" class="large-field"/>
+    </fieldset>
+    <div id="mpv_canvas" class="mpv_canvas"></div>
+
+
+    <h4><?php _e("Available pins", "mapasdevista");?> <?php if($post_pin != 0) echo '('.$post_pin.')'; ?></h4>
+    <p>Se preferir, você pode <a href="<?php echo add_query_arg( array('post' => null, 'page' => 'mapasdevista_pins_page', 'post_type' => 'mapa'), admin_url('edit.php') ); ?>">adicionar seu próprio marcador</a></p>
+    <div class="iconlist">
+        <script type="text/javascript">var pinsanchor = { };</script>
+        <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
+            <div class="icon">
+                <script type="text/javascript">pinsanchor.pin_<?php echo $pin->ID;?>=<?php echo $pinanchor;?>;</script>
+                <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>">
+                    <?php echo mapasdevista_get_pin($pin->ID, 'full', false, array('style'=>'max-width:64px;max-height:64px;'));?>
+                </label></div>
+                <div class="icon-info">
+                <input type="radio" name="mpv_pin" id="pin_<?php echo $pin->ID;?>" value="<?php echo $pin->ID;?>"<?php if($post_pin==$pin->ID) echo ' checked';?>/>
+                    <!-- <span class="icon-name"><?php echo $pin->post_name;?></span> -->
+                </div>
+            </div>
+        <?php endforeach;?>
+    </div>
+
+    <input type="hidden" name="mpv_inmap[]" value="1" />
+
+
+    <div class="clear"></div>
+
+    <?php
+}
+
 global $Remocoes_global;
 	
 $remocoes = $Remocoes_global;
@@ -627,7 +701,7 @@ else
 					?></h3>
 				</div>
 			</label>
-			<?php mapasdevista_metabox_map(); ?>
+			<?php custom_mapasdevista_metabox_map(); ?>
 		</div>
 	</div>
  	<br/>
