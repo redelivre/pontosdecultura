@@ -185,7 +185,7 @@ class Remocoes
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
-				'title' => __('Descrição do problem', 'pontosdecultura'),
+				'title' => __('Descrição do problema', 'pontosdecultura'),
 				'tip' => __('Limite de 2000 caracteres', 'pontosdecultura'),
 				'required' => true,
 				'multiple' => false,
