@@ -18,9 +18,12 @@
 			<b><?php echo htmlspecialchars($d['label']); ?></b>
 			<input type="hidden" value="<?php echo $t; ?>"
 				name="remocoes-custom[%ID%][type]">
-			<button class='remocoes-remove-field'><?php
+			<button type="button" class="remocoes-remove-field"><?php
 				_e('Remover', 'pontosdecultura'); ?>
 			</button>
+			<br>
+			<button type="button" class="remocoes-field-up">^</button>
+			<button type="button" class="remocoes-field-down">v</button>
 			<?php if (empty($d['unique'])): ?>
 				<br>
 				<label><?php _e('Nome*:', 'pontosdecultura'); ?></label>

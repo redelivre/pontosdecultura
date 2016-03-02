@@ -46,6 +46,28 @@ function addField(data)
 		jQuery(this).parent().remove();
 	});
 
+	field.children('.remocoes-field-up').click(function()
+	{
+		var field = jQuery(this).parent();
+		var prevField = field.prev('.remocoes-field');
+		if (prevField.length)
+		{
+			field.detach();
+			field.insertBefore(prevField);
+		}
+	});
+
+	field.children('.remocoes-field-down').click(function()
+	{
+		var field = jQuery(this).parent();
+		var nextField = field.next('.remocoes-field');
+		if (nextField.length)
+		{
+			field.detach();
+			field.insertAfter(nextField);
+		}
+	});
+
 	field.find('.remocoes-value-form').submit(function(e)
 	{
 		e.preventDefault();
