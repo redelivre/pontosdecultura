@@ -288,6 +288,7 @@ input.remocoes-file-upload {
 	
 }
 
-.remocoes-item-input-event-block input[type="text"] {
+.remocoes-item-input-event-block input[type="text"],
+.remocoes-item-date input[type="text"] {
 	width: auto;
 }

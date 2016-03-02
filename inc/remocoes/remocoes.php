@@ -1332,6 +1332,7 @@ class Remocoes
 									type="<?php echo $type == 'number'? 'number' : 'text'; ?>"
 									class="remocoes-item-input-text <?php echo $type == 'date'?
 										'hasdatepicker' : ''; ?> <?php echo $input_class ?>"
+									<?php echo $type == 'date'? 'maxlength="10"' : ''; ?>
 									value="<?php echo $entry; ?>"
 									name="<?php echo $multiple? "${id}[]" : $id; ?>"
 									>
