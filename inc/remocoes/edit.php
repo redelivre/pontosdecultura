@@ -134,6 +134,9 @@
 
 <form id="remocoes-add-field-form">
 	<h3><?php _e('Adicionar novo campo', 'pontosdecultura'); ?></h3>
+	<p style="color: red;"><?php
+		_e('Renomear campos pode tornar os dados inacessíveis.',
+				'pontosdecultura'); ?></p>
 	<select name="type" id="remocoes-add-field-type">
 	<?php foreach (PontosSettingsPage::getTypeData() as $t => $d): ?>
 		<option value="<?php echo $t ?>"><?php
