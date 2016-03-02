@@ -42,7 +42,6 @@ class PontosSettingsPage
 	{
 		$typeData = self::getTypeData();
 		$fields = array();
-		$i = 0;
 		$used = array();
 		foreach ($new as $field)
 		{
@@ -58,10 +57,9 @@ class PontosSettingsPage
 
 			$data['type'] = $field['type'];
 			$data = $this->forceField($data);
-			$i++;
 
 			if (!array_key_exists('slug', $data))
-				$data['slug'] = sanitize_title($field['title']) . "_$i";
+				$data['slug'] = sanitize_title($field['title']);
 			if (!array_key_exists('title', $data))
 				$data['title'] = trim($field['title']);
 			if (!array_key_exists('tip', $data))
@@ -191,10 +189,18 @@ class PontosSettingsPage
 		if (!is_array($fields))
 			return false;
 
+		$slugs = array();
 		foreach ($fields as $field)
 		{
 			if (!$this->validateSingleField($field))
 				return false;
+
+			$data = $this->forceField(array('type' => $field['type']));
+			$slug = array_key_exists('slug', $data)?
+				$data['slug'] : sanitize_title($field['title']);
+			if (in_array($slug, $slugs))
+				return false;
+			$slugs[] = $slug;
 		}
 
 		return true;
