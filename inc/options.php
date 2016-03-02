@@ -216,10 +216,20 @@ class PontosSettingsPage
 		$this->updateCustomFields($json);
 	}
 
+	private function updateBuiltinNames()
+	{
+		if (!empty($_POST['remocoes-post-title']))
+			update_option('remocoes_post_title', $_POST['remocoes-post-title']);
+		if (!empty($_POST['remocoes-post-content']))
+			update_option('remocoes_post_content', $_POST['remocoes-post-content']);
+	}
+
 	public function create_edit_page()
 	{
 		if (array_key_exists('remocoes-import', $_POST))
 			$this->importFields();
+		elseif (array_key_exists('remocoes-builtin-names', $_POST))
+			$this->updateBuiltinNames();
 		else
 			$this->handleEditPost();
 		$current = get_option('remocoes_custom_fields', array());

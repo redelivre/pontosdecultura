@@ -113,6 +113,22 @@
 		value="<?php _e('Importar', 'pontosdecultura') ?>">
 </form>
 
+<h3><?php _e('Nome dos campos padrões', 'pontosdecultura'); ?></h3>
+<form id="remocoes-builtin-names-form" method="post">
+	<label><?php _e('Título:', 'pontosdecultura'); ?></label>
+	<input type="text" name="remocoes-post-title"
+		value="<?php echo esc_attr(get_option('remocoes_post_title',
+			__('Título', 'pontosdecultura'))); ?>">
+	<br>
+	<label><?php _e('Descrição:', 'pontosdecultura'); ?></label>
+	<input type="text" name="remocoes-post-content"
+		value="<?php echo esc_attr(get_option('remocoes_post_content',
+			__('Descrição', 'pontosdecultura'))); ?>">
+	<br>
+	<input type="submit" name="remocoes-builtin-names"
+		value="<?php _e('Salvar', 'pontosdecultura'); ?>">
+</form>
+
 <form id="remocoes-add-field-form">
 	<h3><?php _e('Adicionar novo campo', 'pontosdecultura'); ?></h3>
 	<select name="type" id="remocoes-add-field-type">

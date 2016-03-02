@@ -175,7 +175,8 @@ class Remocoes
 		$post = array(
 			'post_title' => array(
 				'slug' => 'post_title',
-				'title' => __('Nome da comunidade', 'pontosdecultura'),
+				'title' => get_option('remocoes_post_title',
+					__('Título', 'pontosdecultura')),
 				'tip' => '',
 				'required' => true,
 				'buildin' => true,
@@ -185,7 +186,8 @@ class Remocoes
 			),
 			'post_content' => array(
 				'slug' => 'post_content',
-				'title' => __('Descrição do problema', 'pontosdecultura'),
+				'title' => get_option('remocoes_post_content',
+					__('Descrição', 'pontosdecultura')),
 				'tip' => __('Limite de 2000 caracteres', 'pontosdecultura'),
 				'required' => true,
 				'multiple' => false,
