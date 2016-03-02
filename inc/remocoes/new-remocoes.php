@@ -701,7 +701,7 @@ else
 			<div class="remocoes-item-title"><h2><?php _e('Localize a remoção no mapa', 'pontosdecultura');?></h2>
 				</div>
 				<div class="remocoes-item-tip-text"><h3><?php
-					_e('1. Digite o endereço no campo abaixo do mapa e aperte "Enter".', 'pontosdecultura');echo "<br/>";
+					_e('1. Digite no campo acima do mapa o endereço completo, incluindo a cidade, e aperte "Enter". Você também pode inserir valores de latitude e longitude.', 'pontosdecultura');echo "<br/>";
 					_e('2. Se preferir, dê zoom no respectivo território e encontre a área da remoção.', 'pontosdecultura');echo "<br/>";
 					_e('3. Clique duas vezes no mapa para inserir o marcador.', 'pontosdecultura'); 
 					?></h3>
