@@ -715,12 +715,13 @@ else
 	</div>
  	<br/>
  	<div class="images">
+		<p><?php _e('Clique nos botões para inserir imagens relacionadas à ameaça de de remoção', 'pontosdecultura'); ?></p>
 	 	<div class="images-thumbnail-block images-thumbnail">
 			<label for="thumbnail" class="remocoes-item-label">
-				<div class="remocoes-item-title"><?php _e('Image de Destaque', 'pontosdecultura'); ?>
+				<div class="remocoes-item-title"><?php _e('Imagem 1', 'pontosdecultura'); ?>
 				</div>
 				<div class="remocoes-item-tip-text">
-					<?php _e('Imagem que será exibida em listagens', 'pontosdecultura'); ?>
+					<?php _e('&nbsp;', 'pontosdecultura'); ?>
 				</div>
 			</label>
 			<input type="file" name="thumbnail" id="thumbnail"
