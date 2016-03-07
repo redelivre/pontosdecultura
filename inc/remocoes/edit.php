@@ -133,6 +133,13 @@
 		value="<?php echo esc_attr(get_option('remocoes_map_title',
 			__('Localize a remoção no mapa', 'pontosdecultura'))); ?>">
 	<br>
+	<input type="checkbox" name="remocoes-default-pin-only"
+		id="remocoes-default-pin-only" <?php
+		echo get_option('remocoes_default_pin_only', false)?
+			'checked="checked"' : ''; ?>>
+	<label for="remocoes-default-pin-only"><?php
+		_e('Esconder marcadores', 'pontosdecultura'); ?></label>
+	<br>
 	<input type="submit" name="remocoes-builtin-names"
 		value="<?php _e('Salvar', 'pontosdecultura'); ?>">
 </form>

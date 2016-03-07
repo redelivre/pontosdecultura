@@ -626,6 +626,15 @@ else
 	$nonce_action = 'update-post_' . $post_ID;
 	$form_extra .= "<input type='hidden' id='post_ID' name='post_ID' value='" . esc_attr($post_ID) . "' />";
 	?>
+<?php if (get_option('remocoes_default_pin_only', false)): ?>
+	<style>
+		.remocoes-map-block p:last-of-type,
+		.remocoes-map-block .iconlist,
+		.remocoes-map-block h4:last-of-type {
+			display: none;
+		}
+	</style>
+<?php endif; ?>
 <div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 
 	<div class="container">
