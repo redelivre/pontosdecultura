@@ -597,7 +597,7 @@ else
 		echo '</pre>';
 		
         */
-		if (class_exists('siCaptcha'))
+		if (class_exists('siCaptcha') && !get_option('remocoes_no_captcha', false))
 		{
 			global $si_image_captcha, $si_captcha_opt;
 
@@ -776,7 +776,8 @@ else
 	</div>
 					<div class="publish-button-block">
 						<?php
-							if (class_exists('siCaptcha'))
+							if (class_exists('siCaptcha')
+									&& !get_option('remocoes_no_captcha', false))
 							{
 								global $si_image_captcha, $si_captcha_opt;
 								$si_aria_required = $si_captcha_opt['si_captcha_aria_required']

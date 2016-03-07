@@ -232,6 +232,7 @@ class PontosSettingsPage
 			update_option('remocoes_map_title', $_POST['remocoes-map-title']);
 		update_option('remocoes_default_pin_only',
 				!empty($_POST['remocoes-default-pin-only']));
+		update_option('remocoes_no_captcha', empty($_POST['remocoes-captcha']));
 	}
 
 	public function create_edit_page()

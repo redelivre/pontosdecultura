@@ -140,6 +140,13 @@
 	<label for="remocoes-default-pin-only"><?php
 		_e('Esconder marcadores', 'pontosdecultura'); ?></label>
 	<br>
+	<input type="checkbox" name="remocoes-captcha"
+		id="remocoes-captcha" <?php
+		echo get_option('remocoes_no_captcha', false)?
+			'' : 'checked="checked"'; ?>>
+	<label for="remocoes-captcha"><?php
+		_e('Exigir captcha (requer siCaptcha ativado)', 'pontosdecultura'); ?></label>
+	<br>
 	<input type="submit" name="remocoes-builtin-names"
 		value="<?php _e('Salvar', 'pontosdecultura'); ?>">
 </form>
