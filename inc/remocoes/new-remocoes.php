@@ -86,7 +86,7 @@ global $Remocoes_global;
 
 $remocoes = $Remocoes_global;
 
-$buttonLabel = __('Colocar remoção no mapa', 'pontosdecultura');
+$buttonLabel = __('Colocar ameaça de remoção no mapa', 'pontosdecultura');
 
 $publish = array_key_exists('publish', $_POST) && ($_POST['publish'] == 'Publish' || $_POST['publish'] == 'Publish Remocoes' || $_POST['publish'] == $buttonLabel );
 
