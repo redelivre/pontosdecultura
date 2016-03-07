@@ -724,7 +724,7 @@ else
 	</div>
  	<br/>
  	<div class="images">
-		<p><?php _e('Clique nos botões para inserir imagens relacionadas à ameaça de de remoção', 'pontosdecultura'); ?></p>
+		<p><?php _e('Clique nos botões para inserir imagens relacionadas à ameaça de remoção', 'pontosdecultura'); ?></p>
 	 	<div class="images-thumbnail-block images-thumbnail">
 			<label for="thumbnail" class="remocoes-item-label">
 				<div class="remocoes-item-title"><?php _e('Imagem 1', 'pontosdecultura'); ?>
