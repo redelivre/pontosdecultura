@@ -228,6 +228,8 @@ class PontosSettingsPage
 			update_option('remocoes_post_title', $_POST['remocoes-post-title']);
 		if (!empty($_POST['remocoes-post-content']))
 			update_option('remocoes_post_content', $_POST['remocoes-post-content']);
+		if (!empty($_POST['remocoes-map-title']))
+			update_option('remocoes_map_title', $_POST['remocoes-map-title']);
 	}
 
 	public function create_edit_page()

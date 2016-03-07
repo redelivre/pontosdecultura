@@ -698,7 +698,10 @@ else
 	<div class="remocoes-map-block">
 		<div class="remocoes-item remocoes-item-map remocoes-map">
 			<label class="remocoes-item-label">
-			<div class="remocoes-item-title"><h2><?php _e('Localize a remoção no mapa', 'pontosdecultura');?></h2>
+			<div class="remocoes-item-title"><h2><?php
+				echo esc_attr(get_option('remocoes_map_title',
+							__('Localize a remoção no mapa', 'pontosdecultura')));
+			?></h2>
 				</div>
 				<div class="remocoes-item-tip-text"><h3><?php
 					_e('1. Digite no campo acima do mapa o endereço completo, incluindo a cidade, e aperte "Enter". Você também pode inserir valores de latitude e longitude.', 'pontosdecultura');echo "<br/>";
