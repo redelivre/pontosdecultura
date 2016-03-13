@@ -82,6 +82,16 @@ function custom_mapasdevista_metabox_map($user = false)
     <?php
 }
 
+function array_map_recursive($callback, $array)
+{
+		foreach ($array as $key => $value)
+				if (is_array($array[$key]))
+						$array[$key] = array_map_recursive($callback, $array[$key]);
+				else
+						$array[$key] = call_user_func($callback, $array[$key]);
+		return $array;
+}
+
 global $Remocoes_global;
 
 $remocoes = $Remocoes_global;
@@ -166,9 +176,10 @@ else
 	$message = array();
 	
 	$notice = false;
-	
+
 	$purifier = new HTMLPurifier();
-	
+	$_POST = array_map_recursive(array($purifier, 'purify'), $_POST);
+
 	if($publish)
 	{
 		/* Save Fields and Custom Fields */
