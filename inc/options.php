@@ -233,6 +233,8 @@ class PontosSettingsPage
 		update_option('remocoes_default_pin_only',
 				!empty($_POST['remocoes-default-pin-only']));
 		update_option('remocoes_no_captcha', empty($_POST['remocoes-captcha']));
+		if (!empty($_POST['remocoes-auto-publish']))
+			update_option('remocoes_auto_publish', $_POST['remocoes-auto-publish']);
 	}
 
 	public function create_edit_page()

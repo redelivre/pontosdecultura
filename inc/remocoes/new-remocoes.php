@@ -624,15 +624,24 @@ else
 			<div class="home-entry <?php echo Remocoes::NEW_REMOCOES_PAGE ?> " >
 				<div class="container">
 					<div class="row">
-						<div class="new-remocoes-sucess"><?php _e('Sua remoção foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no mapa. Obrigado.'); ?>
-						</div>
+						<div class="new-remocoes-sucess"><?php
+							if (get_option('remocoes_auto_publish', false))
+							{
+								wp_publish_post($post_ID);
+								_e('Sua remoção foi cadastrada. Obrigado.', 'pontosdecultura');
+							}
+							else
+							{
+								_e('Sua remoção foi cadastrada e aguarda aprovação de nossos moderadores. Em até 15 dias ela deve estar disponível no mapa. Obrigado.', 'pontosdecultura');
+							}
+						?></div>
 					</div>
 				</div>
 			</div><?php
 			return ;
 		}
 	}
-	
+
 	$form_action = 'editpost';
 	$nonce_action = 'update-post_' . $post_ID;
 	$form_extra .= "<input type='hidden' id='post_ID' name='post_ID' value='" . esc_attr($post_ID) . "' />";

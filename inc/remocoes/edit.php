@@ -147,6 +147,14 @@
 	<label for="remocoes-captcha"><?php
 		_e('Exigir captcha (requer siCaptcha ativado)', 'pontosdecultura'); ?></label>
 	<br>
+	<input type="checkbox" name="remocoes-auto-publish"
+		id="remocoes-auto-publish" <?php
+		echo get_option('remocoes_auto_publish', false)?
+			'checked="checked"' : ''; ?>>
+	<label for="remocoes-auto-publish"><?php
+		_e('Publicar remoções sem a necessidade de moderação',
+				'pontosdecultura'); ?></label>
+	<br>
 	<input type="submit" name="remocoes-builtin-names"
 		value="<?php _e('Salvar', 'pontosdecultura'); ?>">
 </form>
