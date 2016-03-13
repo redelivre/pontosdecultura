@@ -42,7 +42,9 @@ function custom_mapasdevista_metabox_map($user = false)
 	?>
 	<fieldset>
 			<input type="hidden" class="mpv_map_type"
-				value="<?php echo esc_attr($map_type); ?>">
+				value="<?php echo esc_attr(in_array($map_type,
+					array('hybrid', 'satellite', 'terrain'))? $map_type : 'roadmap'); ?>"
+				>
 			<label for="mpv_lat"><?php _e('Latitude', 'mpv');?>:</label>
 			<input type="text" class="medium-field" name="mpv_lat" id="mpv_lat" value="<?php echo $location['lat'];?>"/>
 
