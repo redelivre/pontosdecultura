@@ -36,7 +36,9 @@ function custom_mapasdevista_metabox_map($user = false)
 
 
 	// Use nonce for verification
-	wp_nonce_field( plugin_basename( __FILE__ ), 'mapasdevista_noncename' );
+	$rFunction = new ReflectionFunction('mapasdevista_metabox_map');
+	wp_nonce_field(plugin_basename($rFunction->getFileName()),
+			'mapasdevista_noncename');
 	?>
 	<fieldset>
 			<input type="hidden" class="mpv_map_type"
