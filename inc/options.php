@@ -23,8 +23,8 @@ class PontosSettingsPage
 	{
 		// These will be under "Tools"
 		add_management_page(
-			__('Importar remoções do arquivo','pontosdecultura'),
-			__('Importar remoções do arquivo','pontosdecultura'),
+			__('Importar/Exportar remoções do arquivo','pontosdecultura'),
+			__('Importar/Exportar remoções do arquivo','pontosdecultura'),
 			'import',
 			'pontos-import-file',
 			array(&$this, 'create_admin_page')
@@ -270,6 +270,7 @@ class PontosSettingsPage
                 do_settings_sections( 'pontos-import-file' );
                 submit_button("Check Estado/Cidades", 'secundary', 'check-estado-cidade' );
                 submit_button("Importar Csv", 'secundary', 'importcsv' );
+                submit_button("Exportar Csv", 'secundary', 'remocoes-exportcsv');
                 submit_button("Importar Pins", 'secundary', 'importpins' );
                 submit_button(); 
             ?>
@@ -358,6 +359,125 @@ class PontosSettingsPage
 		die;
 	}
 
+	private function exportPostsCsv()
+	{
+		global $Remocoes_global;
+		$fields = $Remocoes_global->getFields();
+		$posts = get_posts(array('post_type' => 'remocoes',
+					'posts_per_page' => '-1'));
+
+		$metas = array();
+		$terms = array();
+		foreach ($posts as $p)
+		{
+			$metas[$p->ID] = get_post_meta($p->ID);
+			$metas[$p->ID]['post_title'] = array($p->post_title);
+			$metas[$p->ID]['post_content'] = array($p->post_content);
+			foreach ($fields as $f)
+				if (!empty($f['taxonomy']))
+					$terms[$p->ID][$f['slug']] = wp_get_post_terms($p->ID, $f['slug']);
+		}
+
+		$metaKeys = array();
+		foreach ($fields as $f)
+		{
+			if (!empty($f['taxonomy']))
+				continue;
+
+			switch ($f['type'])
+			{
+				case 'event':
+					$metaKeys[] = $f['slug'] . '-type';
+					$metaKeys[] = $f['slug'] . '-date';
+					$metaKeys[] = $f['slug'] . '-about';
+					break;
+
+				case 'dropdown-meses-anos':
+					$metaKeys[] = $f['slug'] . '-meses';
+					$metaKeys[] = $f['slug'] . '-anos';
+					break;
+
+				default:
+					$metaKeys[] = $f['slug'];
+					break;
+			}
+		}
+
+		$taxKeys = array();
+		foreach ($fields as $f)
+		{
+			if (empty($f['taxonomy']))
+				continue;
+
+			$taxKeys[] = $f['slug'];
+		}
+
+		$keys = array();
+		$positions = array();
+
+		foreach (array_merge($metaKeys, $taxKeys) as $s) {
+			$positions[$s] = array(sizeof($keys));
+			$keys[] = $s;
+		}
+
+		foreach ($posts as $p)
+		{
+			foreach (array_merge($metaKeys, $taxKeys) as $s)
+			{
+				if (array_key_exists($s, $metas[$p->ID]))
+					$numNew = max(0,
+							sizeof($metas[$p->ID][$s]) - sizeof($positions[$s]));
+				elseif (array_key_exists($s, $terms[$p->ID]))
+					$numNew = max(0,
+							sizeof($terms[$p->ID][$s]) - sizeof($positions[$s]));
+				else
+					continue;
+
+				for ($i = 0; $i < $numNew; $i++)
+				{
+					$positions[$s][] = sizeof($keys);
+					$keys[] = $s;
+				}
+			}
+		}
+
+		header('Content-disposition: attachment; filename=posts.csv');
+		header('Content-type: text/csv');
+
+		$out = fopen('php://output', 'w');
+		fputcsv($out, $keys);
+
+		foreach ($posts as $p)
+		{
+			$line = array();
+			for ($i = 0; $i < sizeof($keys); $i++)
+				$line[] = "";
+
+			foreach (array_merge($metaKeys, $taxKeys) as $s)
+			{
+				if (array_key_exists($s, $metas[$p->ID]))
+					$values = $metas[$p->ID][$s];
+				elseif (array_key_exists($s, $terms[$p->ID]))
+				{
+					$values = array();
+					foreach ($terms[$p->ID][$s] as $v)
+						$values[] = $v->slug;
+				}
+				else
+					continue;
+
+				for ($i = 0; $i < sizeof($values); $i++)
+				{
+					$line[$positions[$s][$i]] = $values[$i];
+				}
+			}
+
+			fputcsv($out, $line);
+		}
+
+		die;
+	}
+
 	/**
 	 * Register and add settings
 	 */
@@ -366,6 +486,10 @@ class PontosSettingsPage
 		if (array_key_exists('remocoes-export', $_POST))
 		{
 			$this->exportFieldsJson();
+		}
+		if (array_key_exists('remocoes-exportcsv', $_POST))
+		{
+			$this->exportPostsCsv();
 		}
 
 		register_setting(
