@@ -363,6 +363,9 @@ class PontosSettingsPage
 	{
 		global $Remocoes_global;
 		$fields = $Remocoes_global->getFields();
+		$fields['_mpv_location'] = array('slug' => '_mpv_location',
+				'type' => null);
+		$fields['_mpv_inmap'] = array('slug' => '_mpv_inmap', 'type' => null);
 		$posts = get_posts(array('post_type' => 'remocoes',
 					'posts_per_page' => '-1'));
 
