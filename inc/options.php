@@ -261,25 +261,28 @@ class PontosSettingsPage
 		// Set class property
 		$this->options = get_option( 'pontosdecultura_theme_options', array() );
 		?>
-        <div class="wrap">
-            <h2><?php _e('Import File Tool', 'pontosdecultura') ?></h2>           
-            <form method="post" action="options.php">
-            <?php
-                // This prints out all hidden setting fields
-                settings_fields( 'pontosdecultura_option_group' );   
-                do_settings_sections( 'pontos-import-file' );
-                submit_button("Check Estado/Cidades", 'secundary', 'check-estado-cidade' );
-                submit_button("Importar Csv", 'secundary', 'importcsv' );
-                submit_button("Exportar Csv", 'secundary', 'remocoes-exportcsv');
-                submit_button("Importar Pins", 'secundary', 'importpins' );
-                submit_button(); 
-            ?>
-            </form>
-            <div id="result">
-            </div>
-        </div>
-        <?php
-    }
+			<div class="wrap">
+					<h2><?php _e('Import File Tool', 'pontosdecultura') ?></h2>
+					<form method="post" action="options.php">
+					<?php
+							// This prints out all hidden setting fields
+							settings_fields( 'pontosdecultura_option_group' );
+							do_settings_sections( 'pontos-import-file' );
+							submit_button("Check Estado/Cidades", 'secundary', 'check-estado-cidade' );
+							echo '<b>'.__('Arquivo a importar:', 'pontosdecultura').'</b>';
+							echo '<input id="remocoes-import-csv" '
+								. 'name="remocoes-import-csv" type="file">';
+							submit_button("Importar Csv", 'secundary', 'importcsv' );
+							submit_button("Exportar Csv", 'secundary', 'remocoes-exportcsv');
+							submit_button("Importar Pins", 'secundary', 'importpins' );
+							submit_button();
+					?>
+					</form>
+					<div id="result">
+					</div>
+			</div>
+		<?php
+	}
 
 	public static function getTypeData()
 	{
@@ -520,11 +523,11 @@ class PontosSettingsPage
 
 		if(array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'pontos-import-file')
 		{
-			wp_register_script('pontosdecultura_import_scripts', get_template_directory_uri() . '/assets/js/pontosdecultura_import_scripts.js', array('jquery'));
+			wp_register_script('pontos_options_scripts', get_template_directory_uri() . '/js/pontos_options_scripts.js', array('jquery'));
 
-			wp_enqueue_script('pontosdecultura_import_scripts');
+			wp_enqueue_script('pontos_options_scripts');
 
-			wp_localize_script( 'pontosdecultura_import_scripts', 'pontosdecultura_import_scripts_object',
+			wp_localize_script( 'pontos_options_scripts', 'pontos_options_scripts_object',
 			array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 		}
 		add_action( 'wp_ajax_ImportarCsv', array($this, 'ImportarCsv_callback') );
@@ -714,6 +717,127 @@ class PontosSettingsPage
     
     public function ImportarCsv_callback()
     {
+			if (!array_key_exists('file', $_FILES)
+					|| !array_key_exists('tmp_name', $_FILES['file'])
+					|| $_FILES['file']['error'])
+			{
+				_e('CSV inválido', 'pontosdecultura');
+				die;
+			}
+
+			$in = fopen($_FILES['file']['tmp_name'], 'r');
+
+			$keys = fgetcsv($in);
+			if ($keys === false)
+			{
+				_e('CSV inválido', 'pontosdecultura');
+				die;
+			}
+
+			global $Remocoes_global;
+			$fields = $Remocoes_global->getFields();
+
+			$taxNames = array('_mpv_location' => null, '_mpv_inmap' => null);
+			foreach ($fields as $f)
+			{
+				$name = empty($f['taxonomy'])? null : $f['slug'];
+
+				switch ($f['type'])
+				{
+					case 'dropdown-meses-anos':
+						$taxNames[$f['slug'].'-meses'] = $name;
+						$taxNames[$f['slug'].'-anos'] = $name;
+						break;
+
+					case 'event':
+						$taxNames[$f['slug'].'-date'] = $name;
+						$taxNames[$f['slug'].'-type'] = $name;
+						$taxNames[$f['slug'].'-about'] = $name;
+						break;
+
+					default:
+						$taxNames[$f['slug']] = $name;
+						break;
+				}
+			}
+
+			foreach ($keys as $k)
+			{
+				if (!array_key_exists($k, $taxNames))
+				{
+					printf(__('Chave %s desconhecida', 'pontosdecultura'), $k);
+					die;
+				}
+			}
+
+			$line = 1;
+			$ok = 0;
+			$bad = 0;
+			while ($entry = fgetcsv($in))
+			{
+				$line++;
+
+				if (sizeof($entry) != sizeof($keys))
+				{
+					printf(__('Erro linha %d: quantidade inválida de elementos<br>',
+								'pontosdecultura'), $line);
+					$bad++;
+					continue;
+				}
+
+				$post = $Remocoes_global->get_default_post_to_edit('remocoes', true);
+
+				for ($i = 0; $i < sizeof($entry); $i++)
+				{
+					$k = $keys[$i];
+					$v = $entry[$i];
+
+					if (empty($entry[$i]))
+						continue;
+
+					if ($k === 'post_title')
+					{
+						$post->post_title = $v;
+						$post->post_name = sanitize_title($v);
+					}
+					elseif ($k === 'post_description')
+					{
+						$post->post_content = $v;
+					}
+					else if ($taxNames[$k] === null)
+					{
+						if ($k === '_mpv_location')
+						{
+							$v = unserialize($v);
+							if ($v === false)
+								printf(__('Aviso linha %d: Falha ao desserealizar coordenadas',
+											'pontosdecultura'), $line);
+						}
+						add_post_meta($post->ID, $k, $v);
+					}
+					else
+					{
+						$t = get_terms($taxNames[$k],
+								array('hide_empty' => 0, 'slug' => $v, 'number' => 1));
+						if (sizeof($t))
+							wp_set_post_terms($post->ID, array($t[0]->term_id),
+									$taxNames[$k], true);
+						else
+							printf(
+									__('Aviso linha %d: termo %s da taxonomia %s não encontrado',
+										'pontosdecultura'), $line, $v, $taxNames[$k]);
+					}
+				}
+
+				wp_update_post($post);
+				wp_publish_post($post->ID);
+
+				$ok++;
+			}
+
+			printf(__('%d posts adicionados<br>%d falharam', 'pontosdecultura'),
+					$ok, $bad);
+			die;
     	PontosSettingsPage::newLog();
     	
     	echo '<div id="result">';
