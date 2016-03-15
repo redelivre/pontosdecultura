@@ -1503,3 +1503,8 @@ div.wpcf7-response-output {
 .ui-datepicker {
 	background-color: #fff;
 }
+
+
+.map-menu-side {
+	display: none;
+}

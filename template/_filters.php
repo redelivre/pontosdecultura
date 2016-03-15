@@ -130,20 +130,24 @@ class PontosFilters
 		
 		?>
 		<div class="filter-panel">
-		        <h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
-		        <?php
-						global $Remocoes_global;
-						$fields = $Remocoes_global->getFields();
+			<?php if (has_nav_menu('mapasdevista_side')): ?>
+				<h1 class="panel-title"><?php _e('Menu', 'pontosdecultura');?></h1>
+				<?php wp_nav_menu(array('theme-location' => 'mapasdevista_side')); ?>
+			<?php endif; ?>
+			<h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
+			<?php
+				global $Remocoes_global;
+				$fields = $Remocoes_global->getFields();
 
-						foreach ($fields as $f)
-						{
-							if (empty($f['taxonomy'])
-									|| !array_key_exists($f['slug'], $taxs))
-								continue;
+				foreach ($fields as $f)
+				{
+					if (empty($f['taxonomy'])
+							|| !array_key_exists($f['slug'], $taxs))
+						continue;
 
-							self::createTaxBox($f['slug'], $taxs[$f['slug']]);
-						}
-				?>
+					self::createTaxBox($f['slug'], $taxs[$f['slug']]);
+				}
+			?>
 		</div>
 		<?php
 	}
@@ -151,4 +155,3 @@ class PontosFilters
 
 $pf = new PontosFilters();
 $pf::show();
-
