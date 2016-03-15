@@ -82,6 +82,7 @@ class Remocoes
 	function registerTaxonomies()
 	{
 		$mapa = get_option('mapasdevista');
+		$taxs = array();
 
 		foreach ($this->_customs as $field)
 		{
@@ -100,13 +101,12 @@ class Remocoes
 					wp_insert_term($v, $field['slug'], array('slug' => $k));
 			}
 
-			if ($mapa !== false)
-				$mapa['taxonomies'][] = $field['slug'];
+			$taxs[] = $field['slug'];
 		}
 
 		if ($mapa !== false)
 		{
-			$mapa['taxonomies'] = array_unique($mapa['taxonomies']);
+			$mapa['taxonomies'] = $taxs;
 			update_option('mapasdevista', $mapa);
 		}
 	}
