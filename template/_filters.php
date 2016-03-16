@@ -130,10 +130,6 @@ class PontosFilters
 		
 		?>
 		<div class="filter-panel">
-			<?php if (has_nav_menu('mapasdevista_side')): ?>
-				<h1 class="panel-title"><?php _e('Menu', 'pontosdecultura');?></h1>
-				<?php wp_nav_menu(array('theme-location' => 'mapasdevista_side')); ?>
-			<?php endif; ?>
 			<h1 class="panel-title"><?php _e('Filtros', 'pontosdecultura');?></h1>
 			<?php
 				global $Remocoes_global;
@@ -148,6 +144,11 @@ class PontosFilters
 					self::createTaxBox($f['slug'], $taxs[$f['slug']]);
 				}
 			?>
+			<form action="<?php echo get_home_url(); ?>">
+				<input type="submit" value="<?php
+					_e('<< VOLTAR PARA CAPA', 'pontosdecultura');
+				?>">
+			</form>
 		</div>
 		<?php
 	}
