@@ -800,7 +800,7 @@ class PontosSettingsPage
 						$post->post_title = $v;
 						$post->post_name = sanitize_title($v);
 					}
-					elseif ($k === 'post_description')
+					elseif ($k === 'post_content')
 					{
 						$post->post_content = $v;
 					}
