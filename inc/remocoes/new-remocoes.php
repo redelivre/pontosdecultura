@@ -54,7 +54,7 @@ function custom_mapasdevista_metabox_map($user = false)
 			<input type="button" id="mpv_load_coords" value="Exibir"/>
 	</fieldset>
 	<fieldset>
-			<label for="mpv_search_address"><?php _e('Search address', 'mapasdevista');?>:</label>
+			<label for="mpv_search_address"><?php _e('Digite o endereço e aperte enter:', 'mapasdevista');?>:</label>
 			<input type="text" id="mpv_search_address" class="large-field"/>
 	</fieldset>
 	<div id="mpv_canvas" class="mpv_canvas"></div>
